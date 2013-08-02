@@ -1,12 +1,7 @@
 import re
 
 from lib.filters import as_number, period_as_text
-
-
-def keyify(text):
-    unclean = re.sub( r'\W+', '_', text.lower() )
-    more_clean = re.sub( r'_$', '', unclean )
-    return re.sub( r'^_', '', more_clean )
+from lib.slugify import keyify
 
 
 class Service:

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block body %}
+  <header class="page-header group no-right-margin">
+    <hgroup>
+      {#% include "logo_and_header.html" %#}
+    </hgroup>
+  </header>
+  <div class="group">
+    <section class="content-group service-details-header">
+      <div class="col-50">
+        <h1>{{ service.name|e }}</h1>
+      </div>
+      <div class="col-50">
+        <dl>
+          {% if service.body %}
+            <dt>Agency/body:</dt>
+            <dd>{{ service.body|e }}</dd>
+          {% endif %}
+          {% if service.category %}
+            <dt>Service type:</dt>
+            <dd>{{ service.category }}</dd>
+          {% endif %}
+          {% if service.customer_type %}
+            <dt>Customer type:</dt>
+            <dd>{{ service.customer_type }}</dd>
+          {% endif %}
+          {% if service.business_model %}
+            <dt>Cost model:</dt>
+            <dd>{{ service.business_model }}</dd>
+          {% endif %}
+          {% if service.url %}
+            <dt>External link:</dt>
+            <dd><a href="{{ service.url }}" rel="external">link</a></dd>
+          {% endif %}
+        </dl>
+      </div>
+      <div class="clear-div"></div>
+    </section>
+    
+    <article role="article" class="group service-details">
+      <section class="content-group">
+        {% if service.description %}
+          <h2>Description of service</h2>
+          <p>{{ service.description }}</p>
+        {% endif %}
+        
+        <div id="service-notes" class="clear-div">
+          {% if service.notes_on_costs %}
+            <h2>Notes on costs</h2>
+            <p>{{ service.notes_on_costs }}</p>
+          {% endif %}
+          {% if service.other_notes %}
+            <h2>Other notes</h2>
+            <p>{{ service.other_notes }}</p>
+          {% endif %}
+        </div>
+      </section>
+    </article>
+  </div>
+{% endblock %}

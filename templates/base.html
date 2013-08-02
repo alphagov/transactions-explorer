@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="lte-ie8 " lang="en"><![endif]--><!--[if gt IE 8]><!--><html lang="en" class="">
+<!--<![endif]--><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Transactions Explorer: transactional services data from the UK government</title>
+    <script type="text/javascript">
+        (function(){if(navigator.userAgent.match(/IEMobile\/10\.0/)){var d=document,c="appendChild",a=d.createElement("style");a[c](d.createTextNode("@-ms-viewport{width:auto!important}"));d.getElementsByTagName("head")[0][c](a);}})();
+    </script><!--[if gt IE 8]><!--><link href="/assets/static/app/assets/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css">
+    <!--<![endif]--><!--[if IE 6]><link href="/assets/static/app/assets/stylesheets/application-ie6.css" media="screen" rel="stylesheet" type="text/css" /><![endif]--><!--[if IE 7]><link href="/assets/static/app/assets/stylesheets/application-ie7.css" media="screen" rel="stylesheet" type="text/css" /><![endif]--><!--[if IE 8]><link href="/assets/static/app/assets/stylesheets/application-ie8.css" media="screen" rel="stylesheet" type="text/css" /><![endif]--><link href="/assets/static/app/assets/stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+    <!--[if IE 8]>
+    <script type="text/javascript">
+        (function(){if(window.opera){return;}
+        setTimeout(function(){var a=document,g,b={families:(g=
+        ["nta"]),urls:["https://assets.digital.cabinet-office.gov.uk/static/fonts-ie8-beb10cbc00c9b7dcdbdee824962bc5f6.css"]},
+        c="https://assets.digital.cabinet-office.gov.uk/static/libs/goog/webfont-debug-96870cf9f159ed811fd43c39bdf4656b.js",d="script",
+        e=a.createElement(d),f=a.getElementsByTagName(d)[0],h=g.length;WebFontConfig
+        ={custom:b},e.src=c,f.parentNode.insertBefore(e,f);for(;h=h-1;a.documentElement
+        .className+=' wf-'+g[h].replace(/\s/g,'').toLowerCase()+'-n4-loading');},0)
+        })()
+    </script>
+    <![endif]--><!--[if gte IE 9]><!--><link href="https://assets.digital.cabinet-office.gov.uk/static/fonts-0fb6b917e34e45c93a44eec72dcc21de.css" media="all" rel="stylesheet" type="text/css">
+    <!--<![endif]--><!--[if lt IE 9]>
+    <script src="https://assets.digital.cabinet-office.gov.uk/static/ie-27ccded64045ab36dbfb67c2f47c362b.js" type="text/javascript"></script>
+    <![endif]--><link rel="shortcut icon" href="https://assets.digital.cabinet-office.gov.uk/static/favicon-447e4ac1ab790342660eacfe3dcce264.ico" type="image/x-icon">
+    <!-- For third-generation iPad with high-resolution Retina display: --><link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://assets.digital.cabinet-office.gov.uk/static/apple-touch-icon-144x144-4e306e01c31e237722b82b7aa7130082.png">
+    <!-- For iPhone with high-resolution Retina display: --><link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://assets.digital.cabinet-office.gov.uk/static/apple-touch-icon-114x114-f1d7ccdc7b86d923386b373a9ba5e3db.png">
+    <!-- For first- and second-generation iPad: --><link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://assets.digital.cabinet-office.gov.uk/static/apple-touch-icon-72x72-2ddbe540853e3ba0d30fbad2a95eab3c.png">
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: --><link rel="apple-touch-icon-precomposed" href="https://assets.digital.cabinet-office.gov.uk/static/apple-touch-icon-57x57-37527434942ed8407b091aae5feff3f3.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="og:image" content="https://assets.digital.cabinet-office.gov.uk/static/opengraph-image-4e469785ca4cc8f8dd18d0627bc43d19.png">
+    <script src="https://assets.digital.cabinet-office.gov.uk/static/libs/jquery/jquery-1.7.2-2ce4706f8f7193defaa9e7df2b641e9a.js" type="text/javascript"></script><script defer src="https://assets.digital.cabinet-office.gov.uk/static/application-e5938d4ac4939ea75375d1a4d52eee96.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36369871-1']);
+        _gaq.push(['_setDomainName', 'cabinetoffice.gov.uk']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <link rel="stylesheet" media="screen" href="/assets/stylesheets/index.css">
+    <!--[if lt IE 9]>
+    <link type="text/css" href="/assets/stylesheets/ie.css" rel="stylesheet" media="all">
+    <![endif]-->
+    <!--[if lt IE 7]>
+    <link type="text/css" href="/assets/stylesheets/ie-more.css" rel="stylesheet" media="all">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <script type="text/javascript" src="/assets/javascripts/tool-tip.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/d3.v2.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/charts/bubble.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/charts/treemap.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/views.js"></script>
+    <!--<![endif]-->
+</head>
+    <body class="">
+    <script type="text/javascript">document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script><a href="#content" class="visuallyhidden">Skip to main content</a>
+
+    <div id="wrapper" class="wrapper datainsight">
+        <nav class="performance-nav">
+            <a href="/" class="top-level">
+                <span class="top-level-link">Transactions Explorer</span>
+                <span class="alpha-tag">ALPHA</span>
+            </a>
+            <div class="menu-wrapper">
+                <a id="menu-toggle" href="#" data-hide-or-show="sub-level">menu</a>
+                <div class="inner-nav">
+                    <ul id="navigation">
+                        <li class="sub-level"><a href="/aboutData" class="">About the data</a></li>
+                        <li class="sub-level"><a href="/highVolumeTransactions" class="">High-volume services</a></li>
+                        <li class="sub-level"><a href="/allservices" class="{% if service %}current{% endif %}">All services</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section id="content" role="main" class="group"><!--<div class="pattern-status">{% raw %}{{ page.status }}{% endraw %}</div>-->
+          {% block body %}{% endblock %}
+        </section>
+
+    </div><!--end wrapper-->
+
+    <footer class="group" id="footer" role="contentinfo">
+        <div class="footer-wrapper">
+            <div class="footer-meta">
+                <nav>
+                    <ul>
+                        <li><a href="/support">Support</a></li>
+                        <li><a href="/support/cookies">Cookies</a></li>
+                        <li><a href="/feedback">Feedback</a></li>
+                        <li><a href="/cymraeg">Cymraeg</a></li>
+                        <li>Built by the <a href="http://digital.cabinetoffice.gov.uk/">Government Digital Service</a>
+                        </li>
+                    </ul>
+                    <p>All content is available under the <a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/">Open Government Licence</a>, except where otherwise stated</p>
+                </nav>
+
+                <div class="copyright">
+                    <a href="http://www.nationalarchives.gov.uk/information-management/our-services/crown-copyright.htm">© Crown Copyright</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    </body>
+</html>
