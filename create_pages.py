@@ -26,24 +26,22 @@ SERVICES_DATA = 'data/services.csv'
 
 data = open(SERVICES_DATA)
 reader = unicodecsv.DictReader(data)
-services = [ Service(details=row) for row in reader ]
 
-for service in services:
+services = [ Service(details=row) for row in reader ]
+high_volume_services = [service for service in services if service.high_volume]
+
+for service in high_volume_services:
     print service.name
 
-    if service.high_volume:
-        template = jinja.get_template('service_detail.html')
-        page = template.render(service=service)
+    template = jinja.get_template('service_detail.html')
+    page = template.render(service=service)
 
-        output_filename = '%s/%s.html' % (
-            'output/service-details/',
-            slugify( '%s-%s' % (service.abbr, service.name) ),
-        )
-        output = open(output_filename, 'w')
-        output.write( page.encode('utf8') )
-
-
-high_volume_services = [service for service in services if service.high_volume]
+    output_filename = '%s/%s.html' % (
+        'output/service-details/',
+        slugify( '%s-%s' % (service.abbr, service.name) ),
+    )
+    output = open(output_filename, 'w')
+    output.write( page.encode('utf8') )
 
 template = jinja.get_template('high_volume_transactions.html')
 page = template.render(services=high_volume_services)
