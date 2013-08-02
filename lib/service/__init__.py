@@ -122,6 +122,30 @@ class Service:
         return self.name_of_service
     
     @property
+    def body(self):
+        return self.agency_body
+    
+    @property
+    def description(self):
+        return re.sub('\s*$', '', self.description_of_service)
+    
+    @property
+    def most_recent_kpis(self):
+        return self.kpis[-1]
+    
+    def historical_data(self, key):
+        data = []
+        
+        if len(self.kpis) > 1:
+            for quarter in reversed(self.kpis):
+                data.append({
+                    'quarter': quarter['quarter'],
+                    'value': quarter.get(key, None),
+                })
+        
+        return data[1:]
+    
+    @property
     def css_class_postfix(self):
         css_class = self.dept_class_table.get( self.abbr.upper(), None )
         if css_class is not None:
