@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import os
 
 import unicodecsv
 from jinja2 import Environment, FileSystemLoader
@@ -27,32 +28,29 @@ SERVICES_DATA = 'data/services.csv'
 data = open(SERVICES_DATA)
 reader = unicodecsv.DictReader(data)
 
-services = [ Service(details=row) for row in reader ]
+services = [Service(details=row) for row in reader]
 high_volume_services = [service for service in services if service.high_volume]
+
+
+def render(template_name, out, vars):
+    template = jinja.get_template(template_name)
+    page = template.render(**vars)
+    output_path = os.path.join('output', out)
+    with open(output_path, 'w') as output:
+        output.write(page.encode('utf8'))
+
 
 for service in high_volume_services:
     print service.name
 
-    template = jinja.get_template('service_detail.html')
-    page = template.render(service=service)
+    output_filename = '%s/%s.html' % ('service-details/', service.slug)
 
-    output_filename = '%s/%s.html' % (
-        'output/service-details/',
-        slugify( '%s-%s' % (service.abbr, service.name) ),
-    )
-    output = open(output_filename, 'w')
-    output.write( page.encode('utf8') )
+    render('service_detail.html',
+           out=output_filename,
+           vars={"service": service})
 
-template = jinja.get_template('high_volume_transactions.html')
-page = template.render(services=high_volume_services)
+print "High Volume Transactions"
 
-output_filename = '%s/%s.html' % (
-    'output/',
-    'high-volume-transactions',
-)
-output = open(output_filename, 'w')
-output.write(page.encode('utf8'))
-
-# get the list of services
-# filter high volume services
-# render a template
+render('high_volume_transactions.html',
+       out='high-volume-transactions.html',
+       vars={'services': high_volume_services})
