@@ -1,19 +1,12 @@
 #!/usr/bin/env python
-import os
-
-import unicodecsv
-import re
-
-from lib.filters import number_as_grouped_number, number_as_financial_magnitude, number_as_magnitude, number_as_percentage, number_as_percentage_change, period_as_text
-from lib.service import Service
-from lib.slugify import slugify
 
 from jinja2 import Environment, FileSystemLoader
 
-
-def create_if_missing(output_dir):
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+import unicodecsv
+from lib.filesystem import create_directory
+from lib.filters import number_as_grouped_number, number_as_financial_magnitude, number_as_magnitude, number_as_percentage, number_as_percentage_change, period_as_text
+from lib.service import Service
+from lib.slugify import slugify
 
 
 jinja = Environment(
@@ -34,7 +27,7 @@ jinja.filters['slugify'] = slugify
 SERVICES_DATA = 'data/services.csv'
 OUTPUT_DIR = 'output/serviceDetails'
 
-create_if_missing(OUTPUT_DIR)
+create_directory(OUTPUT_DIR)
 
 data = open(SERVICES_DATA)
 reader = unicodecsv.DictReader(data)
