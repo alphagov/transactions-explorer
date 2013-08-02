@@ -12,3 +12,4 @@ reader = unicodecsv.DictReader(data)
 for row in reader:
     service = Service(details=row)
     print service.name
+    print service.kpis
