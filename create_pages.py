@@ -42,3 +42,10 @@ for row in reader:
         )
         output = open(output_filename, 'w')
         output.write( page.encode('utf8') )
+
+# about page
+template = jinja.get_template('about-the-data.html')
+page = template.render()
+output_filename = 'output/about-the-data.html'
+output = open(output_filename, 'w')
+output.write( page.encode('utf8') )
