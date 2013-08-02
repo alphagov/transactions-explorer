@@ -37,7 +37,7 @@ for row in reader:
         page = template.render(service=service)
         
         output_filename = '%s/%s.html' % (
-            'output/serviceDetails/',
+            'output/service-details/',
             slugify( '%s-%s' % (service.abbr, service.name) ),
         )
         output = open(output_filename, 'w')
