@@ -1,11 +1,12 @@
-import re
+from re import sub
+
 
 def slugify(text):
-    slug = re.sub( r'\W+', '-', text.lower() )
+    slug = sub( r'\W+', '-', text.lower() )
     slug = slug.replace('-and-', '-')
     return slug
 
 def keyify(text):
-    unclean = re.sub( r'\W+', '_', text.lower() )
-    more_clean = re.sub( r'_$', '', unclean )
-    return re.sub( r'^_', '', more_clean )
+    unclean = sub( r'\W+', '_', text.lower() )
+    more_clean = sub( r'_$', '', unclean )
+    return sub( r'^_', '', more_clean )
