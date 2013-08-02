@@ -16,3 +16,5 @@ run `python fetch_csv.py`. This will authenticate against Google in your
 browser, then download the Service Explorer detail to `data/services.csv`.
 
 Generate the site with `python create_pages.py`.
+
+[console]: https://code.google.com/apis/console/
