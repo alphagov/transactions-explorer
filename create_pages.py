@@ -25,7 +25,7 @@ jinja.filters['period_as_text'] = period_as_text
 jinja.filters['slugify'] = slugify
 
 SERVICES_DATA = 'data/services.csv'
-OUTPUT_DIR = 'output/serviceDetails'
+OUTPUT_DIR = 'output/service-details'
 
 create_directory(OUTPUT_DIR)
 

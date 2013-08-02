@@ -53,10 +53,10 @@ def number_as_financial_magnitude(num):
     if type(num) is str or type(num) is unicode:
         num = as_number(num)
     
-    if num < 1000:
+    if num < 100:
         return '%.2f' % num
-    # elif num < 1000:
-    #     return int(ceil(num))
+    elif num < 1000:
+        return int(ceil(num))
     elif num < 10000:
         return '%.2fk' % (num / 1000)
     elif num < 100000:

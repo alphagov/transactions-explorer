@@ -119,7 +119,7 @@ class Service:
     
     @property
     def name(self):
-        return self.name_of_service
+        return re.sub('\s*$', '', self.name_of_service)
     
     @property
     def body(self):
