@@ -14,6 +14,8 @@ jinja = Environment(
     lstrip_blocks=True,
 )
 
+jinja.filters['slugify'] = slugify
+
 SERVICES_DATA = 'data/services.csv'
 
 data = open(SERVICES_DATA)
