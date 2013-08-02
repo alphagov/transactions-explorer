@@ -43,10 +43,8 @@ def render(template_name, out, vars):
 for service in high_volume_services:
     print service.name
 
-    output_filename = '%s/%s.html' % ('service-details/', service.slug)
-
     render('service_detail.html',
-           out=output_filename,
+           out=service.link,
            vars={"service": service})
 
 print "High Volume Transactions"

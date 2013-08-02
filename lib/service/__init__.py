@@ -136,7 +136,11 @@ class Service:
     @property
     def slug(self):
         return slugify('%s-%s' % (self.abbr, self.name))
-    
+
+    @property
+    def link(self):
+        return '%s/%s.html' % ('service-details', self.slug)
+
     def historical_data(self, key):
         data = []
         

@@ -104,6 +104,15 @@ def row(values):
 
 class TestService(unittest.TestCase):
     def test_slug(self):
-        service = Service(row({'Abbr': 'abc', 'Name of service': 'Add Beautiful Code'}))
+        service = Service(row({'Abbr': 'abc',
+                               'Name of service': 'Add Beautiful Code'}))
 
         assert_that(service.slug, is_('abc-add-beautiful-code'))
+
+    def test_link(self):
+        service = Service(row({'Abbr': 'abc',
+                               'Name of service': 'Add Beautiful Code'}))
+
+        assert_that(service.link,
+                    is_('service-details/abc-add-beautiful-code.html'))
+
