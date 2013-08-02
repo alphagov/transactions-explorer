@@ -1,7 +1,7 @@
 import re
 
 from lib.filters import as_number, period_as_text
-from lib.slugify import keyify
+from lib.slugify import keyify, slugify
 
 
 class Service:
@@ -132,6 +132,10 @@ class Service:
     @property
     def most_recent_kpis(self):
         return self.kpis[-1]
+
+    @property
+    def slug(self):
+        return slugify('%s-%s' % (self.abbr, self.name))
     
     def historical_data(self, key):
         data = []

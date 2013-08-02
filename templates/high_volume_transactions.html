@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<header class="page-header group">
+    <hgroup>
+        <h1>High-volume services</h1><br/>
+
+        <h2 id="narrative" class="module more_pad_top">
+            The top 20 services account for <strong>90% of transactions</strong> with central government
+        </h2>
+    </hgroup>
+</header>
+
+<div class="group">
+    <article role="article" class="group">
+        <section class="content-group">
+
+<table id="transactions-table" class="full_width_table">
+    <thead>
+    <tr>
+
+    <th scope="col">
+        <a href="?orderBy=nameOfService&amp;direction=asc#transactions-table">
+        Transactional service
+        </a>
+
+    </th>
+    <th scope="col">
+        <a href="?orderBy=dept&amp;direction=asc#transactions-table">Department</a>
+
+    </th>
+    <th scope="col">
+        <a href="?orderBy=mostRecentTotalCost&amp;direction=asc#transactions-table">Total cost</a>
+
+    </th>
+    <th scope="col">
+        <a href="?orderBy=costPerTransaction&amp;direction=asc#transactions-table">Cost per transaction</a>
+
+    </th>
+    <th scope="col">
+        <a href="?orderBy=mostRecentDigitalTakeUp&amp;direction=asc#transactions-table">Digital take&#8209;up</a>
+
+    </th>
+
+    <th scope="col" class="amount">
+        <a href="?orderBy=volume&amp;direction=asc#transactions-table" title="Transactions per year: most recent 12 months of data available across all channels">
+        Transactions per year
+        </a>
+        <span class="sort-ind">▼</span>
+    </th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for service in services %}
+
+    <tr data-volume="{{ service.most_recent_kpis.volume_num|int }}"
+        data-volumeLabel=" {{ service.most_recent_kpis.volume_num|as_grouped_number }} "
+        data-category="{{ service.category }}"
+        data-body="{{ service.body }}"
+        data-body-abbr="{{ service.agency_abbr }}"
+        data-url="{{ service.url }}"
+        data-bubbleLink="service-details/{{ service.slug }}.html"
+        data-label="{{ service.short_service_name }}"
+        data-title="{{ service.name_of_service }}"
+        data-color="#2e358b"
+        data-text-color="#fff">
+
+    <th scope="row">
+
+        <a href="service-details/{{ service.slug }}.html">{{ service.name_of_service }}</a>
+
+    </th>
+    <td>{{ service.abbr }}</td>
+    <td class="amount">
+
+
+            &pound;{{ service.most_recent_kpis.cost|as_financial_magnitude}}
+
+
+</td>
+    <td class="amount">
+
+
+
+            &pound;{{ service.most_recent_kpis.cost_per_number|as_financial_magnitude}}
+
+
+
+    </td>
+    <td class="amount">
+
+
+            {{ service.most_recent_kpis.takeup|as_percentage }}
+
+
+</td>
+    <td class="amount">
+
+
+            {{ service.most_recent_kpis.volume_num|as_grouped_number }}
+
+
+</td>
+
+    </tr>
+    {% endfor %}
+
+
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        if ($("#bubble").length) {
+            gds.transactions.views.index( "hmrc" , "bubble", "transactions-table");
+        }
+    });
+</script>
+
+
+            <div id="old-data" class="application-notice info-notice table-margin">
+                <p>* Q1 2013 data not provided for this metric; see service page for information on obtaining latest data</p>
+            </div>
+
+        </section>
+    </article>
+</div>
+
+
+{% endblock %}

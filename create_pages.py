@@ -1,13 +1,11 @@
 #!/usr/bin/env python
 
 import unicodecsv
-import re
+from jinja2 import Environment, FileSystemLoader
 
 from lib.filters import number_as_grouped_number, number_as_financial_magnitude, number_as_magnitude, number_as_percentage, number_as_percentage_change, period_as_text
 from lib.service import Service
 from lib.slugify import slugify
-
-from jinja2 import Environment, FileSystemLoader
 
 jinja = Environment(
     loader=FileSystemLoader(searchpath='templates', encoding='utf-8'),
@@ -28,17 +26,35 @@ SERVICES_DATA = 'data/services.csv'
 
 data = open(SERVICES_DATA)
 reader = unicodecsv.DictReader(data)
-for row in reader:
-    service = Service(details=row)
+services = [ Service(details=row) for row in reader ]
+
+for service in services:
     print service.name
-    
+
     if service.high_volume:
         template = jinja.get_template('service_detail.html')
         page = template.render(service=service)
-        
+
         output_filename = '%s/%s.html' % (
             'output/service-details/',
             slugify( '%s-%s' % (service.abbr, service.name) ),
         )
         output = open(output_filename, 'w')
         output.write( page.encode('utf8') )
+
+
+high_volume_services = [service for service in services if service.high_volume]
+
+template = jinja.get_template('high_volume_transactions.html')
+page = template.render(services=high_volume_services)
+
+output_filename = '%s/%s.html' % (
+    'output/',
+    'high-volume-transactions',
+)
+output = open(output_filename, 'w')
+output.write(page.encode('utf8'))
+
+# get the list of services
+# filter high volume services
+# render a template
