@@ -80,10 +80,10 @@ def number_as_percentage(num):
     if type(num) is str or type(num) is unicode:
         num = as_number(num)
 
-    if num == None:
+    if num is None:
         return ''
-    
-    num = num * 100
+
+    num *= 100
     num_as_int = int(num)
     
     if num_as_int == num:
