@@ -23,7 +23,7 @@
 {%- endmacro %}
 
 
-        
+
 {% block body %}
 
 <header class="page-header group">
@@ -40,122 +40,93 @@
     <article role="article" class="group">
         <section class="content-group">
 
-<table id="transactions-table" class="full_width_table">
-    <thead>
-    <tr>
+            <table id="transactions-table" class="full_width_table">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            <a href="?orderBy=nameOfService&amp;direction=asc#transactions-table">Transactional service</a>
+                        </th>
+                        <th scope="col">
+                            <a href="?orderBy=dept&amp;direction=asc#transactions-table">Department</a>
 
-    <th scope="col">
-        <a href="?orderBy=nameOfService&amp;direction=asc#transactions-table">
-        Transactional service
-        </a>
+                        </th>
+                        <th scope="col">
+                            <a href="?orderBy=mostRecentTotalCost&amp;direction=asc#transactions-table">Total cost</a>
 
-    </th>
-    <th scope="col">
-        <a href="?orderBy=dept&amp;direction=asc#transactions-table">Department</a>
+                        </th>
+                        <th scope="col">
+                            <a href="?orderBy=costPerTransaction&amp;direction=asc#transactions-table">Cost per transaction</a>
 
-    </th>
-    <th scope="col">
-        <a href="?orderBy=mostRecentTotalCost&amp;direction=asc#transactions-table">Total cost</a>
+                        </th>
+                        <th scope="col">
+                            <a href="?orderBy=mostRecentDigitalTakeUp&amp;direction=asc#transactions-table">Digital take&#8209;up</a>
 
-    </th>
-    <th scope="col">
-        <a href="?orderBy=costPerTransaction&amp;direction=asc#transactions-table">Cost per transaction</a>
+                        </th>
+                        <th scope="col" class="amount">
+                            <a href="?orderBy=volume&amp;direction=asc#transactions-table" title="Transactions per year: most recent 12 months of data available across all channels">
+                            Transactions per year
+                            </a>
+                            <span class="sort-ind">▼</span>
+                        </th>
+                    </tr>
+                </thead>
 
-    </th>
-    <th scope="col">
-        <a href="?orderBy=mostRecentDigitalTakeUp&amp;direction=asc#transactions-table">Digital take&#8209;up</a>
+                <tbody>
+                    {% for service in services %}
+                        <tr data-volume="{{ service.most_recent_kpis.volume_num|int }}"
+                            data-volumeLabel=" {{ service.most_recent_kpis.volume_num|as_grouped_number }} "
+                            data-category="{{ service.category }}"
+                            data-body="{{ service.body }}"
+                            data-body-abbr="{{ service.agency_abbr }}"
+                            data-url="{{ service.url }}"
+                            data-bubbleLink="{{ service.link }}"
+                            data-label="{{ service.short_service_name }}"
+                            data-title="{{ service.name_of_service }}"
+                            data-color="#2e358b"
+                            data-text-color="#fff">
 
-    </th>
+                            <th scope="row">
+                                <a href="{{ service.link }}">{{ service.name_of_service }}</a>
+                            </th>
 
-    <th scope="col" class="amount">
-        <a href="?orderBy=volume&amp;direction=asc#transactions-table" title="Transactions per year: most recent 12 months of data available across all channels">
-        Transactions per year
-        </a>
-        <span class="sort-ind">▼</span>
-    </th>
+                            <td>{{ service.abbr }}</td>
 
-    </tr>
-    </thead>
-    <tbody>
+                            <td class="amount">
+                                {{ cell_content(quarter=service.most_recent_kpis['quarter'],
+                                                value=service.most_recent_kpis.cost,
+                                                cell_format=money_cell) }}
+                            </td>
 
+                            <td class="amount">
+                                {{ cell_content(quarter=service.most_recent_kpis['quarter'],
+                                                value=service.most_recent_kpis.cost_per_number,
+                                                cell_format=money_cell) }}
+                            </td>
 
-    {% for service in services %}
+                            <td class="amount">
+                                {{ cell_content(quarter=service.most_recent_kpis['quarter'],
+                                                value=service.most_recent_kpis.takeup,
+                                                cell_format=percentage_cell) }}
+                            </td>
 
+                            <td class="amount">
+                                {{ cell_content(quarter=service.most_recent_kpis['quarter'],
+                                                value=service.most_recent_kpis.volume_num,
+                                                cell_format=number_cell) }}
+                            </td>
 
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
 
-
-    <tr data-volume="{{ service.most_recent_kpis.volume_num|int }}"
-        data-volumeLabel=" {{ service.most_recent_kpis.volume_num|as_grouped_number }} "
-        data-category="{{ service.category }}"
-        data-body="{{ service.body }}"
-        data-body-abbr="{{ service.agency_abbr }}"
-        data-url="{{ service.url }}"
-        data-bubbleLink="{{ service.link }}"
-        data-label="{{ service.short_service_name }}"
-        data-title="{{ service.name_of_service }}"
-        data-color="#2e358b"
-        data-text-color="#fff">
-
-    <th scope="row">
-
-        <a href="{{ service.link }}">{{ service.name_of_service }}</a>
-
-    </th>
-    <td>{{ service.abbr }}</td>
-    <td class="amount">
-
-
-            {{ cell_content(quarter=service.most_recent_kpis['quarter'],
-                            value=service.most_recent_kpis.cost,
-                            cell_format=money_cell) }}
-
-
-</td>
-    <td class="amount">
-
-
-
-            {{ cell_content(quarter=service.most_recent_kpis['quarter'],
-                            value=service.most_recent_kpis.cost_per_number,
-                            cell_format=money_cell) }}
-
-
-
-    </td>
-    <td class="amount">
-
-
-            {{ cell_content(quarter=service.most_recent_kpis['quarter'],
-                            value=service.most_recent_kpis.takeup,
-                            cell_format=percentage_cell) }}
-
-
-</td>
-    <td class="amount">
-
-
-            {{ cell_content(quarter=service.most_recent_kpis['quarter'],
-                            value=service.most_recent_kpis.volume_num,
-                            cell_format=number_cell) }}
-
-
-</td>
-
-    </tr>
-    {% endfor %}
-
-
-    </tbody>
-</table>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        if ($("#bubble").length) {
-            gds.transactions.views.index( "hmrc" , "bubble", "transactions-table");
-        }
-    });
-</script>
-
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    if ($("#bubble").length) {
+                        gds.transactions.views.index( "hmrc" , "bubble", "transactions-table");
+                    }
+                });
+            </script>
 
             <div id="old-data" class="application-notice info-notice table-margin">
                 <p>* Q1 2013 data not provided for this metric; see service page for information on obtaining latest data</p>
@@ -164,6 +135,5 @@
         </section>
     </article>
 </div>
-
 
 {% endblock %}
