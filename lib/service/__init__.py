@@ -68,7 +68,7 @@ class Service:
                 cost = None
             
             data = {
-                'quarter':          period_as_text(quarter),
+                'quarter':          Quarter.parse(quarter),
                 'takeup':           takeup,
                 'cost':             cost,
                 'volume':           self['%s_vol' % quarter],
@@ -162,4 +162,22 @@ class Service:
     
     def __getitem__(self, key):
         return self.__dict__[key]
-    
+
+
+class Quarter:
+    def __init__(self, year, quarter):
+        self.year = year
+        self.quarter = quarter
+
+    def __str__(self):
+        return "Q%s %s" % (self.quarter, self.year)
+
+    def before(self, quarter):
+        if self.year != quarter.year:
+            return self.year < quarter.year
+        return self.quarter < quarter.quarter
+
+    @classmethod
+    def parse(cls, str):
+        m = re.match('(\d\d\d\d)_q(\d)', str)
+        return Quarter(int(m.group(1)), int(m.group(2)))
