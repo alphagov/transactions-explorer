@@ -3,10 +3,9 @@ import os
 
 import unicodecsv
 from jinja2 import Environment, FileSystemLoader
-
 from lib.filesystem import create_directory
 from lib.filters import number_as_grouped_number, number_as_financial_magnitude, number_as_magnitude, number_as_percentage, number_as_percentage_change, period_as_text
-from lib.service import Service, latest_quarter
+from lib.service import Service, latest_quarter, sorted_ignoring_empty_values
 from lib.slugify import slugify
 
 jinja = Environment(
@@ -32,6 +31,7 @@ reader = unicodecsv.DictReader(data)
 
 services = [Service(details=row) for row in reader]
 high_volume_services = [service for service in services if service.high_volume]
+latest_quarter = latest_quarter(high_volume_services)
 
 
 def render(template_name, out, vars):
@@ -50,11 +50,28 @@ for service in high_volume_services:
            out=service.link,
            vars={"service": service})
 
-print "High Volume Services"
 
-render('high_volume_services.html',
-       out='high-volume-services.html',
-       vars={
-           'services': high_volume_services,
-           'latest_quarter': latest_quarter(high_volume_services)
-       })
+sort_orders = [
+    ("by-name", lambda service: service.name_of_service),
+    ("by-department", lambda service: service.abbr),
+    ("by-total-cost", lambda service: service.most_recent_kpis['cost']),
+    ("by-cost-per-transaction", lambda service: service.most_recent_kpis['cost_per_number']),
+    ("by-digital-takeup", lambda service: service.most_recent_kpis['takeup']),
+    ("by-transactions-per-year", lambda service: service.most_recent_kpis['volume_num']),
+]
+
+for sort_order, key in sort_orders:
+    for direction in ['ascending', 'descending']:
+        reverse = (direction == 'descending')
+        variables = {
+            'services': sorted_ignoring_empty_values(high_volume_services,
+                                                     key=key, reverse=reverse),
+            'latest_quarter': latest_quarter,
+            'current_sort': {
+                'order': sort_order,
+                'direction': direction
+            },
+        }
+        render('high_volume_services.html',
+               out="high-volume-services/%s/%s.html" % (sort_order, direction),
+               vars=variables)

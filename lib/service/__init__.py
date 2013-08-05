@@ -9,6 +9,12 @@ def latest_quarter(services):
     return max([service.most_recent_kpis['quarter'] for service in services])
 
 
+def sorted_ignoring_empty_values(services, key, reverse=False):
+    services_with_value = [item for item in services if key(item) is not None]
+    services_without_value = [item for item in services if key(item) is None]
+    return sorted(services_with_value, key=key, reverse=reverse) + services_without_value
+
+
 class Service:
     valid_quarters = [
         # worked through oldest to newest to calculate %age changes

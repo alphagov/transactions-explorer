@@ -26,6 +26,17 @@
     {%- endif %}
 {%- endmacro %}
 
+{% macro th_content(text, sort, title=None, default_direction="ascending") -%}
+    {% if sort != current_sort.order %}
+        <a href="../{{ sort }}/{{ default_direction }}.html" title="{{ title }}">{{ text }}</a>
+    {% elif current_sort.direction == "ascending" %}
+        <a href="../{{ sort }}/descending.html" title="{{ title }}">{{ text }}</a>
+        <span class="sort-ind">▲</span>
+    {% else %}
+        <a href="../{{ sort }}/ascending.html" title="{{ title }}">{{ text }}</a>
+        <span class="sort-ind">▼</span>
+    {% endif %}
+{%- endmacro %}
 
 
 {% block body %}
@@ -48,29 +59,30 @@
                 <thead>
                     <tr>
                         <th scope="col">
-                            <a href="?orderBy=nameOfService&amp;direction=asc#transactions-table">Transactional service</a>
+                            {{ th_content("Transactional service",
+                                          sort="by-name") }}
                         </th>
                         <th scope="col">
-                            <a href="?orderBy=dept&amp;direction=asc#transactions-table">Department</a>
-
+                            {{ th_content("Department",
+                                          sort="by-department") }}
                         </th>
                         <th scope="col">
-                            <a href="?orderBy=mostRecentTotalCost&amp;direction=asc#transactions-table">Total cost</a>
-
+                            {{ th_content("Total cost",
+                                          sort="by-total-cost") }}
                         </th>
                         <th scope="col">
-                            <a href="?orderBy=costPerTransaction&amp;direction=asc#transactions-table">Cost per transaction</a>
-
+                            {{ th_content("Cost per transaction",
+                                          sort="by-cost-per-transaction") }}
                         </th>
                         <th scope="col">
-                            <a href="?orderBy=mostRecentDigitalTakeUp&amp;direction=asc#transactions-table">Digital take&#8209;up</a>
-
+                            {{ th_content("Digital take&#8209;up",
+                                          sort="by-digital-takeup") }}
                         </th>
                         <th scope="col" class="amount">
-                            <a href="?orderBy=volume&amp;direction=asc#transactions-table" title="Transactions per year: most recent 12 months of data available across all channels">
-                            Transactions per year
-                            </a>
-                            <span class="sort-ind">▼</span>
+                            {{ th_content("Transactions per year",
+                                          sort="by-transactions-per-year",
+                                          title="Transactions per year: most recent 12 months of data available across all channels",
+                                          default_direction="descending") }}
                         </th>
                     </tr>
                 </thead>
