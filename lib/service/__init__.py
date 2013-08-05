@@ -1,3 +1,4 @@
+from functools import total_ordering
 import re
 
 from lib.filters import as_number, period_as_text
@@ -164,6 +165,7 @@ class Service:
         return self.__dict__[key]
 
 
+@total_ordering
 class Quarter:
     def __init__(self, year, quarter):
         self.year = year
@@ -172,10 +174,11 @@ class Quarter:
     def __str__(self):
         return "Q%s %s" % (self.quarter, self.year)
 
-    def before(self, quarter):
-        if self.year != quarter.year:
-            return self.year < quarter.year
-        return self.quarter < quarter.quarter
+    def __lt__(self, quarter):
+        return (self.year, self.quarter) < (quarter.year, quarter.quarter)
+
+    def __eq__(self, quarter):
+        return (self.year, self.quarter) == (quarter.year, quarter.quarter)
 
     @classmethod
     def parse(cls, str):
