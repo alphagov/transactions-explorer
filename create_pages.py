@@ -47,12 +47,12 @@ for service in high_volume_services:
            out=service.link,
            vars={"service": service})
 
-print "High Volume Transactions"
+print "High Volume Services"
 
 latest_quarter = Quarter(2013, 1)
 
-render('high_volume_transactions.html',
-       out='high-volume-transactions.html',
+render('high_volume_services.html',
+       out='high-volume-services.html',
        vars={
            'services': high_volume_services,
            'latest_quarter': latest_quarter
