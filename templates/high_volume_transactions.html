@@ -76,8 +76,11 @@
     <td>{{ service.abbr }}</td>
     <td class="amount">
 
-
+        {% if service.most_recent_kpis['quarter'].before(latest_quarter) %}
+            <span class="olddata" title="Data received {{ service.most_recent_kpis['quarter'] }}; latest data not provided">&pound;{{ service.most_recent_kpis.cost|as_financial_magnitude}}*</span>
+        {% else %}
             &pound;{{ service.most_recent_kpis.cost|as_financial_magnitude}}
+        {% endif %}
 
 
 </td>
