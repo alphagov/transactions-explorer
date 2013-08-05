@@ -5,7 +5,7 @@ import unicodecsv
 from jinja2 import Environment, FileSystemLoader
 
 from lib.filters import number_as_grouped_number, number_as_financial_magnitude, number_as_magnitude, number_as_percentage, number_as_percentage_change, period_as_text
-from lib.service import Service, Quarter
+from lib.service import Service, Quarter, latest_quarter
 from lib.slugify import slugify
 
 jinja = Environment(
@@ -49,11 +49,9 @@ for service in high_volume_services:
 
 print "High Volume Services"
 
-latest_quarter = Quarter(2013, 1)
-
 render('high_volume_services.html',
        out='high-volume-services.html',
        vars={
            'services': high_volume_services,
-           'latest_quarter': latest_quarter
+           'latest_quarter': latest_quarter(high_volume_services)
        })
