@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 
+{% set high_volume_transactions=true %}
+
 
 {% macro money_cell(value) -%}
     &pound;{{ value|as_financial_magnitude }}
