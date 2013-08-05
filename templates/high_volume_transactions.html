@@ -1,5 +1,29 @@
 {% extends "base.html" %}
 
+
+
+{% macro money_cell(value) -%}
+    &pound;{{ value|as_financial_magnitude }}
+{%- endmacro %}
+
+{% macro percentage_cell(value) -%}
+    {{ value|as_percentage }}
+{%- endmacro %}
+
+{% macro number_cell(value) -%}
+    {{ value|as_grouped_number }}
+{%- endmacro %}
+
+{% macro cell_content(value, quarter, cell_format) -%}
+    {% if quarter.before(latest_quarter) -%}
+        <span class="olddata" title="Data received {{ quarter }}; latest data not provided">{{ cell_format(value) }}*</span>
+    {%- else -%}
+        {{ cell_format(value) }}
+    {%- endif %}
+{%- endmacro %}
+
+
+        
 {% block body %}
 
 <header class="page-header group">
@@ -54,7 +78,11 @@
     </thead>
     <tbody>
 
+
     {% for service in services %}
+
+
+
 
     <tr data-volume="{{ service.most_recent_kpis.volume_num|int }}"
         data-volumeLabel=" {{ service.most_recent_kpis.volume_num|as_grouped_number }} "
@@ -76,11 +104,10 @@
     <td>{{ service.abbr }}</td>
     <td class="amount">
 
-        {% if service.most_recent_kpis['quarter'].before(latest_quarter) %}
-            <span class="olddata" title="Data received {{ service.most_recent_kpis['quarter'] }}; latest data not provided">&pound;{{ service.most_recent_kpis.cost|as_financial_magnitude}}*</span>
-        {% else %}
-            &pound;{{ service.most_recent_kpis.cost|as_financial_magnitude}}
-        {% endif %}
+
+            {{ cell_content(quarter=service.most_recent_kpis['quarter'],
+                            value=service.most_recent_kpis.cost,
+                            cell_format=money_cell) }}
 
 
 </td>
@@ -88,7 +115,9 @@
 
 
 
-            &pound;{{ service.most_recent_kpis.cost_per_number|as_financial_magnitude}}
+            {{ cell_content(quarter=service.most_recent_kpis['quarter'],
+                            value=service.most_recent_kpis.cost_per_number,
+                            cell_format=money_cell) }}
 
 
 
@@ -96,14 +125,18 @@
     <td class="amount">
 
 
-            {{ service.most_recent_kpis.takeup|as_percentage }}
+            {{ cell_content(quarter=service.most_recent_kpis['quarter'],
+                            value=service.most_recent_kpis.takeup,
+                            cell_format=percentage_cell) }}
 
 
 </td>
     <td class="amount">
 
 
-            {{ service.most_recent_kpis.volume_num|as_grouped_number }}
+            {{ cell_content(quarter=service.most_recent_kpis['quarter'],
+                            value=service.most_recent_kpis.volume_num,
+                            cell_format=number_cell) }}
 
 
 </td>
