@@ -15,10 +15,12 @@
 {%- endmacro %}
 
 {% macro cell_content(value, quarter, cell_format) -%}
-    {% if quarter.before(latest_quarter) -%}
-        <span class="olddata" title="Data received {{ quarter }}; latest data not provided">{{ cell_format(value) }}*</span>
-    {%- else -%}
-        {{ cell_format(value) }}
+    {% if value != None -%}
+        {% if quarter.before(latest_quarter) -%}
+            <span class="olddata" title="Data received {{ quarter }}; latest data not provided">{{ cell_format(value) }}*</span>
+        {%- else -%}
+            {{ cell_format(value) }}
+        {%- endif %}
     {%- endif %}
 {%- endmacro %}
 
