@@ -4,6 +4,7 @@ import os
 import unicodecsv
 from jinja2 import Environment, FileSystemLoader
 
+from lib.filesystem import create_directory
 from lib.filters import number_as_grouped_number, number_as_financial_magnitude, number_as_magnitude, number_as_percentage, number_as_percentage_change, period_as_text
 from lib.service import Service, Quarter, latest_quarter
 from lib.slugify import slugify
@@ -24,6 +25,9 @@ jinja.filters['period_as_text'] = period_as_text
 jinja.filters['slugify'] = slugify
 
 SERVICES_DATA = 'data/services.csv'
+OUTPUT_DIR = 'output'
+
+create_directory(OUTPUT_DIR)
 
 data = open(SERVICES_DATA)
 reader = unicodecsv.DictReader(data)
@@ -35,7 +39,7 @@ high_volume_services = [service for service in services if service.high_volume]
 def render(template_name, out, vars):
     template = jinja.get_template(template_name)
     page = template.render(**vars)
-    output_path = os.path.join('output', out)
+    output_path = os.path.join(OUTPUT_DIR, out)
     with open(output_path, 'w') as output:
         output.write(page.encode('utf8'))
 
