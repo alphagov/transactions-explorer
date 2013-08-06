@@ -1,5 +1,4 @@
-from decimal import Decimal
-import decimal
+from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 import locale
 
 from re import match, sub
@@ -18,7 +17,7 @@ def as_number(num):
         just_numbers = sub( r'[^\d\.]+', '', num)
         try:
             return Decimal(just_numbers)
-        except decimal.InvalidOperation:
+        except InvalidOperation:
             pass
     return None
 
@@ -42,7 +41,7 @@ def _precision(num):
 
 
 def _round(num, precision):
-    return num.quantize(precision, rounding=decimal.ROUND_HALF_UP)
+    return num.quantize(precision, rounding=ROUND_HALF_UP)
 
 
 def number_as_magnitude(num):
