@@ -66,7 +66,9 @@ class Service:
                 continue
             
             digital_volume = as_number(self['%s_digital_vol' % quarter])
-            if digital_volume is not None and volume is not None:
+            if digital_volume == 0:
+                takeup = None
+            elif digital_volume is not None and volume is not None:
                 takeup = digital_volume / volume
             else:
                 takeup = None
