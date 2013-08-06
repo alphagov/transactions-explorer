@@ -68,15 +68,18 @@
                         </th>
                         <th scope="col">
                             {{ th_content("Total cost",
-                                          sort="by-total-cost") }}
+                                          sort="by-total-cost",
+                                          default_direction="descending") }}
                         </th>
                         <th scope="col">
                             {{ th_content("Cost per transaction",
-                                          sort="by-cost-per-transaction") }}
+                                          sort="by-cost-per-transaction",
+                                          default_direction="descending") }}
                         </th>
                         <th scope="col">
                             {{ th_content("Digital take&#8209;up",
-                                          sort="by-digital-takeup") }}
+                                          sort="by-digital-takeup",
+                                          default_direction="descending") }}
                         </th>
                         <th scope="col" class="amount">
                             {{ th_content("Transactions per year",
