@@ -3,7 +3,7 @@ import locale
 from re import match, sub
 from math import ceil
 
-locale.setlocale(locale.LC_ALL, 'en_GB')
+locale.setlocale(locale.LC_ALL, 'en_GB.utf-8')
 
 
 def as_number(num):
