@@ -18,6 +18,6 @@ class test_create_pages(unittest.TestCase):
 
     def test_about_page(self):
         with Browser() as browser:
-            browser.visit("http://0.0.0.0:8000/aboutData")
-            assert_that(browser.is_text_present('About the transactions data'),
+            browser.visit("http://0.0.0.0:8000/high-volume-services/by-transactions-per-year/descending.html")
+            assert_that(browser.is_text_present('High-volume services'),
                         is_(True))
