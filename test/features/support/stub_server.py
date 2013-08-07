@@ -45,6 +45,9 @@ class HttpStub(BaseHTTPRequestHandler):
 
         return
 
+    def log_request(self, code='-', size='-'):
+        pass
+
     @classmethod
     def start(cls):
         cls.server = HTTPServer(("", 8000), cls)
