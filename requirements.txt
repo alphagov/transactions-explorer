@@ -6,3 +6,4 @@ unicodecsv==0.9.4
 nose
 pyhamcrest
 splinter
+
