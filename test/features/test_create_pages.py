@@ -6,7 +6,6 @@ from test.features import BrowserTest
 
 class test_create_pages(BrowserTest):
 
-    @nottest
     def test_about_page(self):
         self.browser.visit("http://0.0.0.0:8000/high-volume-services/by-transactions-per-year/descending")
         assert_that(self.browser.find_by_css('h1').text, is_('High-volume services'))
