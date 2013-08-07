@@ -21,7 +21,7 @@ def wait_until(condition, timeout=15, interval=0.1):
         if condition():
             return
         time.sleep(interval)
-    raise RuntimeError("timeout")
+    raise RuntimeError("timeout: condition not met in wait_until")
 
 class HttpStub(BaseHTTPRequestHandler):
 
@@ -66,7 +66,7 @@ class HttpStub(BaseHTTPRequestHandler):
         try:
             return requests.get('http://localhost:8000/high-volume-services/by-transactions-per-year/descending.html').status_code == 200
         except:
-            print "error"
+            print "error waiting for server to start"
             return False
 
 if __name__ == "__main__":
