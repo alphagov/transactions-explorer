@@ -1,12 +1,12 @@
 from functools import total_ordering
 import re
 
-from lib.filters import as_number, period_as_text
+from lib.filters import as_number
 from lib.slugify import keyify, slugify
 
 
 def latest_quarter(services):
-    return max([service.most_recent_kpis['quarter'] for service in services])
+    return max(service.most_recent_kpis['quarter'] for service in services)
 
 
 def sorted_ignoring_empty_values(services, key, reverse=False):

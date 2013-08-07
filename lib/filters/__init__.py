@@ -119,7 +119,3 @@ def number_as_grouped_number(num):
         num = round(num)
         return locale.format('%d', num, grouping=True)
 
-
-def period_as_text(str):
-    m = match('(\d\d\d\d)_q(\d)', str)
-    return 'Q%s %s' % ( m.group(2), m.group(1) )

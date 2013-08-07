@@ -4,7 +4,7 @@ import os
 import unicodecsv
 from jinja2 import Environment, FileSystemLoader
 from lib.filesystem import create_directory
-from lib.filters import number_as_grouped_number, number_as_financial_magnitude, number_as_magnitude, number_as_percentage, number_as_percentage_change, period_as_text
+from lib.filters import number_as_grouped_number, number_as_financial_magnitude, number_as_magnitude, number_as_percentage, number_as_percentage_change
 from lib.service import Service, latest_quarter, sorted_ignoring_empty_values
 from lib.slugify import slugify
 
@@ -20,7 +20,6 @@ jinja.filters['as_financial_magnitude'] = number_as_financial_magnitude
 jinja.filters['as_percentage'] = number_as_percentage
 jinja.filters['as_percentage_change'] = number_as_percentage_change
 jinja.filters['as_grouped_number'] = number_as_grouped_number
-jinja.filters['period_as_text'] = period_as_text
 jinja.filters['slugify'] = slugify
 
 SERVICES_DATA = 'data/services.csv'
