@@ -43,6 +43,7 @@ def render(template_name, out, vars):
 
 if __name__ == "__main__":
     render("about-the-data.html", "aboutData.html", {})
+    render("home.html", "home.html", {})
 
     for service in high_volume_services:
         print service.name
