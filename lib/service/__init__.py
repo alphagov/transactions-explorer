@@ -196,3 +196,9 @@ class Quarter:
     def parse(cls, str):
         m = re.match('(\d\d\d\d)_q(\d)', str)
         return Quarter(int(m.group(1)), int(m.group(2)))
+
+
+class Department(object):
+    def __init__(self, name, services):
+        self.name = name
+

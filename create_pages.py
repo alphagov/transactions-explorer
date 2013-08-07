@@ -1,11 +1,12 @@
 #!/usr/bin/env python
+from itertools import groupby
 import os
 
 import unicodecsv
 from jinja2 import Environment, FileSystemLoader
 from lib.filesystem import create_directory
 from lib.filters import number_as_grouped_number, number_as_financial_magnitude, number_as_magnitude, number_as_percentage, number_as_percentage_change
-from lib.service import Service, latest_quarter, sorted_ignoring_empty_values
+from lib.service import Service, latest_quarter, sorted_ignoring_empty_values, Department
 from lib.slugify import slugify
 
 jinja = Environment(
@@ -49,10 +50,6 @@ for service in high_volume_services:
            out=service.link,
            vars={"service": service})
 
-render('all_services.html',
-    out='all-services.html',
-    vars={'departments': []})
-
 sort_orders = [
     ("by-name", lambda service: service.name_of_service),
     ("by-department", lambda service: service.abbr),
@@ -77,3 +74,13 @@ for sort_order, key in sort_orders:
         render('high_volume_services.html',
                out="high-volume-services/%s/%s.html" % (sort_order, direction),
                vars=variables)
+
+services_by_dept = groupby(services, key=lambda s: (s.abbr, s.department))
+
+departments = [Department(name, department_services)
+               for (abbr, name), department_services in services_by_dept]
+
+render('all_services.html',
+    out='all-services.html',
+    vars={'departments': departments})
+
