@@ -79,8 +79,11 @@ def number_as_financial_magnitude(num):
 def number_as_percentage(num):
     if type(num) is str or type(num) is unicode:
         num = as_number(num)
-    
-    num = num * 100
+
+    if num is None:
+        return ''
+
+    num *= 100
     num_as_int = int(num)
     
     if num_as_int == num:
@@ -116,7 +119,3 @@ def number_as_grouped_number(num):
         num = round(num)
         return locale.format('%d', num, grouping=True)
 
-
-def period_as_text(str):
-    m = match('(\d\d\d\d)_q(\d)', str)
-    return 'Q%s %s' % ( m.group(2), m.group(1) )
