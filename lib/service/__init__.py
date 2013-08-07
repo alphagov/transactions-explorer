@@ -1,7 +1,18 @@
+from functools import total_ordering
 import re
 
-from lib.filters import as_number, period_as_text
-from lib.slugify import keyify
+from lib.filters import as_number
+from lib.slugify import keyify, slugify
+
+
+def latest_quarter(services):
+    return max(service.most_recent_kpis['quarter'] for service in services)
+
+
+def sorted_ignoring_empty_values(services, key, reverse=False):
+    services_with_value = [item for item in services if key(item) is not None]
+    services_without_value = [item for item in services if key(item) is None]
+    return sorted(services_with_value, key=key, reverse=reverse) + services_without_value
 
 
 class Service:
@@ -55,7 +66,9 @@ class Service:
                 continue
             
             digital_volume = as_number(self['%s_digital_vol' % quarter])
-            if digital_volume is not None and volume is not None:
+            if digital_volume == 0:
+                takeup = None
+            elif digital_volume is not None and volume is not None:
                 takeup = digital_volume / volume
             else:
                 takeup = None
@@ -68,7 +81,7 @@ class Service:
                 cost = None
             
             data = {
-                'quarter':          period_as_text(quarter),
+                'quarter':          Quarter.parse(quarter),
                 'takeup':           takeup,
                 'cost':             cost,
                 'volume':           self['%s_vol' % quarter],
@@ -132,7 +145,15 @@ class Service:
     @property
     def most_recent_kpis(self):
         return self.kpis[-1]
-    
+
+    @property
+    def slug(self):
+        return slugify('%s-%s' % (self.abbr, self.name))
+
+    @property
+    def link(self):
+        return '%s/%s.html' % ('service-details', self.slug)
+
     def historical_data(self, key):
         data = []
         
@@ -154,4 +175,24 @@ class Service:
     
     def __getitem__(self, key):
         return self.__dict__[key]
-    
+
+
+@total_ordering
+class Quarter:
+    def __init__(self, year, quarter):
+        self.year = year
+        self.quarter = quarter
+
+    def __str__(self):
+        return "Q%s %s" % (self.quarter, self.year)
+
+    def __lt__(self, quarter):
+        return (self.year, self.quarter) < (quarter.year, quarter.quarter)
+
+    def __eq__(self, quarter):
+        return (self.year, self.quarter) == (quarter.year, quarter.quarter)
+
+    @classmethod
+    def parse(cls, str):
+        m = re.match('(\d\d\d\d)_q(\d)', str)
+        return Quarter(int(m.group(1)), int(m.group(2)))
