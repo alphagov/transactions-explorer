@@ -2,7 +2,8 @@ from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import os
 import re
 import threading
-
+import time
+import requests
 
 HTML_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                          '..', '..', '..', 'output'))
@@ -14,6 +15,13 @@ def rewrite_request(path):
 
     return new_path
 
+def wait_until(condition, timeout=15, interval=0.1):
+    deadline = time.time() + timeout
+    while time.time() < deadline:
+        if condition():
+            return
+        time.sleep(interval)
+    raise RuntimeError("timeout")
 
 class HttpStub(BaseHTTPRequestHandler):
 
@@ -27,6 +35,7 @@ class HttpStub(BaseHTTPRequestHandler):
 
         if not os.path.isfile(full_path):
             self.send_response(404)
+        
         else:
             with open(full_path, mode='r') as f:
                 self.send_response(200)
@@ -41,12 +50,21 @@ class HttpStub(BaseHTTPRequestHandler):
         cls.server = HTTPServer(("", 8000), cls)
         cls.thread = threading.Thread(target=cls.server.serve_forever)
         cls.thread.start()
+        wait_until(cls._running)
 
     @classmethod
     def stop(cls):
         cls.server.shutdown()
         cls.server.server_close()
         cls.thread.join()
+
+    @classmethod
+    def _running(cls):
+        try:
+            return requests.get('http://localhost:8000/high-volume-services/by-transactions-per-year/descending.html').status_code == 200
+        except:
+            print "error"
+            return False
 
 if __name__ == "__main__":
     HttpStub.start()
