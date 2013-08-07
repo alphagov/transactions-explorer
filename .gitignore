@@ -2,3 +2,6 @@ data/
 output/
 *.pyc
 .DS_Store
+*.log
+*.idea
+*.swp

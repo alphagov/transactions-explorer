@@ -13,7 +13,7 @@ matrix:
   - python: 2.6
 install: pip install -q -r requirements.txt --use-mirrors
 script: 
-- nosetests
+- nosetests -a '!feature'
 branches: 
   except: 
   - release
