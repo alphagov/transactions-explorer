@@ -1,7 +1,13 @@
+from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 import locale
 
 from re import match, sub
-from math import ceil
+
+
+NO_DECIMAL_PLACE = Decimal('1')
+ONE_DECIMAL_PLACE = Decimal('0.1')
+TWO_DECIMAL_PLACES = Decimal('0.01')
+
 
 locale.setlocale(locale.LC_ALL, 'en_GB.utf-8')
 
@@ -10,10 +16,32 @@ def as_number(num):
     if num:
         just_numbers = sub( r'[^\d\.]+', '', num)
         try:
-            return float(just_numbers)
-        except ValueError:
+            return Decimal(just_numbers)
+        except InvalidOperation:
             pass
     return None
+
+
+def _reduce_to_magnitude(num):
+    if num > 1000000000:
+        return num / 1000000000, "bn"
+    if num > 1000000:
+        return num / 1000000, "m"
+    if num > 1000:
+        return num / 1000, "k"
+    return num, ""
+
+
+def _precision(num):
+    if num < 10:
+        return TWO_DECIMAL_PLACES
+    elif num < 100:
+        return ONE_DECIMAL_PLACE
+    return NO_DECIMAL_PLACE
+
+
+def _round(num, precision):
+    return num.quantize(precision, rounding=ROUND_HALF_UP)
 
 
 def number_as_magnitude(num):
@@ -21,30 +49,11 @@ def number_as_magnitude(num):
         return 0
     if type(num) is str or type(num) is unicode:
         num = as_number(num)
-    
-    if num < 10:
-        return '%.2f' % num
-    elif num < 100:
-        return '%.1f' % num
-    elif num < 1000:
-        return int(ceil(num))
-    elif num < 10000:
-        return '%.2fk' % (num / 1000)
-    elif num < 100000:
-        return '%.1fk' % (num / 1000)
-    elif num < 1000000:
-        return '%dk' % round(num / 1000)
-    elif num < 10000000:
-        return '%.2fm' % (num / 1000000)
-    elif num < 100000000:
-        return '%.1fm' % (num / 1000000)
-    elif num < 1000000000:
-        return '%dm' % round(num / 1000000)
-    elif num < 10000000000:
-        return '%.2fbn' % (num / 1000000000)
-    elif num < 100000000000:
-        return '%.1fbn' % (num / 1000000000)
-    return '%dbn' % round(num / 1000000000)
+    if type(num) is not Decimal:
+        num = Decimal(num)
+
+    num, suffix = _reduce_to_magnitude(num)
+    return "%s%s" % (_round(num, _precision(num)), suffix)
 
 
 def number_as_financial_magnitude(num):
@@ -52,28 +61,17 @@ def number_as_financial_magnitude(num):
         return 0
     if type(num) is str or type(num) is unicode:
         num = as_number(num)
-    
+    if type(num) is not Decimal:
+        num = Decimal(num)
+
+    reduced, suffix = _reduce_to_magnitude(num)
+
     if num < 100:
-        return '%.2f' % num
-    elif num < 1000:
-        return int(ceil(num))
-    elif num < 10000:
-        return '%.2fk' % (num / 1000)
-    elif num < 100000:
-        return '%.1fk' % (num / 1000)
-    elif num < 1000000:
-        return '%dk' % (num / 1000)
-    elif num < 10000000:
-        return '%.2fm' % (num / 1000000)
-    elif num < 100000000:
-        return '%.1fm' % (num / 1000000)
-    elif num < 1000000000:
-        return '%dm' % (num / 1000000)
-    elif num < 10000000000:
-        return '%.2fbn' % (num / 1000000000)
-    elif num < 100000000000:
-        return '%.1fbn' % (num / 1000000000)
-    return '%dbn' % (num / 1000000000)
+        precision = TWO_DECIMAL_PLACES
+    else:
+        precision = _precision(reduced)
+
+    return "%s%s" % (_round(reduced, precision), suffix)
 
 
 def number_as_percentage(num):
