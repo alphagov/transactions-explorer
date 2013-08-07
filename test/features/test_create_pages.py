@@ -1,4 +1,3 @@
-import time
 import unittest
 
 from hamcrest import *
@@ -11,7 +10,6 @@ class test_create_pages(unittest.TestCase):
 
     def setUp(self):
         HttpStub.start()
-        time.sleep(2)
 
     def tearDown(self):
         HttpStub.stop()
