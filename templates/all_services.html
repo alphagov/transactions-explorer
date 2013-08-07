@@ -40,6 +40,26 @@
                 </thead>
 
                 <tbody>
+                    {% for department in departments %}
+                        <tr data-volume="977870260"
+                            data-volumeLabel=" 977,870,260 "
+                            data-category=""
+                            data-body=""
+                            data-body-abbr=""
+                            data-url="/department/hmrc"
+                            data-bubbleLink="/department/hmrc"
+                            data-label="HMRC"
+                            data-title="HM Revenue and Customs"
+                            data-color="#c03024"
+                            data-text-color="#fff">
+                            
+                            <th scope="row"><a href="/department/hmrc">HM Revenue and Customs</a></th>
+                            <td class="amount"> 90.3% </td>
+                            <td class="amount"> £566m </td>
+                            <td class="amount"> 37.5% </td>
+                            <td class="amount"> 977,870,260 </td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
 

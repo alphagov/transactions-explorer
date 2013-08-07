@@ -51,7 +51,7 @@ for service in high_volume_services:
 
 render('all_services.html',
     out='all-services.html',
-    vars={})
+    vars={'departments': []})
 
 sort_orders = [
     ("by-name", lambda service: service.name_of_service),
