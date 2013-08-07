@@ -10,4 +10,51 @@
     </hgroup>
 </header>
 
+<div class="group">
+    <article role="article" class="group">
+        <section class="content-group">
+            <h1>Annual volume of transactions by department</h1>
+
+            <div style="clear:both;"></div>
+
+            <table id="transactions-table" class="full_width_table">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            <a href="?orderBy=dept&amp;direction=asc#transactions-table">Department</a>
+                        </th>
+                        <th scope="col">
+                            <a href="?orderBy=digitaltakeup&amp;direction=asc#transactions-table" title="Proportion of transactions completed digitally (high-volume services only)">Digital take&#8209;up*</a>
+                        </th>
+                        <th scope="col">
+                            <a href="?orderBy=totalcost&amp;direction=asc#transactions-table" title="Total cost of providing services (high-volume services only)">Total cost*</a>
+                        </th>
+                        <th scope="col">
+                            <a href="?orderBy=datacoverage&amp;direction=asc#transactions-table" title="Proportion of latest data provided by department (high-volume services only)">Data coverage*</a>
+                        </th>
+                        <th scope="col" class="amount">
+                            <a href="?orderBy=volume&amp;direction=asc#transactions-table" title="Transactions per year: most recent 12 months of data available across all channels">Transactions per year</a>
+                            <span class="sort-ind">▼</span>
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                </tbody>
+            </table>
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    if ($("#bubble").length) {
+                        gds.transactions.views.index("", "bubble", "transactions-table");
+                    }
+                });
+            </script>
+            <div class="application-notice info-notice table-margin">
+                <p>* Figures are based on data for high-volume services only</p>
+            </div>
+        </section>
+    </article>
+</div>
+
 {% endblock %}
