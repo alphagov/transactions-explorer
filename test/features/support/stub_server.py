@@ -5,8 +5,11 @@ import threading
 import time
 import requests
 
+STATUS_RESOURCE = 'http://localhost:8000/high-volume-services/by-transactions-per-year/descending.html'
+
 HTML_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                          '..', '..', '..', 'output'))
+
 
 def rewrite_request(path):
     new_path = path
@@ -15,6 +18,7 @@ def rewrite_request(path):
 
     return new_path
 
+
 def wait_until(condition, timeout=15, interval=0.1):
     deadline = time.time() + timeout
     while time.time() < deadline:
@@ -22,6 +26,7 @@ def wait_until(condition, timeout=15, interval=0.1):
             return
         time.sleep(interval)
     raise RuntimeError("timeout")
+
 
 class HttpStub(BaseHTTPRequestHandler):
 
@@ -61,10 +66,10 @@ class HttpStub(BaseHTTPRequestHandler):
     @classmethod
     def _running(cls):
         try:
-            return requests.get('http://localhost:8000/high-volume-services/by-transactions-per-year/descending.html').status_code == 200
+            return requests.get(STATUS_RESOURCE).status_code == 200
         except:
-            print "error"
             return False
+
 
 if __name__ == "__main__":
     HttpStub.start()
