@@ -1,7 +1,7 @@
 Service Explorer
 ================
 
-[![Build Status](https://travis-ci.org/alphagov/service-explorer.png?branch=about-and-home-pages)](https://travis-ci.org/alphagov/service-explorer)
+[![Build Status](https://travis-ci.org/alphagov/service-explorer.png?branch=master)](https://travis-ci.org/alphagov/service-explorer)
 
 Generates a static HTML version of the [Transactions Explorer][tx].
 
