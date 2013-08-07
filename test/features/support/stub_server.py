@@ -28,7 +28,14 @@ class HttpStub(BaseHTTPRequestHandler):
     thread = None
     server = None
 
-    def do_GET(self):
+    def __alive(self):
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        self.wfile.write("stub server is running")
+        return
+
+    def __serve_file(self):
         # rewrite requests to point at flat *.html files
         path_to_html = rewrite_request(self.path)
         full_path = HTML_ROOT + path_to_html
@@ -42,6 +49,15 @@ class HttpStub(BaseHTTPRequestHandler):
                 self.send_header("Content-type", 'text/html')
                 self.end_headers()
                 self.wfile.write(f.read())
+
+        return
+
+
+    def do_GET(self):
+        if self.path == "/__alive__":
+            self.__alive()
+        else:
+            self.__serve_file()
 
         return
 
@@ -64,7 +80,7 @@ class HttpStub(BaseHTTPRequestHandler):
     @classmethod
     def _running(cls):
         try:
-            return requests.get('http://localhost:8000/high-volume-services/by-transactions-per-year/descending.html').status_code == 200
+            return requests.get('http://localhost:8000/__alive__').status_code == 200
         except:
             print "error waiting for server to start"
             return False
