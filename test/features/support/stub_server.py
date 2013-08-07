@@ -23,11 +23,16 @@ class HttpStub(BaseHTTPRequestHandler):
     def do_GET(self):
         # rewrite requests to point at flat *.html files
         path_to_html = rewrite_request(self.path)
-        with open(HTML_ROOT + path_to_html, mode='r') as f:
-            self.send_response(200)
-            self.send_header("Content-type", 'text/html')
-            self.end_headers()
-            self.wfile.write(f.read())
+        full_path = HTML_ROOT + path_to_html
+
+        if not os.path.isfile(full_path):
+            self.send_response(404)
+        else:
+            with open(full_path, mode='r') as f:
+                self.send_response(200)
+                self.send_header("Content-type", 'text/html')
+                self.end_headers()
+                self.wfile.write(f.read())
 
         return
 
