@@ -49,6 +49,9 @@ for service in high_volume_services:
            out=service.link,
            vars={"service": service})
 
+render('all_services.html',
+    out='all-services.html',
+    vars={})
 
 sort_orders = [
     ("by-name", lambda service: service.name_of_service),
