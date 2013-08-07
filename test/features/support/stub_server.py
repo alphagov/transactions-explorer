@@ -1,10 +1,11 @@
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+import os
 import re
 import threading
-import time
 
-PATH_TO_STATIC_FILES = "../../output"
 
+HTML_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
+                                         '..', '..', '..', 'output'))
 
 def rewrite_request(path):
     new_path = path
@@ -21,10 +22,8 @@ class HttpStub(BaseHTTPRequestHandler):
 
     def do_GET(self):
         # rewrite requests to point at flat *.html files
-        print self.path, "<--------------- \n"
         path_to_html = rewrite_request(self.path)
-        print path_to_html
-        with open(PATH_TO_STATIC_FILES + path_to_html, mode='r') as f:
+        with open(HTML_ROOT + path_to_html, mode='r') as f:
             self.send_response(200)
             self.send_header("Content-type", 'text/html')
             self.end_headers()

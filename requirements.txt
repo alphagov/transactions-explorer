@@ -5,3 +5,4 @@ oauth2client==1.1
 unicodecsv==0.9.4
 nose
 pyhamcrest
+splinter
