@@ -8,5 +8,5 @@ class test_arguments_parsing(unittest.TestCase):
     def test_default_secret_and_token_to_data_dir(self):
         argument = parse_args("")
 
-        assert_that(argument.client_secrets_file, is_('data/client_secrets.json'))
-        assert_that(argument.oath_tokens_file, is_('data/tokens.dat'))
+        assert_that(argument.client_secrets, is_('data/client_secrets.json'))
+        assert_that(argument.oauth_tokens, is_('data/tokens.dat'))
