@@ -74,14 +74,20 @@ var Tree = (function () {
   };
 
   var condenseValuesUnderThreshold = function(values, thresholdRatio) {
+    if (thresholdRatio == null) {
+      return values;
+    }
+
     var threshold = values.reduce(max).size / thresholdRatio;
     var splitValues = partition(values, function (v) { return v.size > threshold; });
     var children = splitValues.left;
-    var otherValue = splitValues.right.reduce(sum);
-    children.push({
-      name: "Others",
-      size: otherValue.size
-    });
+    if (splitValues.right.length) {
+      var otherValue = splitValues.right.reduce(sum);
+      children.push({
+        name: "Others",
+        size: otherValue.size
+      });
+    }
     return children; 
   };
   
