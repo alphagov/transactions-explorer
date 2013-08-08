@@ -8,7 +8,7 @@ source $VIRTUALENV_DIR/bin/activate
 
 pip install -r requirements.txt
 
-python fetch_csv.py
+python fetch_csv.py --client-secrets /etc/google/oauth/client_secrets.json --oauth-tokens /var/lib/google/oauth/drive.db 
 python create_pages.py
 
 mkdir -p artefacts
