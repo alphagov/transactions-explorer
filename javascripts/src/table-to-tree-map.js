@@ -45,7 +45,8 @@ var Tree = (function () {
       return {
         name: row.getAttribute("data-title"),
         size: volume,
-        volumeLabel: formatNumericLabel(volume),
+        volumeShortened: formatNumericLabel(volume),
+        volumeLabel: row.getAttribute("data-volumelabel"),
         url: '/' + row.getAttribute("data-bubbleLink"),
         color: row.getAttribute("data-color"),
         textColor: row.getAttribute('data-text-color')
@@ -145,6 +146,9 @@ var TreeMapLayout = (function () {
       .data(treemap.nodes)
       .enter().append("div")
       .attr("class", getNodeClass)
+      .attr('data-tooltip', function (d) {
+        return d.name + ': ' + d.volumeLabel;
+      })
       .call(position)
       .style("background", function(d) { return d.color ? d.color : color(d.name); })
       .append("a")
@@ -155,15 +159,28 @@ var TreeMapLayout = (function () {
         })
         .call(function (selection) {
           selection.filter(function (d) {
-            return !!d.volumeLabel;
+            return !!d.volumeShortened;
           }).append('span')
             .attr('class', 'amount')
             .text(function (d) {
-              return d.volumeLabel;
+              return d.volumeShortened;
             });
         });
+
+    if (window.$) {
+      var $figure = $('#' + divId);
+      var $cap = $('<figcaption/>').appendTo($figure);
+
+      $figure.find('.node').on('mouseenter',function(){
+        $cap.html($(this).data('tooltip'));
+      });
+      $figure.on('mouseleave', function () {
+        $cap.empty();
+      });
+    }
+
   };
-  
+
   return {
     display: makeTree
   }

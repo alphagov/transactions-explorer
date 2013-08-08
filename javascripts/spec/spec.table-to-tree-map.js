@@ -62,13 +62,13 @@ describe("Table To Treemap", function () {
       expect(treeNodes).toEqual(["", "Service 1", "Service 2", "Service 3"]);
     });
 
-    it("should display services in a treemap with volume label when available", function() {
+    it("should display services in a treemap with shortened volume label when available", function() {
       var data = {
         name: "TreeMap sample",
         children: [
           { name: "Service 1", size: 20 },
-          { name: "Service 2", size: 40, volumeLabel: '44' },
-          { name: "Service 3", size: 10, volumeLabel: '' }
+          { name: "Service 2", size: 40, volumeShortened: '44' },
+          { name: "Service 3", size: 10, volumeShortened: '' }
         ]
       };
 

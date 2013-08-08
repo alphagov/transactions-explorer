@@ -1638,9 +1638,17 @@ article.service-details section h2 {
 /* Treemap */
 
 figure.treemap {
+  position:relative;
   width:100%;
   height:460px;
   margin-bottom:40px;
+}
+
+figure.treemap figcaption {
+  position:absolute;
+  left:0;
+  bottom:-30px;
+  font-weight:bold;
 }
 
 /* line 388, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
