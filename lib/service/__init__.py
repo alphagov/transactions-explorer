@@ -201,4 +201,8 @@ class Quarter:
 class Department(object):
     def __init__(self, name, services):
         self.name = name
+        self.services = services
 
+    @property
+    def volume(self):
+        return sum(service.most_recent_kpis['volume_num'] for service in self.services)
