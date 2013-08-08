@@ -87,14 +87,15 @@ for sort_order, key in sort_orders:
                out="high-volume-services/%s/%s.html" % (sort_order, direction),
                vars=variables)
 
-services_by_dept = groupby(services, key=lambda s: (s.abbr, s.department))
+department_key = lambda s: (s.abbr, s.department)
+services_by_dept = groupby(sorted(services, key=department_key), key=department_key)
 
 departments = [Department(name, department_services)
                for (abbr, name), department_services in services_by_dept]
 
 render('all_services.html',
     out='all-services.html',
-    vars={'departments': departments})
+    vars={'departments': sorted(departments, key=lambda d: d.volume, reverse=True )})
 
 """Copy the assets folder entirely, as well"""
 dir_util.copy_tree('assets', '%s/assets' % OUTPUT_DIR)

@@ -1,3 +1,4 @@
+from pprint import pprint
 import unittest
 from hamcrest import assert_that, is_
 from lib.service import Service
@@ -38,4 +39,30 @@ class TestService(unittest.TestCase):
         assert_that(service.most_recent_kpis,
                     is_(None))
 
+    def test_no_kpi_for_quarter_with_noVolume(self):
+        service = Service(details({
+           '2012-Q4 Digital vol.': '5'
+        }))
+
+        assert_that(service.most_recent_kpis,
+                    is_(None))
+
+    def test_cost(self):
+        service = Service(details({
+            "2012-Q4 Vol.": "2,000",
+            u'2012-Q4 CPT (\xa3)': "2.00"
+        }))
+
+        pprint(service.most_recent_kpis)
+
+        assert_that(service.most_recent_kpis['cost'], is_(4000))
+
+    def test_cost_is_non_when_no_cpt(self):
+        service = Service(details({
+            "2012-Q4 Vol.": "2,000",
+        }))
+
+        pprint(service.most_recent_kpis)
+
+        assert_that(service.most_recent_kpis['cost'], is_(None))
 

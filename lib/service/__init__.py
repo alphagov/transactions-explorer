@@ -206,8 +206,20 @@ class Department(object):
 
     @property
     def volume(self):
-        volumes = [service.most_recent_kpis['volume_num']
-                   for service in self.services
-                   if service.most_recent_kpis is not None]
-        if any(volumes):
-            return sum(volumes)
+        return self._aggregate_value('volume_num')
+
+    @property
+    def cost(self):
+        return self._aggregate_value('cost', high_volume_only=True)
+
+    def _aggregate_value(self, attr, high_volume_only=False):
+        def included(service):
+            return service.most_recent_kpis is not None and (
+                   not high_volume_only or service.high_volume)
+
+        values = [service.most_recent_kpis[attr]
+                  for service in self.services
+                  if included(service)
+                  and service.most_recent_kpis[attr] is not None]
+        if any(values):
+            return sum(values)
