@@ -1,6 +1,6 @@
 import argparse
 
-def parse_args(args):
+def parse_args_for_fetch(args):
     parser = argparse.ArgumentParser()
     parser.add_argument('--client-secrets',
                         help='Google API client secrets JSON file',
