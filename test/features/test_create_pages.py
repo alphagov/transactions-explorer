@@ -28,4 +28,3 @@ class test_create_pages(BrowserTest):
         self.browser.visit("http://0.0.0.0:8000/all-services")
         assert_that(self.browser.find_by_css('h1').text, is_("All Services"))
         assert_that(self.browser.find_by_css('#navigation .current').text, is_("All services"))
-
