@@ -184,6 +184,3 @@ class TestDepartment(unittest.TestCase):
     def test_takeup_is_none_if_volume_is_none(self):
         pass
 
-    # KpiAggregator
-
-    # def test_aggregate_is_none_
