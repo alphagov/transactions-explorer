@@ -10,13 +10,13 @@
         <article role="article" class="group">
             <section class="content-group headline-details">
                 <div class="headline">
-                    <p><a href="/allservices"><h1>16</h1><p>Departments</p></a></p>
+                    <p><a href="/allservices"><h1>{{ departments_count }}</h1><p>Departments</p></a></p>
                 </div>
                 <div class="headline">
-                    <p><a href="/allservices"><h1>662</h1><p>Services</p></a></p>
+                    <p><a href="/allservices"><h1>{{ services_count }}</h1><p>Services</p></a></p>
                 </div>
                 <div class="headline">
-                    <p><a href="/allservices"><h1>1.28bn</h1><p>Transactions per year</p></a></p>
+                    <p><a href="/allservices"><h1>{{ total_transactions|as_magnitude }}</h1><p>Transactions per year</p></a></p>
                 </div>
             </section>
             <div class="clear-div"></div>

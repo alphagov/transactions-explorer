@@ -196,3 +196,13 @@ class Quarter:
     def parse(cls, str):
         m = re.match('(\d\d\d\d)_q(\d)', str)
         return Quarter(int(m.group(1)), int(m.group(2)))
+
+
+def total_transaction_volume(services):
+    def _sum(memo, service):
+        number_of_transactions = 0
+        if service.has_kpis:
+            number_of_transactions = service.most_recent_kpis['volume_num']
+        return number_of_transactions + memo
+
+    return reduce(_sum, services, 0)
