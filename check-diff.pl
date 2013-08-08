@@ -1,22 +1,29 @@
 #!/usr/bin/env perl
 use Modern::Perl;
+use Capture::Tiny   qw( capture_stdout );
 use File::Basename;
 use File::Next;
+use File::Path  qw( mkpath );
 use IO::All;
 use HTTP::Lite;
 
-use constant BASE_URL => 'http://transactionsexplorer.cabinetoffice.gov.uk/serviceDetails/';
+use constant BASE_URL => 'http://transactionsexplorer.cabinetoffice.gov.uk/';
 use constant CACHE_DIR => '/tmp/diff-cache/';
+
+mkpath CACHE_DIR;
 
 my $sources = File::Next::files('output/service-details');
 
-FILE:
-while ( my $file = $sources->() ) {
-    my $filename = basename $file, '.html';
-    next FILE if $filename =~ m{^\.};
+
+diff_service_details_pages();
+diff_page( 'aboutData', 'output/about-the-data.html');
+
+
+sub diff_page {
+    my $url  = BASE_URL . shift;
+    my $file = shift;
     
-    my $url = correct_special_cases( BASE_URL . $filename );
-    say "\n$url";
+    my $filename = basename $file;
     
     my $cached_original = CACHE_DIR . $filename;
     if ( ! -f $cached_original ) {
@@ -25,25 +32,46 @@ while ( my $file = $sources->() ) {
         
         if ( $req != 200 ) {
             warn "** $req $url";
-            next FILE;
+            return;
         }
         
         $http->body() > io $cached_original;
     }
     
-    my $original = diffable( io($cached_original)->all() );
-    my $generated = diffable( io($file)->all() );
-    
+    my $original = diffable_html( io($cached_original)->all() );
+    my $generated = diffable_html( io($file)->all() );
+
     $original  > io(CACHE_DIR . 'original.html');
     $generated > io(CACHE_DIR . 'generated.html');
-    system 'diff', '-U15', (CACHE_DIR . 'original.html'), 
-                          (CACHE_DIR . 'generated.html');
-    # last;
+    
+    my $diff = capture_stdout {
+            system 'diff', '-U2', (CACHE_DIR . 'original.html'), 
+                                  (CACHE_DIR . 'generated.html');
+        };
+    
+    say "$url\n$diff"
+        if length $diff;
 }
-
-sub diffable {
+sub diff_service_details_pages {
+    FILE:
+    while ( my $file = $sources->() ) {
+        my $filename = basename $file, '.html';
+        next FILE if $filename =~ m{^\.};
+        
+        my $url_file = $file;
+        $url_file =~ s{^output}{};
+        
+        my $url = correct_special_cases( $url_file );
+        
+        # say " ** $url_file";
+        # say "    $url";
+        diff_page( $url, $file );
+    }
+}
+sub diffable_html {
     my $text = shift;
     
+    $text =~ s{\s+}{ }gs;
     $text =~ s{^\s*(.*?)\s*$}{$1}gm;
     $text =~ s{>\s*<}{>\n<}gs;
     $text =~ s{\&pound;}{£}gs;
@@ -54,6 +82,7 @@ sub diffable {
 sub correct_special_cases {
     my $url = shift;
     
+    $url =~ s{.html$}{};
     $url =~ s{/service-details/}{/serviceDetails/};
     $url =~ s{hmrc-pay-as-you-earn-paye}{hmrc-pay-as-you-earn-paye-};
     $url =~ s{bis-apply-for-student-finance-full-time-study}{bis-apply-for-student-finance-full-time-study-};

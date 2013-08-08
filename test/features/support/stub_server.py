@@ -8,6 +8,7 @@ import requests
 HTML_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                          '..', '..', '..', 'output'))
 
+
 def rewrite_request(path):
     new_path = path
     if not re.match(r'.*\..*$', path):
@@ -22,6 +23,15 @@ def wait_until(condition, timeout=15, interval=0.1):
             return
         time.sleep(interval)
     raise RuntimeError("timeout: condition not met in wait_until")
+
+
+def get_content_type(full_path):
+    return {
+        "css": "text/css",
+        "js": "application/javascript",
+        "html": "text/html"
+    }.get(full_path.rsplit('.', 1)[1], "text/plain")
+
 
 class HttpStub(BaseHTTPRequestHandler):
 
@@ -46,7 +56,8 @@ class HttpStub(BaseHTTPRequestHandler):
         else:
             with open(full_path, mode='r') as f:
                 self.send_response(200)
-                self.send_header("Content-type", 'text/html')
+
+                self.send_header("Content-type", get_content_type(full_path))
                 self.end_headers()
                 self.wfile.write(f.read())
 
