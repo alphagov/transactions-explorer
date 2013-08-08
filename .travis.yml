@@ -20,4 +20,4 @@ branches:
 notifications: 
   email: false
 after_success: 
-- ./tag-release.sh
+- ./tag_release.sh
