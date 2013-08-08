@@ -49,7 +49,7 @@ def render(template_name, out, vars):
 
 
 if __name__ == "__main__":
-    render("about-the-data.html", "aboutData.html", {})
+    render("about-the-data.html", "about-data.html", {})
     render("home.html", "home.html", {
         'departments_count': len(departments),
         'services_count': len(services),
