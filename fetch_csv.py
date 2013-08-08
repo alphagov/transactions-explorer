@@ -8,6 +8,7 @@ from oauth2client.client import flow_from_clientsecrets
 from oauth2client.file import Storage
 from oauth2client.tools import run
 from lib.params import parse_args_for_fetch
+from lib.filesystem import create_directory
 
 arguments = parse_args_for_fetch(sys.argv[1:])
 
@@ -46,6 +47,8 @@ download_url = spreadsheet.get('exportLinks')['application/pdf']
 download_url = download_url[:-4] + "=csv"
 
 resp, content = service._http.request(download_url + "&gid=" + SERVICES_SHEET)
+
+create_directory(os.path.dirname(SERVICES_DATA_OUTPUT))
 csvFile = open(SERVICES_DATA_OUTPUT, 'w')
 csvFile.write(content)
 csvFile.close()
