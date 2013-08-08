@@ -1,11 +1,14 @@
 var Tree = (function () {
 
+  // TODO refactor into a single line of jquery when we DO jquery
   var valuesFrom = function(selection) {
     return selection[0].map(function (row) {
       return { 
         name: row.getAttribute("data-title"),
         size: parseInt(row.getAttribute("data-volume")),
-        url: row.getAttribute("data-url")
+        url: row.getAttribute("data-url"),
+        color: row.getAttribute("data-color"),
+        textColor: row.getAttribute('data-text-color')
       };
     });
   };
@@ -95,7 +98,8 @@ var TreeMapLayout = (function () {
           console.log('TODO make me go to ' + d.url);
         }
       })
-      .style("background", function(d) { return d.children ? null : color(d.name); })
+      .style("background", function(d) { return d.color ? d.color : color(d.name); })
+      .style("color", function(d) { return d.textColor ? d.textColor : null; })
       .attr('href',function(d){ return d.url ? d.url : null })
       .text(function(d) { return d.children ?  null : d.name; });
   };
