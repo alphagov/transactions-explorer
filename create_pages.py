@@ -1,8 +1,11 @@
 #!/usr/bin/env python
+import csv
 import os
+from pprint import pprint
 
 import unicodecsv
 from jinja2 import Environment, FileSystemLoader
+from lib.csv import map_services_to_csv_data
 from lib.filesystem import create_directory
 from lib.filters import number_as_grouped_number, number_as_financial_magnitude, number_as_magnitude, number_as_percentage, number_as_percentage_change
 from lib.service import Service, latest_quarter, sorted_ignoring_empty_values
@@ -46,6 +49,15 @@ def render(template_name, out, vars):
         output.write(page.encode('utf8'))
 
 
+def render_csv(maps, out):
+    with open(os.path.join(OUTPUT_DIR, out), 'w') as output:
+        writer = csv.writer(output, dialect="excel")
+        writer.writerows(maps)
+
+
+csv_map = map_services_to_csv_data(services)
+render_csv(csv_map, 'transaction-volumes.csv')
+
 for service in high_volume_services:
     print service.name
 
@@ -79,6 +91,6 @@ for sort_order, key in sort_orders:
                out="high-volume-services/%s/%s.html" % (sort_order, direction),
                vars=variables)
 
-"""Copy the assets folder entirely, as well"""
+# """Copy the assets folder entirely, as well"""
 dir_util.copy_tree('assets', '%s/assets' % OUTPUT_DIR)
 
