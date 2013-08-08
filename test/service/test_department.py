@@ -19,3 +19,32 @@ class TestDepartment(unittest.TestCase):
         dept = Department("Agengy for Beatiful Code", services)
 
         assert_that(dept.volume, is_(3500))
+
+
+    def test_volume_with_one_service(self):
+        services = [
+            Service(details({"2012-Q4 Vol.": "2,000"}))
+        ]
+
+        dept = Department("Agengy for Beatiful Code", services)
+
+        assert_that(dept.volume, is_(2000))
+
+    def test_volume_ignores_services_with_no_kpis(self):
+        services = [
+            Service(details({"2012-Q4 Vol.": "2,000"})),
+            Service(details({})),
+        ]
+
+        dept = Department("Agengy for Beatiful Code", services)
+
+        assert_that(dept.volume, is_(2000))
+
+    def test_volume_is_none_if_no_service_has_kpis(self):
+        services = [
+            Service(details({})),
+        ]
+
+        dept = Department("Agengy for Beatiful Code", services)
+
+        assert_that(dept.volume, is_(None))

@@ -2,14 +2,16 @@
 from itertools import groupby
 import os
 import sys
+from distutils import dir_util
 
 import unicodecsv
 from jinja2 import Environment, FileSystemLoader
+
 from lib.filesystem import create_directory
 from lib.filters import number_as_grouped_number, number_as_financial_magnitude, number_as_magnitude, number_as_percentage, number_as_percentage_change
 from lib.service import Service, latest_quarter, sorted_ignoring_empty_values, Department
 from lib.slugify import slugify
-from distutils import dir_util
+
 
 jinja = Environment(
     loader=FileSystemLoader(searchpath='templates', encoding='utf-8'),

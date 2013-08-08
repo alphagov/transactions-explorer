@@ -144,7 +144,8 @@ class Service:
     
     @property
     def most_recent_kpis(self):
-        return self.kpis[-1]
+        if len(self.kpis) > 0:
+            return self.kpis[-1]
 
     @property
     def slug(self):
@@ -201,8 +202,12 @@ class Quarter:
 class Department(object):
     def __init__(self, name, services):
         self.name = name
-        self.services = services
+        self.services = list(services)
 
     @property
     def volume(self):
-        return sum(service.most_recent_kpis['volume_num'] for service in self.services)
+        volumes = [service.most_recent_kpis['volume_num']
+                   for service in self.services
+                   if service.most_recent_kpis is not None]
+        if any(volumes):
+            return sum(volumes)
