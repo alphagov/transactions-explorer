@@ -2,18 +2,18 @@
 
 import httplib2
 import os
-
+import sys
 from apiclient.discovery import build
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.file import Storage
 from oauth2client.tools import run
+from lib.params import parse_args_for_fetch
+
+arguments = parse_args_for_fetch(sys.argv[1:])
 
 SPREADSHEET = '0AiLXeWvTKFmBdFpxdEdHUWJCYnVMS0lnUHJDelFVc0E'
 SERVICES_SHEET = '44'
 SERVICES_DATA_OUTPUT = 'data/services.csv'
-
-CLIENT_SECRETS = 'data/client_secrets.json'
-OAUTH_TOKENS = 'data/tokens.dat'
 MISSING_CLIENT_SECRETS_MESSAGE = """
 WARNING: Please configure OAuth 2.0
 
@@ -24,16 +24,15 @@ found at:
 
 with information from the APIs Console <https://code.google.com/apis/console>.
 
-""" % os.path.join(os.path.dirname(__file__), CLIENT_SECRETS)
-
+""" % os.path.join(os.path.dirname(__file__), arguments.client_secrets)
 
 
 flow = flow_from_clientsecrets(
-    CLIENT_SECRETS,
+    arguments.client_secrets,
     scope='https://docs.google.com/feeds/ https://docs.googleusercontent.com/ https://spreadsheets.google.com/feeds/',
     message=MISSING_CLIENT_SECRETS_MESSAGE,
 )
-storage = Storage(OAUTH_TOKENS)
+storage = Storage(arguments.oauth_tokens)
 credentials = storage.get()
 if credentials is None or credentials.invalid:
   credentials = run(flow, storage)
