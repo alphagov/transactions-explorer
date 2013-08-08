@@ -5,8 +5,8 @@
     <title>Transactions Explorer: transactional services data from the UK government</title>
     <script type="text/javascript">
         (function(){if(navigator.userAgent.match(/IEMobile\/10\.0/)){var d=document,c="appendChild",a=d.createElement("style");a[c](d.createTextNode("@-ms-viewport{width:auto!important}"));d.getElementsByTagName("head")[0][c](a);}})();
-    </script><!--[if gt IE 8]><!--><link href="/assets/static/app/assets/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css">
-    <!--<![endif]--><!--[if IE 6]><link href="/assets/static/app/assets/stylesheets/application-ie6.css" media="screen" rel="stylesheet" type="text/css" /><![endif]--><!--[if IE 7]><link href="/assets/static/app/assets/stylesheets/application-ie7.css" media="screen" rel="stylesheet" type="text/css" /><![endif]--><!--[if IE 8]><link href="/assets/static/app/assets/stylesheets/application-ie8.css" media="screen" rel="stylesheet" type="text/css" /><![endif]--><link href="/assets/static/app/assets/stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+    </script><!--[if gt IE 8]><!--><link href="{{ STATIC_HOST }}/application.css" media="screen" rel="stylesheet" type="text/css">
+    <!--<![endif]--><!--[if IE 6]><link href="{{ STATIC_HOST }}/application-ie6.css" media="screen" rel="stylesheet" type="text/css" /><![endif]--><!--[if IE 7]><link href="{{ STATIC_HOST }}/application-ie7.css" media="screen" rel="stylesheet" type="text/css" /><![endif]--><!--[if IE 8]><link href="{{ STATIC_HOST }}/application-ie8.css" media="screen" rel="stylesheet" type="text/css" /><![endif]--><link href="{{ STATIC_HOST }}/print.css" media="print" rel="stylesheet" type="text/css">
     <!--[if IE 8]>
     <script type="text/javascript">
         (function(){if(window.opera){return;}
@@ -41,19 +41,19 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
     </script>
-    <link rel="stylesheet" media="screen" href="/assets/stylesheets/index.css">
+    <link rel="stylesheet" media="screen" href="{{ EXPLORER_HOST }}/assets/stylesheets/index.css">
     <!--[if lt IE 9]>
-    <link type="text/css" href="/assets/stylesheets/ie.css" rel="stylesheet" media="all">
+    <link type="text/css" href="{{ STATIC_HOST }}/ie.css" rel="stylesheet" media="all">
     <![endif]-->
     <!--[if lt IE 7]>
-    <link type="text/css" href="/assets/stylesheets/ie-more.css" rel="stylesheet" media="all">
+    <link type="text/css" href="{{ STATIC_HOST }}/ie-more.css" rel="stylesheet" media="all">
     <![endif]-->
     <!--[if gt IE 8]><!-->
-    <script type="text/javascript" src="/assets/javascripts/tool-tip.js"></script>
-    <script type="text/javascript" src="/assets/javascripts/d3.v2.js"></script>
-    <script type="text/javascript" src="/assets/javascripts/charts/bubble.js"></script>
-    <script type="text/javascript" src="/assets/javascripts/charts/treemap.js"></script>
-    <script type="text/javascript" src="/assets/javascripts/views.js"></script>
+    <script type="text/javascript" src="{{ EXPLORER_HOST }}/assets/javascripts/tool-tip.js"></script>
+    <script type="text/javascript" src="{{ EXPLORER_HOST }}/assets/javascripts/d3.v2.js"></script>
+    <script type="text/javascript" src="{{ EXPLORER_HOST }}/assets/javascripts/charts/bubble.js"></script>
+    <script type="text/javascript" src="{{ EXPLORER_HOST }}/assets/javascripts/charts/treemap.js"></script>
+    <script type="text/javascript" src="{{ EXPLORER_HOST }}/assets/javascripts/views.js"></script>
     <!--<![endif]-->
 </head>
     <body class="">

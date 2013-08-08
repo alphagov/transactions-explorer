@@ -7,13 +7,17 @@ from lib.filesystem import create_directory
 from lib.filters import number_as_grouped_number, number_as_financial_magnitude, number_as_magnitude, number_as_percentage, number_as_percentage_change
 from lib.service import Service, latest_quarter, sorted_ignoring_empty_values
 from lib.slugify import slugify
+from distutils import dir_util
 
 jinja = Environment(
     loader=FileSystemLoader(searchpath='templates', encoding='utf-8'),
     trim_blocks=True,
     lstrip_blocks=True,
-    extensions=['jinja2.ext.with_'],
+    extensions=['jinja2.ext.with_']
 )
+
+jinja.globals['STATIC_HOST'] = 'https://assets.digital.cabinet-office.gov.uk/static'
+jinja.globals['EXPLORER_HOST'] = ''
 
 jinja.filters['as_magnitude'] = number_as_magnitude
 jinja.filters['as_financial_magnitude'] = number_as_financial_magnitude
@@ -77,3 +81,6 @@ if __name__ == "__main__":
             render('high_volume_services.html',
                    out="high-volume-services/%s/%s.html" % (sort_order, direction),
                    vars=variables)
+    
+    """Copy the assets folder entirely, as well"""
+    dir_util.copy_tree('assets', '%s/assets' % OUTPUT_DIR)
