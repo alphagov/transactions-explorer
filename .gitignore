@@ -1,5 +1,6 @@
 data/
 output/
+artefacts/
 *.pyc
 .DS_Store
 *.log
