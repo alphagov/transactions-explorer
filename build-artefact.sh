@@ -13,4 +13,4 @@ python create_pages.py
 
 mkdir -p artefacts
 cd output
-zip -r ../artefacts/service-explorer-$BUILD_ID.zip .
+tar -zxvf ../artefacts/service-explorer-$BUILD_ID.tgz .
