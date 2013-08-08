@@ -32,10 +32,7 @@ jinja.filters['slugify'] = slugify
 SERVICES_DATA = 'data/services.csv'
 OUTPUT_DIR = 'output'
 
-if len(sys.argv) > 1:
-    input = sys.argv[1]
-else:
-    input = SERVICES_DATA
+input = sys.argv[1] if len(sys.argv) > 1 else SERVICES_DATA
 
 data = open(input)
 reader = unicodecsv.DictReader(data)
