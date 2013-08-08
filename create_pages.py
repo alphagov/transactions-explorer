@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 from itertools import groupby
 import os
+import sys
 
 import unicodecsv
 from jinja2 import Environment, FileSystemLoader
@@ -30,7 +31,12 @@ jinja.filters['slugify'] = slugify
 SERVICES_DATA = 'data/services.csv'
 OUTPUT_DIR = 'output'
 
-data = open(SERVICES_DATA)
+if len(sys.argv) > 1:
+    input = sys.argv[1]
+else:
+    input = SERVICES_DATA
+
+data = open(input)
 reader = unicodecsv.DictReader(data)
 
 services = [Service(details=row) for row in reader]
