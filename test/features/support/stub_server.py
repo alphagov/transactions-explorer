@@ -5,7 +5,6 @@ import threading
 import time
 import requests
 
-STATUS_RESOURCE = 'http://localhost:8000/high-volume-services/by-transactions-per-year/descending.html'
 
 HTML_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                          '..', '..', '..', 'output'))
@@ -25,7 +24,7 @@ def wait_until(condition, timeout=15, interval=0.1):
         if condition():
             return
         time.sleep(interval)
-    raise RuntimeError("timeout")
+    raise RuntimeError("timeout: condition not met in wait_until")
 
 
 class HttpStub(BaseHTTPRequestHandler):
@@ -33,7 +32,14 @@ class HttpStub(BaseHTTPRequestHandler):
     thread = None
     server = None
 
-    def do_GET(self):
+    def __alive(self):
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        self.wfile.write("stub server is running")
+        return
+
+    def __serve_file(self):
         # rewrite requests to point at flat *.html files
         path_to_html = rewrite_request(self.path)
         full_path = HTML_ROOT + path_to_html
@@ -49,6 +55,17 @@ class HttpStub(BaseHTTPRequestHandler):
                 self.wfile.write(f.read())
 
         return
+
+    def do_GET(self):
+        if self.path == "/__alive__":
+            self.__alive()
+        else:
+            self.__serve_file()
+
+        return
+
+    def log_request(self, code='-', size='-'):
+        pass
 
     @classmethod
     def start(cls):
@@ -66,10 +83,10 @@ class HttpStub(BaseHTTPRequestHandler):
     @classmethod
     def _running(cls):
         try:
-            return requests.get(STATUS_RESOURCE).status_code == 200
+            return requests.get('http://localhost:8000/__alive__').status_code == 200
         except:
+            print "error waiting for server to start"
             return False
-
 
 if __name__ == "__main__":
     HttpStub.start()

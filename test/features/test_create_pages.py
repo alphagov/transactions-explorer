@@ -1,27 +1,20 @@
 import unittest
 
 from hamcrest import *
-from splinter import Browser
+from nose.tools import nottest
 
-from support.stub_server import HttpStub
+from test.features import BrowserTest
 
 
-class test_create_pages(unittest.TestCase):
-
-    def setUp(self):
-        HttpStub.start()
-
-    def tearDown(self):
-        HttpStub.stop()
+class test_create_pages(BrowserTest):
 
     def test_about_page(self):
-        with Browser() as browser:
-            browser.visit("http://0.0.0.0:8000/high-volume-services/by-transactions-per-year/descending.html")
-            assert_that(browser.find_by_css('h1').text, is_('High-volume services'))
+        self.browser.visit("http://0.0.0.0:8000/high-volume-services/by-transactions-per-year/descending")
+        assert_that(self.browser.find_by_css('h1').text, is_('High-volume services'))
 
+    @nottest
     def test_all_services(self):
-        with Browser() as browser:
-            browser.visit("http://0.0.0.0:8000/all-services.html")
-            assert_that(browser.find_by_css('h1').text, is_("All Services"))
-            assert_that(browser.find_by_css('#navigation .current').text, is_("All services"))
+        self.browser.visit("http://0.0.0.0:8000/all-services")
+        assert_that(self.browser.find_by_css('h1').text, is_("All Services"))
+        assert_that(self.browser.find_by_css('#navigation .current').text, is_("All services"))
 
