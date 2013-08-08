@@ -1,4 +1,5 @@
 from functools import total_ordering
+from itertools import groupby
 import re
 
 from lib.filters import as_number
@@ -201,6 +202,12 @@ class Quarter:
 
 
 class Department(object):
+    @classmethod
+    def from_services(cls, services):
+        key = lambda s: s.department
+        services_by_dept = groupby(sorted(services, key=key), key=key)
+        return [Department(name, svcs) for name, svcs in services_by_dept]
+
     def __init__(self, name, services):
         self.name = name
         self.services = list(services)

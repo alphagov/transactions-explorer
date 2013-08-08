@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-from itertools import groupby
 import os
 import sys
 from distutils import dir_util
@@ -33,10 +32,7 @@ jinja.filters['slugify'] = slugify
 SERVICES_DATA = 'data/services.csv'
 OUTPUT_DIR = 'output'
 
-if len(sys.argv) > 1:
-    input = sys.argv[1]
-else:
-    input = SERVICES_DATA
+input = sys.argv[1] if len(sys.argv) > 1 else SERVICES_DATA
 
 data = open(input)
 reader = unicodecsv.DictReader(data)
@@ -87,11 +83,7 @@ for sort_order, key in sort_orders:
                out="high-volume-services/%s/%s.html" % (sort_order, direction),
                vars=variables)
 
-department_key = lambda s: (s.abbr, s.department)
-services_by_dept = groupby(sorted(services, key=department_key), key=department_key)
-
-departments = [Department(name, department_services)
-               for (abbr, name), department_services in services_by_dept]
+departments = Department.from_services(services)
 
 render('all_services.html',
     out='all-services.html',

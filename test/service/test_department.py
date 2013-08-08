@@ -1,5 +1,5 @@
 import unittest
-from hamcrest import is_, assert_that
+from hamcrest import is_, assert_that, contains
 from lib.service import Department, Service
 from test.service import details
 
@@ -9,6 +9,20 @@ class TestDepartment(unittest.TestCase):
     def test_department_creation(self):
         d = Department("Agengy for Beatiful Code", [])
         assert_that(d.name, is_("Agengy for Beatiful Code"))
+
+    def test_building_a_list_of_departments_from_services(self):
+        services = [
+            Service(details({u'Abbr': 'ABC', u'Department': "Agency for Beautiful Code"})),
+            Service(details({u'Abbr': 'MSW', u'Department': "Ministry of Silly Walks"})),
+            Service(details({u'Abbr': 'ABC', u'Department': "Agency for Beautiful Code"})),
+        ]
+
+        departments = Department.from_services(services)
+
+        assert_that(len(departments), is_(2))
+        assert_that(departments[0].name, is_("Agency for Beautiful Code"))
+        assert_that(departments[0].services,
+                    contains(services[0], services[2]))
 
     def test_volume_is_total_of_last_available_quarter_for_each_service(self):
         services = [
