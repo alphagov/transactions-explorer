@@ -204,24 +204,32 @@ class Department(object):
     def __init__(self, name, services):
         self.name = name
         self.services = list(services)
+        self.aggregator = ServiceKpiAggregator(self.services)
 
     @property
     def volume(self):
-        return self._aggregate_value('volume_num')
+        return self._aggregate('volume_num')
 
     @property
     def digital_volume(self):
-        return self._aggregate_value('digital_volume_num', high_volume_only=True)
+        return self._aggregate('digital_volume_num', high_volume_only=True)
 
     @property
     def cost(self):
-        return self._aggregate_value('cost', high_volume_only=True)
+        return self._aggregate('cost', high_volume_only=True)
+
+    def _aggregate(self, attr, high_volume_only=False):
+        return self.aggregator.aggregate(attr, high_volume_only)
 
     @property
     def takeup(self):
         return self.digital_volume / self.volume
 
-    def _aggregate_value(self, attr, high_volume_only=False):
+class ServiceKpiAggregator(object):
+    def __init__(self, services):
+        self.services = services
+
+    def aggregate(self, attr, high_volume_only=False):
         def included(service):
             return service.most_recent_kpis is not None and (
                    not high_volume_only or service.high_volume)
@@ -232,3 +240,4 @@ class Department(object):
                   and service.most_recent_kpis[attr] is not None]
         if any(values):
             return sum(values)
+
