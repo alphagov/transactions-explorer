@@ -53,6 +53,9 @@
 
 <div class="group">
     <article role="article" class="group">
+
+        <figure id="services-treemap"></figure>
+
         <section class="content-group">
 
             <table id="transactions-table" class="full_width_table">
@@ -139,14 +142,15 @@
                 </tbody>
             </table>
 
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    if ($("#bubble").length) {
-                        gds.transactions.views.index( "hmrc" , "bubble", "transactions-table");
-                    }
-                });
+            <!--[if gt IE 8]><!-->
+            <script type="text/javascript" src="/assets/javascripts/d3.v3.js"></script>
+            <script type="text/javascript" src="/assets/javascripts/table-to-tree-map.js"></script>
+            <script>
+              var tree = Tree.fromHtmlTable(d3.selectAll("tbody tr"), 200);
+              TreeMapLayout.display("services-treemap", tree);
             </script>
-
+            <!--<![endif]-->
+            
             <div id="old-data" class="application-notice info-notice table-margin">
                 <p>* Q1 2013 data not provided for this metric; see service page for information on obtaining latest data</p>
             </div>

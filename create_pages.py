@@ -81,4 +81,5 @@ for sort_order, key in sort_orders:
 
 """Copy the assets folder entirely, as well"""
 dir_util.copy_tree('assets', '%s/assets' % OUTPUT_DIR)
+dir_util.copy_tree('javascripts/src', '%s/assets/javascripts' % OUTPUT_DIR)
 
