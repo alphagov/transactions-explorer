@@ -18,7 +18,7 @@ jinja = Environment(
 )
 
 jinja.globals['STATIC_HOST'] = 'https://assets.digital.cabinet-office.gov.uk/static'
-jinja.globals['EXPLORER_HOST'] = ''
+jinja.globals['EXPLORER_HOST'] = 'this-will-be-where-stuff-ends-up'
 
 jinja.filters['as_magnitude'] = number_as_magnitude
 jinja.filters['as_financial_magnitude'] = number_as_financial_magnitude
