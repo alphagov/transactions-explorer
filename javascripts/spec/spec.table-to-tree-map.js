@@ -10,7 +10,12 @@ describe("Table To Treemap", function () {
     table.append("tr").attr("data-title", "service6").attr("data-volume", "19");
     
     // Also add in a testmap div
-    d3.select('body').append('div').attr('id','testmap');
+    d3.select('body').append('div')
+      .attr('id','testmap')
+      .style({
+        width: '960px',
+        height: '460px'
+      });
   });
 
   afterEach(function () {;

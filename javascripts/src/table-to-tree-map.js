@@ -124,11 +124,12 @@ var TreeMapLayout = (function () {
   };
 
 
-  var makeTree = function (divId, treeData) {
-    var margin = {top: 0, right: 0, bottom: 40, left: 0},
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
-    
+  var makeTree = function (divId, treeData, options) {
+    var options = options || {},
+        el = document.getElementById(divId),
+        width = options.width || el.offsetWidth,
+        height = options.height || el.offsetHeight;
+
     var color = d3.scale.category20c();
     
     var treemap = d3.layout.treemap()
@@ -138,11 +139,7 @@ var TreeMapLayout = (function () {
           return a.value - b.value;
         });
     
-    var div = d3.select('#'+divId)
-        .style("width", (width + margin.left + margin.right) + "px")
-        .style("height", (height + margin.top + margin.bottom) + "px")
-        .style("left", margin.left + "px")
-        .style("top", margin.top + "px");
+    var div = d3.select('#'+divId);
     
     var node = div.datum(treeData).selectAll(".node")
       .data(treemap.nodes)

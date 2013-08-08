@@ -1412,6 +1412,11 @@ header.page-header hgroup.te-image {
     float: left;
     display: inline-block;
     min-width: 33.0%; } }
+
+table.full_width_table {
+  margin:0;
+}
+
 /* line 241, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 #transactions-table thead th a {
   color: #0b0c0c;
@@ -1631,6 +1636,13 @@ article.service-details section h2 {
           margin-left: 0; } }
 
 /* Treemap */
+
+figure.treemap {
+  width:100%;
+  height:460px;
+  margin-bottom:40px;
+}
+
 /* line 388, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .node {
   position: absolute; }
