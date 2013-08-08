@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-from itertools import groupby
 import os
 import sys
 from distutils import dir_util
