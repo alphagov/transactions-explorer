@@ -1,0 +1,1913 @@
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+@font-face {
+  font-family: GDS-Logo;
+  src: local("HelveticaNeue"), local("Helvetica Neue"), local("Arial"), local("Helvetica"); }
+
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+/* line 5, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+nav.performance-nav {
+  max-width: 1020px;
+  margin: auto;
+  border-bottom: 5px solid black; }
+  /* line 10, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+  nav.performance-nav #menu-toggle {
+    display: none;
+    padding-bottom: 6px; }
+    /* line 14, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+    nav.performance-nav #menu-toggle:after {
+      display: inline-block;
+      font-size: 8px;
+      height: 8px;
+      padding-left: 5px;
+      padding-top: 6px;
+      vertical-align: top;
+      content: " \25BC"; }
+  /* line 25, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+  nav.performance-nav a {
+    color: #333;
+    padding: 6px 8px 8px;
+    text-decoration: none; }
+    /* line 30, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+    nav.performance-nav a:hover, nav.performance-nav a:focus {
+      text-decoration: underline; }
+  /* line 35, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+  nav.performance-nav ul {
+    padding: 0;
+    height: 30px;
+    margin-top: .7em;
+    margin-bottom: 0;
+    margin-right: 23px; }
+  /* line 43, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+  nav.performance-nav li.sub-level {
+    padding: 0 0 0 5px;
+    display: inline-block;
+    float: right; }
+    /* line 48, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+    nav.performance-nav li.sub-level a.current {
+      background-color: black;
+      color: white; }
+  /* line 54, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+  nav.performance-nav a.top-level {
+    display: inline-block;
+    padding: 0 33px 0 33px;
+    float: left; }
+    /* line 59, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+    nav.performance-nav a.top-level:hover {
+      text-decoration: none; }
+      /* line 62, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+      nav.performance-nav a.top-level:hover .top-level-link {
+        text-decoration: underline; }
+/* line 69, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+nav span.alpha-tag {
+  text-transform: uppercase;
+  color: white;
+  -webkit-font-smoothing: subpixel-antialiased;
+  background-color: #d53880;
+  padding: 2px 5px 0;
+  margin-left: 10px;
+  font-size: 75%; }
+/* line 79, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+nav a:hover .alpha-tag {
+  text-decoration: none; }
+
+@media (max-width: 640px) {
+  /* line 88, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+  nav.performance-nav {
+    height: auto;
+    width: auto; }
+    /* line 93, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+    nav.performance-nav #menu-toggle {
+      display: inline-block;
+      float: right;
+      padding-right: 23px;
+      padding-left: 15px;
+      width: auto; }
+    /* line 103, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+    nav.performance-nav .inner-nav {
+      min-height: 40px; }
+      /* line 105, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+      nav.performance-nav .inner-nav ul {
+        height: auto;
+        display: none; }
+    /* line 112, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+    nav.performance-nav .menu-wrapper:hover #menu-toggle {
+      background-color: #dee0e2; }
+      /* line 114, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+      nav.performance-nav .menu-wrapper:hover #menu-toggle:after {
+        content: " \25B2"; }
+    /* line 119, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+    nav.performance-nav .menu-wrapper:hover .inner-nav ul {
+      display: block; }
+    /* line 124, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+    nav.performance-nav a {
+      padding: 10px 8px 7px 8px; }
+      /* line 127, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+      nav.performance-nav a.top-level {
+        display: block;
+        float: left;
+        width: auto;
+        margin: 0;
+        padding: 10px 8px 6px 15px; }
+    /* line 136, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+    nav.performance-nav .sub-level a {
+      display: block;
+      width: auto;
+      padding-left: 8px;
+      color: black; }
+    /* line 143, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+    nav.performance-nav ul {
+      display: block;
+      height: auto;
+      margin: 0 0 0 0; }
+    /* line 149, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+    nav.performance-nav li.sub-level {
+      padding: 0 15px 0 15px;
+      margin: 0;
+      float: none;
+      display: block;
+      background-color: #dee0e2;
+      clear: both; }
+      /* line 157, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+      nav.performance-nav li.sub-level:last-child {
+        padding-bottom: 3px; } }
+@media (max-width: 379px) {
+  /* line 167, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+  nav.performance-nav a.top-level .alpha-tag {
+    display: none; } }
+/* line 7, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/layout.scss */
+::-ms-clear {
+  display: none; }
+
+/* line 11, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/layout.scss */
+.performance-hidden {
+  display: none; }
+
+/* line 15, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/layout.scss */
+#wrapper {
+  max-width: 1020px;
+  margin: 0 auto; }
+
+/* line 20, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/layout.scss */
+#wrapper * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+/* line 26, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/layout.scss */
+#content {
+  border-top: 10px solid #097f96;
+  background-color: #FFFFFF;
+  padding: 1em 2em; }
+
+@media (max-width: 640px) {
+  /* line 34, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/layout.scss */
+  #content {
+    padding: 1em; } }
+/* line 14, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.service-details article h1 {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 36px;
+  font-size: 3.6rem;
+  line-height: 1.11111;
+  font-weight: 400;
+  text-transform: none; }
+  @media (max-width: 640px) {
+    /* line 14, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    .service-details article h1 {
+      font-size: 2.4rem;
+      line-height: 1.04167; } }
+
+/* Whitehall imports */
+/* line 1, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisations-box {
+  background: #dee0e2; }
+  /* line 4, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisations-box .organisations-box-inner {
+    padding: 15px; }
+  /* line 8, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisations-box h3 {
+    font-family: "nta", Arial, sans-serif;
+    font-size: 14px;
+    font-size: 1.4rem;
+    line-height: 1.42857;
+    font-weight: 400;
+    text-transform: none;
+    padding-top: 8px;
+    padding-top: 0.8rem;
+    padding-bottom: 7px;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid #bfc1c3; }
+    @media (max-width: 640px) {
+      /* line 8, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+      #whitehall-wrapper .organisations-box h3 {
+        font-size: 1.2rem;
+        line-height: 1.25; } }
+    @media (min-width: 641px) {
+      /* line 8, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+      #whitehall-wrapper .organisations-box h3 {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem; } }
+  /* line 12, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisations-box p {
+    padding-bottom: 15px; }
+  /* line 15, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisations-box ol {
+    overflow: hidden;
+    margin: 0 -10px 10px; }
+    /* line 18, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+    #whitehall-wrapper .organisations-box ol li {
+      font-family: "nta", Arial, sans-serif;
+      font-size: 16px;
+      font-size: 1.6rem;
+      line-height: 1.25;
+      font-weight: 300;
+      text-transform: none;
+      padding-top: 8px;
+      padding-top: 0.8rem;
+      padding-bottom: 7px;
+      padding-bottom: 0.7rem;
+      display: block; }
+      @media (max-width: 640px) {
+        /* line 18, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+        #whitehall-wrapper .organisations-box ol li {
+          font-size: 1.4rem;
+          line-height: 1.14286; } }
+      @media (min-width: 641px) {
+        /* line 18, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+        #whitehall-wrapper .organisations-box ol li {
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem; } }
+      @media (min-width: 769px) {
+        /* line 18, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+        #whitehall-wrapper .organisations-box ol li {
+          width: 33.33%;
+          float: left; } }
+      /* line 27, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+      #whitehall-wrapper .organisations-box ol li:nth-child(3n+1) {
+        clear: left; }
+      /* line 31, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+      #whitehall-wrapper .organisations-box ol li a {
+        display: block;
+        padding: 0 10px; }
+/* line 41, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .multiple-orgs .organisation {
+  position: relative;
+  top: 1px;
+  margin-left: 7px;
+  padding-bottom: 6px; }
+/* line 49, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo {
+  font-family: Helvetica, Arial;
+  font-weight: 400;
+  display: block;
+  position: relative;
+  background-repeat: no-repeat;
+  font-size: 13px;
+  line-height: 15px;
+  padding: 3px 0 2px 0; }
+  /* line 60, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo:link, #whitehall-wrapper .organisation-logo:visited {
+    color: #000; }
+  /* line 64, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo span {
+    color: #000; }
+/* line 71, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-identity, #whitehall-wrapper .organisation-logo-single-identity, #whitehall-wrapper .organisation-logo-stacked-single-identity, #whitehall-wrapper .organisation-logo-bis, #whitehall-wrapper .organisation-logo-stacked-bis, #whitehall-wrapper .organisation-logo-so, #whitehall-wrapper .organisation-logo-stacked-so, #whitehall-wrapper .organisation-logo-ho, #whitehall-wrapper .organisation-logo-stacked-ho, #whitehall-wrapper .organisation-logo-mod, #whitehall-wrapper .organisation-logo-stacked-mod, #whitehall-wrapper .organisation-logo-wales, #whitehall-wrapper .organisation-logo-stacked-wales, #whitehall-wrapper .organisation-logo-coastguard, #whitehall-wrapper .organisation-logo-stacked-coastguard, #whitehall-wrapper .organisation-logo-portcullis, #whitehall-wrapper .organisation-logo-stacked-portcullis, #whitehall-wrapper .organisation-logo-ukho, #whitehall-wrapper .organisation-logo-stacked-ukho {
+  border-left: 2px solid; }
+/* line 77, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-single-identity {
+  padding: 3px 0 2px 35px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_13px.png");
+  background-position: 5px center;
+  background-size: auto 20px; }
+/* line 85, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-single-identity {
+  padding: 20px 0 0 6px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_13px.png");
+  background-position: 5px top;
+  background-size: auto 20px; }
+/* line 93, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-single-identity span {
+  display: block;
+  position: relative;
+  top: 3px; }
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 100, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-single-identity,
+  #whitehall-wrapper .organisation-logo-stacked-single-identity {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_13px_x2.png"); } }
+/* line 106, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-bis {
+  padding: 3px 0 2px 30px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/bis_crest_13px.png");
+  background-position: 5px center;
+  background-size: auto 20px; }
+/* line 114, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-bis {
+  padding: 20px 0 0 6px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/bis_crest_13px.png");
+  background-position: 5px top;
+  background-size: auto 20px; }
+/* line 122, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-bis span {
+  display: block;
+  position: relative;
+  top: 3px; }
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 129, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-bis,
+  #whitehall-wrapper .organisation-logo-stacked-bis {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/bis_crest_13px_x2.png"); } }
+/* line 135, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-so {
+  padding: 3px 0 2px 35px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/so_crest_13px.png");
+  background-position: 5px center;
+  background-size: auto 20px; }
+/* line 143, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-so {
+  padding: 20px 0 0 6px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/so_crest_13px.png");
+  background-position: 5px top;
+  background-size: auto 20px; }
+/* line 151, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-so span {
+  display: block;
+  position: relative;
+  top: 3px; }
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 158, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-so,
+  #whitehall-wrapper .organisation-logo-stacked-so {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/so_crest_13px_x2.png"); } }
+/* line 164, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-ho {
+  padding: 5px 0 5px 24px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ho_crest_13px.png");
+  background-position: 5px center;
+  background-size: auto 25px; }
+/* line 172, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-ho {
+  padding: 25px 0 0 6px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ho_crest_13px.png");
+  background-position: 5px top;
+  background-size: auto 25px; }
+/* line 180, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-ho span {
+  display: block;
+  position: relative;
+  top: 3px; }
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 187, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-ho,
+  #whitehall-wrapper .organisation-logo-stacked-ho {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ho_crest_13px_x2.png"); } }
+/* line 193, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-mod {
+  padding: 5px 0 5px 30px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/mod_crest_13px.png");
+  background-position: 5px center;
+  background-size: auto 25px; }
+/* line 201, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-mod {
+  padding: 25px 0 0 6px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/mod_crest_13px.png");
+  background-position: 5px top;
+  background-size: auto 25px; }
+/* line 209, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-mod span {
+  display: block;
+  position: relative;
+  top: 3px; }
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 216, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-mod,
+  #whitehall-wrapper .organisation-logo-stacked-mod {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/mod_crest_13px_x2.png"); } }
+/* line 222, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-wales {
+  padding: 5px 0 5px 26px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/wales_crest_13px.png");
+  background-position: 5px center;
+  background-size: auto 25px; }
+/* line 230, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-wales {
+  padding: 25px 0 0 6px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/wales_crest_13px.png");
+  background-position: 5px top;
+  background-size: auto 25px; }
+/* line 238, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-wales span {
+  display: block;
+  position: relative;
+  top: 3px; }
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 245, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-wales,
+  #whitehall-wrapper .organisation-logo-stacked-wales {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/wales_crest_13px_x2.png"); } }
+/* line 251, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-coastguard {
+  padding: 5px 0 5px 26px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/coastguard_13px.png");
+  background-position: 5px center;
+  background-size: auto 25px; }
+/* line 259, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-coastguard {
+  padding: 25px 0 0 6px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/coastguard_13px.png");
+  background-position: 5px top;
+  background-size: auto 25px; }
+/* line 267, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-coastguard span {
+  display: block;
+  position: relative;
+  top: 3px; }
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 274, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-coastguard,
+  #whitehall-wrapper .organisation-logo-stacked-coastguard {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/coastguard_13px_x2.png"); } }
+/* line 280, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-portcullis {
+  padding: 3px 0 2px 26px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/portcullis_13px.png");
+  background-position: 5px center;
+  background-size: auto 20px; }
+/* line 288, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-portcullis {
+  padding: 25px 0 0 6px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/portcullis_13px.png");
+  background-position: 5px top;
+  background-size: auto 20px; }
+/* line 296, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-portcullis span {
+  display: block;
+  position: relative;
+  top: 3px; }
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 303, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-portcullis,
+  #whitehall-wrapper .organisation-logo-stacked-portcullis {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/portcullis_13px_x2.png"); } }
+/* line 309, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-ukho {
+  padding: 5px 0 5px 30px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ukho_13px.png");
+  background-position: 5px center;
+  background-size: auto 25px; }
+/* line 317, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-ukho {
+  padding: 25px 0 0 6px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ukho_13px.png");
+  background-position: 5px top;
+  background-size: auto 25px; }
+/* line 325, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-ukho span {
+  display: block;
+  position: relative;
+  top: 3px; }
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 332, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-ukho,
+  #whitehall-wrapper .organisation-logo-stacked-ukho {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ukho_13px_x2.png"); } }
+/* line 338, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-eo {
+  padding: 3px 0 2px 35px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_13px.png");
+  background-position: 5px center;
+  background-size: auto 20px; }
+/* line 346, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-eo {
+  padding: 20px 0 0 1px;
+  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_13px.png");
+  background-position: 0 top;
+  background-size: auto 20px; }
+/* line 354, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+#whitehall-wrapper .organisation-logo-stacked-eo span {
+  display: block;
+  position: relative;
+  top: 3px; }
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 361, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-eo,
+  #whitehall-wrapper .organisation-logo-stacked-eo {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_13px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 367, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-no-identity-medium, #whitehall-wrapper .organisation-logo-identity-medium, #whitehall-wrapper .organisation-logo-single-identity-medium, #whitehall-wrapper .organisation-logo-stacked-single-identity-medium, #whitehall-wrapper .organisation-logo-bis-medium, #whitehall-wrapper .organisation-logo-stacked-bis-medium, #whitehall-wrapper .organisation-logo-so-medium, #whitehall-wrapper .organisation-logo-stacked-so-medium, #whitehall-wrapper .organisation-logo-ho-medium, #whitehall-wrapper .organisation-logo-stacked-ho-medium, #whitehall-wrapper .organisation-logo-mod-medium, #whitehall-wrapper .organisation-logo-stacked-mod-medium, #whitehall-wrapper .organisation-logo-wales-medium, #whitehall-wrapper .organisation-logo-stacked-wales-medium, #whitehall-wrapper .organisation-logo-coastguard-medium, #whitehall-wrapper .organisation-logo-stacked-coastguard-medium, #whitehall-wrapper .organisation-logo-portcullis-medium, #whitehall-wrapper .organisation-logo-stacked-portcullis-medium, #whitehall-wrapper .organisation-logo-ukho-medium, #whitehall-wrapper .organisation-logo-stacked-ukho-medium, #whitehall-wrapper .organisation-logo-eo-medium, #whitehall-wrapper .organisation-logo-stacked-eo-medium {
+    font-size: 18px;
+    line-height: 20px;
+    padding: 3px 0 2px 0; } }
+@media (min-width: 641px) {
+  /* line 374, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-identity-medium, #whitehall-wrapper .organisation-logo-single-identity-medium, #whitehall-wrapper .organisation-logo-stacked-single-identity-medium, #whitehall-wrapper .organisation-logo-bis-medium, #whitehall-wrapper .organisation-logo-stacked-bis-medium, #whitehall-wrapper .organisation-logo-so-medium, #whitehall-wrapper .organisation-logo-stacked-so-medium, #whitehall-wrapper .organisation-logo-ho-medium, #whitehall-wrapper .organisation-logo-stacked-ho-medium, #whitehall-wrapper .organisation-logo-mod-medium, #whitehall-wrapper .organisation-logo-stacked-mod-medium, #whitehall-wrapper .organisation-logo-wales-medium, #whitehall-wrapper .organisation-logo-stacked-wales-medium, #whitehall-wrapper .organisation-logo-coastguard-medium, #whitehall-wrapper .organisation-logo-stacked-coastguard-medium, #whitehall-wrapper .organisation-logo-portcullis-medium, #whitehall-wrapper .organisation-logo-stacked-portcullis-medium, #whitehall-wrapper .organisation-logo-ukho-medium, #whitehall-wrapper .organisation-logo-stacked-ukho-medium {
+    border-left: 2px solid; } }
+@media (min-width: 641px) {
+  /* line 382, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-single-identity-medium {
+    padding: 3px 0 2px 44px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_18px.png");
+    background-position: 6px center;
+    background-size: auto 25px; } }
+@media (min-width: 641px) {
+  /* line 391, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-single-identity-medium {
+    padding: 25px 0 0 7px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_18px.png");
+    background-position: 6px top;
+    background-size: auto 25px; } }
+@media (min-width: 641px) {
+  /* line 401, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-single-identity-medium span {
+    display: block;
+    position: relative;
+    top: 3px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 408, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-single-identity-medium,
+  #whitehall-wrapper .organisation-logo-stacked-single-identity-medium {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_18px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 415, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-bis-medium {
+    padding: 3px 0 2px 38px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/bis_crest_18px.png");
+    background-position: 6px center;
+    background-size: auto 25px; } }
+@media (min-width: 641px) {
+  /* line 424, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-bis-medium {
+    padding: 25px 0 0 7px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/bis_crest_18px.png");
+    background-position: 6px top;
+    background-size: auto 25px; } }
+@media (min-width: 641px) {
+  /* line 434, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-bis-medium span {
+    display: block;
+    position: relative;
+    top: 3px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 441, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-bis-medium,
+  #whitehall-wrapper .organisation-logo-stacked-bis-medium {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/bis_crest_18px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 448, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-so-medium {
+    padding: 3px 0 2px 45px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/so_crest_18px.png");
+    background-position: 6px center;
+    background-size: auto 25px; } }
+@media (min-width: 641px) {
+  /* line 457, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-so-medium {
+    padding: 25px 0 0 7px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/so_crest_18px.png");
+    background-position: 6px top;
+    background-size: auto 25px; } }
+@media (min-width: 641px) {
+  /* line 467, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-so-medium span {
+    display: block;
+    position: relative;
+    top: 3px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 474, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-so-medium,
+  #whitehall-wrapper .organisation-logo-stacked-so-medium {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/so_crest_18px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 481, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-ho-medium {
+    padding: 8px 0 7px 32px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ho_crest_18px.png");
+    background-position: 6px center;
+    background-size: auto 35px; } }
+@media (min-width: 641px) {
+  /* line 490, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-ho-medium {
+    padding: 35px 0 0 7px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ho_crest_18px.png");
+    background-position: 6px top;
+    background-size: auto 35px; } }
+@media (min-width: 641px) {
+  /* line 500, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-ho-medium span {
+    display: block;
+    position: relative;
+    top: 3px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 507, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-ho-medium,
+  #whitehall-wrapper .organisation-logo-stacked-ho-medium {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ho_crest_18px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 514, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-mod-medium {
+    padding: 8px 0 7px 36px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/mod_crest_18px.png");
+    background-position: 6px center;
+    background-size: auto 35px; } }
+@media (min-width: 641px) {
+  /* line 523, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-mod-medium {
+    padding: 35px 0 0 7px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/mod_crest_18px.png");
+    background-position: 6px top;
+    background-size: auto 35px; } }
+@media (min-width: 641px) {
+  /* line 533, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-mod-medium span {
+    display: block;
+    position: relative;
+    top: 3px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 540, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-mod-medium,
+  #whitehall-wrapper .organisation-logo-stacked-mod-medium {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/mod_crest_18px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 547, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-wales-medium {
+    padding: 8px 0 7px 35px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/wales_crest_18px.png");
+    background-position: 6px center;
+    background-size: auto 35px; } }
+@media (min-width: 641px) {
+  /* line 556, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-wales-medium {
+    padding: 35px 0 0 7px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/wales_crest_18px.png");
+    background-position: 6px top;
+    background-size: auto 35px; } }
+@media (min-width: 641px) {
+  /* line 566, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-wales-medium span {
+    display: block;
+    position: relative;
+    top: 3px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 573, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-wales-medium,
+  #whitehall-wrapper .organisation-logo-stacked-wales-medium {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/wales_crest_18px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 580, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-coastguard-medium {
+    padding: 8px 0 7px 35px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/coastguard_18px.png");
+    background-position: 6px center;
+    background-size: auto 35px; } }
+@media (min-width: 641px) {
+  /* line 589, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-coastguard-medium {
+    padding: 35px 0 0 7px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/coastguard_18px.png");
+    background-position: 6px top;
+    background-size: auto 35px; } }
+@media (min-width: 641px) {
+  /* line 599, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-coastguard-medium span {
+    display: block;
+    position: relative;
+    top: 3px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 606, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-coastguard-medium,
+  #whitehall-wrapper .organisation-logo-stacked-coastguard-medium {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/coastguard_18px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 613, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-portcullis-medium {
+    padding: 3px 0 2px 34px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/portcullis_18px.png");
+    background-position: 6px center;
+    background-size: auto 25px; } }
+@media (min-width: 641px) {
+  /* line 622, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-portcullis-medium {
+    padding: 25px 0 0 7px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/portcullis_18px.png");
+    background-position: 6px top;
+    background-size: auto 25px; } }
+@media (min-width: 641px) {
+  /* line 632, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-portcullis-medium span {
+    display: block;
+    position: relative;
+    top: 3px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 639, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-portcullis-medium,
+  #whitehall-wrapper .organisation-logo-stacked-portcullis-medium {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/portcullis_18px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 646, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-ukho-medium {
+    padding: 3px 0 2px 38px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ukho_18px.png");
+    background-position: 6px center;
+    background-size: auto 25px; } }
+@media (min-width: 641px) {
+  /* line 655, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-ukho-medium {
+    padding: 25px 0 0 7px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ukho_18px.png");
+    background-position: 6px top;
+    background-size: auto 25px; } }
+@media (min-width: 641px) {
+  /* line 665, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-ukho-medium span {
+    display: block;
+    position: relative;
+    top: 3px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 672, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-ukho-medium,
+  #whitehall-wrapper .organisation-logo-stacked-ukho-medium {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ukho_18px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 679, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-eo-medium {
+    padding: 3px 0 2px 44px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_18px.png");
+    background-position: 6px center;
+    background-size: auto 25px; } }
+@media (min-width: 641px) {
+  /* line 688, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-eo-medium {
+    padding: 25px 0 0 1px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_18px.png");
+    background-position: 0 top;
+    background-size: auto 25px; } }
+@media (min-width: 641px) {
+  /* line 698, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-eo-medium span {
+    display: block;
+    position: relative;
+    top: 3px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 705, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-eo-medium,
+  #whitehall-wrapper .organisation-logo-stacked-eo-medium {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_18px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 713, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-no-identity-large, #whitehall-wrapper .organisation-logo-identity-large, #whitehall-wrapper .organisation-logo-single-identity-large, #whitehall-wrapper .organisation-logo-stacked-single-identity-large, #whitehall-wrapper .organisation-logo-bis-large, #whitehall-wrapper .organisation-logo-stacked-bis-large, #whitehall-wrapper .organisation-logo-so-large, #whitehall-wrapper .organisation-logo-stacked-so-large, #whitehall-wrapper .organisation-logo-ho-large, #whitehall-wrapper .organisation-logo-stacked-ho-large, #whitehall-wrapper .organisation-logo-mod-large, #whitehall-wrapper .organisation-logo-stacked-mod-large, #whitehall-wrapper .organisation-logo-wales-large, #whitehall-wrapper .organisation-logo-stacked-wales-large, #whitehall-wrapper .organisation-logo-coastguard-large, #whitehall-wrapper .organisation-logo-stacked-coastguard-large, #whitehall-wrapper .organisation-logo-portcullis-large, #whitehall-wrapper .organisation-logo-stacked-portcullis-large, #whitehall-wrapper .organisation-logo-ukho-large, #whitehall-wrapper .organisation-logo-stacked-ukho-large, #whitehall-wrapper .organisation-logo-eo-large, #whitehall-wrapper .organisation-logo-stacked-eo-large,
+  #whitehall-wrapper .organisation-logo-stacked-no-identity-large {
+    font-size: 27px;
+    line-height: 30px;
+    padding: 5px 0 5px 0; } }
+@media (min-width: 641px) {
+  /* line 720, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-identity-large, #whitehall-wrapper .organisation-logo-single-identity-large, #whitehall-wrapper .organisation-logo-stacked-single-identity-large, #whitehall-wrapper .organisation-logo-bis-large, #whitehall-wrapper .organisation-logo-stacked-bis-large, #whitehall-wrapper .organisation-logo-so-large, #whitehall-wrapper .organisation-logo-stacked-so-large, #whitehall-wrapper .organisation-logo-ho-large, #whitehall-wrapper .organisation-logo-stacked-ho-large, #whitehall-wrapper .organisation-logo-mod-large, #whitehall-wrapper .organisation-logo-stacked-mod-large, #whitehall-wrapper .organisation-logo-wales-large, #whitehall-wrapper .organisation-logo-stacked-wales-large, #whitehall-wrapper .organisation-logo-coastguard-large, #whitehall-wrapper .organisation-logo-stacked-coastguard-large, #whitehall-wrapper .organisation-logo-portcullis-large, #whitehall-wrapper .organisation-logo-stacked-portcullis-large, #whitehall-wrapper .organisation-logo-ukho-large, #whitehall-wrapper .organisation-logo-stacked-ukho-large {
+    border-left: 3px solid; } }
+@media (min-width: 641px) {
+  /* line 728, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-single-identity-large {
+    padding: 5px 0 5px 65px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png");
+    background-position: 9px center;
+    background-size: auto 40px; } }
+@media (min-width: 641px) {
+  /* line 737, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-single-identity-large {
+    padding: 40px 0 0 10px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png");
+    background-position: 9px top;
+    background-size: auto 40px; } }
+@media (min-width: 641px) {
+  /* line 747, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-single-identity-large span {
+    display: block;
+    position: relative;
+    top: 5px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 754, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-single-identity-large,
+  #whitehall-wrapper .organisation-logo-stacked-single-identity-large {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 761, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-bis-large {
+    padding: 5px 0 5px 56px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/bis_crest_27px.png");
+    background-position: 9px center;
+    background-size: auto 40px; } }
+@media (min-width: 641px) {
+  /* line 770, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-bis-large {
+    padding: 40px 0 0 10px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/bis_crest_27px.png");
+    background-position: 9px top;
+    background-size: auto 40px; } }
+@media (min-width: 641px) {
+  /* line 780, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-bis-large span {
+    display: block;
+    position: relative;
+    top: 5px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 787, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-bis-large,
+  #whitehall-wrapper .organisation-logo-stacked-bis-large {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/bis_crest_27px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 794, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-so-large {
+    padding: 5px 0 5px 67px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/so_crest_27px.png");
+    background-position: 9px center;
+    background-size: auto 40px; } }
+@media (min-width: 641px) {
+  /* line 803, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-so-large {
+    padding: 40px 0 0 10px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/so_crest_27px.png");
+    background-position: 9px top;
+    background-size: auto 40px; } }
+@media (min-width: 641px) {
+  /* line 813, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-so-large span {
+    display: block;
+    position: relative;
+    top: 5px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 820, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-so-large,
+  #whitehall-wrapper .organisation-logo-stacked-so-large {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/so_crest_27px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 827, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-ho-large {
+    padding: 10px 0 10px 46px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ho_crest_27px.png");
+    background-position: 9px center;
+    background-size: auto 50px; } }
+@media (min-width: 641px) {
+  /* line 836, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-ho-large {
+    padding: 50px 0 0 10px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ho_crest_27px.png");
+    background-position: 9px top;
+    background-size: auto 50px; } }
+@media (min-width: 641px) {
+  /* line 846, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-ho-large span {
+    display: block;
+    position: relative;
+    top: 5px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 853, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-ho-large,
+  #whitehall-wrapper .organisation-logo-stacked-ho-large {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ho_crest_27px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 860, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-mod-large {
+    padding: 10px 0 10px 53px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/mod_crest_27px.png");
+    background-position: 9px center;
+    background-size: auto 50px; } }
+@media (min-width: 641px) {
+  /* line 869, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-mod-large {
+    padding: 50px 0 0 10px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/mod_crest_27px.png");
+    background-position: 9px top;
+    background-size: auto 50px; } }
+@media (min-width: 641px) {
+  /* line 879, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-mod-large span {
+    display: block;
+    position: relative;
+    top: 5px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 886, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-mod-large,
+  #whitehall-wrapper .organisation-logo-stacked-mod-large {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/mod_crest_27px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 893, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-wales-large {
+    padding: 10px 0 10px 51px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/wales_crest_27px.png");
+    background-position: 9px center;
+    background-size: auto 50px; } }
+@media (min-width: 641px) {
+  /* line 902, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-wales-large {
+    padding: 50px 0 0 10px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/wales_crest_27px.png");
+    background-position: 9px top;
+    background-size: auto 50px; } }
+@media (min-width: 641px) {
+  /* line 912, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-wales-large span {
+    display: block;
+    position: relative;
+    top: 5px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 919, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-wales-large,
+  #whitehall-wrapper .organisation-logo-stacked-wales-large {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/wales_crest_27px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 926, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-coastguard-large {
+    padding: 10px 0 10px 51px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/coastguard_27px.png");
+    background-position: 9px center;
+    background-size: auto 50px; } }
+@media (min-width: 641px) {
+  /* line 935, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-coastguard-large {
+    padding: 50px 0 0 10px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/coastguard_27px.png");
+    background-position: 9px top;
+    background-size: auto 50px; } }
+@media (min-width: 641px) {
+  /* line 945, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-coastguard-large span {
+    display: block;
+    position: relative;
+    top: 5px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 952, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-coastguard-large,
+  #whitehall-wrapper .organisation-logo-stacked-coastguard-large {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/coastguard_27px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 959, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-portcullis-large {
+    padding: 5px 0 5px 52px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/portcullis_27px.png");
+    background-position: 9px center;
+    background-size: auto 40px; } }
+@media (min-width: 641px) {
+  /* line 968, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-portcullis-large {
+    padding: 40px 0 0 10px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/portcullis_27px.png");
+    background-position: 9px top;
+    background-size: auto 40px; } }
+@media (min-width: 641px) {
+  /* line 978, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-portcullis-large span {
+    display: block;
+    position: relative;
+    top: 5px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 985, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-portcullis-large,
+  #whitehall-wrapper .organisation-logo-stacked-portcullis-large {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/portcullis_27px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 992, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-ukho-large {
+    padding: 10px 0 10px 53px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ukho_27px.png");
+    background-position: 9px center;
+    background-size: auto 50px; } }
+@media (min-width: 641px) {
+  /* line 1001, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-ukho-large {
+    padding: 50px 0 0 10px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ukho_27px.png");
+    background-position: 9px top;
+    background-size: auto 50px; } }
+@media (min-width: 641px) {
+  /* line 1011, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-ukho-large span {
+    display: block;
+    position: relative;
+    top: 5px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 1018, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-ukho-large,
+  #whitehall-wrapper .organisation-logo-stacked-ukho-large {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ukho_27px_x2.png"); } }
+@media (min-width: 641px) {
+  /* line 1025, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-eo-large {
+    padding: 5px 0 5px 65px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png");
+    background-position: 9px center;
+    background-size: auto 40px; } }
+@media (min-width: 641px) {
+  /* line 1034, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-eo-large {
+    padding: 40px 0 0 1px;
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png");
+    background-position: 0 top;
+    background-size: auto 40px; } }
+@media (min-width: 641px) {
+  /* line 1044, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-stacked-eo-large span {
+    display: block;
+    position: relative;
+    top: 5px; } }
+@media all and (min-width: 641px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* line 1051, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  #whitehall-wrapper .organisation-logo-eo-large,
+  #whitehall-wrapper .organisation-logo-stacked-eo-large {
+    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px_x2.png"); } }
+/* line 65, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .attorney-generals-office .organisation-logo {
+  border-color: #9f1888; }
+/* line 66, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .building-regulations-advisory-committee .organisation-logo {
+  border-color: #00857e; }
+/* line 67, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .cabinet-office .organisation-logo {
+  border-color: #005abb; }
+/* line 68, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .department-for-business-innovation-skills .organisation-logo {
+  border-color: #003479; }
+/* line 69, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .department-for-communities-and-local-government .organisation-logo {
+  border-color: #00857e; }
+/* line 70, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .department-for-culture-media-sport .organisation-logo {
+  border-color: #d40072; }
+/* line 71, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .department-for-education .organisation-logo {
+  border-color: #003a69; }
+/* line 72, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .department-for-environment-food-rural-affairs .organisation-logo {
+  border-color: #898700; }
+/* line 73, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .department-for-international-development .organisation-logo {
+  border-color: #002878; }
+/* line 74, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .department-for-transport .organisation-logo {
+  border-color: #006c56; }
+/* line 75, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .department-for-work-pensions .organisation-logo {
+  border-color: #00beb7; }
+/* line 76, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .department-of-energy-climate-change .organisation-logo {
+  border-color: #009ddb; }
+/* line 77, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .department-of-health .organisation-logo {
+  border-color: #00ad93; }
+/* line 78, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .driving-standards-agency .organisation-logo {
+  border-color: #006c56; }
+/* line 79, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .foreign-commonwealth-office .organisation-logo {
+  border-color: #003e74; }
+/* line 80, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .government-equalities-office .organisation-logo {
+  border-color: #d40072; }
+/* line 81, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .hm-government .organisation-logo {
+  border-color: #0076c0; }
+/* line 82, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .hm-treasury .organisation-logo {
+  border-color: #af292e; }
+/* line 83, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .home-office .organisation-logo {
+  border-color: #9325b2; }
+/* line 84, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .ministry-of-defence .organisation-logo {
+  border-color: #4d2942; }
+/* line 85, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .ministry-of-justice .organisation-logo {
+  border-color: #231f20; }
+/* line 86, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .northern-ireland-office .organisation-logo {
+  border-color: #002663; }
+/* line 87, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .office-of-the-advocate-general-for-scotland .organisation-logo {
+  border-color: #002663; }
+/* line 88, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .office-of-the-leader-of-the-house-of-lords .organisation-logo {
+  border-color: #9c132e; }
+/* line 89, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .planning-inspectorate .organisation-logo {
+  border-color: #00857e; }
+/* line 90, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .scotland-office .organisation-logo {
+  border-color: #002663; }
+/* line 91, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .the-office-of-the-leader-of-the-house-of-commons .organisation-logo {
+  border-color: #0080bc; }
+/* line 92, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .uk-export-finance .organisation-logo {
+  border-color: #005747; }
+/* line 93, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
+#whitehall-wrapper .wales-office .organisation-logo {
+  border-color: #a33038; }
+
+/*layout overrides*/
+/* line 26, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+article h1 {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 24px;
+  font-size: 2.4rem;
+  line-height: 1.25;
+  font-weight: 400;
+  text-transform: none; }
+  @media (max-width: 640px) {
+    /* line 26, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    article h1 {
+      font-size: 2rem;
+      line-height: 1.2; } }
+
+/* line 29, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+article .help-notice {
+  background: url(https://assets.digital.cabinet-office.gov.uk/static/icon-important-a03e91e21fcafa717c52b03f9ecc4846.png) no-repeat scroll 98% 1em #eaedef; }
+
+/* line 32, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+article .info-notice {
+  background: url(https://assets.digital.cabinet-office.gov.uk/static/icon-information.png) no-repeat scroll 98% 1em #d5e8f3; }
+  /* line 34, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+  article .info-notice h2 {
+    font-family: nta, arial, sans-serif !important;
+    margin-top: 0.5em; }
+
+/* line 39, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+article .table-margin {
+  margin: 1em 1em 1.5em -1em; }
+
+/* line 43, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#content * {
+  font-family: ntatabularnumbers, nta, arial, sans-serif; }
+
+/* line 47, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+footer#footer div.footer-wrapper {
+  padding: 0; }
+
+/* line 50, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+footer#footer div.footer-wrapper div.footer-meta {
+  border: none;
+  margin: 0; }
+
+/* line 54, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+footer#footer .footer-meta .copyright a {
+  background: transparent url(https://assets.digital.cabinet-office.gov.uk/static/govuk-crest-795cd6afb205d81a4267e100e11debe1.png) no-repeat 50% 0; }
+
+/* line 57, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+header.page-header hgroup {
+  margin: 0;
+  padding: 0; }
+
+/* line 61, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+a[rel="external"]:after {
+  background-image: url(https://assets.digital.cabinet-office.gov.uk/static/external-link-4247fe6cbf644abe4092032a36a5837e.png);
+  content: "\A0\A0\A0\A0\A0";
+  background-position: right 3px; }
+
+/* line 66, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+a[rel="external"]:hover:after {
+  background-position: right -385px; }
+
+/* line 69, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+article .form-download {
+  margin: 1em 1em 1.5em -1em;
+  background: url("https://assets.digital.cabinet-office.gov.uk/static/icon-file-download-94eed1f1fc1bdef08f0ec9667bed474d.png") no-repeat scroll 98% 1em #d5e8f3; }
+
+/* layout */
+/* line 75, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.find-location-for-service {
+  background: #eaedef url(https://assets.digital.cabinet-office.gov.uk/static/locator-icon.png) no-repeat 1em 1em;
+  min-height: 2em;
+  line-height: 2;
+  margin: 2em -1em 0 -1em;
+  padding: 1em 0.75em 1em 3.5em;
+  position: relative; }
+
+/* line 84, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+h2#narrative {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 36px;
+  font-size: 3.6rem;
+  line-height: 1.11111;
+  font-weight: 400;
+  text-transform: none;
+  font-weight: 700;
+  color: #0b0c0c;
+  margin-bottom: 0.5em; }
+  @media (max-width: 640px) {
+    /* line 84, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    h2#narrative {
+      font-size: 2.4rem;
+      line-height: 1.04167; } }
+  /* line 88, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+  h2#narrative strong {
+    font-family: nta, arial, sans-serif !important;
+    color: #912b88; }
+
+/* line 94, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+nav span.alpha-tag {
+  padding: 2px 5px 2px 5px;
+  margin-left: 5px;
+  background-color: #EC096D;
+  color: white; }
+
+/* line 100, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+nav span.beta-tag {
+  padding: 2px 5px 2px 5px;
+  margin-left: 5px;
+  background-color: #FF5A27;
+  color: white; }
+
+/* line 107, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+section.content-group > h1 {
+  border-bottom: 5px solid #108095;
+  padding: 16px 0 8px 0;
+  margin: 16px 0 16px 0; }
+
+/* line 113, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.left {
+  float: left; }
+
+/* line 116, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.clear-div {
+  clear: both; }
+
+/* line 119, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.col-50 {
+  width: 49.99%;
+  float: left; }
+
+/* line 123, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.col-65 {
+  width: 64.99%;
+  float: left; }
+
+/* line 127, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.col-35 {
+  width: 34.99%;
+  float: left; }
+
+@media (max-width: 700px) {
+  /* line 132, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+  .col-50 {
+    width: 100%;
+    float: none;
+    margin-left: 0; }
+
+  /* line 137, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+  .col-65 {
+    width: 100%;
+    float: none;
+    margin-left: 0; }
+
+  /* line 142, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+  .col-35 {
+    width: 100%;
+    float: none;
+    margin-left: 0; } }
+/* line 149, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#service-notes {
+  padding-top: 0.2em;
+  clear: both; }
+
+/* line 155, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.service-details-header h1 {
+  display: inline-block;
+  margin-right: 0.5em; }
+/* line 159, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.service-details-header dl {
+  margin: 0 0 0 0;
+  display: inline-block; }
+  /* line 162, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+  .service-details-header dl dt {
+    float: left; }
+  /* line 165, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+  .service-details-header dl dd {
+    margin-left: 150px; }
+
+/* line 171, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#whitehall-wrapper {
+  border: none;
+  padding-bottom: 0; }
+
+/* line 175, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#whitehall-wrapper .organisation-logo span, #whitehall-wrapper h1 {
+  font-size: 27px;
+  line-height: 30px;
+  font-family: Helvetica,Arial;
+  font-weight: normal;
+  margin-left: 0;
+  margin-bottom: 0.8em;
+  padding-top: 0; }
+
+/* line 185, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+header.page-header hgroup h1 {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 48px;
+  font-size: 4.8rem;
+  line-height: 1.04167;
+  font-weight: 400;
+  text-transform: none;
+  font-weight: 700;
+  margin-top: 0.5em; }
+  @media (max-width: 640px) {
+    /* line 185, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    header.page-header hgroup h1 {
+      font-size: 3.2rem;
+      line-height: 1.09375; } }
+
+/* line 189, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+header.page-header hgroup h2 {
+  color: #6f777b;
+  font-family: "nta", Arial, sans-serif;
+  font-size: 24px;
+  font-size: 2.4rem;
+  line-height: 1.25;
+  font-weight: 400;
+  text-transform: none; }
+  @media (max-width: 640px) {
+    /* line 189, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    header.page-header hgroup h2 {
+      font-size: 2rem;
+      line-height: 1.2; } }
+
+/* line 193, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+header.page-header hgroup.te-image h2 {
+  max-width: 50%; }
+
+/* line 196, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+header.page-header hgroup.te-image {
+  background: url(/assets/images/TE_homepage_graphic.svg) no-repeat top left;
+  background-size: contain;
+  background-position-x: right; }
+
+@media (max-width: 800px) {
+  /* line 202, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+  header.page-header hgroup.te-image h2 {
+    max-width: 100%; }
+
+  /* line 205, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+  header.page-header hgroup.te-image {
+    background: none; } }
+/* line 210, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.headline {
+  color: #097f96; }
+  /* line 212, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+  .headline h1 {
+    margin-top: 0.5em;
+    margin-bottom: 0em;
+    color: #097f96;
+    font-family: nta, arial, sans-serif !important;
+    font-family: "nta", Arial, sans-serif;
+    font-size: 80px;
+    font-size: 8rem;
+    line-height: 1;
+    font-weight: 400;
+    text-transform: none;
+    font-weight: 700; }
+    @media (max-width: 640px) {
+      /* line 212, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+      .headline h1 {
+        font-size: 5.3rem;
+        line-height: 1.03774; } }
+  /* line 219, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+  .headline a {
+    font-family: nta, arial, sans-serif !important; }
+  /* line 220, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+  .headline p {
+    margin-top: 0em;
+    font-family: "nta", Arial, sans-serif;
+    font-size: 16px;
+    font-size: 1.6rem;
+    line-height: 1.25;
+    font-weight: 300;
+    text-transform: none; }
+    @media (max-width: 640px) {
+      /* line 220, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+      .headline p {
+        font-size: 1.4rem;
+        line-height: 1.14286; } }
+
+/* line 225, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.headline-details div {
+  float: left;
+  display: inline-block;
+  min-width: 33.0%; }
+  /* line 229, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+  .headline-details div a {
+    color: #097f96;
+    text-decoration: none; }
+
+@media (max-width: 700px) {
+  /* line 235, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+  .headline-details div {
+    float: left;
+    display: inline-block;
+    min-width: 33.0%; } }
+/* line 241, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#transactions-table thead th a {
+  color: #0b0c0c;
+  text-decoration: none; }
+
+/* line 245, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#transactions-table thead th a:hover {
+  text-decoration: underline; }
+
+/* line 248, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#transactions-table tbody th {
+  background: #eaedef;
+  border: dotted 1px #b8c6cc;
+  font-weight: normal; }
+
+/* line 253, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#transactions-table tbody tr:nth-child(even) th {
+  background-color: white; }
+
+/* line 257, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#transactions-table span.olddata {
+  color: #b10e1e;
+  white-space: nowrap; }
+
+/* Service Details */
+/* line 263, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+article.service-details section h2 {
+  margin-top: 1.6em;
+  border-bottom: 5px solid #108095;
+  padding: 16px 0 8px 0;
+  margin: 16px 0 16px 0;
+  font-family: "nta", Arial, sans-serif;
+  font-size: 24px;
+  font-size: 2.4rem;
+  line-height: 1.25;
+  font-weight: 400;
+  text-transform: none; }
+  @media (max-width: 640px) {
+    /* line 263, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    article.service-details section h2 {
+      font-size: 2rem;
+      line-height: 1.2; } }
+
+/* line 272, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.service-details article h1 {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 48px;
+  font-size: 4.8rem;
+  line-height: 1.04167;
+  font-weight: 400;
+  text-transform: none;
+  font-weight: 700;
+  margin-top: 0em;
+  margin-bottom: 0em; }
+  @media (max-width: 640px) {
+    /* line 272, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    .service-details article h1 {
+      font-size: 3.2rem;
+      line-height: 1.09375; } }
+/* line 277, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.service-details article h2 {
+  clear: top;
+  margin-top: 0.2em; }
+/* line 281, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.service-details article dl {
+  margin-top: 0em;
+  margin-bottom: 0em;
+  padding-top: 0;
+  padding-bottom: 0; }
+  /* line 286, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+  .service-details article dl dt, .service-details article dl dd {
+    margin-bottom: 0em;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-family: "nta", Arial, sans-serif;
+    font-size: 16px;
+    font-size: 1.6rem;
+    line-height: 1.25;
+    font-weight: 300;
+    text-transform: none; }
+    @media (max-width: 640px) {
+      /* line 286, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+      .service-details article dl dt, .service-details article dl dd {
+        font-size: 1.4rem;
+        line-height: 1.14286; } }
+
+/* line 295, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.kpi {
+  margin-bottom: 0.5em; }
+  /* line 297, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+  .kpi .kpi-item {
+    margin-top: 2em; }
+    /* line 300, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    .kpi .kpi-item h1 {
+      margin-top: 0em;
+      font-family: "nta", Arial, sans-serif;
+      font-size: 19px;
+      font-size: 1.9rem;
+      line-height: 1.31579;
+      font-weight: 400;
+      text-transform: none;
+      font-weight: 700; }
+      @media (max-width: 640px) {
+        /* line 300, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+        .kpi .kpi-item h1 {
+          font-size: 1.6rem;
+          line-height: 1.25; } }
+    /* line 305, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    .kpi .kpi-item .current h2 {
+      padding: 0;
+      border-bottom: none;
+      color: #097f96;
+      margin-top: 0.1em;
+      margin-bottom: 0em;
+      font-family: nta, arial, sans-serif !important;
+      font-family: "nta", Arial, sans-serif;
+      font-size: 80px;
+      font-size: 8rem;
+      line-height: 1;
+      font-weight: 400;
+      text-transform: none;
+      font-weight: 700;
+      line-height: 0.8; }
+      @media (max-width: 640px) {
+        /* line 305, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+        .kpi .kpi-item .current h2 {
+          font-size: 5.3rem;
+          line-height: 1.03774; } }
+    /* line 315, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    .kpi .kpi-item .current h3 {
+      color: #6f777b;
+      margin-top: 0;
+      font-family: "nta", Arial, sans-serif;
+      font-size: 19px;
+      font-size: 1.9rem;
+      line-height: 1.31579;
+      font-weight: 400;
+      text-transform: none; }
+      @media (max-width: 640px) {
+        /* line 315, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+        .kpi .kpi-item .current h3 {
+          font-size: 1.6rem;
+          line-height: 1.25; } }
+    /* line 323, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    .kpi .kpi-item .change h2 {
+      border-bottom: none;
+      margin-left: 40px;
+      margin-bottom: 0;
+      padding: 0;
+      margin-top: 4.1rem;
+      font-family: "nta", Arial, sans-serif;
+      font-size: 24px;
+      font-size: 2.4rem;
+      line-height: 1.25;
+      font-weight: 400;
+      text-transform: none; }
+      @media (max-width: 640px) {
+        /* line 323, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+        .kpi .kpi-item .change h2 {
+          font-size: 2rem;
+          line-height: 1.2; } }
+    /* line 331, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    .kpi .kpi-item .change h3 {
+      margin-top: 0;
+      margin-left: 40px;
+      font-family: "nta", Arial, sans-serif;
+      font-size: 19px;
+      font-size: 1.9rem;
+      line-height: 1.31579;
+      font-weight: 400;
+      text-transform: none;
+      color: #6f777b;
+      line-height: 1.30; }
+      @media (max-width: 640px) {
+        /* line 331, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+        .kpi .kpi-item .change h3 {
+          font-size: 1.6rem;
+          line-height: 1.25; } }
+    /* line 338, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    .kpi .kpi-item .change .increase:after {
+      content: "\25B2"; }
+    /* line 341, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    .kpi .kpi-item .change .decrease:after {
+      content: "\25BC"; }
+    /* line 344, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    .kpi .kpi-item .change .green:after {
+      color: #74b74a; }
+    /* line 347, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    .kpi .kpi-item .change .red:after {
+      color: #bf1e2d; }
+    /* line 352, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    .kpi .kpi-item .previous summary {
+      cursor: pointer;
+      text-decoration: underline;
+      color: #2e3191; }
+    /* line 357, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    .kpi .kpi-item .previous summary:hover {
+      text-decoration: underline;
+      color: #2E8ACA; }
+    /* line 361, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    .kpi .kpi-item .previous summary:focus {
+      outline: none; }
+    /* line 364, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    .kpi .kpi-item .previous summary::-webkit-details-marker {
+      text-decoration: none; }
+    /* line 368, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    .kpi .kpi-item .previous table {
+      margin: 0;
+      width: 95%; }
+    @media (max-width: 780px) {
+      /* line 375, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+      .kpi .kpi-item .current, .kpi .kpi-item .change {
+        width: 100%; }
+        /* line 378, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+        .kpi .kpi-item .current h2, .kpi .kpi-item .current h3, .kpi .kpi-item .change h2, .kpi .kpi-item .change h3 {
+          margin-top: 0.1em;
+          margin-left: 0; } }
+
+/* Treemap */
+/* line 388, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.node {
+  position: absolute; }
+
+/* line 391, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.node .label {
+  width: 100%;
+  height: 100%;
+  border: solid 2px white;
+  padding: 6px 0 0 6px; }
+
+/* line 397, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.node .label a {
+  color: white;
+  text-decoration: none; }
+
+/*bubble css*/
+/* line 403, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#bubble img {
+  margin: 0 auto 0 auto;
+  display: block; }
+
+/* line 408, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#bubble circle {
+  stroke: #fff; }
+
+/* line 410, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#bubble {
+  margin: 1em 0 4em 0; }
+
+/* line 411, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#bubble > svg {
+  display: block; }
+
+/* line 413, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#bubble g.breakdown {
+  cursor: pointer; }
+
+/* line 416, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#bubble g.breakdown:hover circle {
+  opacity: 0.7; }
+
+/* line 417, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#bubble g.breakdown:hover text {
+  text-decoration: underline; }
+
+/* line 419, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#bubble text.bold {
+  font-weight: bold;
+  font-family: nta, arial, sans-serif !important; }
+
+/* line 421, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#bubble g.larger text.vol {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 80px;
+  font-size: 8rem;
+  line-height: 1;
+  font-weight: 400;
+  text-transform: none;
+  font-weight: 700; }
+  @media (max-width: 640px) {
+    /* line 421, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    #bubble g.larger text.vol {
+      font-size: 5.3rem;
+      line-height: 1.03774; } }
+
+/* line 422, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#bubble g.larger text.label {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 24px;
+  font-size: 2.4rem;
+  line-height: 1.25;
+  font-weight: 400;
+  text-transform: none; }
+  @media (max-width: 640px) {
+    /* line 422, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    #bubble g.larger text.label {
+      font-size: 2rem;
+      line-height: 1.2; } }
+
+/* line 424, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#bubble g.large text.vol {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 48px;
+  font-size: 4.8rem;
+  line-height: 1.04167;
+  font-weight: 400;
+  text-transform: none;
+  font-weight: 700; }
+  @media (max-width: 640px) {
+    /* line 424, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    #bubble g.large text.vol {
+      font-size: 3.2rem;
+      line-height: 1.09375; } }
+
+/* line 425, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#bubble g.large text.label {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 19px;
+  font-size: 1.9rem;
+  line-height: 1.31579;
+  font-weight: 400;
+  text-transform: none; }
+  @media (max-width: 640px) {
+    /* line 425, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    #bubble g.large text.label {
+      font-size: 1.6rem;
+      line-height: 1.25; } }
+
+/* line 427, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#bubble g.medium text.vol {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 36px;
+  font-size: 3.6rem;
+  line-height: 1.11111;
+  font-weight: 400;
+  text-transform: none;
+  font-weight: 700; }
+  @media (max-width: 640px) {
+    /* line 427, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    #bubble g.medium text.vol {
+      font-size: 2.4rem;
+      line-height: 1.04167; } }
+
+/* line 428, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#bubble g.medium text.label {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 19px;
+  font-size: 1.9rem;
+  line-height: 1.31579;
+  font-weight: 400;
+  text-transform: none; }
+  @media (max-width: 640px) {
+    /* line 428, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    #bubble g.medium text.label {
+      font-size: 1.6rem;
+      line-height: 1.25; } }
+
+/* line 430, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#bubble g.small text.vol {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 36px;
+  font-size: 3.6rem;
+  line-height: 1.11111;
+  font-weight: 400;
+  text-transform: none;
+  font-weight: 700; }
+  @media (max-width: 640px) {
+    /* line 430, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    #bubble g.small text.vol {
+      font-size: 2.4rem;
+      line-height: 1.04167; } }
+
+/* line 431, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#bubble g.small text.label {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  font-weight: 300;
+  text-transform: none; }
+  @media (max-width: 640px) {
+    /* line 431, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    #bubble g.small text.label {
+      font-size: 1.4rem;
+      line-height: 1.14286; } }
+
+/* line 433, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#bubble g.smaller text.vol {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  font-weight: 300;
+  text-transform: none;
+  font-weight: 700; }
+  @media (max-width: 640px) {
+    /* line 433, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    #bubble g.smaller text.vol {
+      font-size: 1.4rem;
+      line-height: 1.14286; } }
+
+/* line 434, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#bubble g.smaller text.label {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 1.42857;
+  font-weight: 400;
+  text-transform: none; }
+  @media (max-width: 640px) {
+    /* line 434, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+    #bubble g.smaller text.label {
+      font-size: 1.2rem;
+      line-height: 1.25; } }
+
+/*tool-tip*/
+/* line 437, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#text {
+  margin: 50px auto;
+  width: 500px; }
+
+/* line 438, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.hotspot {
+  color: #900;
+  padding-bottom: 1px;
+  border-bottom: 1px dotted #900;
+  cursor: pointer; }
+
+/* line 440, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#tt {
+  position: absolute;
+  display: block;
+  z-index: 999; }
+
+/* line 441, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#ttcont {
+  font-family: ntatabularnumbers, nta, arial, sans-serif;
+  display: block;
+  border: 2px solid #303030;
+  background: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  color: #333333; }
+
+/* line 449, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#ttcont h3 {
+  background: #303030;
+  color: #fff;
+  padding: 5px 10px;
+  margin: 0 0 1em 0; }
+
+/* line 455, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#ttcont div {
+  padding: 0 10px 10px; }
+
+/* line 458, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#ttcont .volume {
+  font-weight: bold;
+  text-align: right; }
+
+/* line 462, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#ttcont .volume span {
+  font-size: 3em;
+  display: block;
+  font-weight: normal;
+  padding-bottom: 10px;
+  text-align: right;
+  white-space: nowrap; }
+
+/* line 470, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#ttcont .description {
+  font-size: 0.8em;
+  line-height: 1.1em; }
+
+/* line 474, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#ttcont .url {
+  font-size: 0.8em;
+  line-height: 1.1em;
+  color: #767676; }
+
+/* Table */
+/* line 481, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#transactions-table {
+  width: 100%; }
+
+/* line 485, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#transactions-table .amount {
+  text-align: right; }
+
+/* line 489, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#transactions-table .sort-ind {
+  display: inline-block;
+  font-size: 8px;
+  height: 8px;
+  padding-left: 5px;
+  vertical-align: top; }
+
+/* line 497, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+.highlight {
+  background-color: yellow; }
