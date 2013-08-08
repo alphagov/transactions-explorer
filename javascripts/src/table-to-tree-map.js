@@ -1,12 +1,52 @@
 var Tree = (function () {
 
-  // TODO refactor into a single line of jquery when we DO jquery
+  /**
+   * Format a number to be displayed with abbreviated suffixes.
+   * This function is more complicated than one would think it need be,
+   * this is due to lack of predictability in Number.toPrecision, Number.toFixed
+   * and some rounding issues.
+   */
+  var formatNumericLabel = function(value) {
+    if (value == 0) return "0";
+    
+    var magnitudes = {
+      million:  {value: 1e6, suffix:"m"},
+      thousand: {value: 1e3, suffix:"k"},
+      unit:     {value: 1, suffix:""}
+    };
+    var magnitude = function(num, n) {
+          return Math.pow(10, n - Math.ceil(Math.log(Math.abs(num)) / Math.LN10));
+        },
+        roundToSignificantFigures = function(num, n) {
+          return Math.round(num * magnitude(num, n)) / magnitude(num, n);
+        },
+        thresholds = [ magnitudes.million, magnitudes.thousand ],
+        roundedValue = roundToSignificantFigures(value, 3),
+        significantFigures = null;
+
+    for (var i = 0; i < thresholds.length; i++) {
+      if (roundedValue >= (thresholds[i].value / 2)) {
+        if (roundedValue < thresholds[i].value) {
+          significantFigures = 2;
+        } else {
+          significantFigures = 3;
+          value = roundedValue;
+        }
+        value = roundToSignificantFigures(value, significantFigures) / thresholds[i].value;
+        return value.toPrecision(value < 1 ? 2 : 3) + thresholds[i].suffix;
+      }
+    }
+    return roundedValue.toString();
+  };
+
   var valuesFrom = function(selection) {
     return selection[0].map(function (row) {
-      return { 
+      var volume = parseInt(row.getAttribute("data-volume"), 10);
+      return {
         name: row.getAttribute("data-title"),
-        size: parseInt(row.getAttribute("data-volume")),
-        url: row.getAttribute("data-url"),
+        size: volume,
+        volumeLabel: formatNumericLabel(volume),
+        url: '/' + row.getAttribute("data-bubbleLink"),
         color: row.getAttribute("data-color"),
         textColor: row.getAttribute('data-text-color')
       };
@@ -46,6 +86,7 @@ var Tree = (function () {
   };
   
   return {
+    formatNumericLabel: formatNumericLabel,
     fromHtmlTable: function(selection, thresholdRatio) {
       var values = valuesFrom(selection);
 
@@ -106,7 +147,18 @@ var TreeMapLayout = (function () {
       .append("a")
         .attr('href',function(d){ return d.url ? d.url : null })
         .style("color", function(d) { return d.textColor ? d.textColor : null; })
-        .text(function(d) { return d.children ?  null : d.name; });
+        .text(function(d) {
+          return d.children ?  null : d.name;
+        })
+        .call(function (selection) {
+          selection.filter(function (d) {
+            return !!d.volumeLabel;
+          }).append('span')
+            .attr('class', 'amount')
+            .text(function (d) {
+              return d.volumeLabel;
+            });
+        });
   };
   
   return {

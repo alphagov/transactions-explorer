@@ -1653,6 +1653,15 @@ article.service-details section h2 {
   text-decoration: none;
   padding:.5em;
   display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.node .amount {
+  display:block;
+  white-space:nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .node.none a {
