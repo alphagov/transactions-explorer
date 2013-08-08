@@ -59,15 +59,24 @@ var Tree = (function () {
 }());
 
 var TreeMapLayout = (function () {
-    var position = function() {
-        this.style("left", function(d) { return d.x + 1 + "px"; })
-        .style("top", function(d) { return d.y + 1 + "px"; })
-        .style("width", function(d) { return Math.max(0, d.dx - 1) + "px"; })
-        .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; })
-        .style('position','absolute')
-        .style("cursor", function(d) { return d.url ? "pointer" : ""; });
-    }
-  
+  var position = function() {
+      this.style("left", function(d) { return d.x + 1 + "px"; })
+      .style("top", function(d) { return d.y + 1 + "px"; })
+      .style("width", function(d) { return Math.max(0, d.dx - 1) + "px"; })
+      .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; })
+      .style('position','absolute')
+      .style("cursor", function(d) { return d.url ? "pointer" : ""; });
+  }
+
+  var getNodeClass = function (d) {
+    var classes = ["none", "ellipsis", "small", "medium", "large", "x-large"],
+        keys    = [0     , 1         , 2      , 3       , 4      , 5],
+        dxIndex = d3.scale.threshold().domain([20,50,130,200,250]).range(keys),
+        dyIndex = d3.scale.threshold().domain([10,40,100,150,200]).range(keys);
+    return 'node ' + classes[Math.min(dxIndex(d.dx), dyIndex(d.dy))];
+  };
+
+
   var makeTree = function (divId, treeData) {
     var margin = {top: 0, right: 0, bottom: 40, left: 0},
         width = 960 - margin.left - margin.right,
@@ -91,17 +100,13 @@ var TreeMapLayout = (function () {
     var node = div.datum(treeData).selectAll(".node")
       .data(treemap.nodes)
       .enter().append("div")
-      .attr("class", "node")
+      .attr("class", getNodeClass)
       .call(position)
-      .on("click", function(d) {
-        if (d.url){
-          console.log('TODO make me go to ' + d.url);
-        }
-      })
       .style("background", function(d) { return d.color ? d.color : color(d.name); })
-      .style("color", function(d) { return d.textColor ? d.textColor : null; })
-      .attr('href',function(d){ return d.url ? d.url : null })
-      .text(function(d) { return d.children ?  null : d.name; });
+      .append("a")
+        .attr('href',function(d){ return d.url ? d.url : null })
+        .style("color", function(d) { return d.textColor ? d.textColor : null; })
+        .text(function(d) { return d.children ?  null : d.name; });
   };
   
   return {

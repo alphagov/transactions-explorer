@@ -79,7 +79,7 @@ for sort_order, key in sort_orders:
                out="high-volume-services/%s/%s.html" % (sort_order, direction),
                vars=variables)
 
-"""Copy the assets folder entirely, as well"""
+"""Include stylesheets and javascripts"""
 dir_util.copy_tree('assets', '%s/assets' % OUTPUT_DIR)
 dir_util.copy_tree('javascripts/src', '%s/assets/javascripts' % OUTPUT_DIR)
 
