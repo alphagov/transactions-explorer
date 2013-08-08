@@ -62,7 +62,7 @@
                             data-text-color="#fff">
                             
                             <th scope="row"><a href="/department/hmrc">{{ department.name }}</a></th>
-                            <td class="amount"> 90.3% </td>
+                            <td class="amount"> {{ department.takeup|as_percentage }} </td>
                             <td class="amount"> {{ money_cell(department.cost) }} </td>
                             <td class="amount"> 37.5% </td>
                             <td class="amount"> {{ department.volume|as_grouped_number }} </td>

@@ -87,6 +87,7 @@ class Service:
                 'volume':           self['%s_vol' % quarter],
                 'volume_num':       volume,
                 'digital_volume':   self['%s_digital_vol' % quarter],
+                'digital_volume_num': digital_volume,
                 'cost_per':         self['%s_cpt' % quarter],
                 'cost_per_number':  cost_per,
                 'cost_per_digital': self['%s_digital_cpt' % quarter],
@@ -209,8 +210,16 @@ class Department(object):
         return self._aggregate_value('volume_num')
 
     @property
+    def digital_volume(self):
+        return self._aggregate_value('digital_volume_num', high_volume_only=True)
+
+    @property
     def cost(self):
         return self._aggregate_value('cost', high_volume_only=True)
+
+    @property
+    def takeup(self):
+        return self.digital_volume / self.volume
 
     def _aggregate_value(self, attr, high_volume_only=False):
         def included(service):
