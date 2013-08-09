@@ -24,6 +24,17 @@ class TestDepartment(unittest.TestCase):
         assert_that(departments[0].services,
                     contains(services[0], services[2]))
 
+class TestDepartmentLink(unittest.TestCase):
+
+    def test_link_is_first_services_slugified_abbreviation(self):
+        services = [
+            Service(details({u'Abbr': "ABC"})),
+            Service(details({u'Abbr': "ABC"})),
+        ]
+
+        dept = Department("Agengy for Beatiful Code", services)
+
+        assert_that(dept.link, is_("/department/abc"))
 
 class TestDepartmentVolume(unittest.TestCase):
 

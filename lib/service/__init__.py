@@ -1,6 +1,5 @@
 from functools import total_ordering
 from itertools import groupby
-from pprint import pprint
 import re
 
 from lib.filters import as_number
@@ -239,6 +238,10 @@ class Department(object):
     @property
     def cost(self):
         return self._aggregate('cost', high_volume_only=True)
+
+    @property
+    def link(self):
+        return '/department/' + slugify(self.services[0].abbr)
 
     def _aggregate(self, attr, high_volume_only=False):
         return self.aggregator.aggregate([attr], high_volume_only)[0]
