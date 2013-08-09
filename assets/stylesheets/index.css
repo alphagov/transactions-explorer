@@ -1661,9 +1661,9 @@ figure.treemap:hover .node:hover {
 /* line 388, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .node {
   position: absolute; 
-  -webkit-transition: all .1s linear;
-  -moz-transition: all .1s linear;
-  transition: all .1s linear;
+  -webkit-transition: all .05s linear;
+  -moz-transition: all .05s linear;
+  transition: all .05s linear;
 }
 
 .node.parent{
@@ -1696,6 +1696,8 @@ figure.treemap:hover .node:hover {
   display:block;
   white-space:nowrap;
   overflow: hidden;
+  font-family:   "ntatabularnumbers", "nta", Arial, sans-serif;
+  font-weight: bold;
   text-overflow: ellipsis;
 }
 
