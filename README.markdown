@@ -13,15 +13,23 @@ Using
 Set up a python virtualenv, activate it, and then install required modules
 with `pip install -r requirements.txt`.
 
-Create a new installed application in the [Google APIs console][console],
-with "Drive API" service enabled, download the `client_secrets.json` file
-and store it in `data/`, then run `python fetch_csv.py`. This will 
-authenticate against Google in your browser, then download the Service 
-Explorer detail to `data/services.csv`.
+### Fetching data
 
-Generate the site with `python create_pages.py`.
+* Create a new installed application in the [Google APIs console][console],
+with "Drive API" service enabled, download the `client_secrets.json` file
+and store it in `data/`
+* Run `python fetch_csv.py`. This will athenticate against Google in your browser, 
+then download the Service Explorer detail to `data/services.csv`. It can be 
+parametrized with the following arguments:
+  * `--client-secrets`: Google API client secrets JSON file (default: `data/client_secrets.json`)
+  * `--oauth-tokens`: Google API OAuth tokens file (default: `data/tokens.dat`)
 
 [console]: https://code.google.com/apis/console/
+
+### Generating site
+
+* Generate the site with `python create_pages.py`.
+
 
 
 Testing
