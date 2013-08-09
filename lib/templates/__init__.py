@@ -1,3 +1,4 @@
+import csv
 import os
 from jinja2 import Environment, FileSystemLoader
 from lib.filesystem import create_directory
@@ -16,6 +17,7 @@ jinja = Environment(
 
 jinja.globals['STATIC_HOST'] = 'https://assets.digital.cabinet-office.gov.uk/static'
 jinja.globals['EXPLORER_HOST'] = ''
+jinja.globals['CSV_LOCATION'] = '/transaction-volumes.csv'
 
 jinja.filters['as_magnitude'] = number_as_magnitude
 jinja.filters['as_financial_magnitude'] = number_as_financial_magnitude
@@ -36,3 +38,7 @@ def render(template_name, out, vars):
         output.write(page.encode('utf8'))
 
 
+def render_csv(maps, out):
+    with open(os.path.join(output_dir, out), 'w') as output:
+        writer = csv.writer(output, dialect="excel")
+        writer.writerows(maps)

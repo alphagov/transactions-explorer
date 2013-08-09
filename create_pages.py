@@ -7,9 +7,11 @@ import unicodecsv
 from lib.service import Service, latest_quarter, sorted_ignoring_empty_values, Department
 
 from lib import templates
+from lib.csv import map_services_to_csv_data
 
-from lib.service import total_transaction_volume
-from lib.templates import render
+from lib.service import Service, latest_quarter, sorted_ignoring_empty_values,\
+    total_transaction_volume
+from lib.templates import render, render_csv
 
 
 SERVICES_DATA = 'data/services.csv'
@@ -66,12 +68,11 @@ if __name__ == "__main__":
         ("by-digital-takeup", lambda service: service.most_recent_kpis['takeup']),
         ("by-transactions-per-year", lambda service: service.most_recent_kpis['volume_num']),
     ]
-
     generate_sorted_pages(high_volume_services, 'high-volume-services',
                           sort_orders, {'latest_quarter': latest_quarter})
 
-    departments = Department.from_services(services)
 
+    departments = Department.from_services(services)
     department_sort_orders = [
         ("by-department", lambda department: department.name),
         ("by-takeup", lambda department: department.takeup),
@@ -79,8 +80,11 @@ if __name__ == "__main__":
         ("by-data-coverage", lambda department: department.data_coverage),
         ("by-volume", lambda department: department.volume),
     ]
-
     generate_sorted_pages(departments, 'all-services', department_sort_orders)
+
+
+    csv_map = map_services_to_csv_data(services)
+    render_csv(csv_map, 'transaction-volumes.csv')
 
     # Copy the assets folder entirely, as well
     dir_util.copy_tree('assets', '%s/assets' % OUTPUT_DIR)
