@@ -145,20 +145,23 @@ class TestDepartment(unittest.TestCase):
 
         assert_that(dept.cost, is_(None))
 
-    def test_volume_is_total_of_last_available_quarter_for_each_service(self):
-        pass
+    def test_digital_volume_is_sum_of_service_digital_volumes(self):
+        services = [
+            Service(details({
+                '2012-Q4 Vol.': '10',
+                '2012-Q4 Digital vol.': '5',
+                u'High-volume?': 'yes'
+            })),
+            Service(details({
+                '2012-Q4 Vol.': '10',
+                '2012-Q4 Digital vol.': '10',
+                u'High-volume?': 'yes'
+            })),
+        ]
 
-    def test_volume_ignores_services_with_no_kpis(self):
-        pass
+        dept = Department("Agengy for Beatiful Code", services)
 
-    def test_volume_ignores_services_with_no_digital_volume(self):
-        pass
-
-    def test_volume_ignores_non_high_volume_services_with_no_kpis(self):
-        pass
-
-    def test_digital_volume_is_none_if_no_service_has_digital_volume(self):
-        pass
+        assert_that(dept.digital_volume, is_(15))
 
     def test_takeup_is_volume_divided_by_digital_volume(self):
         services = [
@@ -179,8 +182,55 @@ class TestDepartment(unittest.TestCase):
         assert_that(dept.takeup, is_(0.375))
 
     def test_takeup_is_none_if_digital_volume_is_none(self):
-        pass
+        services = [
+            Service(details({
+                '2012-Q4 Vol.': '10',
+                u'High-volume?': 'yes'
+            })),
+            Service(details({
+                '2012-Q4 Vol.': '30',
+                u'High-volume?': 'yes'
+            })),
+        ]
+
+        dept = Department("Agengy for Beatiful Code", services)
+
+        assert_that(dept.takeup, is_(None))
 
     def test_takeup_is_none_if_volume_is_none(self):
-        pass
+        services = [
+            Service(details({
+                '2012-Q4 Digital vol.': '5',
+                u'High-volume?': 'yes'
+            })),
+            Service(details({
+                '2012-Q4 Digital vol.': '10',
+                u'High-volume?': 'yes'
+            })),
+        ]
 
+        dept = Department("Agengy for Beatiful Code", services)
+
+        assert_that(dept.takeup, is_(None))
+
+    def test_takeup_only_includes_high_volume_services(self):
+        services = [
+            Service(details({
+                '2012-Q4 Vol.': '10',
+                '2012-Q4 Digital vol.': '5',
+                u'High-volume?': 'yes'
+            })),
+            Service(details({
+                '2012-Q4 Vol.': '30',
+                '2012-Q4 Digital vol.': '10',
+                u'High-volume?': 'yes'
+            })),
+            Service(details({
+                '2012-Q4 Vol.': '30',
+                '2012-Q4 Digital vol.': '10',
+            })),
+        ]
+
+        dept = Department("Agengy for Beatiful Code", services)
+
+        assert_that(dept.takeup, is_(0.375))
