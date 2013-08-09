@@ -1,4 +1,5 @@
 import csv
+import json
 import os
 from jinja2 import Environment, FileSystemLoader
 from lib.filesystem import create_directory
@@ -27,6 +28,12 @@ jinja.filters['as_grouped_number'] = number_as_grouped_number
 jinja.filters['slugify'] = slugify
 
 
+class JsonDecimalEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Decimal):
+            return str(obj)
+        return json.JSONEncoder.default(self, obj)
+
 def render(template_name, out, vars):
     print out
 
@@ -42,3 +49,8 @@ def render_csv(maps, out):
     with open(os.path.join(output_dir, out), 'w') as output:
         writer = csv.writer(output, dialect="excel")
         writer.writerows(maps)
+
+
+def render_search_json(maps, out):
+    with open(os.path.join(output_dir, out), 'w') as output:
+        json.dump(maps, output, cls=JsonDecimalEncoder)

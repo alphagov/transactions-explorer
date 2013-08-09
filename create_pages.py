@@ -2,11 +2,11 @@
 from distutils import dir_util
 import unicodecsv
 from lib import templates
-from lib.csv import map_services_to_csv_data
+from lib.csv import map_services_to_csv_data, map_services_to_dicts
 
 from lib.service import Service, latest_quarter, sorted_ignoring_empty_values,\
     total_transaction_volume
-from lib.templates import render, render_csv
+from lib.templates import render, render_csv, render_search_json
 
 
 SERVICES_DATA = 'data/services.csv'
@@ -62,6 +62,9 @@ if __name__ == "__main__":
             
     csv_map = map_services_to_csv_data(services)
     render_csv(csv_map, 'transaction-volumes.csv')
-    
+
+    json_map = map_services_to_dicts(services)
+    render_search_json(json_map, 'search.json')
+
     # Copy the assets folder entirely, as well
     dir_util.copy_tree('assets', '%s/assets' % OUTPUT_DIR)
