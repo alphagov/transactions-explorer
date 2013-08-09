@@ -1651,9 +1651,24 @@ figure.treemap figcaption {
   font-weight:bold;
 }
 
+figure.treemap:hover .node {
+  opacity: .8;
+}
+figure.treemap:hover .node:hover {
+  opacity: 1;
+}
+
 /* line 388, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .node {
-  position: absolute; }
+  position: absolute; 
+  -webkit-transition: all .1s linear;
+  -moz-transition: all .1s linear;
+  transition: all .1s linear;
+}
+
+.node.parent{
+  display: none
+}
 
 /* line 391, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .node .label {

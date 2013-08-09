@@ -147,7 +147,7 @@ var TreeMapLayout = (function () {
       .enter().append("div")
       .attr("class", getNodeClass)
       .attr('data-tooltip', function (d) {
-        return d.name + ': ' + d.volumeLabel;
+          return d.name ? d.name + ': ' + d.volumeLabel : null;
       })
       .call(position)
       .style("background", function(d) { return d.color ? d.color : color(d.name); })
