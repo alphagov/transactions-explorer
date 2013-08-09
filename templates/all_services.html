@@ -49,15 +49,15 @@
 
                 <tbody>
                     {% for department in departments %}
-                        <tr data-volume="977870260"
-                            data-volumeLabel=" 977,870,260 "
+                        <tr data-volume="{{department.volume}}"
+                            data-volumeLabel=" {{ department.volume|as_grouped_number }} "
                             data-category=""
                             data-body=""
                             data-body-abbr=""
-                            data-url="/department/hmrc"
-                            data-bubbleLink="/department/hmrc"
-                            data-label="HMRC"
-                            data-title="HM Revenue and Customs"
+                            data-url="{{ department.link }}"
+                            data-bubbleLink="{{ department.link }}"
+                            data-label="{{ department.abbr }}"
+                            data-title="{{ department.name }}"
                             data-color="#c03024"
                             data-text-color="#fff">
                             

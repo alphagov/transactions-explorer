@@ -240,8 +240,12 @@ class Department(object):
         return self._aggregate('cost', high_volume_only=True)
 
     @property
+    def abbr(self):
+        return self.services[0].abbr
+
+    @property
     def link(self):
-        return '/department/' + slugify(self.services[0].abbr)
+        return '/department/' + slugify(self.abbr)
 
     def _aggregate(self, attr, high_volume_only=False):
         return self.aggregator.aggregate([attr], high_volume_only)[0]

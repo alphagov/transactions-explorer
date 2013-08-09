@@ -36,6 +36,19 @@ class TestDepartmentLink(unittest.TestCase):
 
         assert_that(dept.link, is_("/department/abc"))
 
+class TestDepartmentAbbreviation(unittest.TestCase):
+
+    def test_abbreviation_is_first_services_abbreviation(self):
+        services = [
+            Service(details({u'Abbr': "ABC"})),
+            Service(details({u'Abbr': "ABC"})),
+        ]
+
+        dept = Department("Agengy for Beatiful Code", services)
+
+        assert_that(dept.abbr, is_("ABC"))
+
+
 class TestDepartmentVolume(unittest.TestCase):
 
     def test_volume_is_total_of_last_available_quarter_for_each_service(self):
