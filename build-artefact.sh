@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 mkdir -p artefacts
 rm -f artefacts/*
