@@ -234,3 +234,24 @@ class TestDepartment(unittest.TestCase):
         dept = Department("Agengy for Beatiful Code", services)
 
         assert_that(dept.takeup, is_(0.375))
+
+
+    def test_takeup_use_data_from_the_same_quarter_for_volume_and_digital_volume(self):
+        services = [
+            Service(details({
+                '2012-Q4 Vol.': '10',
+                '2012-Q4 Digital vol.': '5',
+                u'High-volume?': 'yes'
+            })),
+            Service(details({
+                '2012-Q4 Vol.': '30',
+                '2012-Q4 Digital vol.': '10',
+                '2013-Q1 Vol.': '20',
+                u'High-volume?': 'yes'
+            })),
+        ]
+
+        dept = Department("Agengy for Beatiful Code", services)
+
+        assert_that(dept.takeup, is_(0.375))
+
