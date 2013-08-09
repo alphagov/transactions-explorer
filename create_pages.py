@@ -60,8 +60,8 @@ if __name__ == "__main__":
                    out="high-volume-services/%s/%s.html" % (sort_order, direction),
                    vars=variables)
             
-            csv_map = map_services_to_csv_data(services)
-            render_csv(csv_map, 'transaction-volumes.csv')
+    csv_map = map_services_to_csv_data(services)
+    render_csv(csv_map, 'transaction-volumes.csv')
     
     # Copy the assets folder entirely, as well
     dir_util.copy_tree('assets', '%s/assets' % OUTPUT_DIR)
