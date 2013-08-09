@@ -69,6 +69,27 @@ if __name__ == "__main__":
     
     departments = Department.from_services(services)
 
+    department_sort_orders = [
+        ("by-department", lambda department: department.name),
+        ("by-takeup", lambda department: department.takeup),
+    ]
+
+    for sort_order, key in department_sort_orders:
+        for direction in ['ascending', 'descending']:
+            reverse = (direction == 'descending')
+            variables = {
+                'departments': sorted_ignoring_empty_values(departments,
+                                                            key=key,
+                                                            reverse=reverse),
+                'current_sort': {
+                    'order': sort_order,
+                    'direction': direction
+                },
+            }
+            render('all_services.html',
+                   out='all-services/%s/%s.html' % (sort_order, direction),
+                   vars=variables)
+
     render('all_services.html',
         out='all-services.html',
         vars={'departments': sorted(departments, key=lambda d: d.volume, reverse=True )})
