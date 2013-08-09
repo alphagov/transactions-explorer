@@ -217,7 +217,6 @@ class TestDepartment(unittest.TestCase):
 
         assert_that(dept.takeup, is_(0.375))
 
-
     def test_takeup_use_data_from_the_same_quarter_for_volume_and_digital_volume(self):
         services = [
             Service(details({
@@ -236,4 +235,23 @@ class TestDepartment(unittest.TestCase):
         dept = Department("Agengy for Beatiful Code", services)
 
         assert_that(dept.takeup, is_(0.375))
+
+    def test_cost_use_data_from_the_same_quarter_for_volume_and_digital_volume(self):
+        services = [
+            Service(details({
+                "2012-Q4 Vol.": "2,000",
+                u'2012-Q4 CPT (\xa3)': "2.00",
+                u'High-volume?': 'yes'
+            })),
+            Service(details({
+                "2012-Q4 Vol.": "1,000",
+                u'2012-Q4 CPT (\xa3)': "3.00",
+                "2013-Q1 Vol.": "3,000",
+                u'High-volume?': 'yes'
+            })),
+        ]
+
+        dept = Department("Agengy for Beatiful Code", services)
+
+        assert_that(dept.cost, is_(7000))
 
