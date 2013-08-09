@@ -39,19 +39,32 @@
                 <thead>
                     <tr>
                         <th scope="col">
-                            {{ th_content("Department", sort="by-department") }}
+                            {{ th_content("Department",
+                                          sort="by-department") }}
                         </th>
                         <th scope="col">
-                            {{ th_content("Digital take-up*", sort="by-takeup") }}
+                            {{ th_content("Digital take&#8209;up*",
+                                          sort="by-takeup",
+                                          title="Proportion of transactions completed digitally (high-volume services only)",
+                                          default_direction="descending") }}
                         </th>
                         <th scope="col">
-                            {{ th_content("Total cost*", sort="by-cost") }}
+                            {{ th_content("Total cost*",
+                                          sort="by-cost",
+                                          title="Total cost of providing services (high-volume services only)",
+                                          default_direction="descending") }}
                         </th>
                         <th scope="col">
-                            {{ th_content("Data coverage*", sort="by-data-coverage") }}
+                            {{ th_content("Data coverage*",
+                                          sort="by-data-coverage",
+                                          title="Proportion of latest data provided by department (high-volume services only)",
+                                          default_direction="descending") }}
                         </th>
                         <th scope="col" class="amount">
-                            {{ th_content("Transactions per year", sort="by-volume") }}
+                            {{ th_content("Transactions per year",
+                                          sort="by-volume",
+                                          title="Transactions per year: most recent 12 months of data available across all channels",
+                                          default_direction="descending") }}
                         </th>
                     </tr>
                 </thead>
