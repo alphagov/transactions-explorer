@@ -11,7 +11,10 @@ source $VIRTUALENV_DIR/bin/activate
 
 pip install -r requirements.txt
 
-python fetch_csv.py --client-secrets /etc/google/oauth/client_secrets.json --oauth-tokens /var/lib/google/oauth/drive.db
+if [ -n "${CLIENT_SECRETS}" ]; then FETCH_ARGS="${FETCH_ARGS} --client-secrets ${CLIENT_SECRETS}"; fi
+if [ -n "${OAUTH_TOKENS}" ];   then FETCH_ARGS="${FETCH_ARGS} --oauth-tokens ${OAUTH_TOKENS}"; fi
+
+python fetch_csv.py $FETCH_ARGS
 python create_pages.py
 
 cd output
