@@ -47,6 +47,26 @@ class TestService(unittest.TestCase):
         assert_that(service.most_recent_kpis,
                     is_(None))
 
+    def test_most_recent_kpi_with_given_attribute(self):
+        service = Service(details({
+            '2012-Q4 Vol.': '10',
+            '2012-Q4 Digital vol.': '5',
+            '2013-Q1 Vol.': '3',
+        }))
+
+        assert_that(service.most_recent_kpis_with(['volume_num', 'digital_volume_num'])['volume_num'],
+                    is_(10))
+
+    def test_most_recent_kpi_with_attributes_are_none_if_no_attributes_are_present(self):
+        service = Service(details({
+            '2012-Q4 Vol.': '10',
+            '2013-Q1 Vol.': '3',
+        }))
+
+        assert_that(service.most_recent_kpis_with(['volume_num', 'digital_volume_num']),
+                    is_(None))
+
+
     def test_cost(self):
         service = Service(details({
             "2012-Q4 Vol.": "2,000",

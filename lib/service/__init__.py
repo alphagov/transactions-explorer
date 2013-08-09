@@ -149,6 +149,13 @@ class Service:
         if len(self.kpis) > 0:
             return self.kpis[-1]
 
+    def most_recent_kpis_with(self, attrs):
+        attributes_present = lambda kpi: all(kpi[attr] is not None
+                                             for attr in attrs)
+        return next((kpi for kpi in reversed(self.kpis)
+                     if attributes_present(kpi)),
+                    None)
+
     @property
     def slug(self):
         return slugify('%s-%s' % (self.abbr, self.name))
@@ -230,7 +237,7 @@ class Department(object):
         return self._aggregate('cost', high_volume_only=True)
 
     def _aggregate(self, attr, high_volume_only=False):
-        return self.aggregator.aggregate(attr, high_volume_only)
+        return self.aggregator.aggregate([attr], high_volume_only)[0]
 
     @property
     def takeup(self):
@@ -244,17 +251,21 @@ class ServiceKpiAggregator(object):
     def __init__(self, services):
         self.services = services
 
-    def aggregate(self, attr, high_volume_only=False):
+
+    def aggregate(self, attrs, high_volume_only=False):
         def included(service):
-            return service.most_recent_kpis is not None and (
+            return service.most_recent_kpis_with(attrs) is not None and (
                    not high_volume_only or service.high_volume)
 
-        values = [service.most_recent_kpis[attr]
-                  for service in self.services
-                  if included(service)
-                  and service.most_recent_kpis[attr] is not None]
-        if any(values):
-            return sum(values)
+        def aggregation(attr):
+            values = [service.most_recent_kpis_with(attrs)[attr]
+                      for service in self.services
+                      if included(service)
+                      and service.most_recent_kpis_with(attrs)[attr] is not None]
+            if any(values):
+                return sum(values)
+
+        return map(aggregation, attrs)
 
 
 def total_transaction_volume(services):
