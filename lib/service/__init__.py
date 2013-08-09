@@ -1,5 +1,6 @@
 from functools import total_ordering
 from itertools import groupby
+from pprint import pprint
 import re
 
 from lib.filters import as_number
@@ -149,11 +150,22 @@ class Service:
         if len(self.kpis) > 0:
             return self.kpis[-1]
 
+    @property
+    def data_coverage(self):
+        kpi_provided = lambda kpi: self._attributes_present(kpi,
+                                ['digital_volume_num', 'volume_num', 'cost'])
+
+        present = len(filter(kpi_provided, self.kpis))
+        total = float(len(self.valid_quarters))
+
+        return present / total
+
+    def _attributes_present(self, kpi, attrs):
+        return all(kpi[attr] is not None for attr in attrs)
+
     def most_recent_kpis_with(self, attrs):
-        attributes_present = lambda kpi: all(kpi[attr] is not None
-                                             for attr in attrs)
         return next((kpi for kpi in reversed(self.kpis)
-                     if attributes_present(kpi)),
+                     if self._attributes_present(kpi, attrs)),
                     None)
 
     @property
@@ -233,12 +245,24 @@ class Department(object):
 
     @property
     def takeup(self):
-        digital_volume, volume = self.aggregator.aggregate(['digital_volume_num', 'volume_num'], high_volume_only=True)
+        digital_volume, volume = \
+            self.aggregator.aggregate(['digital_volume_num', 'volume_num'],
+                                      high_volume_only=True)
 
         if digital_volume is None:
             return None
         else:
             return digital_volume / volume
+
+    @property
+    def data_coverage(self):
+        high_volume_services = filter(lambda s: s.high_volume, self.services)
+        total_services = len(high_volume_services)
+
+        if total_services == 0:
+            return None
+        else:
+            return sum(service.data_coverage for service in high_volume_services) / total_services
 
 
 class ServiceKpiAggregator(object):

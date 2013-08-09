@@ -1,6 +1,6 @@
 from pprint import pprint
 import unittest
-from hamcrest import assert_that, is_
+from hamcrest import assert_that, is_, close_to
 from lib.service import Service, total_transaction_volume
 from test.service import details
 
@@ -96,6 +96,19 @@ class TestService(unittest.TestCase):
         service = Service(details({'2013-Q1 Vol.': '10'}))
 
         assert_that(service.most_recent_kpis['volume_num'], is_(10))
+
+    def test_coverage(self):
+        service = Service(details({
+            "2012-Q4 Vol.": "2,000",
+            '2012-Q4 Digital vol.': '10',
+            u'2012-Q4 CPT (\xa3)': "2.00",
+            "2013-Q1 Vol.": "2,000",
+            u'2013-Q1 CPT (\xa3)': "2.00",
+            '2013-Q1 Digital vol.': '10',
+            u'High-volume?': 'yes'
+        }))
+
+        assert_that(service.data_coverage, close_to(0.6667, 0.001))
 
 
 class TestSummingTotalTransactions(unittest.TestCase):

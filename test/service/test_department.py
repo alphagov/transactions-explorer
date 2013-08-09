@@ -1,5 +1,5 @@
 import unittest
-from hamcrest import is_, assert_that, contains
+from hamcrest import is_, assert_that, contains, close_to
 from lib.service import Department, Service
 from test.service import details
 
@@ -254,4 +254,76 @@ class TestDepartment(unittest.TestCase):
         dept = Department("Agengy for Beatiful Code", services)
 
         assert_that(dept.cost, is_(7000))
+
+    def test_data_coverage_is_average_of_service_coverages(self):
+        services = [
+            #66.66
+            Service(details({
+                "2012-Q4 Vol.": "2,000",
+                '2012-Q4 Digital vol.': '10',
+                u'2012-Q4 CPT (\xa3)': "2.00",
+                "2013-Q1 Vol.": "2,000",
+                u'2013-Q1 CPT (\xa3)': "2.00",
+                '2013-Q1 Digital vol.': '10',
+                u'High-volume?': 'yes'
+            })),
+            #33.33
+            Service(details({
+                "2012-Q4 Vol.": "1,000",
+                u'2012-Q4 CPT (\xa3)': "3.00",
+                '2012-Q4 Digital vol.': '10',
+                u'High-volume?': 'yes'
+            })),
+        ]
+
+        dept = Department("Agengy for Beatiful Code", services)
+
+        assert_that(dept.data_coverage, is_(0.5))
+
+    def test_data_coverage_excludes_non_high_volume_services(self):
+        services = [
+            #66.66
+            Service(details({
+                "2012-Q4 Vol.": "2,000",
+                '2012-Q4 Digital vol.': '10',
+                u'2012-Q4 CPT (\xa3)': "2.00",
+                "2013-Q1 Vol.": "2,000",
+                u'2013-Q1 CPT (\xa3)': "2.00",
+                '2013-Q1 Digital vol.': '10',
+            })),
+            #33.33
+            Service(details({
+                "2012-Q4 Vol.": "1,000",
+                u'2012-Q4 CPT (\xa3)': "3.00",
+                '2012-Q4 Digital vol.': '10',
+                u'High-volume?': 'yes'
+            })),
+        ]
+
+        dept = Department("Agengy for Beatiful Code", services)
+
+        assert_that(dept.data_coverage, close_to(0.3333, 0.001))
+
+    def test_data_coverage_is_none_when_no_high_volume_services(self):
+        services = [
+            #66.66
+            Service(details({
+                "2012-Q4 Vol.": "2,000",
+                '2012-Q4 Digital vol.': '10',
+                u'2012-Q4 CPT (\xa3)': "2.00",
+                "2013-Q1 Vol.": "2,000",
+                u'2013-Q1 CPT (\xa3)': "2.00",
+                '2013-Q1 Digital vol.': '10',
+            })),
+            #33.33
+            Service(details({
+                "2012-Q4 Vol.": "1,000",
+                u'2012-Q4 CPT (\xa3)': "3.00",
+                '2012-Q4 Digital vol.': '10',
+            })),
+        ]
+
+        dept = Department("Agengy for Beatiful Code", services)
+
+        assert_that(dept.data_coverage, is_(None))
 
