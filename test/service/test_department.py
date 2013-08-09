@@ -24,6 +24,9 @@ class TestDepartment(unittest.TestCase):
         assert_that(departments[0].services,
                     contains(services[0], services[2]))
 
+
+class TestDepartmentVolume(unittest.TestCase):
+
     def test_volume_is_total_of_last_available_quarter_for_each_service(self):
         services = [
             Service(details({"2012-Q4 Vol.": "1,000", "2013-Q1 Vol.": "1,500"})),
@@ -62,6 +65,9 @@ class TestDepartment(unittest.TestCase):
         dept = Department("Agengy for Beatiful Code", services)
 
         assert_that(dept.volume, is_(None))
+
+
+class TestDepartmentCost(unittest.TestCase):
 
     def test_cost_is_sum_of_transaction_costs_for_each_transaction_handled(self):
         services = [
@@ -144,6 +150,29 @@ class TestDepartment(unittest.TestCase):
         dept = Department("Agengy for Beatiful Code", services)
 
         assert_that(dept.cost, is_(None))
+
+
+    def test_cost_use_data_from_the_same_quarter_for_volume_and_digital_volume(self):
+        services = [
+            Service(details({
+                "2012-Q4 Vol.": "2,000",
+                u'2012-Q4 CPT (\xa3)': "2.00",
+                u'High-volume?': 'yes'
+            })),
+            Service(details({
+                "2012-Q4 Vol.": "1,000",
+                u'2012-Q4 CPT (\xa3)': "3.00",
+                "2013-Q1 Vol.": "3,000",
+                u'High-volume?': 'yes'
+            })),
+        ]
+
+        dept = Department("Agengy for Beatiful Code", services)
+
+        assert_that(dept.cost, is_(7000))
+
+
+class TestDepartmentTakeup(unittest.TestCase):
 
     def test_takeup_is_volume_divided_by_digital_volume(self):
         services = [
@@ -236,24 +265,8 @@ class TestDepartment(unittest.TestCase):
 
         assert_that(dept.takeup, is_(0.375))
 
-    def test_cost_use_data_from_the_same_quarter_for_volume_and_digital_volume(self):
-        services = [
-            Service(details({
-                "2012-Q4 Vol.": "2,000",
-                u'2012-Q4 CPT (\xa3)': "2.00",
-                u'High-volume?': 'yes'
-            })),
-            Service(details({
-                "2012-Q4 Vol.": "1,000",
-                u'2012-Q4 CPT (\xa3)': "3.00",
-                "2013-Q1 Vol.": "3,000",
-                u'High-volume?': 'yes'
-            })),
-        ]
 
-        dept = Department("Agengy for Beatiful Code", services)
-
-        assert_that(dept.cost, is_(7000))
+class TestDepartmentDataCoverage(unittest.TestCase):
 
     def test_data_coverage_is_average_of_service_coverages(self):
         services = [
