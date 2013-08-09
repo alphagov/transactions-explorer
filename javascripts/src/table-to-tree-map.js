@@ -117,12 +117,20 @@ var TreeMapLayout = (function () {
   }
 
   var getNodeClass = function (d) {
-    var classes = ["none", "ellipsis", "small", "medium", "large", "x-large"],
-        keys    = [0     , 1         , 2      , 3       , 4      , 5],
-        dxIndex = d3.scale.threshold().domain([20,50,130,200,250]).range(keys),
-        dyIndex = d3.scale.threshold().domain([10,40,100,150,200]).range(keys);
+    var classes = ["none", "ellipsis", "small", "medium", "large", "x-large", "parent"],
+        keys    = [0     , 1         , 2      , 3       , 4      ,5         , 6],
+        dxIndex = d3.scale.threshold().domain([20,50,130,200,250,390]).range(keys),
+        dyIndex = d3.scale.threshold().domain([10,40,100,150,200,390]).range(keys);
     return 'node ' + classes[Math.min(dxIndex(d.dx), dyIndex(d.dy))];
   };
+
+  var createTip = function(d){
+    console.log(d);
+    if(d && d.volumeLabel)
+      return d.name + ': ' + d.volumeLabel + ' transactions per year';
+    else 
+      return null;
+  }
 
 
   var makeTree = function (divId, treeData, options) {
@@ -146,9 +154,7 @@ var TreeMapLayout = (function () {
       .data(treemap.nodes)
       .enter().append("div")
       .attr("class", getNodeClass)
-      .attr('data-tooltip', function (d) {
-          return d.name ? d.name + ': ' + d.volumeLabel : null;
-      })
+      .attr('data-tooltip', createTip)    
       .call(position)
       .style("background", function(d) { return d.color ? d.color : color(d.name); })
       .append("a")
@@ -172,7 +178,11 @@ var TreeMapLayout = (function () {
       var $cap = $('<figcaption/>').appendTo($figure);
 
       $figure.find('.node').on('mouseenter',function(){
-        $cap.html($(this).data('tooltip'));
+        var $this = $(this),
+            bg = $this.css('background-color');
+        console.log(bg);
+        $cap.html($this.data('tooltip'));
+        $('<span class="keyBlock"/>').css('background-color',bg).prependTo($cap);
       });
       $figure.on('mouseleave', function () {
         $cap.empty();
