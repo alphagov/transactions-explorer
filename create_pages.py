@@ -29,6 +29,23 @@ latest_quarter = latest_quarter(high_volume_services)
 
 departments = set(s.department for s in services)
 
+def generate_sorted_pages(items, page_name, sort_orders, extra_variables={}):
+    for sort_order, key in sort_orders:
+        for direction in ['ascending', 'descending']:
+            reverse = (direction == 'descending')
+            variables = dict({
+                'items': sorted_ignoring_empty_values(items, key=key,
+                                                      reverse=reverse),
+                'current_sort': {
+                    'order': sort_order,
+                    'direction': direction
+                },
+            }.items() + extra_variables.items())
+            render('%s.html' % page_name,
+                   out="%s/%s/%s.html" % (page_name, sort_order, direction),
+                   vars=variables)
+
+
 if __name__ == "__main__":
     render("about-the-data.html", "about-data.html", {})
     render("home.html", "home.html", {
@@ -41,7 +58,6 @@ if __name__ == "__main__":
                out=service.link,
                vars={"service": service})
 
-
     sort_orders = [
         ("by-name", lambda service: service.name_of_service),
         ("by-department", lambda service: service.abbr),
@@ -51,48 +67,20 @@ if __name__ == "__main__":
         ("by-transactions-per-year", lambda service: service.most_recent_kpis['volume_num']),
     ]
 
-    for sort_order, key in sort_orders:
-        for direction in ['ascending', 'descending']:
-            reverse = (direction == 'descending')
-            variables = {
-                'services': sorted_ignoring_empty_values(high_volume_services,
-                                                         key=key, reverse=reverse),
-                'latest_quarter': latest_quarter,
-                'current_sort': {
-                    'order': sort_order,
-                    'direction': direction
-                },
-            }
-            render('high_volume_services.html',
-                   out="high-volume-services/%s/%s.html" % (sort_order, direction),
-                   vars=variables)
-    
+    generate_sorted_pages(high_volume_services, 'high-volume-services',
+                          sort_orders, {'latest_quarter': latest_quarter})
+
     departments = Department.from_services(services)
 
     department_sort_orders = [
         ("by-department", lambda department: department.name),
         ("by-takeup", lambda department: department.takeup),
+        ("by-cost", lambda department: department.cost),
+        ("by-data-coverage", lambda department: department.data_coverage),
+        ("by-volume", lambda department: department.volume),
     ]
 
-    for sort_order, key in department_sort_orders:
-        for direction in ['ascending', 'descending']:
-            reverse = (direction == 'descending')
-            variables = {
-                'departments': sorted_ignoring_empty_values(departments,
-                                                            key=key,
-                                                            reverse=reverse),
-                'current_sort': {
-                    'order': sort_order,
-                    'direction': direction
-                },
-            }
-            render('all_services.html',
-                   out='all-services/%s/%s.html' % (sort_order, direction),
-                   vars=variables)
-
-    render('all_services.html',
-        out='all-services.html',
-        vars={'departments': sorted(departments, key=lambda d: d.volume, reverse=True )})
+    generate_sorted_pages(departments, 'all-services', department_sort_orders)
 
     # Copy the assets folder entirely, as well
     dir_util.copy_tree('assets', '%s/assets' % OUTPUT_DIR)

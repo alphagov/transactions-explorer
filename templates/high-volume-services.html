@@ -91,7 +91,7 @@
                 </thead>
 
                 <tbody>
-                    {% for service in services %}
+                    {% for service in items %}
                         <tr data-volume="{{ service.most_recent_kpis.volume_num|int }}"
                             data-volumeLabel=" {{ service.most_recent_kpis.volume_num|as_grouped_number }} "
                             data-category="{{ service.category }}"
