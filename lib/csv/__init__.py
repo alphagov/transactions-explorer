@@ -19,6 +19,19 @@ def tabular_map(mappings, services):
     return [columns] + map(apply_mappings, services)
 
 
+def dict_map(mappings, services):
+    key = lambda m: m[0]
+    val = lambda m,s: m[1](s)
+    dicts = []
+
+    for service in services:
+        key_vals = []
+        for mapping in mappings:
+            key_vals.append([key(mapping), val(mapping, service)])
+        dicts.append(dict(key_vals))
+
+    return dicts
+
 def map_services_to_csv_data(services):
     return tabular_map(
         [
