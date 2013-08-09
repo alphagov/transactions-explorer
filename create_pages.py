@@ -2,9 +2,11 @@
 from distutils import dir_util
 import unicodecsv
 from lib import templates
+from lib.csv import map_services_to_csv_data
 
-from lib.service import Service, latest_quarter, sorted_ignoring_empty_values, total_transaction_volume
-from lib.templates import render
+from lib.service import Service, latest_quarter, sorted_ignoring_empty_values,\
+    total_transaction_volume
+from lib.templates import render, render_csv
 
 
 SERVICES_DATA = 'data/services.csv'
@@ -57,6 +59,9 @@ if __name__ == "__main__":
             render('high_volume_services.html',
                    out="high-volume-services/%s/%s.html" % (sort_order, direction),
                    vars=variables)
+            
+            csv_map = map_services_to_csv_data(services)
+            render_csv(csv_map, 'transaction-volumes.csv')
     
     # Copy the assets folder entirely, as well
     dir_util.copy_tree('assets', '%s/assets' % OUTPUT_DIR)
