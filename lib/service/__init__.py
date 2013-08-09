@@ -225,10 +225,6 @@ class Department(object):
         return self._aggregate('volume_num')
 
     @property
-    def volume_for_high_volume_only(self):
-        return self._aggregate('volume_num', high_volume_only=True)
-
-    @property
     def digital_volume(self):
         return self._aggregate('digital_volume_num', high_volume_only=True)
 
@@ -241,10 +237,12 @@ class Department(object):
 
     @property
     def takeup(self):
-        if self.digital_volume is None:
+        digital_volume, volume = self.aggregator.aggregate(['digital_volume_num', 'volume_num'], high_volume_only=True)
+
+        if digital_volume is None:
             return None
         else:
-            return self.digital_volume / self.volume_for_high_volume_only
+            return digital_volume / volume
 
 
 class ServiceKpiAggregator(object):
