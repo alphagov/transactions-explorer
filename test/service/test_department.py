@@ -145,24 +145,6 @@ class TestDepartment(unittest.TestCase):
 
         assert_that(dept.cost, is_(None))
 
-    def test_digital_volume_is_sum_of_service_digital_volumes(self):
-        services = [
-            Service(details({
-                '2012-Q4 Vol.': '10',
-                '2012-Q4 Digital vol.': '5',
-                u'High-volume?': 'yes'
-            })),
-            Service(details({
-                '2012-Q4 Vol.': '10',
-                '2012-Q4 Digital vol.': '10',
-                u'High-volume?': 'yes'
-            })),
-        ]
-
-        dept = Department("Agengy for Beatiful Code", services)
-
-        assert_that(dept.digital_volume, is_(15))
-
     def test_takeup_is_volume_divided_by_digital_volume(self):
         services = [
             Service(details({

@@ -225,10 +225,6 @@ class Department(object):
         return self._aggregate('volume_num')
 
     @property
-    def digital_volume(self):
-        return self._aggregate('digital_volume_num', high_volume_only=True)
-
-    @property
     def cost(self):
         return self._aggregate('cost', high_volume_only=True)
 
