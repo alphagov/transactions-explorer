@@ -1,7 +1,7 @@
 from pprint import pprint
 import unittest
 from hamcrest import assert_that, is_
-from lib.service import Service
+from lib.service import Service, total_transaction_volume
 from test.service import details
 
 
@@ -66,3 +66,24 @@ class TestService(unittest.TestCase):
 
         assert_that(service.most_recent_kpis['cost'], is_(None))
 
+    def test_transactions_count(self):
+        service = Service(details({'2013-Q1 Vol.': '10'}))
+
+        assert_that(service.most_recent_kpis['volume_num'], is_(10))
+
+
+class TestSummingTotalTransactions(unittest.TestCase):
+
+    def test_sum_of_total_transactions(self):
+        services = [Service(details({'2013-Q1 Vol.': '10'})),
+                    Service(details({'2013-Q2 Vol.': '20'})),
+                    Service(details({'2013-Q1 Vol.': '30'}))]
+
+        assert_that(total_transaction_volume(services), is_(60))
+
+    def test_sum_of_total_transactions_when_kpis_are_missing(self):
+        services = [Service(details({})),
+                    Service(details({'2013-Q2 Vol.': '100'}))]
+
+        assert_that(services[0].has_kpis, is_(False))
+        assert_that(total_transaction_volume(services), is_(100))

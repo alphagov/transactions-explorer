@@ -248,3 +248,12 @@ class ServiceKpiAggregator(object):
         if any(values):
             return sum(values)
 
+
+def total_transaction_volume(services):
+    def _sum(memo, service):
+        number_of_transactions = 0
+        if service.has_kpis:
+            number_of_transactions = service.most_recent_kpis['volume_num']
+        return number_of_transactions + memo
+
+    return reduce(_sum, services, 0)

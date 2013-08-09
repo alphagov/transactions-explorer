@@ -27,6 +27,14 @@ def wait_until(condition, timeout=15, interval=0.1):
     raise RuntimeError("timeout: condition not met in wait_until")
 
 
+def get_content_type(full_path):
+    return {
+        "css": "text/css",
+        "js": "application/javascript",
+        "html": "text/html"
+    }.get(full_path.rsplit('.', 1)[1], "text/plain")
+
+
 class HttpStub(BaseHTTPRequestHandler):
 
     thread = None
@@ -50,7 +58,8 @@ class HttpStub(BaseHTTPRequestHandler):
         else:
             with open(full_path, mode='r') as f:
                 self.send_response(200)
-                self.send_header("Content-type", 'text/html')
+
+                self.send_header("Content-type", get_content_type(full_path))
                 self.end_headers()
                 self.wfile.write(f.read())
 
