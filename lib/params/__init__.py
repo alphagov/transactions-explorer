@@ -10,3 +10,12 @@ def parse_args_for_fetch(args):
                         default='data/tokens.dat')
 
     return parser.parse_args(args)
+
+
+def parse_args_for_create(args):
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--services-data',
+                        help='Services CSV datafile',
+                        default='data/services.csv')
+
+    return parser.parse_args(args)

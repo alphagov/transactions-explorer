@@ -1,3 +1,5 @@
+import unittest
+
 from hamcrest import *
 from nose.tools import nottest
 
@@ -21,9 +23,9 @@ class test_create_pages(BrowserTest):
         services = headlines[1].text
         transactions = headlines[2].text
 
-        assert_that(departments, contains_string('16'))
-        assert_that(services, contains_string('658'))
-        assert_that(transactions, contains_string('1.31bn'))
+        assert_that(departments, contains_string('3'))
+        assert_that(services, contains_string('10'))
+        assert_that(transactions, contains_string('26.0m'))
 
     @nottest
     def test_all_services(self):

@@ -7,6 +7,7 @@ import requests
 import signal
 import sys
 
+
 HTML_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                          '..', '..', '..', 'output'))
 
@@ -17,6 +18,7 @@ def rewrite_request(path):
         new_path += '.html'
 
     return new_path
+
 
 def wait_until(condition, timeout=15, interval=0.1):
     deadline = time.time() + timeout
@@ -64,7 +66,6 @@ class TestServer(BaseHTTPRequestHandler):
                 self.wfile.write(f.read())
 
         return
-
 
     def do_GET(self):
         if self.path == "/__alive__":
