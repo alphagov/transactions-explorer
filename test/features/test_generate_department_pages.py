@@ -6,7 +6,6 @@ from test.features import BrowserTest
 
 class GenerateDepartmentPages(BrowserTest):
 
-    @nottest
     def test_generates_department_title(self):
         self.browser.visit("http://0.0.0.0:8000/department/def")
         title = self.browser.find_by_css('#whitehall-wrapper').text
