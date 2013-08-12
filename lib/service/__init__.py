@@ -54,7 +54,7 @@ class Service:
             setattr( self, keyify(key), details[key] )
         self.has_kpis = False
         self.calculate_quarterly_kpis()
-    
+
     def calculate_quarterly_kpis(self):
         self.kpis = []
         previous_quarter = None
@@ -153,6 +153,13 @@ class Service:
     @property
     def link(self):
         return '%s/%s.html' % ('service-details', self.slug)
+
+    @property
+    def most_up_to_date_volume(self):
+        most_recent_yearly_volume = None
+        if self.has_kpis:
+            most_recent_yearly_volume = self.most_recent_kpis['volume_num']
+        return most_recent_yearly_volume
 
     def historical_data(self, key):
         data = []
