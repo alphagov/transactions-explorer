@@ -4,6 +4,7 @@ import re
 import threading
 import time
 import requests
+import signal
 
 HTML_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                          '..', '..', '..', 'output'))
@@ -98,3 +99,5 @@ class HttpStub(BaseHTTPRequestHandler):
 
 if __name__ == "__main__":
     HttpStub.start()
+    signal.signal(signal.SIGINT, lambda sig, frame: HttpStub.stop())
+    signal.pause()
