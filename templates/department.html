@@ -35,10 +35,12 @@
 <div class="group">
     <article role="article" class="group">
 
+    {% if department.high_volume_count > 0 %}
     <div id="data-coverage-notice" class="application-notice info-notice">
         <h2>Department data coverage: {{ department.data_coverage|as_percentage }}</h2>
         <p>(taken from {{ department.high_volume_count }} high volume services)</p>
     </div>
+    {% endif %}
 
 
     <section class="content-group">
