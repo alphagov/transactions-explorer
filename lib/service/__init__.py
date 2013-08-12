@@ -141,7 +141,14 @@ class Service:
     @property
     def body(self):
         return self.agency_body
-    
+
+    @property
+    def agency_abbreviation(self):
+        if self.agency_abbr is None or len(self.agency_abbr) == 0:
+            return self.body
+        else:
+            return self.agency_abbr
+
     @property
     def description(self):
         return re.sub('\s*$', '', self.description_of_service)

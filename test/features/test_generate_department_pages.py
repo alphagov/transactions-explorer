@@ -30,9 +30,9 @@ class GenerateDepartmentPages(BrowserTest):
         table = table_from(self.browser.find_by_css('tbody tr'))
 
         assert_that(table, is_([
-            [u'Service 1', u'ABC', u'Exciting service', u'Access service', u'4,820,000'],
-            [u'Service 2', u'ABC', u'', u'', u'17,150'],
-            [u'Service 3', u'ABC', u'Lame service', u'', u'2,141'],
+            [u'Service 1', u'GDS', u'Exciting service', u'Access service', u'4,820,000'],
+            [u'Service 2', u'GDS', u'', u'', u'17,150'],
+            [u'Service 3', u'Another Government', u'Lame service', u'', u'2,141'],
         ]))
 
     def test_first_element_sorted_by_transaction_name_descending(self):
@@ -49,7 +49,7 @@ class GenerateDepartmentPages(BrowserTest):
 
     def test_first_element_sorted_by_agency_ascending(self):
         self.browser.visit("http://0.0.0.0:8000/department/abc/by-agency/ascending")
-        assert_that(self.browser.find_by_css('tbody tr th').text, is_(u"Service 1"))
+        assert_that(self.browser.find_by_css('tbody tr th').text, is_(u"Service 3"))
 
     def test_first_element_sorted_by_category_descending(self):
         self.browser.visit("http://0.0.0.0:8000/department/abc/by-category/descending")
