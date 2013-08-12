@@ -1923,6 +1923,26 @@ text-transform: none; }
       font-size: 5.3rem;
       line-height: 1.03774; } }
 
+.node{
+  background:seagreen;
+}
+
+.node.hmrc{
+  background: crimson
+}
+
+.node.defra{
+  background: teal
+}
+
+.node.dwp{
+  background: goldenrod
+}
+
+.node.dft{
+  background: coral
+}
+
 
 /*tool-tip*/
 /* line 437, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */

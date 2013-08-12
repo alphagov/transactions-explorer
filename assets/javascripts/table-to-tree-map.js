@@ -39,6 +39,9 @@ var Tree = (function () {
     return roundedValue.toString();
   };
 
+  // var vals = $('table tr').each(function(i,v){
+  //   vals.push($(this).data())
+  // });
   var valuesFrom = function(selection) {
     return selection[0].map(function (row) {
       var volume = parseInt(row.getAttribute("data-volume"), 10);
@@ -49,7 +52,9 @@ var Tree = (function () {
         volumeLabel: row.getAttribute("data-volumelabel"),
         url: '/' + row.getAttribute("data-bubbleLink"),
         color: row.getAttribute("data-color"),
-        textColor: row.getAttribute('data-text-color')
+        textColor: row.getAttribute('data-text-color'),
+        cost: row.getAttribute('data-cost'),
+        deptClass: row.getAttribute('data-dept-class')
       };
     });
   };
@@ -128,14 +133,21 @@ var TreeMapLayout = (function () {
         keys    = [0     , 1         , 2      , 3       , 4      ,5         , 6],
         dxIndex = d3.scale.threshold().domain([20,50,130,200,250,400]).range(keys),
         dyIndex = d3.scale.threshold().domain([10,40,100,150,200,400]).range(keys);
-    return 'node ' + classes[Math.min(dxIndex(d.dx), dyIndex(d.dy))];
+    var nClass = 'node ' + classes[Math.min(dxIndex(d.dx), dyIndex(d.dy))];
+    if(d.deptClass)
+      nClass += ' ' + d.deptClass.toLowerCase();
+    return nClass;
   };
 
   var createTip = function(d){
-    if(d && d.volumeLabel)
-      return d.name + ': ' + d.volumeLabel + ' transactions per year';
-    else 
-      return null;
+    var tip = null;
+    if(d && d.volumeLabel){
+      tip = d.name + ': ' + d.volumeLabel + ' transactions per year';
+    }
+    if(d.cost){
+      tip += ' (total cost: ' + d.cost + ')';
+    }
+    return tip;
   }
 
 
@@ -172,7 +184,7 @@ var TreeMapLayout = (function () {
       .attr("class", getNodeClass)
       .attr('data-tooltip', createTip)    
       .call(position)
-      .style("background", function(d) { return d.color ? d.color : color(d.name); })
+      // .style("background", function(d) { return d.color ? d.color : color(d.name); })
       .append("a")
         .attr('href',function(d){ return d.url ? d.url : null })
         .style("color", function(d) { return d.textColor ? d.textColor : null; })
@@ -214,4 +226,3 @@ var TreeMapLayout = (function () {
     display: makeTree
   }
 }());
-

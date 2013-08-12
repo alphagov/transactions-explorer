@@ -1,0 +1,122 @@
+{% macro money_cell(value) -%}
+    &pound;{{ value|as_financial_magnitude }}
+{%- endmacro %}
+
+{% macro percentage_cell(value) -%}
+    {{ value|as_percentage }}
+{%- endmacro %}
+
+{% macro number_cell(value) -%}
+    {{ value|as_grouped_number }}
+{%- endmacro %}
+
+{% macro cell_content(value, quarter, cell_format) -%}
+    {% if value != None -%}
+        {% if quarter < latest_quarter -%}
+            <span class="olddata" title="Data received {{ quarter }}; latest data not provided">{{ cell_format(value) }}*</span>
+        {%- else -%}
+            {{ cell_format(value) }}
+        {%- endif %}
+    {%- endif %}
+{%- endmacro %}
+
+{% macro th_content(text, sort, title=None, default_direction="ascending") -%}
+    {% if sort != current_sort.order %}
+        <a href="../{{ sort }}/{{ default_direction }}.html" title="{{ title }}">{{ text }}</a>
+    {% elif current_sort.direction == "ascending" %}
+        <a href="../{{ sort }}/descending.html" title="{{ title }}">{{ text }}</a>
+        <span class="sort-ind">▲</span>
+    {% else %}
+        <a href="../{{ sort }}/ascending.html" title="{{ title }}">{{ text }}</a>
+        <span class="sort-ind">▼</span>
+    {% endif %}
+{%- endmacro %}
+
+
+
+<table id="transactions-table" class="full_width_table">
+    <thead>
+        <tr>
+            <th scope="col">
+                {{ th_content("Transactional service",
+                              sort="by-name") }}
+            </th>
+            <th scope="col">
+                {{ th_content("Department",
+                              sort="by-department") }}
+            </th>
+            <th scope="col">
+                {{ th_content("Total cost",
+                              sort="by-total-cost",
+                              default_direction="descending") }}
+            </th>
+            <th scope="col">
+                {{ th_content("Cost per transaction",
+                              sort="by-cost-per-transaction",
+                              default_direction="descending") }}
+            </th>
+            <th scope="col">
+                {{ th_content("Digital take&#8209;up",
+                              sort="by-digital-takeup",
+                              default_direction="descending") }}
+            </th>
+            <th scope="col" class="amount">
+                {{ th_content("Transactions per year",
+                              sort="by-transactions-per-year",
+                              title="Transactions per year: most recent 12 months of data available across all channels",
+                              default_direction="descending") }}
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for service in items %}
+
+            <tr data-volume="{{ service.most_recent_kpis.volume_num|int }}"
+                data-volumeLabel=" {{ service.most_recent_kpis.volume_num|as_grouped_number }} "
+                data-category="{{ service.category }}"
+                data-body="{{ service.body }}"
+                data-body-abbr="{{ service.agency_abbr }}"
+                data-url="{{ service.url }}"
+                data-bubbleLink="{{ service.link }}"
+                data-label="{{ service.short_service_name }}"
+                data-title="{{ service.name_of_service }}"
+                data-text-color="#fff"
+                data-color="hotPink"
+                data-dept-class="{{ service.abbr }}"
+                >
+
+                <th scope="row">
+                    <a href="../../{{ service.link }}">{{ service.name_of_service }}</a>
+                </th>
+
+                <td>{{ service.abbr }}</td>
+
+                <td class="amount">
+                    {{ cell_content(quarter=service.most_recent_kpis['quarter'],
+                                    value=service.most_recent_kpis.cost,
+                                    cell_format=money_cell) }}
+                </td>
+
+                <td class="amount">
+                    {{ cell_content(quarter=service.most_recent_kpis['quarter'],
+                                    value=service.most_recent_kpis.cost_per_number,
+                                    cell_format=money_cell) }}
+                </td>
+
+                <td class="amount">
+                    {{ cell_content(quarter=service.most_recent_kpis['quarter'],
+                                    value=service.most_recent_kpis.takeup,
+                                    cell_format=percentage_cell) }}
+                </td>
+
+                <td class="amount">
+                    {{ cell_content(quarter=service.most_recent_kpis['quarter'],
+                                    value=service.most_recent_kpis.volume_num,
+                                    cell_format=number_cell) }}
+                </td>
+
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
