@@ -5,6 +5,7 @@ import threading
 import time
 import requests
 import signal
+import sys
 
 HTML_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                          '..', '..', '..', 'output'))
@@ -77,8 +78,8 @@ class HttpStub(BaseHTTPRequestHandler):
         pass
 
     @classmethod
-    def start(cls):
-        cls.server = HTTPServer(("", 8000), cls)
+    def start(cls, port=8000):
+        cls.server = HTTPServer(("", port), cls)
         cls.thread = threading.Thread(target=cls.server.serve_forever)
         cls.thread.start()
         wait_until(cls._running)
@@ -92,12 +93,20 @@ class HttpStub(BaseHTTPRequestHandler):
     @classmethod
     def _running(cls):
         try:
-            return requests.get('http://localhost:8000/__alive__').status_code == 200
+            alive = 'http://localhost:%d/__alive__' % cls.server.server_port
+            return requests.get(alive).status_code == 200
         except:
             print "error waiting for server to start"
             return False
 
 if __name__ == "__main__":
-    HttpStub.start()
-    signal.signal(signal.SIGINT, lambda sig, frame: HttpStub.stop())
+    port = int(sys.argv[1]) if len(sys.argv) > 1 else 8080
+    HttpStub.start(port=port)
+    print "Running on port %d" % port
+
+    def stop(signal, frame):
+        HttpStub.stop()
+        print "\nBye"
+
+    signal.signal(signal.SIGINT, stop)
     signal.pause()
