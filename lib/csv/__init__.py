@@ -39,7 +39,10 @@ JSON_SEARCH_FORMAT = [("department", lambda s: s.department),
                       ("service", lambda s: s.name),
                       ("keywords", lambda s: s.keywords),
                       ("transactionsPerYear",
-                       lambda s: s.most_up_to_date_volume)]
+                       lambda s: s.most_up_to_date_volume),
+                      ("transactionLink", lambda s: s.url),
+                      ("detailsLink", lambda s: s.link),
+                      ("category", lambda s: s.category)]
 
 
 def encode(value):

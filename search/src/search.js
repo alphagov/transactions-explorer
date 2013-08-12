@@ -15,19 +15,26 @@ GOVUK.transactionsExplorer.scoreService = (function () {
         "service",
         "departmentAbbreviation",
         "agencyOrBody",
-        "department"
+        "department",
+        "keywords"
     ];
 
     var scoreService = function (searchTerm, service) {
         var score = 0;
         $.each(SEARCH_FIELDS, function (i, field) {
-            var valueToSearch = service[field].toLowerCase(),
+            var valueToSearch,
                 termToUse = searchTerm.toLowerCase();
+            if (field === "keywords") {
+                valueToSearch = service[field].join(' ').toLowerCase();
+            } else {
+                valueToSearch = service[field].toLowerCase();
+            }
 
             if (valueToSearch.search(termToUse) >= 0) {
                 //FIXME this is pretty inefficient but $ doesn't provide a reduce
                 score = service.transactionsPerYear || 1;
             }
+
         });
         return score;
     };
@@ -112,13 +119,29 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
 
     var update = function (services) {
         var rows = [],
-            ROW_CONTENTS = ['service', 'agencyOrBodyAbbreviation', 'category', 'transactionLink', 'transactionsPerYear'];
+            ROW_CONTENTS = ['service', 'agencyOrBodyAbbreviation', 'category', 'transactionLink', 'transactionsPerYear'],
+            detailsLink = function (serviceName, link) {
+                if (link) {
+                    return '<th><a href="' + link  + '">' + serviceName + '</a></th>';
+                } else {
+                    return '<th>' + serviceName + '</th>';
+                }
+            },
+            transactionLink = function (transactionLink) {
+                if (transactionLink) {
+                    return '<td><a href="' + transactionLink + '">Access service</a></td>'; 
+                } else {
+                    return "<td>&nbsp;</td>";
+                }
+            };
 
         $.each(services, function (i, service) {
             var row = '';
             $.each(ROW_CONTENTS, function (i, rowKey) {
-                if (i === 0) { 
-                    row += '<th>' + service[rowKey] + '</th>';
+                if (i === 0) {
+                    row += detailsLink(service[rowKey], service.detailsLink);
+                } else if (rowKey === 'transactionLink') {
+                    row += transactionLink(service[rowKey]);
                 } else {
                     row += '<td>' + service[rowKey] + '</td>';
                 }

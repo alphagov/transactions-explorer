@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from pprint import pprint
 import sys
 from distutils import dir_util
 

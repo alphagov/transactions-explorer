@@ -57,7 +57,8 @@ describe("Searching for services on the transaction explorer. ", function() {
                     departmentAbbreviation: "DOW",
                     agencyOrBody: "",
                     transactionsPerYear: 4500,
-                    department: "Department of Wibble"
+                    department: "Department of Wibble",
+                    keywords: []
                 });
 
                 expect(score).toBe(4500);
@@ -70,7 +71,8 @@ describe("Searching for services on the transaction explorer. ", function() {
                     departmentAbbreviation: "DOW",
                     agencyOrBody: "",
                     transactionsPerYear: 4500,
-                    department: "Department of Wibble"
+                    department: "Department of Wibble",
+                    keywords: []
                 });
 
                 expect(score).toBe(0);
@@ -83,7 +85,8 @@ describe("Searching for services on the transaction explorer. ", function() {
                     departmentAbbreviation: "DON",
                     agencyOrBody: "",
                     transactionsPerYear: null,
-                    department: "Department of Ninjas"
+                    department: "Department of Ninjas",
+                    keywords: []
                 });
 
                 expect(score).toBe(1);
@@ -96,10 +99,25 @@ describe("Searching for services on the transaction explorer. ", function() {
                     departmentAbbreviation: "DON",
                     agencyOrBody: "",
                     transactionsPerYear: 7777,
-                    department: "Department of Ninjas"
+                    department: "Department of Ninjas",
+                    keywords: []
                 });
 
                 expect(score).toBe(7777);
+            });
+
+            it('should search for keywords', function () {
+                var score = GOVUK.transactionsExplorer.scoreService('grog', {
+                    agencyOrBodyAbbreviation: "DOP",
+                    service: "Post a pirate",
+                    departmentAbbreviation: "DOP",
+                    agencyOrBody: "",
+                    transactionsPerYear: 5000,
+                    department: "Department of Pirates",
+                    keywords: ['pirates','parrots','grog']
+                });
+
+                expect(score).toBe(5000);
             });
         });
     });
@@ -115,7 +133,8 @@ describe("Searching for services on the transaction explorer. ", function() {
                 transactionsPerYear: 7,
                 department: "first department",
                 category: "some category",
-                transactionLink: "temp link"
+                transactionLink: "temp link",
+                keywords: []
             },{
                 agencyOrBodyAbbreviation: "SA",
                 service: "some service for agency 2",
@@ -124,7 +143,8 @@ describe("Searching for services on the transaction explorer. ", function() {
                 transactionsPerYear: 9999,
                 department: "second department",
                 category: "some category",
-                transactionLink: "temp link"
+                transactionLink: "temp link",
+                keywords: []
             }];
             searchResults = GOVUK.transactionsExplorer.search.searchServices('second', services);
             expect(searchResults.length).toEqual(1);
@@ -140,7 +160,8 @@ describe("Searching for services on the transaction explorer. ", function() {
                 transactionsPerYear: 23,
                 department: "first department",
                 category: "some category",
-                transactionLink: "temp link"
+                transactionLink: "temp link",
+                keywords: []
             },{
                 agencyOrBodyAbbreviation: "gds",
                 service: "highly rated",
@@ -149,7 +170,8 @@ describe("Searching for services on the transaction explorer. ", function() {
                 transactionsPerYear: 999,
                 department: "second department",
                 category: "some category",
-                transactionLink: "temp link"
+                transactionLink: "temp link",
+                keywords: []
             },{
                 agencyOrBodyAbbreviation: "nomatch",
                 service: "highly rated",
@@ -158,7 +180,8 @@ describe("Searching for services on the transaction explorer. ", function() {
                 transactionsPerYear: 999,
                 department: "second department",
                 category: "some category",
-                transactionLink: "temp link"
+                transactionLink: "temp link",
+                keywords: []
             }];
             searchResults = GOVUK.transactionsExplorer.search.searchServices('gds', services);
             expect(searchResults.length).toEqual(2);
@@ -204,14 +227,41 @@ describe("Searching for services on the transaction explorer. ", function() {
                 transactionsPerYear: 9999,
                 department: "some department",
                 category: "some category",
-                transactionLink: "temp link"
+                transactionLink: "http://www.bar.com",
+                keywords: [],
+                detailsLink: "http://www.foo.com"
             }]);
 
-            expect(resultsTable.find('th').first().text()).toBe('some service');
+            expect(resultsTable.find('th').first().html()).toBe('<a href="http://www.foo.com">some service</a>');
             expect(resultsTable.find('tr td').first().text()).toBe('AA');
             expect($(resultsTable.find('tr td').get(1)).text()).toBe('some category');
-            expect($(resultsTable.find('tr td').get(2)).text()).toBe('temp link');
+            expect($(resultsTable.find('tr td').get(2)).html()).toBe('<a href="http://www.bar.com">Access service</a>');
             expect($(resultsTable.find('tr td').get(3)).text()).toBe('9999');
+        });
+
+        it('should not display links when they don\'t exist', function() {
+            var resultsTable = $('#results');
+            GOVUK.transactionsExplorer.searchResultsTable.wireTable('#results');
+
+            GOVUK.transactionsExplorer.searchResultsTable.update([{
+                agencyOrBodyAbbreviation: "AA",
+                service: "some service",
+                departmentAbbreviation: "DA",
+                agencyOrBody: "",
+                transactionsPerYear: 9999,
+                department: "some department",
+                category: "some category",
+                transactionLink: null,
+                keywords: [],
+                detailsLink: null 
+            }]);
+
+            expect(resultsTable.find('th').first().html()).toBe('some service');
+            expect(resultsTable.find('tr td').first().text()).toBe('AA');
+            expect($(resultsTable.find('tr td').get(1)).text()).toBe('some category');
+            expect($(resultsTable.find('tr td').get(2)).html()).toBe('&nbsp;');
+            expect($(resultsTable.find('tr td').get(3)).text()).toBe('9999');
+            
         });
 
         it('should remove old results when updated with new ones', function() {
@@ -226,10 +276,12 @@ describe("Searching for services on the transaction explorer. ", function() {
                 transactionsPerYear: 9999,
                 department: "some department",
                 category: "some category",
-                transactionLink: "temp link"
+                transactionLink: "temp link",
+                keywords: []
             });
 
             expect($('#mr-row').length).toBe(0);
         });
     });
 });
+

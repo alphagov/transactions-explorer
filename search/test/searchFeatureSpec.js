@@ -12,7 +12,8 @@ describe("end to end search", function () {
                 transactionsPerYear: 7,
                 department: "first department",
                 category: "some category",
-                transactionLink: "temp link"
+                transactionLink: "temp link",
+                keywords: []
             },{
                 agencyOrBodyAbbreviation: "SA",
                 service: "some service for agency 2",
@@ -21,7 +22,8 @@ describe("end to end search", function () {
                 transactionsPerYear: 9999,
                 department: "second department",
                 category: "some category",
-                transactionLink: "temp link"
+                transactionLink: "temp link",
+                keywords: []
             }]);
         }});
     });
