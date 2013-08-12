@@ -94,7 +94,7 @@
                 </thead>
 
                 <tbody>
-                    {% for service in services %}
+                    {% for service in items %}
                         <tr data-volume="{{ service.most_recent_kpis.volume_num|int }}"
                             data-volumeLabel=" {{ service.most_recent_kpis.volume_num|as_grouped_number }} "
                             data-category="{{ service.category }}"
@@ -153,6 +153,10 @@
             
             <div id="old-data" class="application-notice info-notice table-margin">
                 <p>* Q1 2013 data not provided for this metric; see service page for information on obtaining latest data</p>
+            </div>
+
+            <div class="form-download">
+                <p>{% include "csv_download_link.html" %}</p>
             </div>
 
         </section>

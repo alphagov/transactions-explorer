@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="lte-ie8 " lang="en"><![endif]--><!--[if gt IE 8]><!--><html lang="en" class="">
+<!--<![endif]--><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Transactions Explorer: transactional services data from the UK government</title>
+    <script type="text/javascript">
+        (function(){if(navigator.userAgent.match(/IEMobile\/10\.0/)){var d=document,c="appendChild",a=d.createElement("style");a[c](d.createTextNode("@-ms-viewport{width:auto!important}"));d.getElementsByTagName("head")[0][c](a);}})();
+    </script><!--[if gt IE 8]><!--><link href="/assets/static/app/assets/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css">
+    <!--<![endif]--><!--[if IE 6]><link href="/assets/static/app/assets/stylesheets/application-ie6.css" media="screen" rel="stylesheet" type="text/css" /><![endif]--><!--[if IE 7]><link href="/assets/static/app/assets/stylesheets/application-ie7.css" media="screen" rel="stylesheet" type="text/css" /><![endif]--><!--[if IE 8]><link href="/assets/static/app/assets/stylesheets/application-ie8.css" media="screen" rel="stylesheet" type="text/css" /><![endif]--><link href="/assets/static/app/assets/stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+    <!--[if IE 8]>
+    <script type="text/javascript">
+        (function(){if(window.opera){return;}
+        setTimeout(function(){var a=document,g,b={families:(g=
+        ["nta"]),urls:["https://assets.digital.cabinet-office.gov.uk/static/fonts-ie8-beb10cbc00c9b7dcdbdee824962bc5f6.css"]},
+        c="https://assets.digital.cabinet-office.gov.uk/static/libs/goog/webfont-debug-96870cf9f159ed811fd43c39bdf4656b.js",d="script",
+        e=a.createElement(d),f=a.getElementsByTagName(d)[0],h=g.length;WebFontConfig
+        ={custom:b},e.src=c,f.parentNode.insertBefore(e,f);for(;h=h-1;a.documentElement
+        .className+=' wf-'+g[h].replace(/\s/g,'').toLowerCase()+'-n4-loading');},0)
+        })()
+    </script>
+    <![endif]--><!--[if gte IE 9]><!--><link href="https://assets.digital.cabinet-office.gov.uk/static/fonts-0fb6b917e34e45c93a44eec72dcc21de.css" media="all" rel="stylesheet" type="text/css">
+    <!--<![endif]--><!--[if lt IE 9]>
+    <script src="https://assets.digital.cabinet-office.gov.uk/static/ie-27ccded64045ab36dbfb67c2f47c362b.js" type="text/javascript"></script>
+    <![endif]--><link rel="shortcut icon" href="https://assets.digital.cabinet-office.gov.uk/static/favicon-447e4ac1ab790342660eacfe3dcce264.ico" type="image/x-icon">
+    <!-- For third-generation iPad with high-resolution Retina display: --><link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://assets.digital.cabinet-office.gov.uk/static/apple-touch-icon-144x144-4e306e01c31e237722b82b7aa7130082.png">
+    <!-- For iPhone with high-resolution Retina display: --><link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://assets.digital.cabinet-office.gov.uk/static/apple-touch-icon-114x114-f1d7ccdc7b86d923386b373a9ba5e3db.png">
+    <!-- For first- and second-generation iPad: --><link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://assets.digital.cabinet-office.gov.uk/static/apple-touch-icon-72x72-2ddbe540853e3ba0d30fbad2a95eab3c.png">
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: --><link rel="apple-touch-icon-precomposed" href="https://assets.digital.cabinet-office.gov.uk/static/apple-touch-icon-57x57-37527434942ed8407b091aae5feff3f3.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="og:image" content="https://assets.digital.cabinet-office.gov.uk/static/opengraph-image-4e469785ca4cc8f8dd18d0627bc43d19.png">
+    <script src="https://assets.digital.cabinet-office.gov.uk/static/libs/jquery/jquery-1.7.2-2ce4706f8f7193defaa9e7df2b641e9a.js" type="text/javascript"></script><script defer src="https://assets.digital.cabinet-office.gov.uk/static/application-e5938d4ac4939ea75375d1a4d52eee96.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36369871-1']);
+        _gaq.push(['_setDomainName', 'cabinetoffice.gov.uk']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <link rel="stylesheet" media="screen" href="/assets/stylesheets/index.css">
+    <!--[if lt IE 9]>
+    <link type="text/css" href="/assets/stylesheets/ie.css" rel="stylesheet" media="all">
+    <![endif]-->
+    <!--[if lt IE 7]>
+    <link type="text/css" href="/assets/stylesheets/ie-more.css" rel="stylesheet" media="all">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <script type="text/javascript" src="/assets/javascripts/tool-tip.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/d3.v2.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/charts/bubble.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/charts/treemap.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/views.js"></script>
+    <!--<![endif]-->
+</head>
+    <body class="">
+    <script type="text/javascript">document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script><a href="#content" class="visuallyhidden">Skip to main content</a>
+
+    <div id="wrapper" class="wrapper datainsight">
+        <nav class="performance-nav">
+            <a href="/" class="top-level">
+                <span class="top-level-link">Transactions Explorer</span>
+                <span class="alpha-tag">ALPHA</span>
+            </a>
+            <div class="menu-wrapper">
+                <a id="menu-toggle" href="#" data-hide-or-show="sub-level">menu</a>
+                <div class="inner-nav">
+                    <ul id="navigation">
+                        <li class="sub-level"><a href="/aboutData" class="">About the data</a></li>
+                        <li class="sub-level"><a href="/highVolumeTransactions" class="">High-volume services</a></li>
+                        <li class="sub-level"><a href="/allservices" class="current">All services</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section id="content" role="main" class="group"><!--<div class="pattern-status">{{ page.status }}</div>-->
+
+<header class="page-header group">
+    <hgroup>
+        <h1>All Services</h1>
+    </hgroup>
+</header>
+<div class="group">
+    <article role="article" class="group">
+        <section class="content-group">
+            <div class="find-nearest">
+                <form action="/search" method="get" id="local-locator-form" class="find-location-for-service">
+                    <fieldset>
+                        <legend class="visuallyhidden">Search Transactional Explorer</legend>
+                        <div class="ask_location">
+                            <label for="department">Find a department, agency or service:
+                            <input class="postcode" id="department" name="keyword" value="" type="text" placeholder="e.g. driving licence">
+                            </label>
+                            <button type="submit" class="button">Find</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+        <section class="content-group">
+            <h1>Annual volume of transactions by department</h1>
+            <div id="bubble">
+                <img src="/chart" alt="Government transactional services (by volume)">
+            </div>
+            <div style="clear:both;"></div>
+            <table id="transactions-table" class="full_width_table">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            <a href="?orderBy=dept&amp;direction=asc#transactions-table">Department</a>
+                        </th>
+                        <th scope="col">
+                            <a href="?orderBy=digitaltakeup&amp;direction=asc#transactions-table" title="Proportion of transactions completed digitally (high-volume services only)">Digital take&#8209;up*</a>
+                        </th>
+                        <th scope="col">
+                            <a href="?orderBy=totalcost&amp;direction=asc#transactions-table" title="Total cost of providing services (high-volume services only)">Total cost*</a>
+                        </th>
+                        <th scope="col">
+                            <a href="?orderBy=datacoverage&amp;direction=asc#transactions-table" title="Proportion of latest data provided by department (high-volume services only)">Data coverage*</a>
+                        </th>
+                        <th scope="col" class="amount">
+                            <a href="?orderBy=volume&amp;direction=asc#transactions-table" title="Transactions per year: most recent 12 months of data available across all channels">Transactions per year</a>
+                            <span class="sort-ind">▼</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-volume="977870260"
+                        data-volumeLabel=" 977,870,260 "
+                        data-category=""
+                        data-body=""
+                        data-body-abbr=""
+                        data-url="/department/hmrc"
+                        data-bubbleLink="/department/hmrc"
+                        data-label="HMRC"
+                        data-title="HM Revenue and Customs"
+                        data-color="#c03024"
+                        data-text-color="#fff">
+                        <th scope="row"><a href="/department/hmrc">HM Revenue and Customs</a></th>
+                        <td class="amount"> 90.3% </td>
+                        <td class="amount"> £566m </td>
+                        <td class="amount"> 37.5% </td>
+                        <td class="amount"> 977,870,260 </td>
+                    </tr>
+                    <tr data-volume="571500000"
+                        data-volumeLabel=" 571,500,000 "
+                        data-category=""
+                        data-body=""
+                        data-body-abbr=""
+                        data-url="/department/local-govt"
+                        data-bubbleLink="/department/local-govt"
+                        data-label="Local Govt"
+                        data-title="Local government"
+                        data-color="#861585"
+                        data-text-color="#fff">
+                        <th scope="row"><a href="/department/local-govt">Local government</a></th>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"> 571,500,000 </td>
+                    </tr>
+                    <tr data-volume="101963961"
+                        data-volumeLabel=" 101,963,961 "
+                        data-category=""
+                        data-body=""
+                        data-body-abbr=""
+                        data-url="/department/dwp"
+                        data-bubbleLink="/department/dwp"
+                        data-label="DWP"
+                        data-title="Department for Work and Pensions"
+                        data-color="#16bcb8"
+                        data-text-color="#000">
+                        <th scope="row"><a href="/department/dwp">Department for Work and Pensions</a></th>
+                        <td class="amount"> 0.8% </td>
+                        <td class="amount"> £4.06bn </td>
+                        <td class="amount"> 100% </td>
+                        <td class="amount"> 101,963,961 </td>
+                    </tr>
+                    <tr data-volume="93979579"
+                        data-volumeLabel=" 93,979,579 "
+                        data-category=""
+                        data-body=""
+                        data-body-abbr=""
+                        data-url="/department/dft"
+                        data-bubbleLink="/department/dft"
+                        data-label="DfT"
+                        data-title="Department for Transport"
+                        data-color="#007162"
+                        data-text-color="#fff">
+                        <th scope="row"><a href="/department/dft">Department for Transport</a></th>
+                        <td class="amount"> 42.3% </td>
+                        <td class="amount"> £147m </td>
+                        <td class="amount"> 47.5% </td>
+                        <td class="amount"> 93,979,579 </td>
+                    </tr>
+                    <tr data-volume="40514090"
+                        data-volumeLabel=" 40,514,090 "
+                        data-category=""
+                        data-body=""
+                        data-body-abbr=""
+                        data-url="/department/bis"
+                        data-bubbleLink="/department/bis"
+                        data-label="BIS"
+                        data-title="Department for Business, Innovation and Skills"
+                        data-color="#3a6f8c"
+                        data-text-color="#fff">
+                        <th scope="row"><a href="/department/bis">Department for Business, Innovation and Skills</a></th>
+                        <td class="amount"> 83.9% </td>
+                        <td class="amount"> £244m </td>
+                        <td class="amount"> 70% </td>
+                        <td class="amount"> 40,514,090 </td>
+                    </tr>
+                    <tr data-volume="29257944"
+                        data-volumeLabel=" 29,257,944 "
+                        data-category=""
+                        data-body=""
+                        data-body-abbr=""
+                        data-url="/department/defra"
+                        data-bubbleLink="/department/defra"
+                        data-label="Defra"
+                        data-title="Department for Environment, Food and Rural Affairs"
+                        data-color="#8a8c30"
+                        data-text-color="#000">
+                        <th scope="row"><a href="/department/defra">Department for Environment, Food and Rural Affairs</a></th>
+                        <td class="amount"> 81.6% </td>
+                        <td class="amount"> £177m </td>
+                        <td class="amount"> 55% </td>
+                        <td class="amount"> 29,257,944 </td>
+                    </tr>
+                    <tr data-volume="14441045"
+                        data-volumeLabel=" 14,441,045 "
+                        data-category=""
+                        data-body=""
+                        data-body-abbr=""
+                        data-url="/department/home-office"
+                        data-bubbleLink="/department/home-office"
+                        data-label="Home Office"
+                        data-title="Home Office"
+                        data-color="#804292"
+                        data-text-color="#fff">
+                        <th scope="row"><a href="/department/home-office">Home Office</a></th>
+                        <td class="amount"> 33.7% </td>
+                        <td class="amount"> £1.27bn </td>
+                        <td class="amount"> 100% </td>
+                        <td class="amount"> 14,441,045 </td>
+                    </tr>
+                    <tr data-volume="10023658"
+                        data-volumeLabel=" 10,023,658 "
+                        data-category=""
+                        data-body=""
+                        data-body-abbr=""
+                        data-url="/department/moj"
+                        data-bubbleLink="/department/moj"
+                        data-label="MoJ"
+                        data-title="Ministry of Justice"
+                        data-color="#231f20"
+                        data-text-color="#fff">
+                        <th scope="row"><a href="/department/moj">Ministry of Justice</a></th>
+                        <td class="amount"> 7.3% </td>
+                        <td class="amount"> £18.2m </td>
+                        <td class="amount"> 66.7% </td>
+                        <td class="amount"> 10,023,658 </td>
+                    </tr>
+                    <tr data-volume="4839291"
+                        data-volumeLabel=" 4,839,291 "
+                        data-category=""
+                        data-body=""
+                        data-body-abbr=""
+                        data-url="/department/co"
+                        data-bubbleLink="/department/co"
+                        data-label="CO"
+                        data-title="Cabinet Office"
+                        data-color="#0078ba"
+                        data-text-color="#fff">
+                        <th scope="row"><a href="/department/co">Cabinet Office</a></th>
+                        <td class="amount"> 100% </td>
+                        <td class="amount"> £48.2k </td>
+                        <td class="amount"> 100% </td>
+                        <td class="amount"> 4,839,291 </td>
+                    </tr>
+                    <tr data-volume="1364404"
+                        data-volumeLabel=" 1,364,404 "
+                        data-category=""
+                        data-body=""
+                        data-body-abbr=""
+                        data-url="/department/decc"
+                        data-bubbleLink="/department/decc"
+                        data-label="DECC"
+                        data-title="Department of Energy and Climate Change"
+                        data-color="#78c059"
+                        data-text-color="#000">
+                        <th scope="row"><a href="/department/decc">Department of Energy and Climate Change</a></th>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"> 1,364,404 </td>
+                    </tr>
+                    <tr data-volume="837838"
+                        data-volumeLabel=" 837,838 "
+                        data-category=""
+                        data-body=""
+                        data-body-abbr=""
+                        data-url="/department/dfe"
+                        data-bubbleLink="/department/dfe"
+                        data-label="DfE"
+                        data-title="Department for Education"
+                        data-color="#f6823e"
+                        data-text-color="#000">
+                        <th scope="row"><a href="/department/dfe">Department for Education</a></th>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"> 837,838 </td>
+                    </tr>
+                    <tr data-volume="555500"
+                        data-volumeLabel=" 555,500 "
+                        data-category=""
+                        data-body=""
+                        data-body-abbr=""
+                        data-url="/department/dclg"
+                        data-bubbleLink="/department/dclg"
+                        data-label="DCLG"
+                        data-title="Department for Communities and Local Government"
+                        data-color="#4a338c"
+                        data-text-color="#fff">
+                        <th scope="row"><a href="/department/dclg">Department for Communities and Local Government</a></th>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"> 555,500 </td>
+                    </tr>
+                    <tr data-volume="288950"
+                        data-volumeLabel=" 288,950 "
+                        data-category=""
+                        data-body=""
+                        data-body-abbr=""
+                        data-url="/department/mod"
+                        data-bubbleLink="/department/mod"
+                        data-label="MoD"
+                        data-title="Ministry of Defence"
+                        data-color="#5d2a44"
+                        data-text-color="#fff">
+                        <th scope="row"><a href="/department/mod">Ministry of Defence</a></th>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"> 288,950 </td>
+                    </tr>
+                    <tr data-volume="148589"
+                        data-volumeLabel=" 148,589 "
+                        data-category=""
+                        data-body=""
+                        data-body-abbr=""
+                        data-url="/department/fco"
+                        data-bubbleLink="/department/fco"
+                        data-label="FCO"
+                        data-title="Foreign and Commonwealth Office"
+                        data-color="#00569e"
+                        data-text-color="#fff">
+                        <th scope="row"><a href="/department/fco">Foreign and Commonwealth Office</a></th>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"> 148,589 </td>
+                    </tr>
+                    <tr data-volume="103310"
+                        data-volumeLabel=" 103,310 "
+                        data-category=""
+                        data-body=""
+                        data-body-abbr=""
+                        data-url="/department/ago"
+                        data-bubbleLink="/department/ago"
+                        data-label="AGO"
+                        data-title="Attorney General's Office"
+                        data-color="#215936"
+                        data-text-color="#fff">
+                        <th scope="row"><a href="/department/ago">Attorney General's Office</a></th>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"> 103,310 </td>
+                    </tr>
+                    <tr data-volume="30000"
+                        data-volumeLabel=" 30,000 "
+                        data-category=""
+                        data-body=""
+                        data-body-abbr=""
+                        data-url="/department/dcms"
+                        data-bubbleLink="/department/dcms"
+                        data-label="DCMS"
+                        data-title="Department for Culture, Media and Sport"
+                        data-color="#ee1089"
+                        data-text-color="#000">
+                        <th scope="row"><a href="/department/dcms">Department for Culture, Media and Sport</a></th>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"> 30,000 </td>
+                    </tr>
+                    <tr data-volume="1529"
+                        data-volumeLabel=" 1,529 "
+                        data-category=""
+                        data-body=""
+                        data-body-abbr=""
+                        data-url="/department/dfid"
+                        data-bubbleLink="/department/dfid"
+                        data-label="DFID"
+                        data-title="Department for International Development"
+                        data-color="#729ecd"
+                        data-text-color="#000">
+                        <th scope="row"><a href="/department/dfid">Department for International Development</a></th>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"> 1,529 </td>
+                    </tr>
+                </tbody>
+            </table>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    if ($("#bubble").length) {
+                        gds.transactions.views.index("", "bubble", "transactions-table");
+                    }
+                });
+            </script>
+            <div class="application-notice info-notice table-margin">
+                <p>* Figures are based on data for high-volume services only</p>
+            </div>
+            <div class="form-download">
+                <p>
+                    <a href="?orderBy=volume&amp;direction=desc&format=csv"
+                        title="Download the full set of data (CSV)">
+                    Download the full set of data (CSV)
+                    </a>
+                </p>
+            </div>
+        </section>
+    </article>
+</div>           
+
+        </section>
+
+    </div><!--end wrapper-->
+
+    <footer class="group" id="footer" role="contentinfo">
+        <div class="footer-wrapper">
+            <div class="footer-meta">
+                <nav>
+                    <ul>
+                        <li><a href="/support">Support</a></li>
+                        <li><a href="/support/cookies">Cookies</a></li>
+                        <li><a href="/feedback">Feedback</a></li>
+                        <li><a href="/cymraeg">Cymraeg</a></li>
+                        <li>Built by the <a href="http://digital.cabinetoffice.gov.uk/">Government Digital Service</a>
+                        </li>
+                    </ul>
+                    <p>All content is available under the <a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/">Open Government Licence</a>, except where otherwise stated</p>
+                </nav>
+
+                <div class="copyright">
+                    <a href="http://www.nationalarchives.gov.uk/information-management/our-services/crown-copyright.htm">© Crown Copyright</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    </body>
+</html>

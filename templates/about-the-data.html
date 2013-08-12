@@ -73,7 +73,7 @@
       <section class="content-group" name="14">
         <h1>Raw data</h1>
         <p>All of the raw data from the Transactions Explorer can be downloaded into spreadsheet compatible CSV files using the links at the bottom of each data table.</p>
-        <p><a href={{ EXPLORER_HOST + "/?orderBy=volume&amp;direction=desc&amp;format=csv" }}>Download the full data set</a>.</p>
+        <p>{% include "csv_download_link.html" %}</p>
       </section>
     </article>
   </div>

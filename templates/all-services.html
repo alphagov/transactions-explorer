@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% set current_navigation_link='all-services' %}
+
+{% macro money_cell(value) -%}
+    {% if value -%}
+        &pound;{{ value|as_financial_magnitude }}
+    {%- endif %}
+{%- endmacro %}
+
+{% macro th_content(text, sort, title=None, default_direction="ascending") -%}
+    {% if sort != current_sort.order %}
+        <a href="../{{ sort }}/{{ default_direction }}.html" title="{{ title }}">{{ text }}</a>
+    {% elif current_sort.direction == "ascending" %}
+        <a href="../{{ sort }}/descending.html" title="{{ title }}">{{ text }}</a>
+        <span class="sort-ind">▲</span>
+    {% else %}
+        <a href="../{{ sort }}/ascending.html" title="{{ title }}">{{ text }}</a>
+        <span class="sort-ind">▼</span>
+    {% endif %}
+{%- endmacro %}
+
+{% block body %}
+
+<header class="page-header group">
+    <hgroup>
+        <h1>All Services</h1>
+    </hgroup>
+</header>
+
+<div class="group">
+    <article role="article" class="group">
+        <section class="content-group">
+            <h1>Annual volume of transactions by department</h1>
+
+            <div style="clear:both;"></div>
+
+            <table id="transactions-table" class="full_width_table">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            {{ th_content("Department",
+                                          sort="by-department") }}
+                        </th>
+                        <th scope="col">
+                            {{ th_content("Digital take&#8209;up*",
+                                          sort="by-takeup",
+                                          title="Proportion of transactions completed digitally (high-volume services only)",
+                                          default_direction="descending") }}
+                        </th>
+                        <th scope="col">
+                            {{ th_content("Total cost*",
+                                          sort="by-cost",
+                                          title="Total cost of providing services (high-volume services only)",
+                                          default_direction="descending") }}
+                        </th>
+                        <th scope="col">
+                            {{ th_content("Data coverage*",
+                                          sort="by-data-coverage",
+                                          title="Proportion of latest data provided by department (high-volume services only)",
+                                          default_direction="descending") }}
+                        </th>
+                        <th scope="col" class="amount">
+                            {{ th_content("Transactions per year",
+                                          sort="by-volume",
+                                          title="Transactions per year: most recent 12 months of data available across all channels",
+                                          default_direction="descending") }}
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for department in items %}
+                        <tr data-volume="{{department.volume}}"
+                            data-volumeLabel=" {{ department.volume|as_grouped_number }} "
+                            data-category=""
+                            data-body=""
+                            data-body-abbr=""
+                            data-url="{{ department.link }}"
+                            data-bubbleLink="{{ department.link }}"
+                            data-label="{{ department.abbr }}"
+                            data-title="{{ department.name }}"
+                            data-color="#c03024"
+                            data-text-color="#fff">
+                            
+                            <th scope="row"><a href="{{ department.link }}">{{ department.name }}</a></th>
+                            <td class="amount"> {{ department.takeup|as_percentage }} </td>
+                            <td class="amount"> {{ money_cell(department.cost) }} </td>
+                            <td class="amount"> {{ department.data_coverage|as_percentage }} </td>
+                            <td class="amount"> {{ department.volume|as_grouped_number }} </td>
+                        </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    if ($("#bubble").length) {
+                        gds.transactions.views.index("", "bubble", "transactions-table");
+                    }
+                });
+            </script>
+            <div class="application-notice info-notice table-margin">
+                <p>* Figures are based on data for high-volume services only</p>
+            </div>
+            <div class="form-download">
+                <p>
+                    {% include "csv_download_link.html" %}
+                </p>
+            </div>
+        </section>
+    </article>
+</div>
+
+{% endblock %}
