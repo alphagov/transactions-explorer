@@ -78,9 +78,16 @@ var Tree = (function () {
     if (thresholdRatio == null) {
       return values;
     }
-
-    var threshold = values.reduce(max).size / thresholdRatio;
-    var splitValues = partition(values, function (v) { return v.size > threshold; });
+    var sumVals = d3.sum(values,function(val){
+      return val.size;
+    });
+    // console.log(sumVals);
+    
+    // var threshold = values.reduce(max).size / thresholdRatio;
+    var threshold = sumVals / thresholdRatio;
+    var splitValues = partition(values, function (v) { 
+      console.log('what the vvv' , v , 'vs' , threshold);
+      return v.size > threshold; });
     var children = splitValues.left;
     if (splitValues.right.length) {
       var otherValue = splitValues.right.reduce(sum);

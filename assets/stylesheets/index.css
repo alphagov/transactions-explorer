@@ -1879,6 +1879,12 @@ font-size: 2.7rem;
 line-height: 1.11111;
 font-weight: 400;
 text-transform: none; }
+
+.node.xx-large{
+  font-size: 3.2rem;
+  line-height:1.3;
+}
+
 @media (max-width: 640px) {
   /* line 48, ./_assets/stylesheets/treemap.scss */
   .node.x-large {
@@ -1899,6 +1905,7 @@ text-transform: none; }
       font-size: 1.8rem;
       line-height: 1.11111; } }
 /* line 53, ./_assets/stylesheets/treemap.scss */
+.node.xx-large .amount,
 .node.x-large .amount {
   font-family: "nta", Arial, sans-serif;
   font-size: 80px;
@@ -1907,6 +1914,9 @@ text-transform: none; }
   font-weight: 400;
   text-transform: none;
   font-weight: 700; }
+.node.xx-large .amount{
+  font-size: 10rem;
+}
   @media (max-width: 640px) {
     /* line 53, ./_assets/stylesheets/treemap.scss */
     .node.x-large .amount {
