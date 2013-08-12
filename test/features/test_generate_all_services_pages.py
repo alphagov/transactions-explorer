@@ -1,22 +1,14 @@
 from hamcrest import *
 
 from test.features import BrowserTest
+from test.features.support import table_from
 
 
 class GenerateAllServicesPages(BrowserTest):
 
-    def table_from(self, rows):
-        def cells(row):
-            name = [row.find_by_css('th').text]
-            values = map(lambda elem: elem.text, row.find_by_css('td'))
-            return name + values
-
-        return map(cells, rows)
-
-
     def test_all_services_table(self):
         self.browser.visit("http://0.0.0.0:8000/all-services/by-volume/descending")
-        table = self.table_from(self.browser.find_by_css('tbody tr'))
+        table = table_from(self.browser.find_by_css('tbody tr'))
 
         assert_that(table, is_([
             [u'Department of Electronic Freedom', u'84.7%', u'\xa3157m', u'46.7%', u'21,117,614'],
