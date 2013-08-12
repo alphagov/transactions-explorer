@@ -3,6 +3,7 @@ import sys
 from distutils import dir_util
 
 import unicodecsv
+from lib.params import parse_args_for_create
 
 from lib.service import Service, latest_quarter, sorted_ignoring_empty_values, Department
 
@@ -14,12 +15,12 @@ from lib.service import Service, latest_quarter, sorted_ignoring_empty_values,\
 from lib.templates import render, render_csv
 
 
-SERVICES_DATA = 'data/services.csv'
 OUTPUT_DIR = 'output'
 
 templates.output_dir = OUTPUT_DIR
 
-input = sys.argv[1] if len(sys.argv) > 1 else SERVICES_DATA
+arguments = parse_args_for_create(sys.argv[1:])
+input = arguments.services_data
 
 data = open(input)
 
