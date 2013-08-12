@@ -43,11 +43,11 @@ class test_create_pages(BrowserTest):
         assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Attorney General's Office"))
 
     def test_sort_by_digit_take_up_descending(self):
-        self.browser.visit("http://0.0.0.0:8000/all-services/by-takeup/descending")
+        self.browser.visit("http://0.0.0.0:8000/all-services/by-digital-takeup/descending")
         assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Cabinet Office"))
 
     def test_sort_by_digit_take_up_ascending(self):
-        self.browser.visit("http://0.0.0.0:8000/all-services/by-takeup/ascending")
+        self.browser.visit("http://0.0.0.0:8000/all-services/by-digital-takeup/ascending")
         assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Ministry of Justice"))
 
     def test_sort_by_total_cost_descending(self):
@@ -67,9 +67,9 @@ class test_create_pages(BrowserTest):
         assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Ministry of Justice"))
 
     def test_sort_by_volume_descending(self):
-        self.browser.visit("http://0.0.0.0:8000/all-services/by-volume/descending")
+        self.browser.visit("http://0.0.0.0:8000/all-services/by-transactions-per-year/descending")
         assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"HM Revenue and Customs"))
 
     def test_sort_by_volume_ascending(self):
-        self.browser.visit("http://0.0.0.0:8000/all-services/by-volume/ascending")
+        self.browser.visit("http://0.0.0.0:8000/all-services/by-transactions-per-year/ascending")
         assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Department for International Development"))

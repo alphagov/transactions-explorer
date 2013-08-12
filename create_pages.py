@@ -75,10 +75,10 @@ if __name__ == "__main__":
     departments = Department.from_services(services)
     department_sort_orders = [
         ("by-department", lambda department: department.name),
-        ("by-takeup", lambda department: department.takeup),
+        ("by-digital-takeup", lambda department: department.takeup),
         ("by-cost", lambda department: department.cost),
         ("by-data-coverage", lambda department: department.data_coverage),
-        ("by-volume", lambda department: department.volume),
+        ("by-transactions-per-year", lambda department: department.volume),
     ]
     generate_sorted_pages(departments, 'all-services', department_sort_orders)
 
