@@ -1661,7 +1661,7 @@ figure.treemap figcaption {
 }
 
 figure.treemap:hover .node {
-  opacity: .8;
+  opacity: .5;
 }
 figure.treemap:hover .node:hover {
   opacity: 1;
@@ -1669,10 +1669,11 @@ figure.treemap:hover .node:hover {
 
 /* line 388, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .node {
-  position: absolute; 
-  -webkit-transition: all .05s linear;
-  -moz-transition: all .05s linear;
-  transition: all .05s linear;
+/*  -webkit-font-smoothing: antialiased;
+  position: relative; 
+  -webkit-transition: all .05s ease-in;
+  -moz-transition: all .05s ease-in;
+  transition: all .05s ease-in;*/
 }
 
 .node.parent{
