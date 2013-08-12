@@ -34,7 +34,7 @@ class TestDepartmentLink(unittest.TestCase):
 
         dept = Department("Agengy for Beatiful Code", services)
 
-        assert_that(dept.link, is_("/department/abc"))
+        assert_that(dept.link, is_("department/abc.html"))
 
 class TestDepartmentAbbreviation(unittest.TestCase):
 

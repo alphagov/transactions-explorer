@@ -83,6 +83,12 @@ if __name__ == "__main__":
     ]
     generate_sorted_pages(departments, 'all-services', department_sort_orders)
 
+    for department in departments:
+        render('department.html', out=department.link, vars={
+            'department': department
+        })
+
+
     csv_map = map_services_to_csv_data(services)
     render_csv(csv_map, 'transaction-volumes.csv')
 

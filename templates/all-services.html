@@ -76,14 +76,14 @@
                             data-category=""
                             data-body=""
                             data-body-abbr=""
-                            data-url="{{ department.link }}"
-                            data-bubbleLink="{{ department.link }}"
+                            data-url="/{{ department.link }}"
+                            data-bubbleLink="/{{ department.link }}"
                             data-label="{{ department.abbr }}"
                             data-title="{{ department.name }}"
                             data-color="#c03024"
                             data-text-color="#fff">
                             
-                            <th scope="row"><a href="{{ department.link }}">{{ department.name }}</a></th>
+                            <th scope="row"><a href="/{{ department.link }}">{{ department.name }}</a></th>
                             <td class="amount"> {{ department.takeup|as_percentage }} </td>
                             <td class="amount"> {{ money_cell(department.cost) }} </td>
                             <td class="amount"> {{ department.data_coverage|as_percentage }} </td>

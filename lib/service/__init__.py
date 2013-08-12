@@ -259,7 +259,7 @@ class Department(object):
 
     @property
     def link(self):
-        return '/department/' + slugify(self.abbr)
+        return 'department/%s.html' % slugify(self.abbr)
 
     def _aggregate(self, attr, high_volume_only=False):
         return self.aggregator.aggregate([attr], high_volume_only)[0]
