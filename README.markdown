@@ -32,7 +32,7 @@ parametrized with the following arguments:
 * [optional] symlink the contents of assets/javascripts to output/assets/javascripts 
 for faster feedback than running create_pages each time.
 * run python `test/features/support/stub_server.py &`. 
-* visit localhost:8000/all_services or similar.
+* visit localhost:8000/all-services or similar.
 * dance.
 
 Testing
