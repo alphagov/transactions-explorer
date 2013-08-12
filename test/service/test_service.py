@@ -37,6 +37,25 @@ class TestService(unittest.TestCase):
 
         assert_that(service.most_recent_kpis['volume_num'], is_(10))
 
+    def test_most_up_to_date_volume(self):
+        service_with_one_vol = Service(details({'2013-Q1 Vol.': '200'}))
+        service_with_two_vols = Service(details({'2013-Q1 Vol.': '200',
+                                                 '2013-Q2 Vol.': '250'}))
+        service_with_no_vols = Service(details({}))
+
+        assert_that(service_with_one_vol.most_up_to_date_volume, is_(200))
+        assert_that(service_with_two_vols.most_up_to_date_volume, is_(250))
+        assert_that(service_with_no_vols.most_up_to_date_volume, is_(None))
+
+    def test_keywords(self):
+        service_with_no_keywords = Service(details({'Keywords': None}))
+        service_with_one_keywords = Service(details({'Keywords': 'keyword'}))
+        service_with_two_keywords = Service(details({'Keywords': 'keyword1, keyword2'}))
+
+        assert_that(service_with_no_keywords.keywords, is_([]))
+        assert_that(service_with_one_keywords.keywords, is_(['keyword']))
+        assert_that(service_with_two_keywords.keywords, is_(['keyword1', 'keyword2']))
+
 
 class TestSummingTotalTransactions(unittest.TestCase):
 
