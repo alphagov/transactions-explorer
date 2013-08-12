@@ -44,7 +44,7 @@ JSON_SEARCH_FORMAT = [("department", lambda s: s.department),
                       ("agencyOrBody", lambda s: s.body),
                       ("agencyOrBodyAbbreviation", lambda s: s.agency_abbr),
                       ("service", lambda s: s.name),
-                      ("agencyOrBody", lambda s: s.keywords),
+                      ("keywords", lambda s: s.keywords),
                       ("transactionsPerYear",
                        lambda s: nicer_int_parse(s.most_up_to_date_volume))]
 
