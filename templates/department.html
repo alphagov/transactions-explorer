@@ -81,23 +81,37 @@
         </thead>
         <tbody>
 
-        <tr data-volume="-1" data-volumelabel="" data-category="Providing/reporting information" data-body="HM Revenue and Customs" data-body-abbr="HMRC" data-url="" data-bubblelink="" data-label="Money Laundering Regulations (MLR-8): annual declaration" data-title="Money Laundering Regulations (MLR-8): annual declaration" data-color="#2e358b" data-text-color="#fff">
-
-            <th scope="row">
-
-                Money Laundering Regulations (MLR-8): annual declaration
-
-            </th>
-            <td><abbr title="HM Revenue and Customs">HMRC</abbr></td>
-
-            <td>Providing/reporting information</td>
-
-
-            <td></td>
-
-            <td class="amount"></td>
-
-        </tr>
+        {% for service in department.services %}
+            <tr data-volume="{{ service.most_recent_kpis.volume_num }}"
+                data-volumelabel=" {{ service.most_recent_kpis.volume_num|as_grouped_number }} "
+                data-category="{{ service.category }}"
+                data-body="{{ department.name }}"
+                data-body-abbr="{{ department.abbr }}"
+                data-url="{{ service.url }}"
+                data-bubblelink="/{{ service.link }}"
+                data-label="{{ service.name }}"
+                data-title="{{ service.name }}"
+                data-color="#2e358b"
+                data-text-color="#fff">
+                <th scope="row">
+                    {% if service.high_volume %}
+                        <a href="/{{ service.link }}">{{ service.name }}</a>
+                    {% else %}
+                        {{ service.name }}
+                    {% endif %}
+                </th>
+                <td>
+                    <abbr title="{{ department.name }}">{{ department.abbr }}</abbr>
+                </td>
+                <td>{{ service.category }}</td>
+                <td>
+                    {% if service.url %}
+                        <a rel="external" href="{{ service.url }}">Access service</a>
+                    {% endif %}
+                </td>
+                <td class="amount"> {{ service.most_recent_kpis.volume_num|as_grouped_number }} </td>
+            </tr>
+        {% endfor %}
 
         </tbody>
         </table>
