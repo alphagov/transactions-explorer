@@ -11,8 +11,6 @@ import sys
 HTML_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                          '..', '..', '..', 'output'))
 
-print HTML_ROOT
-
 
 def rewrite_request(path):
     new_path = path
@@ -55,7 +53,6 @@ class TestServer(BaseHTTPRequestHandler):
         # rewrite requests to point at flat *.html files
         path_to_html = rewrite_request(self.path)
         full_path = HTML_ROOT + path_to_html
-        print full_path
 
         if not os.path.isfile(full_path):
             self.send_response(404)
