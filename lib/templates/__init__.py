@@ -1,4 +1,5 @@
 import csv
+import simplejson as json
 import os
 from jinja2 import Environment, FileSystemLoader
 from lib.filesystem import create_directory
@@ -42,3 +43,8 @@ def render_csv(maps, out):
     with open(os.path.join(output_dir, out), 'w') as output:
         writer = csv.writer(output, dialect="excel")
         writer.writerows(maps)
+
+
+def render_search_json(maps, out):
+    with open(os.path.join(output_dir, out), 'w') as output:
+        json.dump(maps, output)
