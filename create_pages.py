@@ -12,6 +12,7 @@ from lib.csv import map_services_to_csv_data, map_services_to_dicts
 
 from lib.service import Service, latest_quarter, sorted_ignoring_empty_values,\
     total_transaction_volume
+from lib.slugify import slugify
 from lib.templates import render, render_csv, render_search_json
 
 
@@ -83,10 +84,35 @@ if __name__ == "__main__":
     ]
     generate_sorted_pages(departments, 'all-services', department_sort_orders)
 
+    services_sort_orders = [
+        ("by-name", lambda service: service.name_of_service),
+        ("by-agency", lambda service: service.abbr),
+        ("by-category", lambda service: service.category),
+        ("by-transactions-per-year", lambda service: service.most_up_to_date_volume),
+    ]
     for department in departments:
-        render('department.html', out=department.link, vars={
-            'department': department
-        })
+        for sort_order, key in services_sort_orders:
+            for direction in ['ascending', 'descending']:
+                reverse = (direction == 'descending')
+                variables = dict({
+                    'items': sorted_ignoring_empty_values(department.services,
+                                                          key=key,
+                                                          reverse=reverse),
+                    'current_sort': {
+                        'order': sort_order,
+                        'direction': direction
+                    },
+                    'department': department,
+                }.items())
+                render('department.html',
+                       out="department/%s/%s/%s.html" % (slugify(department.abbr), sort_order, direction),
+                       vars=variables)
+        # generate_sorted_pages(department.services, 'department', services_sort_orders, {
+        #     'department': department
+        # })
+        # render('department.html', out=department.link, vars={
+        #     'department': department
+        # })
 
 
     csv_map = map_services_to_csv_data(services)

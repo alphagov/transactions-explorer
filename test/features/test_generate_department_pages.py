@@ -32,7 +32,7 @@ class GenerateDepartmentPages(BrowserTest):
         assert_that(table, is_([
             [u'Service 1', u'ABC', u'Exciting service', u'Access service', u'4,820,000'],
             [u'Service 2', u'ABC', u'', u'', u'17,150'],
-            [u'Service 3', u'AAA', u'Lame service', u'', u'2,141'],
+            [u'Service 3', u'ABC', u'Lame service', u'', u'2,141'],
         ]))
 
     def test_first_element_sorted_by_transaction_name_descending(self):
@@ -47,22 +47,22 @@ class GenerateDepartmentPages(BrowserTest):
         self.browser.visit("http://0.0.0.0:8000/department/abc/by-agency/descending")
         assert_that(self.browser.find_by_css('tbody tr th').text, is_(u"Service 1"))
 
-    def test_first_element_sorted_by_transaction_name_descending(self):
+    def test_first_element_sorted_by_agency_ascending(self):
         self.browser.visit("http://0.0.0.0:8000/department/abc/by-agency/ascending")
         assert_that(self.browser.find_by_css('tbody tr th').text, is_(u"Service 1"))
 
     def test_first_element_sorted_by_category_descending(self):
-        self.browser.visit("http://0.0.0.0:8000/department/abc/by-agency/descending")
+        self.browser.visit("http://0.0.0.0:8000/department/abc/by-category/descending")
         assert_that(self.browser.find_by_css('tbody tr th').text, is_(u"Service 3"))
 
     def test_first_element_sorted_by_category_ascending(self):
-        self.browser.visit("http://0.0.0.0:8000/department/abc/by-agency/ascending")
+        self.browser.visit("http://0.0.0.0:8000/department/abc/by-category/ascending")
         assert_that(self.browser.find_by_css('tbody tr th').text, is_(u"Service 2"))
 
     def test_first_element_sorted_by_transaction_per_year_descending(self):
         self.browser.visit("http://0.0.0.0:8000/department/abc/by-transactions-per-year/descending")
         assert_that(self.browser.find_by_css('tbody tr th').text, is_(u"Service 1"))
 
-    def test_first_element_sorted_by_transaction_name_descending(self):
-        self.browser.visit("http://0.0.0.0:8000/department/abc/by-transactions-per-year/descending")
+    def test_first_element_sorted_by_transaction_per_year_ascending(self):
+        self.browser.visit("http://0.0.0.0:8000/department/abc/by-transactions-per-year/ascending")
         assert_that(self.browser.find_by_css('tbody tr th').text, is_(u"Service 3"))
