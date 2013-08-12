@@ -145,7 +145,7 @@ class Service:
     @property
     def description(self):
         return re.sub('\s*$', '', self.description_of_service)
-    
+
     @property
     def most_recent_kpis(self):
         if len(self.kpis) > 0:
@@ -244,6 +244,10 @@ class Department(object):
         self.name = name
         self.services = list(services)
         self.aggregator = ServiceKpiAggregator(self.services)
+
+    @property
+    def high_volume_count(self):
+        return len(filter(lambda s: s.high_volume, self.services))
 
     @property
     def volume(self):

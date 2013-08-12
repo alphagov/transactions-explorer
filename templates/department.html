@@ -36,8 +36,8 @@
     <article role="article" class="group">
 
     <div id="data-coverage-notice" class="application-notice info-notice">
-        <h2>Department data coverage: 37.5%</h2>
-        <p>(taken from 16 high volume services)</p>
+        <h2>Department data coverage: {{ department.data_coverage|as_percentage }}</h2>
+        <p>(taken from {{ department.high_volume_count }} high volume services)</p>
     </div>
 
 
