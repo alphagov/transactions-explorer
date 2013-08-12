@@ -339,7 +339,7 @@ class TestDepartmentDataCoverage(unittest.TestCase):
 
         dept = Department("Agengy for Beatiful Code", services)
 
-        assert_that(dept.data_coverage, close_to(0.3333, 0.001))
+        assert_that(float(dept.data_coverage), close_to(0.3333, 0.001))
 
     def test_data_coverage_is_none_when_no_high_volume_services(self):
         services = [

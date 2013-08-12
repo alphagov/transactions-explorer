@@ -1,3 +1,4 @@
+from decimal import Decimal
 from functools import total_ordering
 from itertools import groupby
 import re
@@ -155,8 +156,8 @@ class Service:
         kpi_provided = lambda kpi: self._attributes_present(kpi,
                                 ['digital_volume_num', 'volume_num', 'cost'])
 
-        present = len(filter(kpi_provided, self.kpis))
-        total = float(len(self.valid_quarters))
+        present = Decimal(len(filter(kpi_provided, self.kpis)))
+        total = Decimal(len(self.valid_quarters))
 
         return present / total
 

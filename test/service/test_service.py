@@ -108,7 +108,7 @@ class TestService(unittest.TestCase):
             u'High-volume?': 'yes'
         }))
 
-        assert_that(service.data_coverage, close_to(0.6667, 0.001))
+        assert_that(float(service.data_coverage), close_to(0.6667, 0.001))
 
     def test_most_up_to_date_volume(self):
         service_with_one_vol = Service(details({'2013-Q1 Vol.': '200'}))
