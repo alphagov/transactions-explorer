@@ -102,9 +102,9 @@ describe("Table To Treemap", function () {
       TreeMapLayout.display("testmap", data);
 
       var classes = d3.selectAll('div.node')[0].map(function(d) { return d.className; });
-      expect(classes[0]).toEqual('node x-large');
+      expect(classes[0]).toEqual('node xx-large');
       expect(classes[1]).toEqual('node x-large');
-      expect(classes[2]).toEqual('node x-large');
+      expect(classes[2]).toEqual('node xx-large');
       expect(classes[3]).toEqual('node large');
       expect(classes[4]).toEqual('node medium');
       expect(classes[5]).toEqual('node small');
