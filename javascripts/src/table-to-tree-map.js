@@ -119,13 +119,12 @@ var TreeMapLayout = (function () {
   var getNodeClass = function (d) {
     var classes = ["none", "ellipsis", "small", "medium", "large", "x-large", "parent"],
         keys    = [0     , 1         , 2      , 3       , 4      ,5         , 6],
-        dxIndex = d3.scale.threshold().domain([20,50,130,200,250,390]).range(keys),
-        dyIndex = d3.scale.threshold().domain([10,40,100,150,200,390]).range(keys);
+        dxIndex = d3.scale.threshold().domain([20,50,130,200,250,391]).range(keys),
+        dyIndex = d3.scale.threshold().domain([10,40,100,150,200,391]).range(keys);
     return 'node ' + classes[Math.min(dxIndex(d.dx), dyIndex(d.dy))];
   };
 
   var createTip = function(d){
-    console.log(d);
     if(d && d.volumeLabel)
       return d.name + ': ' + d.volumeLabel + ' transactions per year';
     else 
@@ -149,6 +148,13 @@ var TreeMapLayout = (function () {
         });
     
     var div = d3.select('#'+divId);
+
+    console.log(treemap.nodes);
+    // var maxDy = d3.max(treemap.nodes, 'dy');
+
+    // console.log(div.datum(treeData).selectAll("node").data(treemap.nodes);
+
+    // console.log(maxDx);
     
     var node = div.datum(treeData).selectAll(".node")
       .data(treemap.nodes)
