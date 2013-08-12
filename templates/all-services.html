@@ -38,6 +38,9 @@
 
             <div style="clear:both;"></div>
 
+            {% block table %}
+            {% endblock %}
+<!-- 
             <table id="transactions-table" class="full_width_table">
                 <thead>
                     <tr>
@@ -95,7 +98,7 @@
 
                     {% endfor %}
                 </tbody>
-            </table>
+            </table> -->
             {# no more bubbles, let's have blocks
             <script type="text/javascript">
                 $(document).ready(function() {
