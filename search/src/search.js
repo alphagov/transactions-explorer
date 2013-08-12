@@ -36,7 +36,8 @@ GOVUK.transactionsExplorer.scoreService = (function () {
 }());
 
 GOVUK.transactionsExplorer.search = (function () {
-    var data, loaded;
+    var data = [],
+        loaded = false;
 
     var load = function () {
         GOVUK.transactionsExplorer.loadSearchData("search.json", function (loadedData) {
@@ -45,16 +46,35 @@ GOVUK.transactionsExplorer.search = (function () {
         });
     };
 
+    var searchServices = function (query, services) {
+        var scoredServices = $.map(services, function (service, index) {
+            return {
+                service: service,
+                score: GOVUK.transactionsExplorer.scoreService(query, service)
+            };
+        });
+        var matchedServices = $.grep(scoredServices, function(n, i) {
+            return (n.score > 0);
+        }).sort(function (first, next) {
+            if (first.score > next.score) return -1;
+            if (first.score < next.score) return 1;
+            if (first.score === next.score) return 0;
+        });
+        return $.map(matchedServices, function(scoredService, index) {
+            return scoredService.service;
+        });
+    };
+
     var performSearch = function (query) {
         if (loaded) {
-            console.log($.grep(data, function (service) {
-                return service['Department'].search(query) >= 0;
-            }));
+            var results = GOVUK.transactionsExplorer.search.searchServices(query, data);
+            GOVUK.transactionsExplorer.searchResultsTable.update(results);
         }
     };
 
     return {
         load: load,
+        searchServices: searchServices,
         performSearch: performSearch
     };
 }());

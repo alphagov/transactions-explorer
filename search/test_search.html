@@ -5,8 +5,18 @@
     <body>
         <input id="search-box" type="text"></input>
         <button id="search-button" type="submit">Find</button>
+        <table id="results">
+            <tbody></tbody>
+        </table>
         <script src="lib/jquery-1.10.2.js"></script>
         <script src="src/search.js"></script>
+        <script>
+            GOVUK.transactionsExplorer.wireSearchForm({ 
+                inputId: '#search-box',
+                buttonId: '#search-button'
+            }, GOVUK.transactionsExplorer.search);
+            GOVUK.transactionsExplorer.searchResultsTable.wireTable('#results');
+        </script>
     </body>
 </html>
 
