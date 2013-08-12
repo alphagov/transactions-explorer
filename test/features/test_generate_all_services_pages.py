@@ -7,7 +7,7 @@ from test.features.support import table_from
 class GenerateAllServicesPages(BrowserTest):
 
     def test_all_services_table(self):
-        self.browser.visit("http://0.0.0.0:8000/all-services/by-volume/descending")
+        self.browser.visit("http://0.0.0.0:8000/all-services/by-transactions-per-year/descending")
         table = table_from(self.browser.find_by_css('tbody tr'))
 
         assert_that(table, is_([
@@ -25,11 +25,11 @@ class GenerateAllServicesPages(BrowserTest):
         assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Agency for Beautiful Code"))
 
     def test_first_element_sort_by_digit_take_up_descending(self):
-        self.browser.visit("http://0.0.0.0:8000/all-services/by-takeup/descending")
+        self.browser.visit("http://0.0.0.0:8000/all-services/by-digital-takeup/descending")
         assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Agency for Beautiful Code"))
 
     def test_first_element_sort_by_digit_take_up_ascending(self):
-        self.browser.visit("http://0.0.0.0:8000/all-services/by-takeup/ascending")
+        self.browser.visit("http://0.0.0.0:8000/all-services/by-digital-takeup/ascending")
         assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Department of Electronic Freedom"))
 
     def test_first_element_sort_by_total_cost_descending(self):
@@ -49,9 +49,9 @@ class GenerateAllServicesPages(BrowserTest):
         assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Department of Electronic Freedom"))
 
     def test_first_element_sort_by_volume_descending(self):
-        self.browser.visit("http://0.0.0.0:8000/all-services/by-volume/descending")
+        self.browser.visit("http://0.0.0.0:8000/all-services/by-transactions-per-year/descending")
         assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Department of Electronic Freedom"))
 
     def test_first_element_sort_by_volume_ascending(self):
-        self.browser.visit("http://0.0.0.0:8000/all-services/by-volume/ascending")
+        self.browser.visit("http://0.0.0.0:8000/all-services/by-transactions-per-year/ascending")
         assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Lower Order Workgroups"))
