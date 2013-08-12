@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% set current_navigation_link='all-services' %}
+
+{% macro money_cell(value) -%}
+    {% if value -%}
+        &pound;{{ value|as_financial_magnitude }}
+    {%- endif %}
+{%- endmacro %}
+
+{% macro th_content(text, sort, title=None, default_direction="ascending") -%}
+    {% if sort != current_sort.order %}
+        <a href="../{{ sort }}/{{ default_direction }}.html" title="{{ title }}">{{ text }}</a>
+    {% elif current_sort.direction == "ascending" %}
+        <a href="../{{ sort }}/descending.html" title="{{ title }}">{{ text }}</a>
+        <span class="sort-ind">▲</span>
+    {% else %}
+        <a href="../{{ sort }}/ascending.html" title="{{ title }}">{{ text }}</a>
+        <span class="sort-ind">▼</span>
+    {% endif %}
+{%- endmacro %}
+
+{% block body %}
+
+<header class="page-header group">
+    <hgroup>
+        <div id="whitehall-wrapper" class="no-border">
+            <h1>HM Revenue and Customs</h1>
+        </div>
+
+        <h2>Transactional services provided by the department, its agencies or sponsored public bodies</h2>
+    </hgroup>
+</header>
+
+<div class="group">
+    <article role="article" class="group">
+
+    <div class="application-notice info-notice">
+        <h2>Department data coverage: 37.5%</h2>
+        <p>(taken from 16 high volume services)</p>
+    </div>
+
+
+    <section class="content-group">
+
+        <div style="clear:both;"></div>
+
+        <table id="transactions-table" class="full_width_table">
+        <thead>
+        <tr>
+
+            <th scope="col">
+                <a href="http://transactionsexplorer.cabinetoffice.gov.uk/department/hmrc?orderBy=nameOfService&direction=asc#transactions-table">
+                    Transactional service
+                </a>
+
+            </th>
+            <th scope="col">
+                <a href="http://transactionsexplorer.cabinetoffice.gov.uk/department/hmrc?orderBy=body&direction=asc#transactions-table">Agency / body</a>
+
+            </th>
+
+            <th scope="col">
+                <a href="http://transactionsexplorer.cabinetoffice.gov.uk/department/hmrc?orderBy=category&direction=asc#transactions-table">Category</a>
+
+            </th>
+
+
+            <th scope="col">Web link</th>
+
+            <th scope="col" class="amount">
+                <a href="http://transactionsexplorer.cabinetoffice.gov.uk/department/hmrc?orderBy=volume&direction=asc#transactions-table" title="Transactions per year: most recent 12 months of data available across all channels">
+                    Transactions per year
+                </a>
+                <span class="sort-ind">▼</span>
+            </th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr data-volume="-1" data-volumelabel="" data-category="Providing/reporting information" data-body="HM Revenue and Customs" data-body-abbr="HMRC" data-url="" data-bubblelink="" data-label="Money Laundering Regulations (MLR-8): annual declaration" data-title="Money Laundering Regulations (MLR-8): annual declaration" data-color="#2e358b" data-text-color="#fff">
+
+            <th scope="row">
+
+                Money Laundering Regulations (MLR-8): annual declaration
+
+            </th>
+            <td><abbr title="HM Revenue and Customs">HMRC</abbr></td>
+
+            <td>Providing/reporting information</td>
+
+
+            <td></td>
+
+            <td class="amount"></td>
+
+        </tr>
+
+        </tbody>
+        </table>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                if ($("#bubble").length) {
+                    gds.transactions.views.index( "hmrc" , "bubble", "transactions-table");
+                }
+            });
+        </script>
+        <div class="form-download">
+            <p>
+                {% include "csv_download_link.html" %}
+            </p>
+        </div>
+
+        </section>
+    </article>
+</div>
+
+{% endblock %}
