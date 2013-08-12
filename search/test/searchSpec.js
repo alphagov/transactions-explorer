@@ -47,7 +47,16 @@ describe("Searching for services on the transaction explorer. ", function () {
     });
 
     describe("Search", function () {
-    
+        describe("loading search data", function () {
+            it('should ajax in some data when loaded', function () {
+                var fakeAjax = spyOn($, 'ajax').andReturn({ done: function () {}});
+                GOVUK.transactionsExplorer.loadSearchData();
+                expect(fakeAjax).toHaveBeenCalled();
+            });
+        });
+
+        describe("scoring search data", function () {
+        });
     });
 });
 
