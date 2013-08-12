@@ -1677,7 +1677,7 @@ figure.treemap:hover .node:hover {
 }
 
 .node.parent{
-  display: none
+  /*display: none*/
 }
 
 /* line 391, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
@@ -1865,6 +1865,13 @@ text-transform: none; }
       font-size: 3.2rem;
       line-height: 1.09375; } }
 /* line 48, ./_assets/stylesheets/treemap.scss */
+
+.node.xx-large{
+  font-size: 3.2rem;
+  font-weight: bold;
+}
+
+.node.xx-large,
 .node.x-large {
 font-family: "nta", Arial, sans-serif;
 font-size: 27px;

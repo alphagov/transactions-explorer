@@ -117,10 +117,10 @@ var TreeMapLayout = (function () {
   }
 
   var getNodeClass = function (d) {
-    var classes = ["none", "ellipsis", "small", "medium", "large", "x-large", "parent"],
+    var classes = ["none", "ellipsis", "small", "medium", "large", "x-large", "xx-large"],
         keys    = [0     , 1         , 2      , 3       , 4      ,5         , 6],
-        dxIndex = d3.scale.threshold().domain([20,50,130,200,250,391]).range(keys),
-        dyIndex = d3.scale.threshold().domain([10,40,100,150,200,391]).range(keys);
+        dxIndex = d3.scale.threshold().domain([20,50,130,200,250,400]).range(keys),
+        dyIndex = d3.scale.threshold().domain([10,40,100,150,200,400]).range(keys);
     return 'node ' + classes[Math.min(dxIndex(d.dx), dyIndex(d.dy))];
   };
 
@@ -134,9 +134,12 @@ var TreeMapLayout = (function () {
 
   var makeTree = function (divId, treeData, options) {
     var options = options || {},
-        el = document.getElementById(divId),
-        width = options.width || el.offsetWidth,
-        height = options.height || el.offsetHeight;
+        el = document.getElementById(divId);
+        console.log(el);
+        if(el){
+          var width = options.width || el.offsetWidth,
+          height = options.height || el.offsetHeight;
+        }
 
     var color = d3.scale.category20c();
     
@@ -182,6 +185,9 @@ var TreeMapLayout = (function () {
     if (window.$) {
       var $figure = $('#' + divId);
       var $cap = $('<figcaption/>').appendTo($figure);
+
+      // hide the first wrapping node
+      $figure.find('.node').first().hide();
 
       $figure.find('.node').on('mouseenter',function(){
         var $this = $(this),

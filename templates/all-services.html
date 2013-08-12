@@ -33,6 +33,9 @@
         <section class="content-group">
             <h1>Annual volume of transactions by department</h1>
 
+            <figure id="services-treemap" class="treemap"></figure>
+
+
             <div style="clear:both;"></div>
 
             <table id="transactions-table" class="full_width_table">
@@ -93,7 +96,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-
+            {# no more bubbles, let's have blocks
             <script type="text/javascript">
                 $(document).ready(function() {
                     if ($("#bubble").length) {
@@ -101,6 +104,18 @@
                     }
                 });
             </script>
+            #}
+
+
+            <!--[if gt IE 8]><!-->
+            <script type="text/javascript" src="/assets/javascripts/d3.v3.js"></script>
+            <script type="text/javascript" src="/assets/javascripts/table-to-tree-map.js"></script>
+            <script>
+              var tree = Tree.fromHtmlTable(d3.selectAll("tbody tr"));
+              TreeMapLayout.display("services-treemap", tree);
+            </script>
+            <!--<![endif]-->
+
             <div class="application-notice info-notice table-margin">
                 <p>* Figures are based on data for high-volume services only</p>
             </div>
