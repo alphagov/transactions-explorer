@@ -1,8 +1,11 @@
+# prod code requirements
 google-api-python-client==1.1
 httplib2==0.8
 jinja2==2.7
 oauth2client==1.1
 unicodecsv==0.9.4
+simplejson==3.3.0
+# test code requirements
 nose
 pyhamcrest
 splinter
