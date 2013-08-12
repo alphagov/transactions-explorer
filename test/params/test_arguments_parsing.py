@@ -1,9 +1,9 @@
 import unittest
 from hamcrest import *
-from lib.params import parse_args_for_fetch
+from lib.params import parse_args_for_fetch, parse_args_for_create
 
 
-class test_arguments_parsing(unittest.TestCase):
+class FetchArgumentParsing(unittest.TestCase):
 
     def test_default_secret_and_token_to_data_dir(self):
         argument = parse_args_for_fetch([])
@@ -19,3 +19,17 @@ class test_arguments_parsing(unittest.TestCase):
 
         assert_that(argument.client_secrets, is_('/var/google/secrets.json'))
         assert_that(argument.oauth_tokens, is_('/var/google/token.dat'))
+
+
+
+class CreateArgumentParsing(unittest.TestCase):
+
+    def test_default_services_data_file_on_data_dir(self):
+        argument = parse_args_for_create([])
+
+        assert_that(argument.services_data, is_('data/services.csv'))
+
+    def test_parse_services_data_param(self):
+        argument = parse_args_for_create(['--services-data', '/var/test.csv'])
+
+        assert_that(argument.services_data, is_('/var/test.csv'))
