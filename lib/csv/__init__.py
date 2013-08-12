@@ -32,13 +32,6 @@ CSV_FORMAT = [("Department", lambda s: s.department),
               ("Business model", lambda s: s.business_model)]
 
 
-def nicer_int_parse(int_as_string):
-    result = 'undefined'
-    if int_as_string:
-        result = int(int_as_string)
-    return result
-
-
 JSON_SEARCH_FORMAT = [("department", lambda s: s.department),
                       ("departmentAbbreviation", lambda s: s.abbr),
                       ("agencyOrBody", lambda s: s.body),
@@ -46,7 +39,7 @@ JSON_SEARCH_FORMAT = [("department", lambda s: s.department),
                       ("service", lambda s: s.name),
                       ("keywords", lambda s: s.keywords),
                       ("transactionsPerYear",
-                       lambda s: nicer_int_parse(s.most_up_to_date_volume))]
+                       lambda s: s.most_up_to_date_volume)]
 
 
 def encode(value):
