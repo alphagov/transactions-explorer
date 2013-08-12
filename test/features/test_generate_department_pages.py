@@ -34,3 +34,4 @@ class GenerateDepartmentPages(BrowserTest):
             [u'Service 2', u'ABC', u'', u'', u'17,150'],
             [u'Service 3', u'ABC', u'Lame service', u'', u'2,141'],
         ]))
+

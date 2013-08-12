@@ -82,8 +82,8 @@
         <tbody>
 
         {% for service in department.services %}
-            <tr data-volume="{{ service.most_recent_kpis.volume_num }}"
-                data-volumelabel=" {{ service.most_recent_kpis.volume_num|as_grouped_number }} "
+            <tr data-volume="{{ service.most_up_to_date_volume }}"
+                data-volumelabel=" {{ service.most_up_to_date_volume|as_grouped_number }} "
                 data-category="{{ service.category }}"
                 data-body="{{ department.name }}"
                 data-body-abbr="{{ department.abbr }}"
@@ -109,7 +109,7 @@
                         <a rel="external" href="{{ service.url }}">Access service</a>
                     {% endif %}
                 </td>
-                <td class="amount"> {{ service.most_recent_kpis.volume_num|as_grouped_number }} </td>
+                <td class="amount"> {{ service.most_up_to_date_volume|as_grouped_number }} </td>
             </tr>
         {% endfor %}
 
