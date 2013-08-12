@@ -1,3 +1,4 @@
+from decimal import Decimal
 from functools import total_ordering
 from itertools import groupby
 import re
@@ -49,13 +50,14 @@ class Service:
         'UK EXPORT FINANCE': 'single-identity',
         'WO': 'wales',
     }
-    
+
     def __init__(self, details):
         for key in details:
             setattr( self, keyify(key), details[key] )
         self.has_kpis = False
         self.calculate_quarterly_kpis()
-    
+        self.keywords = self._split_keywords(details)
+
     def calculate_quarterly_kpis(self):
         self.kpis = []
         previous_quarter = None
@@ -154,8 +156,8 @@ class Service:
         kpi_provided = lambda kpi: self._attributes_present(kpi,
                                 ['digital_volume_num', 'volume_num', 'cost'])
 
-        present = len(filter(kpi_provided, self.kpis))
-        total = float(len(self.valid_quarters))
+        present = Decimal(len(filter(kpi_provided, self.kpis)))
+        total = Decimal(len(self.valid_quarters))
 
         return present / total
 
@@ -174,6 +176,13 @@ class Service:
     @property
     def link(self):
         return '%s/%s.html' % ('service-details', self.slug)
+
+    @property
+    def most_up_to_date_volume(self):
+        most_recent_yearly_volume = None
+        if self.has_kpis:
+            most_recent_yearly_volume = self.most_recent_kpis['volume_num']
+        return most_recent_yearly_volume
 
     def historical_data(self, key):
         data = []
@@ -196,6 +205,11 @@ class Service:
     
     def __getitem__(self, key):
         return self.__dict__[key]
+
+    def _split_keywords(self, details):
+        if not details['Keywords']:
+            return []
+        return [x.strip() for x in details['Keywords'].split(',')]
 
 
 @total_ordering

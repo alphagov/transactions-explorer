@@ -3,23 +3,24 @@ import sys
 from distutils import dir_util
 
 import unicodecsv
+from lib.params import parse_args_for_create
 
 from lib.service import Service, latest_quarter, sorted_ignoring_empty_values, Department
 
 from lib import templates
-from lib.csv import map_services_to_csv_data
+from lib.csv import map_services_to_csv_data, map_services_to_dicts
 
 from lib.service import Service, latest_quarter, sorted_ignoring_empty_values,\
     total_transaction_volume
-from lib.templates import render, render_csv
+from lib.templates import render, render_csv, render_search_json
 
 
-SERVICES_DATA = 'data/services.csv'
 OUTPUT_DIR = 'output'
 
 templates.output_dir = OUTPUT_DIR
 
-input = sys.argv[1] if len(sys.argv) > 1 else SERVICES_DATA
+arguments = parse_args_for_create(sys.argv[1:])
+input = arguments.services_data
 
 data = open(input)
 
@@ -30,6 +31,7 @@ high_volume_services = [service for service in services if service.high_volume]
 latest_quarter = latest_quarter(high_volume_services)
 
 departments = set(s.department for s in services)
+
 
 def generate_sorted_pages(items, page_name, sort_orders, extra_variables={}):
     for sort_order, key in sort_orders:
@@ -71,20 +73,21 @@ if __name__ == "__main__":
     generate_sorted_pages(high_volume_services, 'high-volume-services',
                           sort_orders, {'latest_quarter': latest_quarter})
 
-
     departments = Department.from_services(services)
     department_sort_orders = [
         ("by-department", lambda department: department.name),
-        ("by-takeup", lambda department: department.takeup),
+        ("by-digital-takeup", lambda department: department.takeup),
         ("by-cost", lambda department: department.cost),
         ("by-data-coverage", lambda department: department.data_coverage),
-        ("by-volume", lambda department: department.volume),
+        ("by-transactions-per-year", lambda department: department.volume),
     ]
     generate_sorted_pages(departments, 'all-services', department_sort_orders)
 
-
     csv_map = map_services_to_csv_data(services)
     render_csv(csv_map, 'transaction-volumes.csv')
+
+    json_map = map_services_to_dicts(services)
+    render_search_json(json_map, 'search.json')
 
     # Copy the assets folder entirely, as well
     dir_util.copy_tree('assets', '%s/assets' % OUTPUT_DIR)

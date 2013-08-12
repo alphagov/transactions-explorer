@@ -28,12 +28,16 @@ parametrized with the following arguments:
 
 ### Generating site
 
-* run python create_pages.py from the root directory to get some pages.
+
+* Generate the site with `python create_pages.py`. It can be parametrized with
+the following argument:
+  * `--services-data`: Services CSV datafile (default: `data/services.csv`)
 * [optional] symlink the contents of assets/javascripts to output/assets/javascripts 
 for faster feedback than running create_pages each time.
 * run python `test/features/support/stub_server.py &`. 
 * visit localhost:8000/all-services or similar.
 * dance.
+
 
 Testing
 -------
