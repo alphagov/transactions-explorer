@@ -48,12 +48,13 @@ class Service:
         'UK EXPORT FINANCE': 'single-identity',
         'WO': 'wales',
     }
-    
+
     def __init__(self, details):
         for key in details:
             setattr( self, keyify(key), details[key] )
         self.has_kpis = False
         self.calculate_quarterly_kpis()
+        self.keywords = self._split_keywords(details)
 
     def calculate_quarterly_kpis(self):
         self.kpis = []
@@ -182,6 +183,11 @@ class Service:
     
     def __getitem__(self, key):
         return self.__dict__[key]
+
+    def _split_keywords(self, details):
+        if not details['Keywords']:
+            return []
+        return [x.strip() for x in details['Keywords'].split(',')]
 
 
 @total_ordering

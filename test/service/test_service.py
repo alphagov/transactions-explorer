@@ -47,6 +47,15 @@ class TestService(unittest.TestCase):
         assert_that(service_with_two_vols.most_up_to_date_volume, is_(250))
         assert_that(service_with_no_vols.most_up_to_date_volume, is_(None))
 
+    def test_keywords(self):
+        service_with_no_keywords = Service(details({'Keywords': None}))
+        service_with_one_keywords = Service(details({'Keywords': 'keyword'}))
+        service_with_two_keywords = Service(details({'Keywords': 'keyword1, keyword2'}))
+
+        assert_that(service_with_no_keywords.keywords, is_([]))
+        assert_that(service_with_one_keywords.keywords, is_(['keyword']))
+        assert_that(service_with_two_keywords.keywords, is_(['keyword1', 'keyword2']))
+
 
 class TestSummingTotalTransactions(unittest.TestCase):
 
