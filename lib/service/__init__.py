@@ -1,4 +1,6 @@
+from decimal import Decimal
 from functools import total_ordering
+from itertools import groupby
 import re
 
 from lib.filters import as_number
@@ -48,13 +50,14 @@ class Service:
         'UK EXPORT FINANCE': 'single-identity',
         'WO': 'wales',
     }
-    
+
     def __init__(self, details):
         for key in details:
             setattr( self, keyify(key), details[key] )
         self.has_kpis = False
         self.calculate_quarterly_kpis()
-    
+        self.keywords = self._split_keywords(details)
+
     def calculate_quarterly_kpis(self):
         self.kpis = []
         previous_quarter = None
@@ -87,6 +90,7 @@ class Service:
                 'volume':           self['%s_vol' % quarter],
                 'volume_num':       volume,
                 'digital_volume':   self['%s_digital_vol' % quarter],
+                'digital_volume_num': digital_volume,
                 'cost_per':         self['%s_cpt' % quarter],
                 'cost_per_number':  cost_per,
                 'cost_per_digital': self['%s_digital_cpt' % quarter],
@@ -144,7 +148,26 @@ class Service:
     
     @property
     def most_recent_kpis(self):
-        return self.kpis[-1]
+        if len(self.kpis) > 0:
+            return self.kpis[-1]
+
+    @property
+    def data_coverage(self):
+        kpi_provided = lambda kpi: self._attributes_present(kpi,
+                                ['digital_volume_num', 'volume_num', 'cost'])
+
+        present = Decimal(len(filter(kpi_provided, self.kpis)))
+        total = Decimal(len(self.valid_quarters))
+
+        return present / total
+
+    def _attributes_present(self, kpi, attrs):
+        return all(kpi[attr] is not None for attr in attrs)
+
+    def most_recent_kpis_with(self, attrs):
+        return next((kpi for kpi in reversed(self.kpis)
+                     if self._attributes_present(kpi, attrs)),
+                    None)
 
     @property
     def slug(self):
@@ -153,6 +176,13 @@ class Service:
     @property
     def link(self):
         return '%s/%s.html' % ('service-details', self.slug)
+
+    @property
+    def most_up_to_date_volume(self):
+        most_recent_yearly_volume = None
+        if self.has_kpis:
+            most_recent_yearly_volume = self.most_recent_kpis['volume_num']
+        return most_recent_yearly_volume
 
     def historical_data(self, key):
         data = []
@@ -176,6 +206,11 @@ class Service:
     def __getitem__(self, key):
         return self.__dict__[key]
 
+    def _split_keywords(self, details):
+        if not details['Keywords']:
+            return []
+        return [x.strip() for x in details['Keywords'].split(',')]
+
 
 @total_ordering
 class Quarter:
@@ -196,6 +231,80 @@ class Quarter:
     def parse(cls, str):
         m = re.match('(\d\d\d\d)_q(\d)', str)
         return Quarter(int(m.group(1)), int(m.group(2)))
+
+
+class Department(object):
+    @classmethod
+    def from_services(cls, services):
+        key = lambda s: s.department
+        services_by_dept = groupby(sorted(services, key=key), key=key)
+        return [Department(name, svcs) for name, svcs in services_by_dept]
+
+    def __init__(self, name, services):
+        self.name = name
+        self.services = list(services)
+        self.aggregator = ServiceKpiAggregator(self.services)
+
+    @property
+    def volume(self):
+        return self._aggregate('volume_num')
+
+    @property
+    def cost(self):
+        return self._aggregate('cost', high_volume_only=True)
+
+    @property
+    def abbr(self):
+        return self.services[0].abbr
+
+    @property
+    def link(self):
+        return '/department/' + slugify(self.abbr)
+
+    def _aggregate(self, attr, high_volume_only=False):
+        return self.aggregator.aggregate([attr], high_volume_only)[0]
+
+    @property
+    def takeup(self):
+        digital_volume, volume = \
+            self.aggregator.aggregate(['digital_volume_num', 'volume_num'],
+                                      high_volume_only=True)
+
+        if digital_volume is None:
+            return None
+        else:
+            return digital_volume / volume
+
+    @property
+    def data_coverage(self):
+        high_volume_services = filter(lambda s: s.high_volume, self.services)
+        total_services = len(high_volume_services)
+
+        if total_services == 0:
+            return None
+        else:
+            return sum(service.data_coverage for service in high_volume_services) / total_services
+
+
+class ServiceKpiAggregator(object):
+    def __init__(self, services):
+        self.services = services
+
+
+    def aggregate(self, attrs, high_volume_only=False):
+        def included(service):
+            return service.most_recent_kpis_with(attrs) is not None and (
+                   not high_volume_only or service.high_volume)
+
+        def aggregation(attr):
+            values = [service.most_recent_kpis_with(attrs)[attr]
+                      for service in self.services
+                      if included(service)
+                      and service.most_recent_kpis_with(attrs)[attr] is not None]
+            if any(values):
+                return sum(values)
+
+        return map(aggregation, attrs)
 
 
 def total_transaction_volume(services):

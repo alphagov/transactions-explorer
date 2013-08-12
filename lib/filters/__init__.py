@@ -106,6 +106,9 @@ def number_as_percentage_change(num):
 
 
 def number_as_grouped_number(num):
+    if num is None:
+        return ''
+
     if type(num) is str or type(num) is unicode:
         num = float(as_number(num))
     
