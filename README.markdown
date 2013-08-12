@@ -28,9 +28,11 @@ parametrized with the following arguments:
 
 ### Generating site
 
-* Generate the site with `python create_pages.py`.
-
-
+* run python create_pages.py from the root directory to get some pages.
+* symlink the contents of assets/javascripts to output/assets/javascripts.
+* run python `test/features/support/stub_server.py &`. 
+* visit localhost:8000/all_services or similar.
+* dance.
 
 Testing
 -------
