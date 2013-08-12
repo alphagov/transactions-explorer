@@ -107,13 +107,6 @@ if __name__ == "__main__":
                 render('department.html',
                        out="department/%s/%s/%s.html" % (slugify(department.abbr), sort_order, direction),
                        vars=variables)
-        # generate_sorted_pages(department.services, 'department', services_sort_orders, {
-        #     'department': department
-        # })
-        # render('department.html', out=department.link, vars={
-        #     'department': department
-        # })
-
 
     csv_map = map_services_to_csv_data(services)
     render_csv(csv_map, 'transaction-volumes.csv')
