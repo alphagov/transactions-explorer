@@ -28,8 +28,9 @@ parametrized with the following arguments:
 
 ### Generating site
 
-* Generate the site with `python create_pages.py`.
-
+* Generate the site with `python create_pages.py`. It can be parametrized with
+the following argument:
+  * `--services-data`: Services CSV datafile (default: `data/services.csv`)
 
 
 Testing
