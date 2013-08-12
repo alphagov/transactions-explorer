@@ -1,7 +1,7 @@
 from nose.plugins.attrib import attr
 from unittest import TestCase
 from splinter import Browser
-from test.features.support.stub_server import TestServer
+from test.features.support.test_server import TestServer
 
 
 def setup_package():
