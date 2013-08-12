@@ -1,15 +1,15 @@
 from nose.plugins.attrib import attr
 from unittest import TestCase
 from splinter import Browser
-from test.features.support.stub_server import HttpStub
+from test.features.support.stub_server import TestServer
 
 
 def setup_package():
-    HttpStub.start()
+    TestServer.start()
 
 
 def teardown_package():
-    HttpStub.stop()
+    TestServer.stop()
 
 
 @attr('feature')

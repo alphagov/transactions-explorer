@@ -35,7 +35,7 @@ def get_content_type(full_path):
     }.get(full_path.rsplit('.', 1)[1], "text/plain")
 
 
-class HttpStub(BaseHTTPRequestHandler):
+class TestServer(BaseHTTPRequestHandler):
 
     thread = None
     server = None
@@ -101,11 +101,11 @@ class HttpStub(BaseHTTPRequestHandler):
 
 if __name__ == "__main__":
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 8080
-    HttpStub.start(port=port)
+    TestServer.start(port=port)
     print "Running on port %d" % port
 
     def stop(signal, frame):
-        HttpStub.stop()
+        TestServer.stop()
         print "\nBye"
 
     signal.signal(signal.SIGINT, stop)
