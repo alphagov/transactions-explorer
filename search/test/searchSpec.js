@@ -66,17 +66,6 @@ describe("Searching for services on the transaction explorer. ", function() {
             expect(fakeSearch.load.calls.length).toBe(1);
         });
 
-        it("should perform a search when the search form is submitted", function() {
-            $('#search-box').val('bizzle bozzle');
-            $('#search').trigger('submit');
-            expect(fakeSearch.performSearch).toHaveBeenCalledWith('bizzle bozzle');
-        });
-
-        it("should perform a search when the search button is clicked", function() {
-            $('#search-box').val('woozle wozzle weazle');
-            $('#search-button').click();
-            expect(fakeSearch.performSearch).toHaveBeenCalledWith('woozle wozzle weazle');
-        });
     });
 
     describe("Result ranking", function() {

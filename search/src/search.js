@@ -97,7 +97,6 @@ GOVUK.transactionsExplorer.search = (function () {
 
 GOVUK.transactionsExplorer.wireSearchForm = function(ids, search, keyword) {
     var searchBox = $(ids.inputId),
-        searchButton = $(ids.buttonId),
         loaded = false;
 
     if (keyword) {
@@ -112,11 +111,6 @@ GOVUK.transactionsExplorer.wireSearchForm = function(ids, search, keyword) {
             search.load();
             loaded = true;
         }
-    });
-
-    $('#search').on('submit', function (event) {
-        search.performSearch(searchBox.val());
-        event.preventDefault();
     });
 };
 
@@ -197,6 +191,7 @@ GOVUK.transactionsExplorer.getSearchKeyword = function (documentSearchString) {
 };
 
 GOVUK.transactionsExplorer.initSearch = function () {
+    $(function () {
     GOVUK.transactionsExplorer.wireSearchForm({
         formId: '#search',
         inputId: '#search-box',
@@ -205,5 +200,6 @@ GOVUK.transactionsExplorer.initSearch = function () {
         GOVUK.transactionsExplorer.search,
         GOVUK.transactionsExplorer.getSearchKeyword(document.location.search));
     GOVUK.transactionsExplorer.searchResultsTable.wireTable('#transactions-table');
+    });
 };
 
