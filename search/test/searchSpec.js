@@ -227,7 +227,7 @@ describe("Searching for services on the transaction explorer. ", function() {
         });
     });
 
-    describe("Results box", function() {
+    describe("Results table", function() {
         beforeEach(function() {
             $('<table id="results"><tbody></tbody></table>').appendTo('body');
         });
@@ -257,7 +257,7 @@ describe("Searching for services on the transaction explorer. ", function() {
             expect(resultsTable.find('tr td').first().text()).toBe('AA');
             expect($(resultsTable.find('tr td').get(1)).text()).toBe('some category');
             expect($(resultsTable.find('tr td').get(2)).html()).toBe('<a href="http://www.bar.com">Access service</a>');
-            expect($(resultsTable.find('tr td').get(3)).text()).toBe('9999');
+            expect($(resultsTable.find('tr td').get(3)).text()).toBe('9,999');
         });
 
         it('should not display links when they don\'t exist', function() {
@@ -281,9 +281,27 @@ describe("Searching for services on the transaction explorer. ", function() {
             expect(resultsTable.find('tr td').first().text()).toBe('AA');
             expect($(resultsTable.find('tr td').get(1)).text()).toBe('some category');
             expect($(resultsTable.find('tr td').get(2)).html()).toBe('&nbsp;');
-            expect($(resultsTable.find('tr td').get(3)).text()).toBe('9999'); 
+            expect($(resultsTable.find('tr td').get(3)).text()).toBe('9,999'); 
         });
 
+        it('should format big numbers with commas', function () {
+            GOVUK.transactionsExplorer.searchResultsTable.wireTable('#results');
+            GOVUK.transactionsExplorer.searchResultsTable.update([{
+                agencyOrBodyAbbreviation: "AA",
+                service: "some service",
+                departmentAbbreviation: "DA",
+                agencyOrBody: "",
+                transactionsPerYear: 2345987,
+                department: "some department",
+                category: "some category",
+                transactionLink: null,
+                keywords: [],
+                detailsLink: null 
+            }]);
+
+            var resultsTable = $('#results');
+            expect($(resultsTable.find('tr td').get(3)).text()).toBe('2,345,987'); 
+        });
 
         it('should display null numbers as blank', function () {
             GOVUK.transactionsExplorer.searchResultsTable.wireTable('#results');

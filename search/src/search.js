@@ -146,6 +146,14 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
         }
     };
 
+    var transactionsPerYear = function (transactionsPerYear) {
+        if (transactionsPerYear) {
+            return transactionsPerYear.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        } else {
+            return "&nbsp;";
+        }
+    };
+
     var update = function (services) {
         var rows = [];
 
@@ -155,7 +163,7 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
             row.find('.js-row-abbr').html(service['agencyOrBodyAbbreviation']);
             row.find('.js-row-category').html(service['category']);
             row.find('.js-row-transaction').html(transactionLink(service['transactionLink']));
-            row.find('.js-row-transactions').html(service['transactionsPerYear'] || '&nbsp;');
+            row.find('.js-row-transactions').html(transactionsPerYear(service['transactionsPerYear']));
         
             rows.push('<tr>' + row.html() + '</tr>');
         });
