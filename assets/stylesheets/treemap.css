@@ -290,20 +290,121 @@ text-transform: none; }
 .node{
   background:seagreen;
 }
-
-.node.hmrc{
-  background: crimson
+/* attorney generals office */
+.node.ago{
+  background: #9f1888;
 }
-
+/* cabinet office */
+.node.co{
+  background: #005abb;
+}
+/* business innovation and skills*/
+.node.bis{
+  background: #003479;
+}
+/*department-for-communities-and-local-government*/
+.node.dclg{
+  background: #00857e;
+}
+/*department-for-culture-media-sport*/
+.node.dcms{
+  background: #d40072;
+}
+/*department-for-education*/
+.node.dfe{
+  background: #003a69;
+}
+/*department-for-environment-food-rural-affairs*/
 .node.defra{
-  background: teal
+  background: #898700;
 }
-
-.node.dwp{
-  background: goldenrod
+/*department-for-international-development*/
+.node.dfid{
+  background: #002878;
 }
-
+/*department-for-transport*/
 .node.dft{
-  background: coral
+  background: #006c56;
 }
-
+/*department-for-work-pensions*/
+.node.dwp{
+  background: #00beb7;
+}
+/*department-of-energy-climate-change*/
+.node.decc{
+  background: #009ddb;
+}
+/*department-of-health*/
+.node.dh{
+  background: #00ad93;
+}
+/*foreign-commonwealth-office*/
+.node.fco{
+  background: #002e74;
+}
+/*guess work*/
+/*government-equalities-office*/
+.node.geo{
+  background: #9325b2;
+}
+/*guess work*/
+/*hm-government*/
+.node.hmg{
+  background: #0076c0;
+}
+/*hm-revenue-customs*/
+.node.hmrc{
+  background: #009390;
+}
+/*guess work*/
+/*hm-treasury*/
+.node.hmt{
+  background: #af292e;
+}
+/*home-office*/
+.node.home-office{
+  background: #9325b2;
+}
+/*ministry-of-defence*/
+.node.mod{
+  background: #4d2942;
+}
+/*ministry-of-justice*/
+.node.moj{
+  background: #231f20;
+}
+/*guess work*/
+/*northern-ireland-office*/
+.node.nio{
+  background: #002663;
+}
+/*guess work*/
+/*office-of-the-advocate-general-for-scotland*/
+.node.oags{
+  background: #002663;
+}
+/*guess work*/
+/*office-of-the-leader-of-the-house-of-lords*/
+.node.olhl{
+  background: #9c132e;
+}
+/*guess work*/
+/*scotland-office*/
+.node.so{
+  background: #002663;
+}
+/*guess work*/
+/*the-office-of-the-leader-of-the-house-of-commons*/
+.node.olhc{
+  background: #317023;
+}
+/*guess work*/
+/*uk-export-finance*/
+.node.uef{
+  background: #005747;
+}
+/*guess work*/
+/*wales-office*/
+.node.wo{
+  background: #a33038;
+}
