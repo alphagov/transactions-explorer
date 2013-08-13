@@ -24,32 +24,6 @@ class Service:
         '2013_q1',
         '2013_q2',
     ]
-    dept_class_table = {
-        'AGO': 'single-identity',
-        'CO': 'single-identity',
-        'BIS': 'bis',
-        'DCLG': 'single-identity',
-        'DCMS': 'single-identity',
-        'DFE': 'single-identity',
-        'DEFRA': 'single-identity',
-        'DFID': 'single-identity',
-        'DFT': 'single-identity',
-        'DWP': 'single-identity',
-        'DECC': 'single-identity',
-        'DH': 'single-identity',
-        'FCO': 'single-identity',
-        'HMT': 'single-identity',
-        'HOME OFFICE': 'ho',
-        'MOD': 'mod',
-        'MOJ': 'single-identity',
-        'NIO': 'single-identity',
-        'OAG': 'so',
-        'OLHC': 'portcullis',
-        'OLHL': 'portcullis',
-        'SCOTLAND OFFICE': 'so',
-        'UK EXPORT FINANCE': 'single-identity',
-        'WO': 'wales',
-    }
 
     def __init__(self, details):
         for key in details:
@@ -203,13 +177,6 @@ class Service:
         
         return data[1:]
     
-    @property
-    def css_class_postfix(self):
-        css_class = self.dept_class_table.get( self.abbr.upper(), None )
-        if css_class is not None:
-            return css_class
-        return None
-    
     def __getitem__(self, key):
         return self.__dict__[key]
 
@@ -241,6 +208,33 @@ class Quarter:
 
 
 class Department(object):
+    dept_class_table = {
+        'AGO': 'single-identity',
+        'CO': 'single-identity',
+        'BIS': 'bis',
+        'DCLG': 'single-identity',
+        'DCMS': 'single-identity',
+        'DFE': 'single-identity',
+        'DEFRA': 'single-identity',
+        'DFID': 'single-identity',
+        'DFT': 'single-identity',
+        'DWP': 'single-identity',
+        'DECC': 'single-identity',
+        'DH': 'single-identity',
+        'FCO': 'single-identity',
+        'HMT': 'single-identity',
+        'HOME OFFICE': 'ho',
+        'MOD': 'mod',
+        'MOJ': 'single-identity',
+        'NIO': 'single-identity',
+        'OAG': 'so',
+        'OLHC': 'portcullis',
+        'OLHL': 'portcullis',
+        'SCOTLAND OFFICE': 'so',
+        'UK EXPORT FINANCE': 'single-identity',
+        'WO': 'wales',
+    }
+
     @classmethod
     def from_services(cls, services):
         key = lambda s: s.department
@@ -255,6 +249,13 @@ class Department(object):
     @property
     def name_slug(self):
         return slugify(self.name)
+
+    @property
+    def css_class_postfix(self):
+        css_class = self.dept_class_table.get(self.abbr.upper(), None)
+        if css_class is not None:
+            return css_class
+        return None
 
     @property
     def high_volume_count(self):

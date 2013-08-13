@@ -61,7 +61,8 @@ if __name__ == "__main__":
     for service in high_volume_services:
         render('service_detail.html',
                out=service.link,
-               vars={"service": service})
+               vars={'service': service,
+                     'department': Department(service.department, [service])})
 
     sort_orders = [
         ("by-name", lambda service: service.name_of_service),
