@@ -92,10 +92,17 @@ GOVUK.transactionsExplorer.search = (function () {
     };
 }());
 
-GOVUK.transactionsExplorer.wireSearchForm = function(ids, search) {
+GOVUK.transactionsExplorer.wireSearchForm = function(ids, search, keyword) {
     var searchBox = $(ids.inputId),
         searchButton = $(ids.buttonId),
         loaded = false;
+
+    if (keyword) {
+        search.load();
+        loaded = true;
+        searchBox.val(keyword);
+        search.performSearch(keyword);
+    }
 
     searchBox.on('focus', function (event) {
         if (!loaded) {
@@ -169,4 +176,26 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
         update: update
     };
 }());
+
+GOVUK.transactionsExplorer.getSearchKeyword = function (documentSearchString) {
+    var searchParam = undefined;
+    if (documentSearchString) {
+        var matchedUrlParams = documentSearchString.match(/(?:keyword)=([^&]+)/);
+        if (matchedUrlParams && matchedUrlParams.length === 2) {
+            searchParam = decodeURIComponent(matchedUrlParams[1]);
+        }
+    }
+    return searchParam;
+};
+
+GOVUK.transactionsExplorer.initSearch = function () {
+    GOVUK.transactionsExplorer.wireSearchForm({
+        formId: '#search',
+        inputId: '#search-box',
+        buttonId: '#search-button'
+        },
+        GOVUK.transactionsExplorer.search,
+        GOVUK.transactionsExplorer.getSearchKeyword(document.location.search));
+    GOVUK.transactionsExplorer.searchResultsTable.wireTable('#results');
+};
 

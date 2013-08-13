@@ -13,11 +13,7 @@
         <script src="lib/jquery-1.10.2.js"></script>
         <script src="src/search.js"></script>
         <script>
-            GOVUK.transactionsExplorer.wireSearchForm({ 
-                inputId: '#search-box',
-                buttonId: '#search-button'
-            }, GOVUK.transactionsExplorer.search);
-            GOVUK.transactionsExplorer.searchResultsTable.wireTable('#results');
+            GOVUK.transactionsExplorer.initSearch();
         </script>
     </body>
 </html>

@@ -1,6 +1,27 @@
 describe("Searching for services on the transaction explorer. ", function() {
-    describe("The search form", function() {
+    describe('extracting keywords from document.location.search', function () {
+        it('should trim out the keyword (search query)', function () {
+            var keyword = GOVUK.transactionsExplorer.getSearchKeyword('?keyword=iAmKeyword');
+            expect(keyword).toBe('iAmKeyword');
+        });
+        
+        it('should deal with spaces (search query)', function () {
+            var keyword = GOVUK.transactionsExplorer.getSearchKeyword('?keyword=son%20of%20keyword');
+            expect(keyword).toBe('son of keyword');
+        });
 
+        it('should ignore extra keywords', function () {
+            var keyword1 = GOVUK.transactionsExplorer.getSearchKeyword('?keyword=revengeOfKeyword&foo=bar');
+            var keyword2 = GOVUK.transactionsExplorer.getSearchKeyword('?bar=foo&keyword=returnOfKeyword');
+            var keyword3 = GOVUK.transactionsExplorer.getSearchKeyword('?zap=monkey&keyword=the%20mask%20of%20keyword&foo=bar');
+            
+            expect(keyword1).toBe('revengeOfKeyword');
+            expect(keyword2).toBe('returnOfKeyword');
+            expect(keyword3).toBe('the mask of keyword');
+        });
+    });
+
+    describe("The search form", function() {
         var fakeSearch = undefined,
             ENTER_KEY = 13;
 
@@ -21,6 +42,17 @@ describe("Searching for services on the transaction explorer. ", function() {
 
         afterEach(function() {
             $('#search').remove();
+        });
+
+        describe("Searching based on query parameters", function () {
+            it('should search for the keyword if provided in the wireup', function () {
+                GOVUK.transactionsExplorer.wireSearchForm({
+                    searchForm: "#search",
+                    inputId: "#search-box",
+                    buttonId: "#search-button"
+                }, fakeSearch, 'iAmAKeyWord');
+                expect(fakeSearch.performSearch).toHaveBeenCalledWith('iAmAKeyWord');
+            });
         });
 
         it("should load search data the first time the search box gets focus", function() {
