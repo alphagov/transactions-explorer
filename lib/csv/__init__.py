@@ -41,7 +41,8 @@ JSON_SEARCH_FORMAT = [("department", lambda s: s.department),
                       ("transactionsPerYear",
                        lambda s: s.most_up_to_date_volume),
                       ("transactionLink", lambda s: s.url),
-                      ("detailsLink", lambda s: s.link),
+                      ("detailsLink",
+                       lambda s: s.link if s.high_volume else ""),
                       ("category", lambda s: s.category)]
 
 
