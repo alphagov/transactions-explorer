@@ -253,6 +253,10 @@ class Department(object):
         self.aggregator = ServiceKpiAggregator(self.services)
 
     @property
+    def name_slug(self):
+        return slugify(self.name)
+
+    @property
     def high_volume_count(self):
         return len(filter(lambda s: s.high_volume, self.services))
 
