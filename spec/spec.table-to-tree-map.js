@@ -84,33 +84,34 @@ describe("Table To Treemap", function () {
       ]);
     });
 
-    it("should apply the correct CSS classes to the nodes", function () {
+    it("should apply the correct CSS classes to the nodes, including department abbreviation", function () {
       var data = {
         name: "TreeMap sample",
         children: [
-          { name: "Service 1", size: 20 },
-          { name: "Service 2", size: 40 },
-          { name: "Service 3", size: 10 },
-          { name: "Service 4", size: 8 },
-          { name: "Service 5", size: 3 },
-          { name: "Service 6", size: 1 },
-          { name: "Service 7", size: 1 },
-          { name: "Service 8", size: 0.1 }
+          { name: "Service 1", deptClass: "hmrc", size: 20 },
+          { name: "Service 2", deptClass: "hmrc", size: 40 },
+          { name: "Service 3", deptClass: "hmrc", size: 10 },
+          { name: "Service 4", deptClass: "dft", size: 8 },
+          { name: "Service 5", deptClass: "silly-walks", size: 3 },
+          { name: "Service 6", deptClass: "dfid", size: 1 },
+          { name: "Service 7", deptClass: "defra", size: 1 },
+          { name: "Service 8", deptClass: "hmrc", size: 0.1 }
         ]
       };
 
       TreeMapLayout.display("testmap", data);
 
+
       var classes = d3.selectAll('div.node')[0].map(function(d) { return d.className; });
       expect(classes[0]).toEqual('node xx-large');
-      expect(classes[1]).toEqual('node x-large');
-      expect(classes[2]).toEqual('node xx-large');
-      expect(classes[3]).toEqual('node large');
-      expect(classes[4]).toEqual('node medium');
-      expect(classes[5]).toEqual('node small');
-      expect(classes[6]).toEqual('node ellipsis');
-      expect(classes[7]).toEqual('node ellipsis');
-      expect(classes[8]).toEqual('node none');
+      expect(classes[1]).toEqual('node x-large hmrc');
+      expect(classes[2]).toEqual('node xx-large hmrc');
+      expect(classes[3]).toEqual('node large hmrc');
+      expect(classes[4]).toEqual('node medium dft');
+      expect(classes[5]).toEqual('node small silly-walks');
+      expect(classes[6]).toEqual('node ellipsis dfid');
+      expect(classes[7]).toEqual('node ellipsis defra');
+      expect(classes[8]).toEqual('node none hmrc');
     });
   });
 
