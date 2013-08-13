@@ -120,3 +120,6 @@ def number_as_grouped_number(num):
         num = round(num)
         return locale.format('%d', num, grouping=True)
 
+def string_as_absolute_path(string):
+    return '/' + string
+

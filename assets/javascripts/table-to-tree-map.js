@@ -50,7 +50,7 @@ var Tree = (function () {
         size: volume,
         volumeShortened: formatNumericLabel(volume),
         volumeLabel: row.getAttribute("data-volumelabel"),
-        url: '/' + row.getAttribute("data-bubbleLink"),
+        url: row.getAttribute("data-bubbleLink"),
         color: row.getAttribute("data-color"),
         textColor: row.getAttribute('data-text-color'),
         cost: row.getAttribute('data-cost'),
@@ -130,10 +130,12 @@ var TreeMapLayout = (function () {
 
   var getNodeClass = function (d) {
     var classes = ["none", "ellipsis", "small", "medium", "large", "x-large", "xx-large"],
-        keys    = [0     , 1         , 2      , 3       , 4      ,5         , 6],
+        keys    = [0     , 1         , 2      , 3       , 4      , 5        , 6],
         dxIndex = d3.scale.threshold().domain([20,50,130,200,250,400]).range(keys),
-        dyIndex = d3.scale.threshold().domain([10,40,100,150,200,400]).range(keys);
-    var nClass = 'node ' + classes[Math.min(dxIndex(d.dx), dyIndex(d.dy))];
+        dyIndex = d3.scale.threshold().domain([10,40,100,150,200,400]).range(keys),
+        type    = d.children ? "group" : "leaf";
+
+    var nClass = ['node', classes[Math.min(dxIndex(d.dx), dyIndex(d.dy))], type].join(' ');
     if(d.deptClass){
       // currently using dashes to replace dept name spaces e.g. 'Home Office' becomes 'home-office'
       nClass += ' ' + d.deptClass.replace(/\s+/g, '-').toLowerCase();
