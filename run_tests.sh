@@ -2,6 +2,11 @@
 
 set -o pipefail
 
+if [ -z "$VIRTUAL_ENV" ]; then
+  echo "ERROR: You are not running within a virtual environment" >&2
+  exit 1
+fi
+
 echo "== INSTALLING DEPENDENCIES =="
 pip install -q -r requirements.txt --use-mirrors
 
