@@ -129,6 +129,22 @@ class TestService(unittest.TestCase):
         assert_that(service_with_one_keywords.keywords, is_(['keyword']))
         assert_that(service_with_two_keywords.keywords, is_(['keyword1', 'keyword2']))
 
+    def test_agency_abbr_if_supplied(self):
+        service = Service(details({
+            "Agency/body": "A and B and C",
+            "Agency abbr": "ABC",
+        }))
+
+        assert_that(service.agency_abbreviation, is_("ABC"))
+
+    def test_agency_abbr_is_full_name_if_not_supplied(self):
+        service = Service(details({
+            "Agency/body": "A and B and C",
+            "Agency abbr": "",
+        }))
+
+        assert_that(service.agency_abbreviation, is_("A and B and C"))
+
 
 class TestSummingTotalTransactions(unittest.TestCase):
 

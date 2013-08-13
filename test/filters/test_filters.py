@@ -1,5 +1,5 @@
 from hamcrest import assert_that, is_
-from lib.filters import number_as_magnitude, number_as_financial_magnitude
+from lib.filters import number_as_magnitude, number_as_financial_magnitude, string_as_absolute_path
 
 
 def test_number_as_magnitude():
@@ -100,3 +100,6 @@ def test_number_as_financial_magnitude():
     assert_that(number_as_financial_magnitude(123000000000), is_("123bn"))
     assert_that(number_as_financial_magnitude(123400000000), is_("123bn"))
     assert_that(number_as_financial_magnitude(123600000000), is_("124bn"))
+
+def test_string_as_link():
+    assert_that(string_as_absolute_path('some/path'), is_('/some/path'))
