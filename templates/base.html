@@ -42,8 +42,8 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
     </script>
-    <link rel="stylesheet" media="screen" href="{{ EXPLORER_HOST }}/assets/stylesheets/index.css">
-    <link rel="stylesheet" media="screen" href="{{ EXPLORER_HOST }}/assets/stylesheets/treemap.css">
+    <link rel="stylesheet" media="screen" href="{{ 'assets/stylesheets/index.css'|as_absolute_path }}">
+    <link rel="stylesheet" media="screen" href="{{ 'assets/stylesheets/treemap.css'|as_absolute_path }}">
     <!--[if lt IE 9]>
     <link type="text/css" href="{{ STATIC_HOST }}/ie.css" rel="stylesheet" media="all">
     <![endif]-->
