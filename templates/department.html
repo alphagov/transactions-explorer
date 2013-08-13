@@ -85,14 +85,14 @@
                 data-body="{{ department.name }}"
                 data-body-abbr="{{ department.abbr }}"
                 data-url="{{ service.url }}"
-                data-bubblelink="/{{ service.link }}"
+                data-bubblelink="{{ service.link|as_absolute_path }}"
                 data-label="{{ service.name }}"
                 data-title="{{ service.name }}"
                 data-color="#2e358b"
                 data-text-color="#fff">
                 <th scope="row">
                     {% if service.high_volume %}
-                        <a href="/{{ service.link }}">{{ service.name }}</a>
+                        <a href="{{ service.link|as_absolute_path }}">{{ service.name }}</a>
                     {% else %}
                         {{ service.name }}
                     {% endif %}

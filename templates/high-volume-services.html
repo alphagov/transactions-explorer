@@ -101,14 +101,14 @@
                             data-body="{{ service.body }}"
                             data-body-abbr="{{ service.agency_abbr }}"
                             data-url="{{ service.url }}"
-                            data-bubbleLink="{{ service.link }}"
+                            data-bubbleLink="{{ service.link|as_absolute_path }}"
                             data-label="{{ service.short_service_name }}"
                             data-title="{{ service.name_of_service }}"
                             data-color="#2e358b"
                             data-text-color="#fff">
 
                             <th scope="row">
-                                <a href="../../{{ service.link }}">{{ service.name_of_service }}</a>
+                                <a href="{{ service.link|as_absolute_path }}">{{ service.name_of_service }}</a>
                             </th>
 
                             <td>{{ service.abbr }}</td>

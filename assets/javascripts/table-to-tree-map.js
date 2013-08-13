@@ -47,7 +47,7 @@ var Tree = (function () {
         size: volume,
         volumeShortened: formatNumericLabel(volume),
         volumeLabel: row.getAttribute("data-volumelabel"),
-        url: '/' + row.getAttribute("data-bubbleLink"),
+        url: row.getAttribute("data-bubbleLink"),
         color: row.getAttribute("data-color"),
         textColor: row.getAttribute('data-text-color')
       };
