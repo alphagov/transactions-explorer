@@ -3,6 +3,7 @@ import os
 import re
 import threading
 import time
+from urlparse import urlparse
 import requests
 import signal
 import sys
@@ -17,6 +18,11 @@ def has_extension(path):
 
 
 def find_file_to_serve(path):
+    url = urlparse(path)
+
+    if url.query:
+        path = url.path
+
     abs_path = os.path.join(HTML_ROOT, path.lstrip('/'))
 
     if os.path.isdir(abs_path):

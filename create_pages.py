@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from pprint import pprint
 import sys
-from distutils import dir_util
+from distutils import dir_util, file_util
 
 import unicodecsv
 from lib.params import parse_args_for_create
@@ -103,5 +103,9 @@ if __name__ == "__main__":
     json_map = map_services_to_dicts(services)
     render_search_json(json_map, 'search.json')
 
+    render('search.html', 'search.html', {})
+
     # Copy the assets folder entirely, as well
     dir_util.copy_tree('assets', '%s/assets' % OUTPUT_DIR)
+    file_util.copy_file('search/src/search.js', '%s/assets' % OUTPUT_DIR)
+    dir_util.copy_tree('search/lib', '%s/assets' % OUTPUT_DIR)

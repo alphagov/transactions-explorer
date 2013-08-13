@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+    <header class="page-header group">
+        <hgroup>
+            <h1>Search results</h1>
+        </hgroup>
+    </header>
+
+    <div class="group">
+    <article role="article" class="group">
+    <section class="content-group">
+        <div class="find-nearest">
+            <form action="/search" method="get" id="search" class="find-location-for-service">
+                <fieldset>
+                    <legend class="visuallyhidden">Search Transactional Explorer</legend>
+                    <div class="ask_location">
+                        <label for="department">Find a department, agency or service:
+                            <input class="postcode" id="search-box"
+                                   name="keyword" type="text"
+                                   placeholder="e.g. driving licence">
+                        </label>
+                        <button id="search-button" type="submit" class="button">Find</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+
+    <section class="content-group">
+    <div id="search_results">
+    <table id="transactions-table" class="full_width_table">
+    <thead>
+    <tr>
+        <th scope="col">Transactional service</th>
+        <th scope="col">Agency / body</th>
+        <th scope="col">Category</th>
+        <th scope="col">Web link</th>
+        <th scope="col" class="amount">Transactions per year<span class="sort-ind">▼</span></th>
+    </tr>
+    </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    </div>
+
+    <div class="form-download">
+        <p>{% include "csv_download_link.html" %}</p>
+    </div>
+
+    </section>
+    </article>
+    </div>
+    <script src='assets/jquery-1.10.2.js'></script>
+    <script src='assets/search.js'></script>
+    <script>
+        GOVUK.transactionsExplorer.initSearch();
+    </script>
+{% endblock %}
