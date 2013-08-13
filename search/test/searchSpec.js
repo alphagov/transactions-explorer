@@ -89,6 +89,7 @@ describe("Searching for services on the transaction explorer. ", function() {
                     agencyOrBody: "",
                     transactionsPerYear: 4500,
                     department: "Department of Wibble",
+                    category: "",
                     keywords: []
                 });
 
@@ -103,6 +104,7 @@ describe("Searching for services on the transaction explorer. ", function() {
                     agencyOrBody: "",
                     transactionsPerYear: 4500,
                     department: "Department of Wibble",
+                    category: "",
                     keywords: []
                 });
 
@@ -117,6 +119,7 @@ describe("Searching for services on the transaction explorer. ", function() {
                     agencyOrBody: "",
                     transactionsPerYear: null,
                     department: "Department of Ninjas",
+                    category: "",
                     keywords: []
                 });
 
@@ -131,6 +134,7 @@ describe("Searching for services on the transaction explorer. ", function() {
                     agencyOrBody: "",
                     transactionsPerYear: 7777,
                     department: "Department of Ninjas",
+                    category: "",
                     keywords: []
                 });
 
@@ -145,6 +149,7 @@ describe("Searching for services on the transaction explorer. ", function() {
                     agencyOrBody: "",
                     transactionsPerYear: 5000,
                     department: "Department of Pirates",
+                    category: "",
                     keywords: ['pirates','parrots','grog']
                 });
 
@@ -287,7 +292,7 @@ describe("Searching for services on the transaction explorer. ", function() {
             expect(resultsTable.find('th').first().html()).toBe('<a href="http://www.foo.com">some service</a>');
             expect(resultsTable.find('tr td').first().text()).toBe('AA');
             expect($(resultsTable.find('tr td').get(1)).text()).toBe('some category');
-            expect($(resultsTable.find('tr td').get(2)).html()).toBe('<a href="http://www.bar.com">Access service</a>');
+            expect($(resultsTable.find('tr td').get(2)).html()).toBe('<a rel="external" href="http://www.bar.com">Access service</a>');
             expect($(resultsTable.find('tr td').get(3)).text()).toBe('9,999');
         });
 
@@ -309,7 +314,7 @@ describe("Searching for services on the transaction explorer. ", function() {
             }]);
 
             expect(resultsTable.find('th').first().html()).toBe('some service');
-            expect(resultsTable.find('tr td').first().text()).toBe('AA');
+            expect(resultsTable.find('tr td').first().html()).toBe('<abbr title="">AA</abbr>');
             expect($(resultsTable.find('tr td').get(1)).text()).toBe('some category');
             expect($(resultsTable.find('tr td').get(2)).html()).toBe('&nbsp;');
             expect($(resultsTable.find('tr td').get(3)).text()).toBe('9,999'); 

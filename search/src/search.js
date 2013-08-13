@@ -16,7 +16,8 @@ GOVUK.transactionsExplorer.scoreService = (function () {
         "departmentAbbreviation",
         "agencyOrBody",
         "department",
-        "keywords"
+        "keywords",
+        "category"
     ];
 
     var scoreService = function (searchTerm, service) {
@@ -141,11 +142,16 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
     
     var transactionLink = function (transactionLink) {
         if (transactionLink) {
-            return '<a href="' + transactionLink + '">Access service</a>'; 
+            return '<a rel="external" href="' + transactionLink + '">Access service</a>'; 
         } else {
             return "&nbsp;";
         }
     };
+
+    var abbreviation = function (abbreviation, title) {
+        if (!abbreviation) { return title; }
+        return '<abbr title="' + title + '">' + abbreviation + '</abbr>'
+    }
 
     var transactionsPerYear = function (transactionsPerYear) {
         if (transactionsPerYear) {
@@ -161,7 +167,7 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
         $.each(services, function (i, service) {
             var row = $(ROW_TEMPLATE);
             row.find('.js-row-header').html(rowHeader(service['service'], service['detailsLink']));
-            row.find('.js-row-abbr').html(service['agencyOrBodyAbbreviation']);
+            row.find('.js-row-abbr').html(abbreviation(service['agencyOrBodyAbbreviation'],service['agencyOrBody']));
             row.find('.js-row-category').html(service['category']);
             row.find('.js-row-transaction').html(transactionLink(service['transactionLink']));
             row.find('.js-row-transactions').html(transactionsPerYear(service['transactionsPerYear']));
@@ -196,6 +202,6 @@ GOVUK.transactionsExplorer.initSearch = function () {
         },
         GOVUK.transactionsExplorer.search,
         GOVUK.transactionsExplorer.getSearchKeyword(document.location.search));
-    GOVUK.transactionsExplorer.searchResultsTable.wireTable('#results');
+    GOVUK.transactionsExplorer.searchResultsTable.wireTable('#transactions-table');
 };
 
