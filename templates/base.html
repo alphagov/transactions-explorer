@@ -54,25 +54,46 @@
     <body class="">
     <script type="text/javascript">document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script><a href="#content" class="visuallyhidden">Skip to main content</a>
 
-    <div id="wrapper" class="wrapper datainsight">
-        <nav class="performance-nav">
-            <a href="/" class="top-level">
-                <span class="top-level-link">Transactions Explorer</span>
-                <span class="alpha-tag">ALPHA</span>
-            </a>
-            <div class="menu-wrapper">
-                <a id="menu-toggle" href="#" data-hide-or-show="sub-level">menu</a>
-                <div class="inner-nav">
-                    <ul id="navigation">
-                        <li class="sub-level"><a href="/about-data" class="{% if current_navigation_link == 'about' %}current{% endif %}">About the data</a></li>
-                        <li class="sub-level"><a href="/high-volume-services/by-transactions-per-year/descending.html" class="{% if current_navigation_link == 'high-volume-services' %}current{% endif %}">High-volume services</a></li>
-                        <li class="sub-level"><a href="/all-services/by-transactions-per-year/descending.html" class="{% if current_navigation_link == 'all-services' %}current{% endif %}">All services</a></li>
-                    </ul>
+
+    <header role="banner" id="global-header" class="with-proposition">
+        <div class="header-wrapper">
+            <div class="header-global">
+                <div class="header-logo">
+                    <a href="/" title="Go to the GOV.UK homepage" id="logo" class="content">
+                        <img src="https://assets.digital.cabinet-office.gov.uk/static/gov.uk_logotype-2x.png" alt="GOV.UK">
+                    </a>
                 </div>
             </div>
-        </nav>
+            <div class="header-proposition">
+                <div class="content">
+                    <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
+                    <nav id="proposition-menu">
+                        <a href="/performance" id="proposition-name">
+                            Performance
+                            <span class="alpha-tag">Alpha</span>
+                        </a>
+                        <ul id="proposition-links">
+                            <li><a href="/performance/dashboard">GOV.UK performance</a></li>
+                            <li><a href="{{ EXPLORER_HOST }}/" class="active">Transactions Explorer</a></li>
+                            <li><a href="/performance/services">Services</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
 
+    <div id="wrapper" class="wrapper datainsight">
         <section id="content" role="main" class="group"><!--<div class="pattern-status">{% raw %}{{ page.status }}{% endraw %}</div>-->
+            <nav class="performance-nav">
+                <ul>
+                    <li><a href="{{ EXPLORER_HOST }}/index.html" class="{% if current_navigation_link == 'home' %}active{% endif %}">Overview</a></li>
+                    <li><a href="{{ EXPLORER_HOST }}/all-services/by-transactions-per-year/descending.html" class="{% if current_navigation_link == 'all-services' %}active{% endif %}">All services</a></li>
+                    <li><a href="{{ EXPLORER_HOST }}/high-volume-services/by-transactions-per-year/descending.html" class="{% if current_navigation_link == 'high-volume-services' %}active{% endif %}">High-volume services</a></li>
+                    <li><a href="{{ EXPLORER_HOST }}/about-data.html" class="{% if current_navigation_link == 'about' %}active{% endif %}">About the data</a></li>
+                </ul>
+            </nav>
+
           {% block body %}{% endblock %}
         </section>
 

@@ -5,6 +5,7 @@ jinja2==2.7
 oauth2client==1.1
 unicodecsv==0.9.4
 simplejson==3.3.0
+scrapy==0.18
 # test code requirements
 nose
 pyhamcrest
