@@ -4,18 +4,28 @@ import re
 import threading
 import time
 import requests
+import signal
+import sys
 
 
 HTML_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                          '..', '..', '..', 'output'))
 
 
-def rewrite_request(path):
-    new_path = path
-    if not re.match(r'.*\..*$', path):
-        new_path += '.html'
+def has_extension(path):
+    return bool(os.path.splitext(path)[1])
 
-    return new_path
+
+def find_file_to_serve(path):
+    abs_path = os.path.join(HTML_ROOT, path.lstrip('/'))
+
+    if os.path.isdir(abs_path):
+        abs_path = os.path.join(abs_path, 'index.html')
+
+    if not has_extension(abs_path):
+        abs_path += '.html'
+
+    return abs_path if os.path.isfile(abs_path) else None
 
 
 def wait_until(condition, timeout=15, interval=0.1):
@@ -35,7 +45,7 @@ def get_content_type(full_path):
     }.get(full_path.rsplit('.', 1)[1], "text/plain")
 
 
-class HttpStub(BaseHTTPRequestHandler):
+class TestServer(BaseHTTPRequestHandler):
 
     thread = None
     server = None
@@ -48,20 +58,18 @@ class HttpStub(BaseHTTPRequestHandler):
         return
 
     def __serve_file(self):
-        # rewrite requests to point at flat *.html files
-        path_to_html = rewrite_request(self.path)
-        full_path = HTML_ROOT + path_to_html
+        file_path = find_file_to_serve(self.path)
 
-        if not os.path.isfile(full_path):
+        if not file_path:
             self.send_response(404)
         
         else:
-            with open(full_path, mode='r') as f:
+            with open(file_path, mode='r') as file:
                 self.send_response(200)
 
-                self.send_header("Content-type", get_content_type(full_path))
+                self.send_header("Content-type", get_content_type(file_path))
                 self.end_headers()
-                self.wfile.write(f.read())
+                self.wfile.write(file.read())
 
         return
 
@@ -77,8 +85,8 @@ class HttpStub(BaseHTTPRequestHandler):
         pass
 
     @classmethod
-    def start(cls):
-        cls.server = HTTPServer(("", 8000), cls)
+    def start(cls, port=8000):
+        cls.server = HTTPServer(("", port), cls)
         cls.thread = threading.Thread(target=cls.server.serve_forever)
         cls.thread.start()
         wait_until(cls._running)
@@ -92,10 +100,20 @@ class HttpStub(BaseHTTPRequestHandler):
     @classmethod
     def _running(cls):
         try:
-            return requests.get('http://localhost:8000/__alive__').status_code == 200
+            alive = 'http://localhost:%d/__alive__' % cls.server.server_port
+            return requests.get(alive).status_code == 200
         except:
             print "error waiting for server to start"
             return False
 
 if __name__ == "__main__":
-    HttpStub.start()
+    port = int(sys.argv[1]) if len(sys.argv) > 1 else 8080
+    TestServer.start(port=port)
+    print "Running on port %d" % port
+
+    def stop(signal, frame):
+        TestServer.stop()
+        print "\nBye"
+
+    signal.signal(signal.SIGINT, stop)
+    signal.pause()

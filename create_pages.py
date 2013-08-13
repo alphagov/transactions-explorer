@@ -53,7 +53,7 @@ def generate_sorted_pages(items, page_name, output_prefix, sort_orders, extra_va
 
 if __name__ == "__main__":
     render("about-the-data.html", "about-data.html", {})
-    render("home.html", "home.html", {
+    render("index.html", "index.html", {
         'departments_count': len(departments),
         'services_count': len(services),
         'total_transactions': total_transaction_volume(services)
