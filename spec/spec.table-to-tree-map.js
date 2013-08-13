@@ -16,6 +16,7 @@ describe("Table To Treemap", function () {
         width: '960px',
         height: '460px'
       });
+      
   });
 
   afterEach(function () {;
@@ -103,15 +104,15 @@ describe("Table To Treemap", function () {
 
 
       var classes = d3.selectAll('div.node')[0].map(function(d) { return d.className; });
-      expect(classes[0]).toEqual('node xx-large');
-      expect(classes[1]).toEqual('node x-large hmrc');
-      expect(classes[2]).toEqual('node xx-large hmrc');
-      expect(classes[3]).toEqual('node large hmrc');
-      expect(classes[4]).toEqual('node medium dft');
-      expect(classes[5]).toEqual('node small silly-walks');
-      expect(classes[6]).toEqual('node ellipsis dfid');
-      expect(classes[7]).toEqual('node ellipsis defra');
-      expect(classes[8]).toEqual('node none hmrc');
+      expect(classes[0]).toEqual('node xx-large group');
+      expect(classes[1]).toEqual('node x-large leaf hmrc');
+      expect(classes[2]).toEqual('node xx-large leaf hmrc');
+      expect(classes[3]).toEqual('node large leaf hmrc');
+      expect(classes[4]).toEqual('node medium leaf dft');
+      expect(classes[5]).toEqual('node small leaf silly-walks');
+      expect(classes[6]).toEqual('node ellipsis leaf dfid');
+      expect(classes[7]).toEqual('node ellipsis leaf defra');
+      expect(classes[8]).toEqual('node none leaf hmrc');
     });
   });
 
