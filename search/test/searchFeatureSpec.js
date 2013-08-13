@@ -1,7 +1,8 @@
 describe("end to end search", function () {
     beforeEach(function () {
-        $('<input id="searchInput" type="text"></input>').appendTo('body');
-        $('<button id="searchButton" type=submit>Find</button>').appendTo('body');
+        $('<form id="search"></form>').appendTo('body');
+        $('<input id="searchInput" type="text"></input>').appendTo('#search');
+        $('<button id="searchButton" type=submit>Find</button>').appendTo('#search');
         $('<table id="results"><tbody></tbody></table>').appendTo('body');
         spyOn($,'ajax').andReturn({ done: function (callback) {
             callback([{

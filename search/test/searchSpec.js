@@ -5,21 +5,22 @@ describe("Searching for services on the transaction explorer. ", function() {
             ENTER_KEY = 13;
 
         beforeEach(function() {
-            $('<input id="search-box" type="text"></input>').appendTo('body');
-            $('<button id="search-button" type="submit">Find</button>').appendTo('body');
+            $('<form id="search"></form>').appendTo('body');
+            $('<input id="search-box" type="text"></input>').appendTo('#search');
+            $('<button id="search-button" type="submit">Find</button>').appendTo('#search');
             fakeSearch = {
                 load: jasmine.createSpy('load search data'),
                 performSearch: jasmine.createSpy('perform a search')
             };
             GOVUK.transactionsExplorer.wireSearchForm({
+                searchForm: "#search",
                 inputId: "#search-box",
                 buttonId: "#search-button"
             }, fakeSearch);
         });
 
         afterEach(function() {
-            $('#search-box').remove();
-            $('#search-button').remove();
+            $('#search').remove();
         });
 
         it("should load search data the first time the search box gets focus", function() {
@@ -33,12 +34,10 @@ describe("Searching for services on the transaction explorer. ", function() {
             expect(fakeSearch.load.calls.length).toBe(1);
         });
 
-        it("should perform a search when enter is pressed", function() {
-            $('#search-box').val('woozle wozzle');
-            $('#search-box').trigger($.Event('keydown', {
-                keyCode: ENTER_KEY
-            }));
-            expect(fakeSearch.performSearch).toHaveBeenCalledWith('woozle wozzle');
+        it("should perform a search when the search form is submitted", function() {
+            $('#search-box').val('bizzle bozzle');
+            $('#search').trigger('submit');
+            expect(fakeSearch.performSearch).toHaveBeenCalledWith('bizzle bozzle');
         });
 
         it("should perform a search when the search button is clicked", function() {

@@ -95,7 +95,6 @@ GOVUK.transactionsExplorer.search = (function () {
 GOVUK.transactionsExplorer.wireSearchForm = function(ids, search) {
     var searchBox = $(ids.inputId),
         searchButton = $(ids.buttonId),
-        ENTER_KEY = 13,
         loaded = false;
 
     searchBox.on('focus', function (event) {
@@ -105,14 +104,9 @@ GOVUK.transactionsExplorer.wireSearchForm = function(ids, search) {
         }
     });
 
-    searchBox.on('keydown', function (event) {
-        if (event.keyCode === ENTER_KEY) {
-            search.performSearch(searchBox.val());
-        }
-    });
-
-    searchButton.on('click', function (event) {
+    $('#search').on('submit', function (event) {
         search.performSearch(searchBox.val());
+        event.preventDefault();
     });
 };
 
