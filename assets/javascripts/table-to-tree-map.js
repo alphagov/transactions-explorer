@@ -135,7 +135,9 @@ var TreeMapLayout = (function () {
         dyIndex = d3.scale.threshold().domain([10,40,100,150,200,400]).range(keys);
     var nClass = 'node ' + classes[Math.min(dxIndex(d.dx), dyIndex(d.dy))];
     if(d.deptClass)
-      nClass += ' ' + d.deptClass.toLowerCase();
+      // currently using dashes to replace dept name spaces e.g. 'Home Office' becomes 'home-office'
+      nClass += ' ' + d.deptClass.replace(/\s+/g, '-').toLowerCase();
+
     return nClass;
   };
 
