@@ -275,7 +275,7 @@ class Department(object):
 
     @property
     def link(self):
-        return 'department/%s/by-transactions-per-year/descending.html'\
+        return 'department/%s/by-transactions-per-year/descending'\
                % slugify(self.abbr)
 
     def _aggregate(self, attr, high_volume_only=False):
