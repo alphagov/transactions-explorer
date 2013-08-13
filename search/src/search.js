@@ -84,6 +84,8 @@ GOVUK.transactionsExplorer.search = (function () {
         } else {
             cachedQuery = query;
         }
+
+        $("table tbody").highlight(query);
     };
 
     return {
