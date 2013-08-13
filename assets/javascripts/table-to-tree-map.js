@@ -49,7 +49,9 @@ var Tree = (function () {
         volumeLabel: row.getAttribute("data-volumelabel"),
         url: row.getAttribute("data-bubbleLink"),
         color: row.getAttribute("data-color"),
-        textColor: row.getAttribute('data-text-color')
+        textColor: row.getAttribute('data-text-color'),
+        cost: row.getAttribute('data-cost'),
+        deptClass: row.getAttribute('data-dept-class')
       };
     });
   };
@@ -81,12 +83,10 @@ var Tree = (function () {
     var sumVals = d3.sum(values,function(val){
       return val.size;
     });
-    // console.log(sumVals);
     
     // var threshold = values.reduce(max).size / thresholdRatio;
     var threshold = sumVals / thresholdRatio;
-    var splitValues = partition(values, function (v) { 
-      console.log('what the vvv' , v , 'vs' , threshold);
+    var splitValues = partition(values, function (v) {
       return v.size > threshold; });
     var children = splitValues.left;
     if (splitValues.right.length) {
@@ -130,21 +130,29 @@ var TreeMapLayout = (function () {
         dyIndex = d3.scale.threshold().domain([10,40,100,150,200,400]).range(keys),
         type    = d.children ? "group" : "leaf";
 
-    return ['node', classes[Math.min(dxIndex(d.dx), dyIndex(d.dy))], type].join(' ');
+    var nClass = ['node', classes[Math.min(dxIndex(d.dx), dyIndex(d.dy))], type].join(' ');
+    if(d.deptClass){
+      // currently using dashes to replace dept name spaces e.g. 'Home Office' becomes 'home-office'
+      nClass += ' ' + d.deptClass.replace(/\s+/g, '-').toLowerCase();
+    }
+    return nClass;
   };
 
   var createTip = function(d){
-    if(d && d.volumeLabel)
-      return d.name + ': ' + d.volumeLabel + ' transactions per year';
-    else 
-      return null;
+    var tip = null;
+    if(d && d.volumeLabel){
+      tip = d.name + ': ' + d.volumeLabel + ' transactions per year';
+    }
+    if(d.cost){
+      tip += ' (total cost: ' + d.cost + ')';
+    }
+    return tip;
   }
 
 
   var makeTree = function (divId, treeData, options) {
     var options = options || {},
         el = document.getElementById(divId);
-        console.log(el);
         if(el){
           var width = options.width || el.offsetWidth,
           height = options.height || el.offsetHeight;
@@ -174,7 +182,7 @@ var TreeMapLayout = (function () {
       .attr("class", getNodeClass)
       .attr('data-tooltip', createTip)    
       .call(position)
-      .style("background", function(d) { return d.color ? d.color : color(d.name); })
+      // .style("background", function(d) { return d.color ? d.color : color(d.name); })
       .append("a")
         .attr('href',function(d){ return d.url ? d.url : null })
         .style("color", function(d) { return d.textColor ? d.textColor : null; })
@@ -216,4 +224,3 @@ var TreeMapLayout = (function () {
     display: makeTree
   }
 }());
-
