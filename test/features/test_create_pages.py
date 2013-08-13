@@ -15,7 +15,7 @@ class test_create_pages(BrowserTest):
                     is_('High-volume services'))
 
     def test_home_page(self):
-        self.browser.visit("http://0.0.0.0:8000/home")
+        self.browser.visit("http://0.0.0.0:8000/")
 
         headlines = self.browser.find_by_css('.headline')
 
