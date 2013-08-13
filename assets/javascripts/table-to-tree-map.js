@@ -125,10 +125,12 @@ var TreeMapLayout = (function () {
 
   var getNodeClass = function (d) {
     var classes = ["none", "ellipsis", "small", "medium", "large", "x-large", "xx-large"],
-        keys    = [0     , 1         , 2      , 3       , 4      ,5         , 6],
+        keys    = [0     , 1         , 2      , 3       , 4      , 5        , 6],
         dxIndex = d3.scale.threshold().domain([20,50,130,200,250,400]).range(keys),
-        dyIndex = d3.scale.threshold().domain([10,40,100,150,200,400]).range(keys);
-    return 'node ' + classes[Math.min(dxIndex(d.dx), dyIndex(d.dy))];
+        dyIndex = d3.scale.threshold().domain([10,40,100,150,200,400]).range(keys),
+        type    = d.children ? "group" : "leaf";
+
+    return ['node', classes[Math.min(dxIndex(d.dx), dyIndex(d.dy))], type].join(' ');
   };
 
   var createTip = function(d){

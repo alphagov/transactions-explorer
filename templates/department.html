@@ -43,6 +43,8 @@
 
     <section class="content-group">
 
+        <figure id="department-treemap" class="treemap"></figure>
+
         <div style="clear:both;"></div>
 
         <table id="transactions-table" class="full_width_table">
@@ -118,6 +120,16 @@
                 }
             });
         </script>
+
+        <!--[if gt IE 8]><!-->
+        <script type="text/javascript" src="/assets/javascripts/d3.v3.js"></script>
+        <script type="text/javascript" src="/assets/javascripts/table-to-tree-map.js"></script>
+        <script>
+          var tree = Tree.fromHtmlTable(d3.selectAll("tbody tr"));
+          TreeMapLayout.display("department-treemap", tree);
+        </script>
+        <!--<![endif]-->
+
         <div class="form-download">
             <p>
                 {% include "csv_download_link.html" %}
