@@ -1346,6 +1346,11 @@ header.page-header hgroup.te-image {
     float: left;
     display: inline-block;
     min-width: 33.0%; } }
+
+table.full_width_table {
+  margin:0;
+}
+
 /* line 241, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 #transactions-table thead th a {
   color: #0b0c0c;
@@ -1565,88 +1570,222 @@ article.service-details section h2 {
           margin-left: 0; } }
 
 /* Treemap */
+
+figure.treemap {
+  position:relative;
+  width:100%;
+  height:460px;
+  margin-bottom:80px;
+}
+
+figure.treemap figcaption {
+  position:absolute;
+  left:0;
+  bottom:-50px;
+  font-weight:bold;
+}
+
+.treemap figcaption .keyBlock{
+  width:30px;
+  height: 30px;
+  background-color: black;
+  display: inline-block;
+  margin-bottom: -9px;
+  margin-right: 10px;
+}
+
+figure.treemap:hover .node {
+  opacity: .5;
+}
+figure.treemap:hover .node:hover {
+  opacity: 1;
+}
+
 /* line 388, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .node {
-  position: absolute; }
+/*  -webkit-font-smoothing: antialiased;
+  position: relative; 
+  -webkit-transition: all .05s ease-in;
+  -moz-transition: all .05s ease-in;
+  transition: all .05s ease-in;*/
+}
+
+.node.parent{
+  /*display: none*/
+}
 
 /* line 391, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .node .label {
   width: 100%;
   height: 100%;
   border: solid 2px white;
-  padding: 6px 0 0 6px; }
+  padding: 6px 0 0 6px;
+}
 
 /* line 397, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-.node .label a {
+
+.node {
+  overflow:hidden;
+}
+.node a {
   color: white;
-  text-decoration: none; }
+  text-decoration: none;
+  padding:.5em;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-/*bubble css*/
-/* line 403, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#bubble img {
-  margin: 0 auto 0 auto;
-  display: block; }
-
-/* line 408, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#bubble circle {
-  stroke: #fff; }
-
-/* line 410, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#bubble {
-  margin: 1em 0 4em 0; }
-
-/* line 411, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#bubble > svg {
-  display: block; }
-
-/* line 413, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#bubble g.breakdown {
-  cursor: pointer; }
-
-/* line 416, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#bubble g.breakdown:hover circle {
-  opacity: 0.7; }
-
-/* line 417, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#bubble g.breakdown:hover text {
-  text-decoration: underline; }
-
-/* line 419, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#bubble text.bold {
+.node .amount {
+  display:block;
+  white-space:nowrap;
+  overflow: hidden;
+  font-family:   "ntatabularnumbers", "nta", Arial, sans-serif;
   font-weight: bold;
-  font-family: nta, arial, sans-serif !important; }
+  text-overflow: ellipsis;
+}
 
-/* line 421, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#bubble g.larger text.vol {
+.node.none a {
+  visibility:hidden;
+}
+
+.node.ellipsis a {
+  padding:0;
+  text-align:center;
+  visibility:hidden;
+}
+
+.node.ellipsis a:before {
+  display:block;
+  content:'...';
+  visibility:visible;
+}
+.node.small {
   font-family: "nta", Arial, sans-serif;
-  font-size: 80px;
-  font-size: 8rem;
-  line-height: 1;
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 1.42857;
+  font-weight: 400;
+  text-transform: none;
+}
+@media (max-width: 640px) {
+  /* line 17, ./_assets/stylesheets/treemap.scss */
+  .node.small {
+    font-size: 1.2rem;
+    line-height: 1.25; } }
+/* line 19, ./_assets/stylesheets/treemap.scss */
+.node.small em {
+  font-style: normal;
+  font-family: "nta", Arial, sans-serif;
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 1.42857;
   font-weight: 400;
   text-transform: none;
   font-weight: 700; }
   @media (max-width: 640px) {
-    /* line 421, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-    #bubble g.larger text.vol {
-      font-size: 5.3rem;
-      line-height: 1.03774; } }
-
-/* line 422, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#bubble g.larger text.label {
+    /* line 19, ./_assets/stylesheets/treemap.scss */
+    .node.small em {
+      font-size: 1.2rem;
+      line-height: 1.25; } }
+/* line 23, ./_assets/stylesheets/treemap.scss */
+.node.small .bold {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 1.42857;
+  font-weight: 400;
+  text-transform: none;
+  font-weight: 700; }
+  @media (max-width: 640px) {
+    /* line 23, ./_assets/stylesheets/treemap.scss */
+    .node.small .bold {
+      font-size: 1.2rem;
+      line-height: 1.25; } }
+/* line 26, ./_assets/stylesheets/treemap.scss */
+.node.small .amount {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  font-weight: 300;
+  text-transform: none;
+  font-weight: 700; }
+  @media (max-width: 640px) {
+    /* line 26, ./_assets/stylesheets/treemap.scss */
+    .node.small .amount {
+      font-size: 1.4rem;
+      line-height: 1.14286; } }
+/* line 30, ./_assets/stylesheets/treemap.scss */
+.node.medium {
+font-family: "nta", Arial, sans-serif;
+font-size: 19px;
+font-size: 1.9rem;
+line-height: 1.31579;
+font-weight: 400;
+text-transform: none; }
+@media (max-width: 640px) {
+  /* line 30, ./_assets/stylesheets/treemap.scss */
+  .node.medium {
+    font-size: 1.6rem;
+    line-height: 1.25; } }
+/* line 32, ./_assets/stylesheets/treemap.scss */
+.node.medium .bold {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 19px;
+  font-size: 1.9rem;
+  line-height: 1.31579;
+  font-weight: 400;
+  text-transform: none;
+  font-weight: 700; }
+  @media (max-width: 640px) {
+    /* line 32, ./_assets/stylesheets/treemap.scss */
+    .node.medium .bold {
+      font-size: 1.6rem;
+      line-height: 1.25; } }
+/* line 35, ./_assets/stylesheets/treemap.scss */
+.node.medium .amount {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 27px;
+  font-size: 2.7rem;
+  line-height: 1.11111;
+  font-weight: 400;
+  text-transform: none;
+  font-weight: 700; }
+  @media (max-width: 640px) {
+    /* line 35, ./_assets/stylesheets/treemap.scss */
+    .node.medium .amount {
+      font-size: 1.8rem;
+      line-height: 1.11111; } }
+/* line 39, ./_assets/stylesheets/treemap.scss */
+.node.large {
+font-family: "nta", Arial, sans-serif;
+font-size: 24px;
+font-size: 2.4rem;
+line-height: 1.25;
+font-weight: 400;
+text-transform: none; }
+@media (max-width: 640px) {
+  /* line 39, ./_assets/stylesheets/treemap.scss */
+  .node.large {
+    font-size: 2rem;
+    line-height: 1.2; } }
+/* line 41, ./_assets/stylesheets/treemap.scss */
+.node.large .bold {
   font-family: "nta", Arial, sans-serif;
   font-size: 24px;
   font-size: 2.4rem;
   line-height: 1.25;
   font-weight: 400;
-  text-transform: none; }
+  text-transform: none;
+  font-weight: 700; }
   @media (max-width: 640px) {
-    /* line 422, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-    #bubble g.larger text.label {
+    /* line 41, ./_assets/stylesheets/treemap.scss */
+    .node.large .bold {
       font-size: 2rem;
       line-height: 1.2; } }
-
-/* line 424, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#bubble g.large text.vol {
+/* line 44, ./_assets/stylesheets/treemap.scss */
+.node.large .amount {
   font-family: "nta", Arial, sans-serif;
   font-size: 48px;
   font-size: 4.8rem;
@@ -1655,111 +1794,69 @@ article.service-details section h2 {
   text-transform: none;
   font-weight: 700; }
   @media (max-width: 640px) {
-    /* line 424, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-    #bubble g.large text.vol {
+    /* line 44, ./_assets/stylesheets/treemap.scss */
+    .node.large .amount {
       font-size: 3.2rem;
       line-height: 1.09375; } }
+/* line 48, ./_assets/stylesheets/treemap.scss */
 
-/* line 425, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#bubble g.large text.label {
-  font-family: "nta", Arial, sans-serif;
-  font-size: 19px;
-  font-size: 1.9rem;
-  line-height: 1.31579;
-  font-weight: 400;
-  text-transform: none; }
-  @media (max-width: 640px) {
-    /* line 425, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-    #bubble g.large text.label {
-      font-size: 1.6rem;
-      line-height: 1.25; } }
+.node.xx-large{
+  font-size: 3.2rem;
+  font-weight: bold;
+}
 
-/* line 427, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#bubble g.medium text.vol {
+.node.xx-large,
+.node.x-large {
+font-family: "nta", Arial, sans-serif;
+font-size: 27px;
+font-size: 2.7rem;
+line-height: 1.11111;
+font-weight: 400;
+text-transform: none; }
+
+.node.xx-large{
+  font-size: 3.2rem;
+  line-height:1.3;
+}
+
+@media (max-width: 640px) {
+  /* line 48, ./_assets/stylesheets/treemap.scss */
+  .node.x-large {
+    font-size: 1.8rem;
+    line-height: 1.11111; } }
+/* line 50, ./_assets/stylesheets/treemap.scss */
+.node.x-large .bold {
   font-family: "nta", Arial, sans-serif;
-  font-size: 36px;
-  font-size: 3.6rem;
+  font-size: 27px;
+  font-size: 2.7rem;
   line-height: 1.11111;
   font-weight: 400;
   text-transform: none;
   font-weight: 700; }
   @media (max-width: 640px) {
-    /* line 427, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-    #bubble g.medium text.vol {
-      font-size: 2.4rem;
-      line-height: 1.04167; } }
-
-/* line 428, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#bubble g.medium text.label {
+    /* line 50, ./_assets/stylesheets/treemap.scss */
+    .node.x-large .bold {
+      font-size: 1.8rem;
+      line-height: 1.11111; } }
+/* line 53, ./_assets/stylesheets/treemap.scss */
+.node.xx-large .amount,
+.node.x-large .amount {
   font-family: "nta", Arial, sans-serif;
-  font-size: 19px;
-  font-size: 1.9rem;
-  line-height: 1.31579;
-  font-weight: 400;
-  text-transform: none; }
-  @media (max-width: 640px) {
-    /* line 428, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-    #bubble g.medium text.label {
-      font-size: 1.6rem;
-      line-height: 1.25; } }
-
-/* line 430, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#bubble g.small text.vol {
-  font-family: "nta", Arial, sans-serif;
-  font-size: 36px;
-  font-size: 3.6rem;
-  line-height: 1.11111;
+  font-size: 80px;
+  font-size: 8rem;
+  line-height: 1;
   font-weight: 400;
   text-transform: none;
   font-weight: 700; }
+.node.xx-large .amount{
+  font-size: 10rem;
+}
   @media (max-width: 640px) {
-    /* line 430, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-    #bubble g.small text.vol {
-      font-size: 2.4rem;
-      line-height: 1.04167; } }
+    /* line 53, ./_assets/stylesheets/treemap.scss */
+    .node.x-large .amount {
+      font-size: 5.3rem;
+      line-height: 1.03774; } }
 
-/* line 431, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#bubble g.small text.label {
-  font-family: "nta", Arial, sans-serif;
-  font-size: 16px;
-  font-size: 1.6rem;
-  line-height: 1.25;
-  font-weight: 300;
-  text-transform: none; }
-  @media (max-width: 640px) {
-    /* line 431, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-    #bubble g.small text.label {
-      font-size: 1.4rem;
-      line-height: 1.14286; } }
-
-/* line 433, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#bubble g.smaller text.vol {
-  font-family: "nta", Arial, sans-serif;
-  font-size: 16px;
-  font-size: 1.6rem;
-  line-height: 1.25;
-  font-weight: 300;
-  text-transform: none;
-  font-weight: 700; }
-  @media (max-width: 640px) {
-    /* line 433, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-    #bubble g.smaller text.vol {
-      font-size: 1.4rem;
-      line-height: 1.14286; } }
-
-/* line 434, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#bubble g.smaller text.label {
-  font-family: "nta", Arial, sans-serif;
-  font-size: 14px;
-  font-size: 1.4rem;
-  line-height: 1.42857;
-  font-weight: 400;
-  text-transform: none; }
-  @media (max-width: 640px) {
-    /* line 434, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-    #bubble g.smaller text.label {
-      font-size: 1.2rem;
-      line-height: 1.25; } }
 
 /*tool-tip*/
 /* line 437, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
