@@ -2,12 +2,27 @@ describe("Table To Treemap", function () {
 
   beforeEach(function () {
     table = d3.select("body").append("table").append("tbody");
-    table.append("tr").attr("data-title", "service1").attr("data-volume", "1000");
-    table.append("tr").attr("data-title", "service2").attr("data-volume", "2000");
-    table.append("tr").attr("data-title", "service3").attr("data-volume", "3000");
-    table.append("tr").attr("data-title", "service4").attr("data-volume", "1");
-    table.append("tr").attr("data-title", "service5").attr("data-volume", "10");
-    table.append("tr").attr("data-title", "service6").attr("data-volume", "19");
+    table.append("tr")
+      .attr("data-title", "service1")
+      .attr("data-href", "service1")
+      .attr("data-volume", "1000");
+    table.append("tr")
+      .attr("data-title", "service2")
+      .attr("data-href", "service2")
+      .attr("data-volume", "2000");
+    table.append("tr")
+      .attr("data-title", "service3")
+      .attr("data-href", "service3")
+      .attr("data-volume", "3000");
+    table.append("tr")
+      .attr("data-title", "service4")
+      .attr("data-volume", "1");
+    table.append("tr")
+      .attr("data-title", "service5")
+      .attr("data-volume", "10");
+    table.append("tr")
+      .attr("data-title", "service6")
+      .attr("data-volume", "19");
     
     // Also add in a testmap div
     d3.select('body').append('div')
@@ -36,11 +51,24 @@ describe("Table To Treemap", function () {
       expect(treeMap.children[2].size).toBe(3000);
     });
 
-    it("should group values lower than a threshold", function () {
+    it("should group values lower than a threshold and without a link", function () {
       var treeMap = Tree.fromHtmlTable(d3.selectAll("tbody tr"), 20);
 
       expect(treeMap.children[3].name).toBe("Others");
       expect(treeMap.children[3].size).toBe(30);
+    });
+    it("should not group values lower than a threshold when they have a link", function () {
+      table.append("tr")
+        .attr("data-title", "service7")
+        .attr("data-href", "service7")
+        .attr("data-volume", "19");
+
+      var treeMap = Tree.fromHtmlTable(d3.selectAll("tbody tr"), 20);
+
+      expect(treeMap.children[3].name).toBe("service7");
+      expect(treeMap.children[3].size).toBe(19);
+      expect(treeMap.children[4].name).toBe("Others");
+      expect(treeMap.children[4].size).toBe(30);
     });
   });
 

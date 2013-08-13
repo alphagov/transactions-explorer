@@ -50,7 +50,7 @@ var Tree = (function () {
         size: volume, 
         volumeShortened: formatNumericLabel(volume),
         volumeLabel: row.getAttribute("data-volumelabel"),
-        url: row.getAttribute("data-bubbleLink"),
+        url: row.getAttribute("data-href"),
         color: row.getAttribute("data-color"),
         textColor: row.getAttribute('data-text-color'),
         cost: row.getAttribute('data-cost'),
@@ -92,7 +92,7 @@ var Tree = (function () {
     var threshold = sumVals / thresholdRatio;
     console.log('threshold',threshold);
     var splitValues = partition(values, function (v) {
-      return v.size > threshold; });
+      return (v.size > threshold || v.url); });
     console.log(splitValues);
     var children = splitValues.left;
     if (splitValues.right.length) {
