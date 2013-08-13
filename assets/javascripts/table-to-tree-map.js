@@ -39,9 +39,6 @@ var Tree = (function () {
     return roundedValue.toString();
   };
 
-  // var vals = $('table tr').each(function(i,v){
-  //   vals.push($(this).data())
-  // });
   var valuesFrom = function(selection) {
     return selection[0].map(function (row) {
       var volume = parseInt(row.getAttribute("data-volume"), 10);
@@ -86,12 +83,10 @@ var Tree = (function () {
     var sumVals = d3.sum(values,function(val){
       return val.size;
     });
-    // console.log(sumVals);
     
     // var threshold = values.reduce(max).size / thresholdRatio;
     var threshold = sumVals / thresholdRatio;
-    var splitValues = partition(values, function (v) { 
-      console.log('what the vvv' , v , 'vs' , threshold);
+    var splitValues = partition(values, function (v) {
       return v.size > threshold; });
     var children = splitValues.left;
     if (splitValues.right.length) {
@@ -156,7 +151,6 @@ var TreeMapLayout = (function () {
   var makeTree = function (divId, treeData, options) {
     var options = options || {},
         el = document.getElementById(divId);
-        console.log(el);
         if(el){
           var width = options.width || el.offsetWidth,
           height = options.height || el.offsetHeight;
