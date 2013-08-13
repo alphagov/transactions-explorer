@@ -117,48 +117,47 @@ GOVUK.transactionsExplorer.wireSearchForm = function(ids, search) {
 };
 
 GOVUK.transactionsExplorer.searchResultsTable = (function () {
-    var table = undefined;
-
+    var table = undefined,
+        ROW_TEMPLATE =  "<tr class='i-get-removed'>" + 
+                            "<th class='js-row-header'></th>" + 
+                            "<td class='js-row-abbr'></td>" +
+                            "<td class='js-row-category'></td>" + 
+                            "<td class='js-row-transaction'></td>" + 
+                            "<td class='js-row-transactions'></td>" +
+                        "</tr>";
+    
     var wireTable = function (id) {
         table = $(id);
     };
+    
+    var rowHeader = function (serviceName, link) {
+        if (link) {
+            return '<a href="' + link  + '">' + serviceName + '</a>';
+        } else {
+            return serviceName;
+        }
+    };
+    
+    var transactionLink = function (transactionLink) {
+        if (transactionLink) {
+            return '<a href="' + transactionLink + '">Access service</a>'; 
+        } else {
+            return "&nbsp;";
+        }
+    };
 
     var update = function (services) {
-        var rows = [],
-            ROW_CONTENTS = ['service', 'agencyOrBodyAbbreviation', 'category', 'transactionLink', 'transactionsPerYear'],
-            detailsLink = function (serviceName, link) {
-                if (link) {
-                    return '<th><a href="' + link  + '">' + serviceName + '</a></th>';
-                } else {
-                    return '<th>' + serviceName + '</th>';
-                }
-            },
-            transactionLink = function (transactionLink) {
-                if (transactionLink) {
-                    return '<td><a href="' + transactionLink + '">Access service</a></td>'; 
-                } else {
-                    return "<td>&nbsp;</td>";
-                }
-            };
+        var rows = [];
 
         $.each(services, function (i, service) {
-            var row = '';
-            $.each(ROW_CONTENTS, function (i, rowKey) {
-                if (i === 0) {
-                    row += detailsLink(service[rowKey], service.detailsLink);
-                } else if (rowKey === 'transactionLink') {
-                    row += transactionLink(service[rowKey]);
-                } else if (rowKey === 'transactionsPerYear') {
-                    if (service.transactionsPerYear) {
-                        row += '<td>' + service.transactionsPerYear + '</td>';
-                    } else {
-                        row += '<td>&nbsp;</td>';
-                    }
-                } else {
-                    row += '<td>' + service[rowKey] + '</td>';
-                }
-            });
-            rows.push('<tr>' + row + '</tr>');
+            var row = $(ROW_TEMPLATE);
+            row.find('.js-row-header').html(rowHeader(service['service'], service['detailsLink']));
+            row.find('.js-row-abbr').html(service['agencyOrBodyAbbreviation']);
+            row.find('.js-row-category').html(service['category']);
+            row.find('.js-row-transaction').html(transactionLink(service['transactionLink']));
+            row.find('.js-row-transactions').html(service['transactionsPerYear'] || '&nbsp;');
+        
+            rows.push('<tr>' + row.html() + '</tr>');
         });
         table.find('tbody').html(rows.join(''));
     };
