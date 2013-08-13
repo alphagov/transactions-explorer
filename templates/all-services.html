@@ -33,6 +33,9 @@
         <section class="content-group">
             <h1>Annual volume of transactions by department</h1>
 
+            <figure id="services-treemap" class="treemap"></figure>
+
+
             <div style="clear:both;"></div>
 
             <table id="transactions-table" class="full_width_table">
@@ -76,14 +79,14 @@
                             data-category=""
                             data-body=""
                             data-body-abbr=""
-                            data-url="{{ department.link }}"
-                            data-bubbleLink="{{ department.link }}"
+                            data-url="{{ department.link|as_absolute_path }}"
+                            data-bubbleLink="{{ department.link|as_absolute_path }}"
                             data-label="{{ department.abbr }}"
                             data-title="{{ department.name }}"
                             data-color="#c03024"
                             data-text-color="#fff">
                             
-                            <th scope="row"><a href="{{ department.link }}">{{ department.name }}</a></th>
+                            <th scope="row"><a href="{{ department.link|as_absolute_path }}">{{ department.name }}</a></th>
                             <td class="amount"> {{ department.takeup|as_percentage }} </td>
                             <td class="amount"> {{ money_cell(department.cost) }} </td>
                             <td class="amount"> {{ department.data_coverage|as_percentage }} </td>
@@ -93,7 +96,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-
+            {# no more bubbles, let's have blocks
             <script type="text/javascript">
                 $(document).ready(function() {
                     if ($("#bubble").length) {
@@ -101,6 +104,19 @@
                     }
                 });
             </script>
+            #}
+
+
+            <!--[if gt IE 8]><!-->
+            <script type="text/javascript" src="/assets/javascripts/d3.v3.js"></script>
+            <script type="text/javascript" src="/assets/javascripts/table-to-tree-map.js"></script>
+            <script>
+              var tree = Tree.fromHtmlTable(
+                d3.selectAll("tbody tr"), 20);
+              TreeMapLayout.display("services-treemap", tree);
+            </script>
+            <!--<![endif]-->
+
             <div class="application-notice info-notice table-margin">
                 <p>* Figures are based on data for high-volume services only</p>
             </div>
