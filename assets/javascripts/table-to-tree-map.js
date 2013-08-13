@@ -39,12 +39,15 @@ var Tree = (function () {
     return roundedValue.toString();
   };
 
+  var hasValue 
+
   var valuesFrom = function(selection) {
     return selection[0].map(function (row) {
       var volume = parseInt(row.getAttribute("data-volume"), 10);
+        volume = isNaN(volume) ? 0 : volume;
       return {
         name: row.getAttribute("data-title"),
-        size: volume,
+        size: volume, 
         volumeShortened: formatNumericLabel(volume),
         volumeLabel: row.getAttribute("data-volumelabel"),
         url: row.getAttribute("data-bubbleLink"),
@@ -77,6 +80,7 @@ var Tree = (function () {
   };
 
   var condenseValuesUnderThreshold = function(values, thresholdRatio) {
+    console.log(values);
     if (thresholdRatio == null) {
       return values;
     }
@@ -86,11 +90,14 @@ var Tree = (function () {
     
     // var threshold = values.reduce(max).size / thresholdRatio;
     var threshold = sumVals / thresholdRatio;
+    console.log('threshold',threshold);
     var splitValues = partition(values, function (v) {
       return v.size > threshold; });
+    console.log(splitValues);
     var children = splitValues.left;
     if (splitValues.right.length) {
       var otherValue = splitValues.right.reduce(sum);
+      console.log(otherValue);
       children.push({
         name: "Others",
         size: otherValue.size
@@ -169,7 +176,6 @@ var TreeMapLayout = (function () {
     
     var div = d3.select('#'+divId);
 
-    console.log(treemap.nodes);
     // var maxDy = d3.max(treemap.nodes, 'dy');
 
     // console.log(div.datum(treeData).selectAll("node").data(treemap.nodes);
@@ -209,7 +215,6 @@ var TreeMapLayout = (function () {
       $figure.find('.node').on('mouseenter',function(){
         var $this = $(this),
             bg = $this.css('background-color');
-        console.log(bg);
         $cap.html($this.data('tooltip'));
         $('<span class="keyBlock"/>').css('background-color',bg).prependTo($cap);
       });

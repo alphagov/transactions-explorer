@@ -38,7 +38,7 @@
             <script type="text/javascript" src="/assets/javascripts/table-to-tree-map.js"></script>
             <script>
               var tree = Tree.fromHtmlTable(
-                d3.selectAll("tbody tr"), 20);
+                d3.selectAll("tbody tr"));
               TreeMapLayout.display("services-treemap", tree);
             </script>
             <!--<![endif]-->
