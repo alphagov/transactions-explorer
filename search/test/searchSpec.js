@@ -19,6 +19,12 @@ describe("Searching for services on the transaction explorer. ", function() {
             expect(keyword2).toBe('returnOfKeyword');
             expect(keyword3).toBe('the mask of keyword');
         });
+
+        it('should replaces +\'s with spaces', function () {
+            var keyword = GOVUK.transactionsExplorer.getSearchKeyword('?keyword=lost+in+keyword');
+
+            expect(keyword).toBe('lost in keyword');
+        });
     });
 
     describe("The search form", function() {

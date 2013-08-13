@@ -184,7 +184,7 @@ GOVUK.transactionsExplorer.getSearchKeyword = function (documentSearchString) {
     if (documentSearchString) {
         var matchedUrlParams = documentSearchString.match(/(?:keyword)=([^&]+)/);
         if (matchedUrlParams && matchedUrlParams.length === 2) {
-            searchParam = decodeURIComponent(matchedUrlParams[1]);
+            searchParam = decodeURIComponent(matchedUrlParams[1]).replace(/\+/g, ' ');
         }
     }
     return searchParam;
