@@ -175,7 +175,7 @@ class Service:
 
     @property
     def link(self):
-        return '%s/%s.html' % ('service-details', self.slug)
+        return '%s/%s' % ('service-details', self.slug)
 
     @property
     def most_up_to_date_volume(self):

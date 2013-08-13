@@ -28,12 +28,12 @@
 
 {% macro th_content(text, sort, title=None, default_direction="ascending") -%}
     {% if sort != current_sort.order %}
-        <a href="../{{ sort }}/{{ default_direction }}.html" title="{{ title }}">{{ text }}</a>
+        <a href="../{{ sort }}/{{ default_direction }}" title="{{ title }}">{{ text }}</a>
     {% elif current_sort.direction == "ascending" %}
-        <a href="../{{ sort }}/descending.html" title="{{ title }}">{{ text }}</a>
+        <a href="../{{ sort }}/descending" title="{{ title }}">{{ text }}</a>
         <span class="sort-ind">▲</span>
     {% else %}
-        <a href="../{{ sort }}/ascending.html" title="{{ title }}">{{ text }}</a>
+        <a href="../{{ sort }}/ascending" title="{{ title }}">{{ text }}</a>
         <span class="sort-ind">▼</span>
     {% endif %}
 {%- endmacro %}
