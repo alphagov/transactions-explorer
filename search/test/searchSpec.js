@@ -122,6 +122,28 @@ describe("Searching for services on the transaction explorer. ", function() {
         });
     });
 
+    describe("Loading on slow connections", function () {
+        beforeEach(function () {
+            spyOn(GOVUK.transactionsExplorer.search, 'searchServices');
+            spyOn(GOVUK.transactionsExplorer, 'loadSearchData').andCallFake(function (_, callback) {
+                callback(null);
+            });
+            spyOn(GOVUK.transactionsExplorer.searchResultsTable, 'update');
+        });
+
+        it("should cache most recent query until the search json is loaded", function () {
+            GOVUK.transactionsExplorer.search.performSearch('coffee');
+            GOVUK.transactionsExplorer.search.performSearch('tea');
+            GOVUK.transactionsExplorer.search.performSearch('bacon');
+            
+            expect(GOVUK.transactionsExplorer.search.searchServices).not.toHaveBeenCalled();
+            
+            GOVUK.transactionsExplorer.search.load();
+            
+            expect(GOVUK.transactionsExplorer.search.searchServices).toHaveBeenCalledWith('bacon', null);
+        });
+    });
+
     describe("Search", function() {
         it("should perform a search", function () {
             var services = [{

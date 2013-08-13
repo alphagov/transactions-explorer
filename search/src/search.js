@@ -44,12 +44,16 @@ GOVUK.transactionsExplorer.scoreService = (function () {
 
 GOVUK.transactionsExplorer.search = (function () {
     var data = [],
-        loaded = false;
+        loaded = false,
+        cachedQuery = undefined;
 
     var load = function () {
         GOVUK.transactionsExplorer.loadSearchData("search.json", function (loadedData) {
             data = loadedData;
             loaded = true;
+            if (cachedQuery) {
+                GOVUK.transactionsExplorer.search.performSearch(cachedQuery, data);
+            }
         });
     };
 
@@ -76,6 +80,8 @@ GOVUK.transactionsExplorer.search = (function () {
         if (loaded) {
             var results = GOVUK.transactionsExplorer.search.searchServices(query, data);
             GOVUK.transactionsExplorer.searchResultsTable.update(results);
+        } else {
+            cachedQuery = query;
         }
     };
 
