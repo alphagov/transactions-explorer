@@ -12,6 +12,7 @@ from lib.csv import map_services_to_csv_data, map_services_to_dicts
 
 from lib.service import Service, latest_quarter, sorted_ignoring_empty_values,\
     total_transaction_volume
+from lib.slugify import slugify
 from lib.templates import render, render_csv, render_search_json
 
 
@@ -33,7 +34,7 @@ latest_quarter = latest_quarter(high_volume_services)
 departments = set(s.department for s in services)
 
 
-def generate_sorted_pages(items, page_name, sort_orders, extra_variables={}):
+def generate_sorted_pages(items, page_name, output_prefix, sort_orders, extra_variables={}):
     for sort_order, key in sort_orders:
         for direction in ['ascending', 'descending']:
             reverse = (direction == 'descending')
@@ -46,7 +47,7 @@ def generate_sorted_pages(items, page_name, sort_orders, extra_variables={}):
                 },
             }.items() + extra_variables.items())
             render('%s.html' % page_name,
-                   out="%s/%s/%s.html" % (page_name, sort_order, direction),
+                   out="%s/%s/%s.html" % (output_prefix, sort_order, direction),
                    vars=variables)
 
 
@@ -60,7 +61,8 @@ if __name__ == "__main__":
     for service in high_volume_services:
         render('service_detail.html',
                out=service.link,
-               vars={"service": service})
+               vars={'service': service,
+                     'department': Department(service.department, [service])})
 
     sort_orders = [
         ("by-name", lambda service: service.name_of_service),
@@ -70,7 +72,7 @@ if __name__ == "__main__":
         ("by-digital-takeup", lambda service: service.most_recent_kpis['takeup']),
         ("by-transactions-per-year", lambda service: service.most_recent_kpis['volume_num']),
     ]
-    generate_sorted_pages(high_volume_services, 'high-volume-services',
+    generate_sorted_pages(high_volume_services, 'high-volume-services', 'high-volume-services',
                           sort_orders, {'latest_quarter': latest_quarter})
 
     departments = Department.from_services(services)
@@ -81,7 +83,18 @@ if __name__ == "__main__":
         ("by-data-coverage", lambda department: department.data_coverage),
         ("by-transactions-per-year", lambda department: department.volume),
     ]
-    generate_sorted_pages(departments, 'all-services', department_sort_orders)
+    generate_sorted_pages(departments, 'all-services', 'all-services', department_sort_orders)
+
+    services_sort_orders = [
+        ("by-name", lambda service: service.name_of_service),
+        ("by-agency", lambda service: service.agency_abbreviation),
+        ("by-category", lambda service: service.category),
+        ("by-transactions-per-year", lambda service: service.most_up_to_date_volume),
+    ]
+    for department in departments:
+        generate_sorted_pages(department.services, 'department',
+                              'department/%s' % slugify(department.abbr),
+                              services_sort_orders, {'department': department})
 
     csv_map = map_services_to_csv_data(services)
     render_csv(csv_map, 'transaction-volumes.csv')

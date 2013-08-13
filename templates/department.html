@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% set current_navigation_link='all-services' %}
+
+{% macro money_cell(value) -%}
+    {% if value -%}
+        &pound;{{ value|as_financial_magnitude }}
+    {%- endif %}
+{%- endmacro %}
+
+{% macro th_content(text, sort, title=None, default_direction="ascending") -%}
+    {% if sort != current_sort.order %}
+        <a href="../{{ sort }}/{{ default_direction }}.html" title="{{ title }}">{{ text }}</a>
+    {% elif current_sort.direction == "ascending" %}
+        <a href="../{{ sort }}/descending.html" title="{{ title }}">{{ text }}</a>
+        <span class="sort-ind">▲</span>
+    {% else %}
+        <a href="../{{ sort }}/ascending.html" title="{{ title }}">{{ text }}</a>
+        <span class="sort-ind">▼</span>
+    {% endif %}
+{%- endmacro %}
+
+{% block body %}
+
+<header class="page-header group">
+    <hgroup>
+        {% include "logo_and_header.html" %}
+
+        <h2>Transactional services provided by the department, its agencies or sponsored public bodies</h2>
+    </hgroup>
+</header>
+
+<div class="group">
+    <article role="article" class="group">
+
+    {% if department.high_volume_count > 0 %}
+    <div id="data-coverage-notice" class="application-notice info-notice">
+        <h2>Department data coverage: {{ department.data_coverage|as_percentage }}</h2>
+        <p>(taken from {{ department.high_volume_count }} high volume services)</p>
+    </div>
+    {% endif %}
+
+
+    <section class="content-group">
+
+        <figure id="department-treemap" class="treemap"></figure>
+
+        <div style="clear:both;"></div>
+
+        <table id="transactions-table" class="full_width_table">
+        <thead>
+        <tr>
+
+            <th scope="col">
+                {{ th_content("Transactional service",
+                              sort="by-name") }}
+            </th>
+            <th scope="col">
+                {{ th_content("Agency / body",
+                              sort="by-agency") }}
+            </th>
+
+            <th scope="col">
+                {{ th_content("Category",
+                              sort="by-category") }}
+            </th>
+
+            <th scope="col">Web link</th>
+
+            <th scope="col" class="amount">
+                {{ th_content("Transactions per year",
+                              sort="by-transactions-per-year",
+                              title="Transactions per year: most recent 12 months of data available across all channels",
+                              default_direction="descending") }}
+            </th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for service in items %}
+            <tr data-volume="{{ service.most_up_to_date_volume }}"
+                data-volumelabel=" {{ service.most_up_to_date_volume|as_grouped_number }} "
+                data-category="{{ service.category }}"
+                data-body="{{ department.name }}"
+                data-body-abbr="{{ department.abbr }}"
+                data-url="{{ service.url }}"
+                data-bubblelink="{{ service.link|as_absolute_path }}"
+                data-label="{{ service.name }}"
+                data-title="{{ service.name }}"
+                data-color="#2e358b"
+                data-text-color="#fff">
+                <th scope="row">
+                    {% if service.high_volume %}
+                        <a href="{{ service.link|as_absolute_path }}">{{ service.name }}</a>
+                    {% else %}
+                        {{ service.name }}
+                    {% endif %}
+                </th>
+                <td>
+                    <abbr title="{{ service.body }}">{{ service.agency_abbreviation }}</abbr>
+                </td>
+                <td>{{ service.category }}</td>
+                <td>
+                    {% if service.url %}
+                        <a rel="external" href="{{ service.url }}">Access service</a>
+                    {% endif %}
+                </td>
+                <td class="amount"> {{ service.most_up_to_date_volume|as_grouped_number }} </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+        </table>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                if ($("#bubble").length) {
+                    gds.transactions.views.index( "hmrc" , "bubble", "transactions-table");
+                }
+            });
+        </script>
+
+        <!--[if gt IE 8]><!-->
+        <script type="text/javascript" src="/assets/javascripts/d3.v3.js"></script>
+        <script type="text/javascript" src="/assets/javascripts/table-to-tree-map.js"></script>
+        <script>
+          var tree = Tree.fromHtmlTable(d3.selectAll("tbody tr"));
+          TreeMapLayout.display("department-treemap", tree);
+        </script>
+        <!--<![endif]-->
+
+        <div class="form-download">
+            <p>
+                {% include "csv_download_link.html" %}
+            </p>
+        </div>
+
+        </section>
+    </article>
+</div>
+
+{% endblock %}
