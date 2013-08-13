@@ -24,6 +24,41 @@ class TestDepartment(unittest.TestCase):
         assert_that(departments[0].services,
                     contains(services[0], services[2]))
 
+    def test_count_of_high_volume_services(self):
+        services = [
+            Service(details({
+                u'High-volume?': 'yes'
+            })),
+            Service(details({
+                u'High-volume?': 'yes'
+            })),
+            Service(details({})),
+        ]
+
+        dept = Department("Agengy for Beatiful Code", services)
+
+        assert_that(dept.high_volume_count, is_(2))
+
+class TestDepartmentNameAsLink(unittest.TestCase):
+
+    def test_name_as_slug(self):
+        services = [
+            Service(details({u'Abbr': 'ABC', u'Department': 'Agency for Beautiful Code'})),
+        ]
+
+        department = Department.from_services(services)[0]
+
+        assert_that(department.name_slug, is_('agency-for-beautiful-code'))
+
+    def test_name_with_quotes_as_slug(self):
+        services = [
+            Service(details({u'Abbr': 'ABC', u'Department': "Attorney General's Office"})),
+        ]
+
+        department = Department.from_services(services)[0]
+
+        assert_that(department.name_slug, is_('attorney-generals-office'))
+
 class TestDepartmentLink(unittest.TestCase):
 
     def test_link_is_first_services_slugified_abbreviation(self):
@@ -34,7 +69,7 @@ class TestDepartmentLink(unittest.TestCase):
 
         dept = Department("Agengy for Beatiful Code", services)
 
-        assert_that(dept.link, is_("/department/abc"))
+        assert_that(dept.link, is_("department/abc/by-transactions-per-year/descending.html"))
 
 class TestDepartmentAbbreviation(unittest.TestCase):
 

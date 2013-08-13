@@ -24,32 +24,6 @@ class Service:
         '2013_q1',
         '2013_q2',
     ]
-    dept_class_table = {
-        'AGO': 'single-identity',
-        'CO': 'single-identity',
-        'BIS': 'bis',
-        'DCLG': 'single-identity',
-        'DCMS': 'single-identity',
-        'DFE': 'single-identity',
-        'DEFRA': 'single-identity',
-        'DFID': 'single-identity',
-        'DFT': 'single-identity',
-        'DWP': 'single-identity',
-        'DECC': 'single-identity',
-        'DH': 'single-identity',
-        'FCO': 'single-identity',
-        'HMT': 'single-identity',
-        'HOME OFFICE': 'ho',
-        'MOD': 'mod',
-        'MOJ': 'single-identity',
-        'NIO': 'single-identity',
-        'OAG': 'so',
-        'OLHC': 'portcullis',
-        'OLHL': 'portcullis',
-        'SCOTLAND OFFICE': 'so',
-        'UK EXPORT FINANCE': 'single-identity',
-        'WO': 'wales',
-    }
 
     def __init__(self, details):
         for key in details:
@@ -141,11 +115,18 @@ class Service:
     @property
     def body(self):
         return self.agency_body
-    
+
+    @property
+    def agency_abbreviation(self):
+        if self.agency_abbr is None or len(self.agency_abbr) == 0:
+            return self.body
+        else:
+            return self.agency_abbr
+
     @property
     def description(self):
         return re.sub('\s*$', '', self.description_of_service)
-    
+
     @property
     def most_recent_kpis(self):
         if len(self.kpis) > 0:
@@ -196,13 +177,6 @@ class Service:
         
         return data[1:]
     
-    @property
-    def css_class_postfix(self):
-        css_class = self.dept_class_table.get( self.abbr.upper(), None )
-        if css_class is not None:
-            return css_class
-        return None
-    
     def __getitem__(self, key):
         return self.__dict__[key]
 
@@ -234,6 +208,33 @@ class Quarter:
 
 
 class Department(object):
+    dept_class_table = {
+        'AGO': 'single-identity',
+        'CO': 'single-identity',
+        'BIS': 'bis',
+        'DCLG': 'single-identity',
+        'DCMS': 'single-identity',
+        'DFE': 'single-identity',
+        'DEFRA': 'single-identity',
+        'DFID': 'single-identity',
+        'DFT': 'single-identity',
+        'DWP': 'single-identity',
+        'DECC': 'single-identity',
+        'DH': 'single-identity',
+        'FCO': 'single-identity',
+        'HMT': 'single-identity',
+        'HOME OFFICE': 'ho',
+        'MOD': 'mod',
+        'MOJ': 'single-identity',
+        'NIO': 'single-identity',
+        'OAG': 'so',
+        'OLHC': 'portcullis',
+        'OLHL': 'portcullis',
+        'SCOTLAND OFFICE': 'so',
+        'UK EXPORT FINANCE': 'single-identity',
+        'WO': 'wales',
+    }
+
     @classmethod
     def from_services(cls, services):
         key = lambda s: s.department
@@ -244,6 +245,21 @@ class Department(object):
         self.name = name
         self.services = list(services)
         self.aggregator = ServiceKpiAggregator(self.services)
+
+    @property
+    def name_slug(self):
+        return slugify(self.name)
+
+    @property
+    def css_class_postfix(self):
+        css_class = self.dept_class_table.get(self.abbr.upper(), None)
+        if css_class is not None:
+            return css_class
+        return None
+
+    @property
+    def high_volume_count(self):
+        return len(filter(lambda s: s.high_volume, self.services))
 
     @property
     def volume(self):
@@ -259,7 +275,8 @@ class Department(object):
 
     @property
     def link(self):
-        return '/department/' + slugify(self.abbr)
+        return 'department/%s/by-transactions-per-year/descending.html'\
+               % slugify(self.abbr)
 
     def _aggregate(self, attr, high_volume_only=False):
         return self.aggregator.aggregate([attr], high_volume_only)[0]
