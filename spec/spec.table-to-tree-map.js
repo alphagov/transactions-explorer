@@ -2,27 +2,12 @@ describe("Table To Treemap", function () {
 
   beforeEach(function () {
     table = d3.select("body").append("table").append("tbody");
-    table.append("tr")
-      .attr("data-title", "service1")
-      .attr("data-href", "service1")
-      .attr("data-volume", "1000");
-    table.append("tr")
-      .attr("data-title", "service2")
-      .attr("data-href", "service2")
-      .attr("data-volume", "2000");
-    table.append("tr")
-      .attr("data-title", "service3")
-      .attr("data-href", "service3")
-      .attr("data-volume", "3000");
-    table.append("tr")
-      .attr("data-title", "service4")
-      .attr("data-volume", "1");
-    table.append("tr")
-      .attr("data-title", "service5")
-      .attr("data-volume", "10");
-    table.append("tr")
-      .attr("data-title", "service6")
-      .attr("data-volume", "19");
+    table.append("tr").attr("data-title", "service1").attr("data-volume", "1000");
+    table.append("tr").attr("data-title", "service2").attr("data-volume", "2000");
+    table.append("tr").attr("data-title", "service3").attr("data-volume", "3000");
+    table.append("tr").attr("data-title", "service4").attr("data-volume", "1");
+    table.append("tr").attr("data-title", "service5").attr("data-volume", "10");
+    table.append("tr").attr("data-title", "service6").attr("data-volume", "19");
     
     // Also add in a testmap div
     d3.select('body').append('div')
@@ -31,7 +16,21 @@ describe("Table To Treemap", function () {
         width: '960px',
         height: '460px'
       });
-      
+
+    this.addMatchers({
+      shouldContain: function( list ) {
+        var okay = true;
+        for (var i = 0; i < list.length; i++) {
+          console.log(this,this.actual.toString());
+          if(this.actual.toString().indexOf(list[i]) == -1){
+            okay = false;
+            break;
+          }
+        }
+        return okay;
+      }
+    });
+
   });
 
   afterEach(function () {;
@@ -52,24 +51,11 @@ describe("Table To Treemap", function () {
       expect(treeMap.children[2].size).toBe(3000);
     });
 
-    it("should group values lower than a threshold and without a link", function () {
+    it("should group values lower than a threshold", function () {
       var treeMap = Tree.fromHtmlTable(d3.selectAll("tbody tr"), 20);
 
       expect(treeMap.children[3].name).toBe("Others");
       expect(treeMap.children[3].size).toBe(30);
-    });
-    it("should not group values lower than a threshold when they have a link", function () {
-      table.append("tr")
-        .attr("data-title", "service7")
-        .attr("data-href", "service7")
-        .attr("data-volume", "19");
-
-      var treeMap = Tree.fromHtmlTable(d3.selectAll("tbody tr"), 20);
-
-      expect(treeMap.children[3].name).toBe("service7");
-      expect(treeMap.children[3].size).toBe(19);
-      expect(treeMap.children[4].name).toBe("Others");
-      expect(treeMap.children[4].size).toBe(30);
     });
   });
 
@@ -132,15 +118,15 @@ describe("Table To Treemap", function () {
 
 
       var classes = d3.selectAll('div.node')[0].map(function(d) { return d.className; });
-      expect(classes[0]).toEqual('node xx-large group');
-      expect(classes[1]).toEqual('node x-large leaf hmrc');
-      expect(classes[2]).toEqual('node xx-large leaf hmrc');
-      expect(classes[3]).toEqual('node large leaf hmrc');
-      expect(classes[4]).toEqual('node medium leaf dft');
-      expect(classes[5]).toEqual('node small leaf silly-walks');
-      expect(classes[6]).toEqual('node ellipsis leaf dfid');
-      expect(classes[7]).toEqual('node ellipsis leaf defra');
-      expect(classes[8]).toEqual('node none leaf hmrc');
+      expect(classes[0]).shouldContain(['xx-large', 'group']);
+      expect(classes[1]).shouldContain(['node', 'x-large', 'leaf', 'hmrc']);
+      expect(classes[2]).shouldContain(['node', 'xx-large', 'leaf', 'hmrc']);
+      expect(classes[3]).shouldContain(['node', 'large', 'leaf', 'hmrc']);
+      expect(classes[4]).shouldContain(['node', 'medium', 'dft']);
+      expect(classes[5]).shouldContain(['node', 'small', 'leaf', 'silly-walks']);
+      expect(classes[6]).shouldContain(['node', 'ellipsis', 'leaf', 'dfid']);
+      expect(classes[7]).shouldContain(['node', 'ellipsis', 'leaf', 'defra']);
+      expect(classes[8]).shouldContain(['node', 'none', 'leaf', 'hmrc']);
     });
   });
 
