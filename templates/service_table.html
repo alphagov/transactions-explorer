@@ -1,14 +1,3 @@
-{% macro money_cell(value) -%}
-    &pound;{{ value|as_financial_magnitude }}
-{%- endmacro %}
-
-{% macro percentage_cell(value) -%}
-    {{ value|as_percentage }}
-{%- endmacro %}
-
-{% macro number_cell(value) -%}
-    {{ value|as_grouped_number }}
-{%- endmacro %}
 
 {% macro cell_content(value, quarter, cell_format) -%}
     {% if value != None -%}
@@ -20,51 +9,45 @@
     {%- endif %}
 {%- endmacro %}
 
-{% macro th_content(text, sort, title=None, default_direction="ascending") -%}
-    {% if sort != current_sort.order %}
-        <a href="../{{ sort }}/{{ default_direction }}" title="{{ title }}">{{ text }}</a>
-    {% elif current_sort.direction == "ascending" %}
-        <a href="../{{ sort }}/descending" title="{{ title }}">{{ text }}</a>
-        <span class="sort-ind">▲</span>
-    {% else %}
-        <a href="../{{ sort }}/ascending" title="{{ title }}">{{ text }}</a>
-        <span class="sort-ind">▼</span>
-    {% endif %}
-{%- endmacro %}
-
-
+{% import "table_macros.html" as table %}
 
 <table id="transactions-table" class="full_width_table">
     <thead>
         <tr>
             <th scope="col">
-                {{ th_content("Transactional service",
-                              sort="by-name") }}
+                {{ table.th_content("Transactional service",
+                                    current_sort=current_sort,
+                                    sort="by-name") }}
             </th>
             <th scope="col">
-                {{ th_content("Department",
-                              sort="by-department") }}
+                {{ table.th_content("Department",
+                                    current_sort=current_sort,
+                                    sort="by-department") }}
             </th>
             <th scope="col">
-                {{ th_content("Total cost",
-                              sort="by-total-cost",
-                              default_direction="descending") }}
+                {{ table.th_content("Total cost",
+                                    current_sort=current_sort,
+                                    sort="by-total-cost",
+                                    default_direction="descending") }}
             </th>
             <th scope="col">
-                {{ th_content("Cost per transaction",
-                              sort="by-cost-per-transaction",
-                              default_direction="descending") }}
+                {{ table.th_content("Cost per transaction",
+                                    current_sort=current_sort,
+                                    sort="by-cost-per-transaction",
+                                    default_direction="descending") }}
             </th>
             <th scope="col">
-                {{ th_content("Digital take&#8209;up",
-                              sort="by-digital-takeup",
-                              default_direction="descending") }}
+                {{ table.th_content("Digital take&#8209;up",
+                                    current_sort=current_sort,
+                                    sort="by-digital-takeup",
+                                    default_direction="descending") }}
             </th>
             <th scope="col" class="amount">
-                {{ th_content("Transactions per year",
-                              sort="by-transactions-per-year",
-                              title="Transactions per year: most recent 12 months of data available across all channels",
-                              default_direction="descending") }}
+                {{ table.th_content("Transactions per year",
+                                    current_sort=current_sort,
+                                    sort="by-transactions-per-year",
+                                    title="Transactions per year: most recent 12 months of data available across all channels",
+                                    default_direction="descending") }}
             </th>
         </tr>
     </thead>
@@ -95,25 +78,25 @@
                 <td class="amount">
                     {{ cell_content(quarter=service.most_recent_kpis['quarter'],
                                     value=service.most_recent_kpis.cost,
-                                    cell_format=money_cell) }}
+                                    cell_format=table.money_cell) }}
                 </td>
 
                 <td class="amount">
                     {{ cell_content(quarter=service.most_recent_kpis['quarter'],
                                     value=service.most_recent_kpis.cost_per_number,
-                                    cell_format=money_cell) }}
+                                    cell_format=table.money_cell) }}
                 </td>
 
                 <td class="amount">
                     {{ cell_content(quarter=service.most_recent_kpis['quarter'],
                                     value=service.most_recent_kpis.takeup,
-                                    cell_format=percentage_cell) }}
+                                    cell_format=table.percentage_cell) }}
                 </td>
 
                 <td class="amount">
                     {{ cell_content(quarter=service.most_recent_kpis['quarter'],
                                     value=service.most_recent_kpis.volume_num,
-                                    cell_format=number_cell) }}
+                                    cell_format=table.number_cell) }}
                 </td>
 
             </tr>
