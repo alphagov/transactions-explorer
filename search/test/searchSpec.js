@@ -122,7 +122,6 @@ describe("Searching for services on the transaction explorer. ", function() {
         });
     });
 
-
     describe("Search", function() {
         it("should perform a search", function () {
             var services = [{
@@ -260,8 +259,27 @@ describe("Searching for services on the transaction explorer. ", function() {
             expect(resultsTable.find('tr td').first().text()).toBe('AA');
             expect($(resultsTable.find('tr td').get(1)).text()).toBe('some category');
             expect($(resultsTable.find('tr td').get(2)).html()).toBe('&nbsp;');
-            expect($(resultsTable.find('tr td').get(3)).text()).toBe('9999');
-            
+            expect($(resultsTable.find('tr td').get(3)).text()).toBe('9999'); 
+        });
+
+
+        it('should display null numbers as blank', function () {
+            GOVUK.transactionsExplorer.searchResultsTable.wireTable('#results');
+            GOVUK.transactionsExplorer.searchResultsTable.update([{
+                agencyOrBodyAbbreviation: "AA",
+                service: "some service",
+                departmentAbbreviation: "DA",
+                agencyOrBody: "",
+                transactionsPerYear: null,
+                department: "some department",
+                category: "some category",
+                transactionLink: null,
+                keywords: [],
+                detailsLink: null 
+            }]);
+
+            var resultsTable = $('#results');
+            expect($(resultsTable.find('tr td').get(3)).html()).toBe('&nbsp;'); 
         });
 
         it('should remove old results when updated with new ones', function() {

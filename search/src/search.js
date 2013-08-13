@@ -142,6 +142,12 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
                     row += detailsLink(service[rowKey], service.detailsLink);
                 } else if (rowKey === 'transactionLink') {
                     row += transactionLink(service[rowKey]);
+                } else if (rowKey === 'transactionsPerYear') {
+                    if (service.transactionsPerYear) {
+                        row += '<td>' + service.transactionsPerYear + '</td>';
+                    } else {
+                        row += '<td>&nbsp;</td>';
+                    }
                 } else {
                     row += '<td>' + service[rowKey] + '</td>';
                 }
