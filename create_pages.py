@@ -62,7 +62,7 @@ if __name__ == "__main__":
     })
     for service in high_volume_services:
         render('service_detail.html',
-               out=service.link,
+               out="%s.html" % service.link,
                vars={'service': service,
                      'department': Department(service.department, [service])})
 
