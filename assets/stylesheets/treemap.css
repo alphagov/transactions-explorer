@@ -286,24 +286,3 @@ text-transform: none; }
     .node.x-large .amount {
       font-size: 5.3rem;
       line-height: 1.03774; } }
-
-.node{
-  background:seagreen;
-}
-
-.node.hmrc{
-  background: crimson
-}
-
-.node.defra{
-  background: teal
-}
-
-.node.dwp{
-  background: goldenrod
-}
-
-.node.dft{
-  background: coral
-}
-
