@@ -112,15 +112,10 @@ def number_as_grouped_number(num):
         return ''
 
     if type(num) is str or type(num) is unicode:
-        num = float(as_number(num))
-    
-    if num < 100:
-        num = '%.02f' % num
-        return num
-        return num.rstrip('0.')
-    else:
-        num = round(num)
-        return locale.format('%d', num, grouping=True)
+        num = as_number(num)
+
+    num = round(num)
+    return locale.format('%d', num, grouping=True)
 
 def string_as_absolute_path(string):
     return path_prefix.rstrip('/') + '/' + string
