@@ -1,7 +1,6 @@
 #!/usr/bin/env python
-from pprint import pprint
 import sys
-from distutils import dir_util, file_util
+from distutils import dir_util
 
 import unicodecsv
 from lib.params import parse_args_for_create
