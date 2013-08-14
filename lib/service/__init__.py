@@ -71,16 +71,17 @@ class Service:
                 'completion':       self['%s_completion_rate' % quarter],
                 'satisfaction':     self['%s_user_satisfaction' % quarter],
             }
-            
+
+            def change_factor(previous, current):
+                factor = None
+                if previous and previous != 0:
+                    factor = current / previous
+                return factor
+
             if previous_quarter is not None:
                 self.has_previous_quarter = True
-                if previous_quarter['volume_num'] is not None:
-                    if previous_quarter['volume_num'] == 0:
-                        data['volume_change'] = volume * 100
-                    else:
-                        data['volume_change'] = volume / previous_quarter['volume_num']
-                else:
-                    data['volume_change'] = None
+                data['volume_change'] = change_factor(previous_quarter['volume_num'], volume)
+
                 if takeup is not None and previous_quarter['takeup'] is not None:
                     if previous_quarter['takeup'] == 0:
                         data['takeup_change'] = takeup * 100

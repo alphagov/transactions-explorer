@@ -147,6 +147,28 @@ class TestService(unittest.TestCase):
 
         assert_that(service.agency_abbreviation, is_("A and B and C"))
 
+    def test_calculate_volume_change_from_previous_value(self):
+        increase_service = Service(details({
+            '2013-Q1 Vol.': '200',
+            '2012-Q4 Vol.': '100',
+        }))
+        decrease_service = Service(details({
+            '2013-Q1 Vol.': '100',
+            '2012-Q4 Vol.': '200',
+        }))
+        no_previous_vol_service = Service(details({
+            '2013-Q1 Vol.': '100',
+            '2012-Q4 Vol.': '',
+        }))
+        zero_previous_vol_service = Service(details({
+            '2013-Q1 Vol.': '100',
+            '2012-Q4 Vol.': '0',
+        }))
+
+        assert_that(increase_service.latest_kpi_for('volume_change'), is_(2))
+        assert_that(decrease_service.latest_kpi_for('volume_change'), is_(0.5))
+        assert_that(no_previous_vol_service.latest_kpi_for('volume_change'), is_(None))
+        assert_that(zero_previous_vol_service.latest_kpi_for('volume_change'), is_(None))
 
 class TestSummingTotalTransactions(unittest.TestCase):
 
