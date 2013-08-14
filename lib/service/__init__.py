@@ -8,7 +8,7 @@ from lib.slugify import keyify, slugify
 
 
 def latest_quarter(services):
-    return max(service.latest_kpi_for('quarter') for service in services)
+    return max(service.latest_kpi_for('quarter') for service in services if service.has_kpis)
 
 
 def sorted_ignoring_empty_values(services, key, reverse=False):
