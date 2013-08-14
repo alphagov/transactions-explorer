@@ -23,8 +23,8 @@
             {% include "departments_table.html" %}
 
             <!--[if gt IE 8]><!-->
-            <script type="text/javascript" src="/assets/javascripts/d3.v3.js"></script>
-            <script type="text/javascript" src="/assets/javascripts/table-to-tree-map.js"></script>
+            <script type="text/javascript" src="{{ 'javascripts/d3.v3.js' | as_asset_url }}"></script>
+            <script type="text/javascript" src="{{ 'javascripts/table-to-tree-map.js' | as_asset_url }}"></script>
             <script>
               var tree = Tree.fromHtmlTable(
                 d3.selectAll("tbody tr"));

@@ -1,6 +1,6 @@
 from hamcrest import assert_that, is_
 from lib import filters
-from lib.filters import number_as_magnitude, number_as_financial_magnitude, string_as_absolute_path
+from lib.filters import number_as_magnitude, number_as_financial_magnitude, string_as_absolute_path, string_as_asset_url
 
 
 def test_number_as_magnitude():
@@ -122,3 +122,19 @@ class Test_string_as_link:
         filters.path_prefix = '/custom/prefix'
         assert_that(string_as_absolute_path('some/path'),
                     is_('/custom/prefix/some/path'))
+
+
+class Test_string_as_asset_url(object):
+    def setUp(self):
+        self._default_asset_prefix = filters.asset_prefix
+
+    def tearDown(self):
+        filters.asset_prefix = self._default_asset_prefix
+
+    def test_string_as_asset_url(self):
+        assert_that(string_as_asset_url('some/path'), is_('/assets/some/path'))
+
+    def test_string_as_asset_url_with_alternative_prefix(self):
+        filters.asset_prefix = 'https://static.somewhere.com/transactions_explorer/'
+        assert_that(string_as_asset_url('some/path'),
+                    is_('https://static.somewhere.com/transactions_explorer/some/path'))
