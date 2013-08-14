@@ -123,9 +123,14 @@ def number_as_grouped_number(num):
         num = round(num)
         return locale.format('%d', num, grouping=True)
 
+
 def string_as_absolute_path(string):
-    return path_prefix.rstrip('/') + '/' + string
+    return join_url_parts(path_prefix, string)
 
 
 def string_as_asset_url(string):
-    return asset_prefix + string
+    return join_url_parts(asset_prefix, string)
+
+
+def join_url_parts(prefix, suffix):
+    return prefix.rstrip('/') + '/' + suffix.lstrip('/')

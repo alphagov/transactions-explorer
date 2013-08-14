@@ -1,6 +1,5 @@
 from hamcrest import assert_that, is_
-from lib import filters
-from lib.filters import number_as_magnitude, number_as_financial_magnitude, string_as_absolute_path, string_as_asset_url
+from lib.filters import number_as_magnitude, number_as_financial_magnitude, join_url_parts
 
 
 def test_number_as_magnitude():
@@ -103,38 +102,23 @@ def test_number_as_financial_magnitude():
     assert_that(number_as_financial_magnitude(123600000000), is_("124bn"))
 
 
-class Test_string_as_link:
-    def setUp(self):
-        self._default_path_prefix = filters.path_prefix
-
-    def tearDown(self):
-        filters.path_prefix = self._default_path_prefix
-
+class Test_join_url_parts(object):
     def test_string_as_link(self):
-        assert_that(string_as_absolute_path('some/path'), is_('/some/path'))
+        assert_that(
+            join_url_parts('/', 'some/path'),
+            is_('/some/path'))
 
     def test_string_as_link_with_user_defined_path_prefix(self):
-        filters.path_prefix = '/custom/prefix/'
-        assert_that(string_as_absolute_path('some/path'),
-                    is_('/custom/prefix/some/path'))
+        assert_that(
+            join_url_parts('/custom/prefix/', 'some/path'),
+            is_('/custom/prefix/some/path'))
 
     def test_string_as_link_adds_trailing_slash_after_prefix(self):
-        filters.path_prefix = '/custom/prefix'
-        assert_that(string_as_absolute_path('some/path'),
-                    is_('/custom/prefix/some/path'))
+        assert_that(
+            join_url_parts('/custom/prefix', 'some/path'),
+            is_('/custom/prefix/some/path'))
 
-
-class Test_string_as_asset_url(object):
-    def setUp(self):
-        self._default_asset_prefix = filters.asset_prefix
-
-    def tearDown(self):
-        filters.asset_prefix = self._default_asset_prefix
-
-    def test_string_as_asset_url(self):
-        assert_that(string_as_asset_url('some/path'), is_('/assets/some/path'))
-
-    def test_string_as_asset_url_with_alternative_prefix(self):
-        filters.asset_prefix = 'https://static.somewhere.com/transactions_explorer/'
-        assert_that(string_as_asset_url('some/path'),
-                    is_('https://static.somewhere.com/transactions_explorer/some/path'))
+    def test_string_as_link_does_not_add_double_slashes(self):
+        assert_that(
+            join_url_parts('/custom/prefix/', '/some/path'),
+            is_('/custom/prefix/some/path'))
