@@ -123,5 +123,5 @@ def number_as_grouped_number(num):
         return locale.format('%d', num, grouping=True)
 
 def string_as_absolute_path(string):
-    return path_prefix + string
+    return path_prefix.rstrip('/') + '/' + string
 
