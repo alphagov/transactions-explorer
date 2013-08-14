@@ -122,7 +122,8 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
                             "<td class='js-row-category'></td>" + 
                             "<td class='js-row-transaction'></td>" + 
                             "<td class='js-row-transactions'></td>" +
-                        "</tr>";
+                        "</tr>",
+        NO_RESULTS_TEMPLATE = "<tr><th colspan='5'>No results for that query</th></tr>";
     
     var wireTable = function (id) {
         table = $(id);
@@ -170,7 +171,13 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
         
             rows.push('<tr>' + row.html() + '</tr>');
         });
-        table.find('tbody').html(rows.join(''));
+
+        if (rows.length === 0) {
+            table.find('tbody').html(NO_RESULTS_TEMPLATE);
+        } else {
+            table.find('tbody').html(rows.join(''));
+        }
+
     };
 
     return {
