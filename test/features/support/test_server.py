@@ -12,13 +12,18 @@ import sys
 HTML_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                          '..', '..', '..', 'output'))
 
+SPEC_ROOT= os.path.abspath(os.path.join(os.path.dirname(__file__),
+                                         '..', '..', '..', 'spec'))
 
 def has_extension(path):
     return bool(os.path.splitext(path)[1])
 
 
 def find_file_to_serve(path):
-    abs_path = os.path.join(HTML_ROOT, path.lstrip('/'))
+    if any(substring in path.lower() for substring in ('spec', 'jasmine')):
+        abs_path = os.path.join(SPEC_ROOT, path.lstrip('/'))
+    else:
+        abs_path = os.path.join(HTML_ROOT, path.lstrip('/'))
 
     if os.path.isdir(abs_path):
         abs_path = os.path.join(abs_path, 'index.html')
