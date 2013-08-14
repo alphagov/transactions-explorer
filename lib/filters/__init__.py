@@ -116,7 +116,6 @@ def number_as_grouped_number(num):
     
     if num < 100:
         num = '%.02f' % num
-        return num
         return num.rstrip('0.')
     else:
         num = round(num)
