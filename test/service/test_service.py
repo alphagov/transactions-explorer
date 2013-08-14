@@ -23,35 +23,33 @@ class TestService(unittest.TestCase):
         service = Service(details({'2012-Q4 Vol.': '0',
                                    '2012-Q4 Digital vol.': '0'}))
 
-        assert_that(service.most_recent_kpis['takeup'],
+        assert_that(service.latest_kpi_for('takeup'),
                     is_(None))
 
     def test_volumes(self):
         service = Service(details({'2012-Q4 Vol.': '10',
                                    '2012-Q4 Digital vol.': '5'}))
 
-        assert_that(service.most_recent_kpis['takeup'], is_(0.5))
+        assert_that(service.latest_kpi_for('takeup'), is_(0.5))
  
     def test_most_recent_kpi_takeup_is_none_if_no_matching_quarters(self):
         service = Service(details({'2012-Q4 Vol.': '10',
                                    '2013-Q1 Digital vol.': '5'}))
 
-        assert_that(service.most_recent_kpis['takeup'],
+        assert_that(service.latest_kpi_for('takeup'),
                     is_(None))
 
     def test_no_kpis(self):
         service = Service(details({}))
 
-        assert_that(service.most_recent_kpis,
-                    is_(None))
+        assert_that(service.latest_kpi_for('takeup'), is_(None))
 
     def test_no_kpi_for_quarter_with_noVolume(self):
         service = Service(details({
            '2012-Q4 Digital vol.': '5'
         }))
 
-        assert_that(service.most_recent_kpis,
-                    is_(None))
+        assert_that(service.latest_kpi_for('volume_num'), is_(None))
 
     def test_most_recent_kpi_with_given_attribute(self):
         service = Service(details({
@@ -79,23 +77,19 @@ class TestService(unittest.TestCase):
             u'2012-Q4 CPT (\xa3)': "2.00"
         }))
 
-        pprint(service.most_recent_kpis)
-
-        assert_that(service.most_recent_kpis['cost'], is_(4000))
+        assert_that(service.latest_kpi_for('cost'), is_(4000))
 
     def test_cost_is_non_when_no_cpt(self):
         service = Service(details({
             "2012-Q4 Vol.": "2,000",
         }))
 
-        pprint(service.most_recent_kpis)
-
-        assert_that(service.most_recent_kpis['cost'], is_(None))
+        assert_that(service.latest_kpi_for('cost'), is_(None))
 
     def test_transactions_count(self):
         service = Service(details({'2013-Q1 Vol.': '10'}))
 
-        assert_that(service.most_recent_kpis['volume_num'], is_(10))
+        assert_that(service.latest_kpi_for('volume_num'), is_(10))
 
     def test_coverage(self):
         service = Service(details({

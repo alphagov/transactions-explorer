@@ -127,6 +127,13 @@ class Service:
     def description(self):
         return re.sub('\s*$', '', self.description_of_service)
 
+    def latest_kpi_for(self, attribute):
+        latest_kpis = self.most_recent_kpis
+        if latest_kpis is None:
+            return None
+        else:
+            return latest_kpis[attribute]
+
     @property
     def most_recent_kpis(self):
         if len(self.kpis) > 0:
