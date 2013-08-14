@@ -75,14 +75,14 @@
                 data-body="{{ department.name }}"
                 data-body-abbr="{{ department.abbr }}"
                 data-url="{{ service.url }}"
-                data-href="{{ service.link|as_absolute_path }}"
+                data-href="{{ service.link|as_absolute_url }}"
                 data-label="{{ service.name }}"
                 data-title="{{ service.name }}"
                 data-text-color="#fff"
                 data-dept-class="{{ service.abbr }}">
                 <th scope="row">
                     {% if service.has_details_page %}
-                        <a href="{{ service.link|as_absolute_path }}">{{ service.name }}</a>
+                        <a href="{{ service.link|as_absolute_url }}">{{ service.name }}</a>
                     {% else %}
                         {{ service.name }}
                     {% endif %}
@@ -104,8 +104,8 @@
         </table>
 
         <!--[if gt IE 8]><!-->
-        <script type="text/javascript" src="/assets/javascripts/d3.v3.js"></script>
-        <script type="text/javascript" src="/assets/javascripts/table-to-tree-map.js"></script>
+            <script type="text/javascript" src="{{ 'javascripts/d3.v3.js' | as_asset_url }}"></script>
+            <script type="text/javascript" src="{{ 'javascripts/table-to-tree-map.js' | as_asset_url }}"></script>
         <script>
             $(document).ready(function() {
                 if ($(".treemap").length) {
