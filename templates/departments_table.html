@@ -1,0 +1,68 @@
+
+{% import "table_macros.html" as table %}
+
+<table id="transactions-table" class="full_width_table">
+    <thead>
+        <tr>
+            <th scope="col">
+                {{ table.th_content("Department",
+                                    sort="by-department",
+                                    current_sort=current_sort) }}
+            </th>
+            <th scope="col">
+                {{ table.th_content("Digital take&#8209;up*",
+                                    sort="by-digital-takeup",
+                                    current_sort=current_sort,
+                                    title="Proportion of transactions completed digitally (high-volume services only)",
+                                    default_direction="descending") }}
+            </th>
+            <th scope="col">
+                {{ table.th_content("Total cost*",
+                                    sort="by-cost",
+                                    current_sort=current_sort,
+                                    title="Total cost of providing services (high-volume services only)",
+                                    default_direction="descending") }}
+            </th>
+            <th scope="col">
+                {{ table.th_content("Data coverage*",
+                                    sort="by-data-coverage",
+                                    current_sort=current_sort,
+                                    title="Proportion of latest data provided by department (high-volume services only)",
+                                    default_direction="descending") }}
+            </th>
+            <th scope="col" class="amount">
+                {{ table.th_content("Transactions per year",
+                                    sort="by-transactions-per-year",
+                                    current_sort=current_sort,
+                                    title="Transactions per year: most recent 12 months of data available across all channels",
+                                    default_direction="descending") }}
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for department in items %}
+            <tr data-volume="{{department.volume}}"
+                data-volumeLabel=" {{ department.volume|as_grouped_number }} "
+                data-category=""
+                data-body=""
+                data-body-abbr=""
+                data-url="{{ department.link|as_absolute_path }}"
+                data-href="{{ department.link|as_absolute_path }}"
+                data-label="{{ department.abbr }}"
+                data-title="{{ department.name }}"
+                data-text-color="#fff"
+                data-cost="{{ table.money_cell(department.cost) }}"
+                data-dept-class="{{ department.abbr }}"
+                >
+                
+                <th scope="row"><a href="{{ department.link|as_absolute_path }}">{{ department.name }}</a></th>
+                <td class="amount"> {{ department.takeup|as_percentage }} </td>
+                <td class="amount"> {{ table.money_cell(department.cost) }} </td>
+                <td class="amount"> {{ department.data_coverage|as_percentage }} </td>
+                <td class="amount"> {{ department.volume|as_grouped_number }} </td>
+            </tr>
+
+        {% endfor %}
+    </tbody>
+</table>

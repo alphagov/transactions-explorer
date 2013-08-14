@@ -17,20 +17,20 @@
         <article role="article" class="group">
             <section class="content-group headline-details">
                 <div class="headline">
-                    <p><a href="/all-services/by-transactions-per-year/descending.html"><h1>{{ departments_count }}</h1><p>Departments</p></a></p>
+                    <p><a href="{{ 'all-services/by-transactions-per-year/descending'|as_absolute_path }}"><h1>{{ departments_count }}</h1><p>Departments</p></a></p>
                 </div>
                 <div class="headline">
-                    <p><a href="/all-services/by-transactions-per-year/descending.html"><h1>{{ services_count }}</h1><p>Services</p></a></p>
+                    <p><a href="{{ 'all-services/by-transactions-per-year/descending'|as_absolute_path }}"><h1>{{ services_count }}</h1><p>Services</p></a></p>
                 </div>
                 <div class="headline">
-                    <p><a href="/all-services/by-transactions-per-year/descending.html"><h1>{{ total_transactions|as_magnitude }}</h1><p>Transactions per year</p></a></p>
+                    <p><a href="{{ 'all-services/by-transactions-per-year/descending'|as_absolute_path }}"><h1>{{ total_transactions|as_magnitude }}</h1><p>Transactions per year</p></a></p>
                 </div>
             </section>
             <div class="clear-div"></div>
             <section class="content-group">
                 <h1>About the Transactions Explorer</h1>
                 <div>
-                    <p>This is an alpha release of <a href="/all-services/by-transactions-per-year/descending.html">data
+                    <p>This is an alpha release of <a href="{{ 'all-services/by-transactions-per-year/descending'|as_absolute_path }}">data
                         about the government's transactional services.</a></p>
                     <p>The data reveals the breadth of services that
                         departments, agencies and other public bodies provide,
@@ -67,7 +67,7 @@
                     <p>Each service is shown together with the department,
                         agency or other body responsible for it, and the number
                         of transactions processed every year.</p>
-                    <p>For <a href="/high-volume-services/by-transactions-per-year/descending.html">high-volume
+                    <p>For <a href="{{ 'high-volume-services/by-transactions-per-year/descending'|as_absolute_path }}">high-volume
                         services</a> (those with over 750,000 transactions per
                         year), the average cost and the number of digital
                         transactions is provided.</p>
@@ -78,7 +78,7 @@
                         future releases.</p>
                     <p>Data for devolved administrations, the police and the
                         NHS are not included in this release.</p>
-                    <p>See the <a href="/about-data.html">About the Data</a> page for
+                    <p>See the <a href="{{ 'about-data'|as_absolute_path }}">About the Data</a> page for
                         more specific details on the information we’ve
                         published.</p>
                 </div>

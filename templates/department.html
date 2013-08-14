@@ -2,23 +2,7 @@
 
 {% set current_navigation_link='all-services' %}
 
-{% macro money_cell(value) -%}
-    {% if value -%}
-        &pound;{{ value|as_financial_magnitude }}
-    {%- endif %}
-{%- endmacro %}
-
-{% macro th_content(text, sort, title=None, default_direction="ascending") -%}
-    {% if sort != current_sort.order %}
-        <a href="../{{ sort }}/{{ default_direction }}.html" title="{{ title }}">{{ text }}</a>
-    {% elif current_sort.direction == "ascending" %}
-        <a href="../{{ sort }}/descending.html" title="{{ title }}">{{ text }}</a>
-        <span class="sort-ind">▲</span>
-    {% else %}
-        <a href="../{{ sort }}/ascending.html" title="{{ title }}">{{ text }}</a>
-        <span class="sort-ind">▼</span>
-    {% endif %}
-{%- endmacro %}
+{% import "table_macros.html" as table %}
 
 {% block body %}
 
@@ -47,31 +31,37 @@
 
         <div style="clear:both;"></div>
 
+        {# {% include "departments_table.html" %} #}
+
         <table id="transactions-table" class="full_width_table">
         <thead>
         <tr>
 
             <th scope="col">
-                {{ th_content("Transactional service",
-                              sort="by-name") }}
+                {{ table.th_content("Transactional service",
+                                    sort="by-name",
+                                    current_sort=current_sort) }}
             </th>
             <th scope="col">
-                {{ th_content("Agency / body",
-                              sort="by-agency") }}
+                {{ table.th_content("Agency / body",
+                                    sort="by-agency",
+                                    current_sort=current_sort) }}
             </th>
 
             <th scope="col">
-                {{ th_content("Category",
-                              sort="by-category") }}
+                {{ table.th_content("Category",
+                                    sort="by-category",
+                                    current_sort=current_sort) }}
             </th>
 
             <th scope="col">Web link</th>
 
             <th scope="col" class="amount">
-                {{ th_content("Transactions per year",
-                              sort="by-transactions-per-year",
-                              title="Transactions per year: most recent 12 months of data available across all channels",
-                              default_direction="descending") }}
+                {{ table.th_content("Transactions per year",
+                                    sort="by-transactions-per-year",
+                                    current_sort=current_sort,
+                                    title="Transactions per year: most recent 12 months of data available across all channels",
+                                    default_direction="descending") }}
             </th>
 
         </tr>
@@ -85,11 +75,11 @@
                 data-body="{{ department.name }}"
                 data-body-abbr="{{ department.abbr }}"
                 data-url="{{ service.url }}"
-                data-bubblelink="{{ service.link|as_absolute_path }}"
+                data-href="{{ service.link|as_absolute_path }}"
                 data-label="{{ service.name }}"
                 data-title="{{ service.name }}"
-                data-color="#2e358b"
-                data-text-color="#fff">
+                data-text-color="#fff"
+                data-dept-class="{{ service.abbr }}">
                 <th scope="row">
                     {% if service.high_volume %}
                         <a href="{{ service.link|as_absolute_path }}">{{ service.name }}</a>
@@ -113,20 +103,16 @@
         </tbody>
         </table>
 
-        <script type="text/javascript">
-            $(document).ready(function() {
-                if ($("#bubble").length) {
-                    gds.transactions.views.index( "hmrc" , "bubble", "transactions-table");
-                }
-            });
-        </script>
-
         <!--[if gt IE 8]><!-->
         <script type="text/javascript" src="/assets/javascripts/d3.v3.js"></script>
         <script type="text/javascript" src="/assets/javascripts/table-to-tree-map.js"></script>
         <script>
-          var tree = Tree.fromHtmlTable(d3.selectAll("tbody tr"));
-          TreeMapLayout.display("department-treemap", tree);
+            $(document).ready(function() {
+                if ($(".treemap").length) {
+                    var tree = Tree.fromHtmlTable(d3.selectAll("tbody tr"), 40);
+                    TreeMapLayout.display("department-treemap", tree);
+                }
+            });
         </script>
         <!--<![endif]-->
 

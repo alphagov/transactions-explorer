@@ -8,7 +8,7 @@ from lib.slugify import keyify, slugify
 
 
 def latest_quarter(services):
-    return max(service.most_recent_kpis['quarter'] for service in services)
+    return max(service.latest_kpi_for('quarter') for service in services if service.has_kpis)
 
 
 def sorted_ignoring_empty_values(services, key, reverse=False):
@@ -127,8 +127,15 @@ class Service:
     def description(self):
         return re.sub('\s*$', '', self.description_of_service)
 
+    def latest_kpi_for(self, attribute):
+        latest_kpis = self._most_recent_kpis
+        if latest_kpis is None:
+            return None
+        else:
+            return latest_kpis.get(attribute)
+
     @property
-    def most_recent_kpis(self):
+    def _most_recent_kpis(self):
         if len(self.kpis) > 0:
             return self.kpis[-1]
 
@@ -145,7 +152,7 @@ class Service:
     def _attributes_present(self, kpi, attrs):
         return all(kpi[attr] is not None for attr in attrs)
 
-    def most_recent_kpis_with(self, attrs):
+    def find_recent_kpis_with_attributes(self, attrs):
         return next((kpi for kpi in reversed(self.kpis)
                      if self._attributes_present(kpi, attrs)),
                     None)
@@ -156,13 +163,13 @@ class Service:
 
     @property
     def link(self):
-        return '%s/%s.html' % ('service-details', self.slug)
+        return '%s/%s' % ('service-details', self.slug)
 
     @property
     def most_up_to_date_volume(self):
         most_recent_yearly_volume = None
         if self.has_kpis:
-            most_recent_yearly_volume = self.most_recent_kpis['volume_num']
+            most_recent_yearly_volume = self.latest_kpi_for('volume_num')
         return most_recent_yearly_volume
 
     def historical_data(self, key):
@@ -275,7 +282,7 @@ class Department(object):
 
     @property
     def link(self):
-        return 'department/%s/by-transactions-per-year/descending.html'\
+        return 'department/%s/by-transactions-per-year/descending'\
                % slugify(self.abbr)
 
     def _aggregate(self, attr, high_volume_only=False):
@@ -310,14 +317,14 @@ class ServiceKpiAggregator(object):
 
     def aggregate(self, attrs, high_volume_only=False):
         def included(service):
-            return service.most_recent_kpis_with(attrs) is not None and (
+            return service.find_recent_kpis_with_attributes(attrs) is not None and (
                    not high_volume_only or service.high_volume)
 
         def aggregation(attr):
-            values = [service.most_recent_kpis_with(attrs)[attr]
+            values = [service.find_recent_kpis_with_attributes(attrs)[attr]
                       for service in self.services
                       if included(service)
-                      and service.most_recent_kpis_with(attrs)[attr] is not None]
+                      and service.find_recent_kpis_with_attributes(attrs)[attr] is not None]
             if any(values):
                 return sum(values)
 
@@ -328,7 +335,7 @@ def total_transaction_volume(services):
     def _sum(memo, service):
         number_of_transactions = 0
         if service.has_kpis:
-            number_of_transactions = service.most_recent_kpis['volume_num']
+            number_of_transactions = service.latest_kpi_for('volume_num')
         return number_of_transactions + memo
 
     return reduce(_sum, services, 0)

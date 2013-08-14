@@ -8,7 +8,7 @@ from lib.params import parse_args_for_create
 
 from lib.service import Service, latest_quarter, sorted_ignoring_empty_values, Department
 
-from lib import templates
+from lib import templates, filters
 from lib.csv import map_services_to_csv_data, map_services_to_dicts
 
 from lib.service import Service, latest_quarter, sorted_ignoring_empty_values,\
@@ -23,6 +23,8 @@ templates.output_dir = OUTPUT_DIR
 
 arguments = parse_args_for_create(sys.argv[1:])
 input = arguments.services_data
+
+filters.path_prefix = arguments.path_prefix
 
 data = open(input)
 
@@ -61,17 +63,17 @@ if __name__ == "__main__":
     })
     for service in high_volume_services:
         render('service_detail.html',
-               out=service.link,
+               out="%s.html" % service.link,
                vars={'service': service,
                      'department': Department(service.department, [service])})
 
     sort_orders = [
         ("by-name", lambda service: service.name_of_service),
         ("by-department", lambda service: service.abbr),
-        ("by-total-cost", lambda service: service.most_recent_kpis['cost']),
-        ("by-cost-per-transaction", lambda service: service.most_recent_kpis['cost_per_number']),
-        ("by-digital-takeup", lambda service: service.most_recent_kpis['takeup']),
-        ("by-transactions-per-year", lambda service: service.most_recent_kpis['volume_num']),
+        ("by-total-cost", lambda service: service.latest_kpi_for('cost')),
+        ("by-cost-per-transaction", lambda service: service.latest_kpi_for('cost_per_number')),
+        ("by-digital-takeup", lambda service: service.latest_kpi_for('takeup')),
+        ("by-transactions-per-year", lambda service: service.latest_kpi_for('volume_num')),
     ]
     generate_sorted_pages(high_volume_services, 'high-volume-services', 'high-volume-services',
                           sort_orders, {'latest_quarter': latest_quarter})
