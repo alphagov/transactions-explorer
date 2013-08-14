@@ -1,5 +1,5 @@
 from hamcrest import assert_that, is_
-from lib.filters import number_as_magnitude, number_as_financial_magnitude, join_url_parts
+from lib.filters import number_as_magnitude, number_as_financial_magnitude, join_url_parts, number_as_grouped_number
 
 
 def test_number_as_magnitude():
@@ -100,6 +100,14 @@ def test_number_as_financial_magnitude():
     assert_that(number_as_financial_magnitude(123000000000), is_("123bn"))
     assert_that(number_as_financial_magnitude(123400000000), is_("123bn"))
     assert_that(number_as_financial_magnitude(123600000000), is_("124bn"))
+
+
+def test_number_as_grouped_number():
+    assert_that(number_as_grouped_number(123456789), is_("123,456,789"))
+    assert_that(number_as_grouped_number(123), is_("123"))
+
+    assert_that(number_as_grouped_number(4567.22), is_("4,567"))
+    assert_that(number_as_grouped_number(4567.98), is_("4,568"))
 
 
 class Test_join_url_parts(object):
