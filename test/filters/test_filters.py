@@ -1,6 +1,6 @@
 from hamcrest import assert_that, is_
 from lib import filters
-from lib.filters import number_as_magnitude, number_as_financial_magnitude, string_as_absolute_path
+from lib.filters import number_as_magnitude, number_as_financial_magnitude, string_as_absolute_url
 
 
 def test_number_as_magnitude():
@@ -111,14 +111,14 @@ class Test_string_as_link:
         filters.path_prefix = self._default_path_prefix
 
     def test_string_as_link(self):
-        assert_that(string_as_absolute_path('some/path'), is_('/some/path'))
+        assert_that(string_as_absolute_url('some/path'), is_('/some/path'))
 
     def test_string_as_link_with_user_defined_path_prefix(self):
         filters.path_prefix = '/custom/prefix/'
-        assert_that(string_as_absolute_path('some/path'),
+        assert_that(string_as_absolute_url('some/path'),
                     is_('/custom/prefix/some/path'))
 
     def test_string_as_link_adds_trailing_slash_after_prefix(self):
         filters.path_prefix = '/custom/prefix'
-        assert_that(string_as_absolute_path('some/path'),
+        assert_that(string_as_absolute_url('some/path'),
                     is_('/custom/prefix/some/path'))
