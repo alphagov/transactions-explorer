@@ -108,11 +108,11 @@ def number_as_percentage_change(num):
 
 
 def number_as_grouped_number(num):
-    if num is None:
-        return ''
-
     if type(num) is str or type(num) is unicode:
         num = as_number(num)
+        
+    if num is None:
+        return ''
 
     num = round(num)
     return locale.format('%d', num, grouping=True)
