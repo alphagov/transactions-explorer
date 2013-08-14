@@ -16,7 +16,6 @@ jinja = Environment(
     extensions=['jinja2.ext.with_']
 )
 
-jinja.globals['STATIC_HOST'] = 'https://assets.digital.cabinet-office.gov.uk/static'
 jinja.globals['CSV_LOCATION'] = '/transaction-volumes.csv'
 jinja.globals['GA_ACCOUNT'] = 'UA-36369871-1'
 jinja.globals['GA_DOMAIN'] = 'gov.uk'
@@ -28,6 +27,7 @@ jinja.filters['as_percentage_change'] = number_as_percentage_change
 jinja.filters['as_grouped_number'] = number_as_grouped_number
 jinja.filters['as_absolute_url'] = string_as_absolute_url
 jinja.filters['as_asset_url'] = string_as_asset_url
+jinja.filters['as_static_url'] = string_as_static_url
 jinja.filters['slugify'] = slugify
 
 

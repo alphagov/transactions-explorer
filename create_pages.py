@@ -3,6 +3,7 @@ import sys
 from distutils import dir_util
 
 import unicodecsv
+from lib.filters import digest
 from lib.params import parse_args_for_create
 
 from lib.service import Service, latest_quarter, sorted_ignoring_empty_values, Department
@@ -10,8 +11,7 @@ from lib.service import Service, latest_quarter, sorted_ignoring_empty_values, D
 from lib import templates, filters
 from lib.csv import map_services_to_csv_data, map_services_to_dicts
 
-from lib.service import Service, latest_quarter, sorted_ignoring_empty_values,\
-    total_transaction_volume
+from lib.service import total_transaction_volume
 from lib.slugify import slugify
 from lib.templates import render, render_csv, render_search_json
 
@@ -25,6 +25,9 @@ input = arguments.services_data
 
 filters.path_prefix = arguments.path_prefix
 filters.asset_prefix = arguments.asset_prefix
+
+if arguments.static_digests:
+    digest.load_digests(arguments.static_digests)
 
 data = open(input)
 
