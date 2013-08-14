@@ -49,7 +49,7 @@ def _round(num, precision):
 def number_as_magnitude(num):
     if num is None:
         return 0
-    if type(num) is str or type(num) is unicode:
+    if isinstance(num, basestring):
         num = as_number(num)
     if type(num) is not Decimal:
         num = Decimal(num)
@@ -61,7 +61,7 @@ def number_as_magnitude(num):
 def number_as_financial_magnitude(num):
     if num is None:
         return 0
-    if type(num) is str or type(num) is unicode:
+    if isinstance(num, basestring):
         num = as_number(num)
     if type(num) is not Decimal:
         num = Decimal(num)
@@ -77,7 +77,7 @@ def number_as_financial_magnitude(num):
 
 
 def number_as_percentage(num):
-    if type(num) is str or type(num) is unicode:
+    if isinstance(num, basestring):
         num = as_number(num)
 
     if num is None:
@@ -111,12 +111,12 @@ def number_as_grouped_number(num):
     if num is None:
         return ''
 
-    if type(num) is str or type(num) is unicode:
+    if isinstance(num, basestring):
         num = as_number(num)
 
     num = round(num)
     return locale.format('%d', num, grouping=True)
 
+
 def string_as_absolute_url(string):
     return path_prefix.rstrip('/') + '/' + string
-
