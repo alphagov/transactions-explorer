@@ -152,7 +152,7 @@ class Service:
     def _attributes_present(self, kpi, attrs):
         return all(kpi[attr] is not None for attr in attrs)
 
-    def most_recent_kpis_with(self, attrs):
+    def find_recent_kpis_with_attributes(self, attrs):
         return next((kpi for kpi in reversed(self.kpis)
                      if self._attributes_present(kpi, attrs)),
                     None)
@@ -317,14 +317,14 @@ class ServiceKpiAggregator(object):
 
     def aggregate(self, attrs, high_volume_only=False):
         def included(service):
-            return service.most_recent_kpis_with(attrs) is not None and (
+            return service.find_recent_kpis_with_attributes(attrs) is not None and (
                    not high_volume_only or service.high_volume)
 
         def aggregation(attr):
-            values = [service.most_recent_kpis_with(attrs)[attr]
+            values = [service.find_recent_kpis_with_attributes(attrs)[attr]
                       for service in self.services
                       if included(service)
-                      and service.most_recent_kpis_with(attrs)[attr] is not None]
+                      and service.find_recent_kpis_with_attributes(attrs)[attr] is not None]
             if any(values):
                 return sum(values)
 

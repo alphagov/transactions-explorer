@@ -66,7 +66,7 @@ class TestService(unittest.TestCase):
             '2013-Q1 Vol.': '3',
         }))
 
-        assert_that(service.most_recent_kpis_with(['volume_num', 'digital_volume_num'])['volume_num'],
+        assert_that(service.find_recent_kpis_with_attributes(['volume_num', 'digital_volume_num'])['volume_num'],
                     is_(10))
 
     def test_most_recent_kpi_with_attributes_are_none_if_no_attributes_are_present(self):
@@ -75,7 +75,7 @@ class TestService(unittest.TestCase):
             '2013-Q1 Vol.': '3',
         }))
 
-        assert_that(service.most_recent_kpis_with(['volume_num', 'digital_volume_num']),
+        assert_that(service.find_recent_kpis_with_attributes(['volume_num', 'digital_volume_num']),
                     is_(None))
 
 
