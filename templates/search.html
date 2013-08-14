@@ -13,6 +13,13 @@
 
     {% include "search_box.html" %}
 
+    <noscript>
+        <section class="content-group">
+            <p>Transactions Explorer search relies on JavaScript being enabled in your browser.</p>
+            <p>You can still view <a href="{{ EXPLORER_HOST }}/all-services/by-transactions-per-year/descending.html">All services on the Transactions Explorer</a>.</p>
+        </section>
+    </noscript>
+
     <section class="content-group">
     <div id="search_results">
     <table id="transactions-table" class="full_width_table">
