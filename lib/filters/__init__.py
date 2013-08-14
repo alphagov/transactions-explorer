@@ -12,6 +12,7 @@ TWO_DECIMAL_PLACES = Decimal('0.01')
 locale.setlocale(locale.LC_ALL, 'en_GB.utf-8')
 
 path_prefix = '/'
+asset_prefix = '/assets/'
 
 
 def as_number(num):
@@ -119,4 +120,12 @@ def number_as_grouped_number(num):
 
 
 def string_as_absolute_url(string):
-    return path_prefix.rstrip('/') + '/' + string
+    return join_url_parts(path_prefix, string)
+
+
+def string_as_asset_url(string):
+    return join_url_parts(asset_prefix, string)
+
+
+def join_url_parts(prefix, suffix):
+    return prefix.rstrip('/') + '/' + suffix.lstrip('/')
