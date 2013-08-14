@@ -170,6 +170,99 @@ class TestService(unittest.TestCase):
         assert_that(no_previous_vol_service.latest_kpi_for('volume_change'), is_(None))
         assert_that(zero_previous_vol_service.latest_kpi_for('volume_change'), is_(None))
 
+    def test_calculate_takeup_change_from_previous_value(self):
+        increase_service = Service(details({
+            '2013-Q1 Vol.': '200',
+            '2013-Q1 Digital vol.': '200',
+            '2012-Q4 Vol.': '100',
+            '2012-Q4 Digital vol.': '50',
+        }))
+        decrease_service = Service(details({
+            '2013-Q1 Vol.': '100',
+            '2013-Q1 Digital vol.': '50',
+            '2012-Q4 Vol.': '100',
+            '2012-Q4 Digital vol.': '100',
+        }))
+        no_previous_vol_service = Service(details({
+            '2013-Q1 Vol.': '100',
+            '2013-Q1 Digital vol.': '100',
+            '2012-Q4 Vol.': '',
+            '2012-Q4 Digital vol.': '',
+        }))
+        zero_previous_vol_service = Service(details({
+            '2013-Q1 Vol.': '100',
+            '2013-Q1 Digital vol.': '100',
+            '2012-Q4 Vol.': '0',
+            '2012-Q4 Digital vol.': '0',
+        }))
+
+        assert_that(increase_service.latest_kpi_for('takeup_change'), is_(2))
+        assert_that(decrease_service.latest_kpi_for('takeup_change'), is_(0.5))
+        assert_that(no_previous_vol_service.latest_kpi_for('takeup_change'), is_(None))
+        assert_that(zero_previous_vol_service.latest_kpi_for('takeup_change'), is_(None))
+
+    def test_calculate_cost_per_transaction_change_from_previous_value(self):
+        increase_service = Service(details({
+            '2013-Q1 Vol.': '200',
+            u'2013-Q1 CPT (\xa3)': '2',
+            '2012-Q4 Vol.': '100',
+            u'2012-Q4 CPT (\xa3)': '1',
+        }))
+        decrease_service = Service(details({
+            '2013-Q1 Vol.': '100',
+            u'2013-Q1 CPT (\xa3)': '1',
+            '2012-Q4 Vol.': '100',
+            u'2012-Q4 CPT (\xa3)': '2',
+        }))
+        no_previous_vol_service = Service(details({
+            '2013-Q1 Vol.': '100',
+            u'2013-Q1 CPT (\xa3)': '1',
+            '2012-Q4 Vol.': '',
+            u'2012-Q4 CPT (\xa3)': '',
+        }))
+        zero_previous_vol_service = Service(details({
+            '2013-Q1 Vol.': '100',
+            u'2013-Q1 CPT (\xa3)': '1',
+            '2012-Q4 Vol.': '0',
+            u'2012-Q4 CPT (\xa3)': '0',
+        }))
+
+        assert_that(increase_service.latest_kpi_for('cost_per_change'), is_(2))
+        assert_that(decrease_service.latest_kpi_for('cost_per_change'), is_(0.5))
+        assert_that(no_previous_vol_service.latest_kpi_for('cost_per_change'), is_(None))
+        assert_that(zero_previous_vol_service.latest_kpi_for('cost_per_change'), is_(None))
+
+    def test_calculate_cost_change_from_previous_value(self):
+        increase_service = Service(details({
+            '2013-Q1 Vol.': '200',
+            u'2013-Q1 CPT (\xa3)': '2',
+            '2012-Q4 Vol.': '100',
+            u'2012-Q4 CPT (\xa3)': '1',
+        }))
+        decrease_service = Service(details({
+            '2013-Q1 Vol.': '100',
+            u'2013-Q1 CPT (\xa3)': '1',
+            '2012-Q4 Vol.': '100',
+            u'2012-Q4 CPT (\xa3)': '2',
+        }))
+        no_previous_vol_service = Service(details({
+            '2013-Q1 Vol.': '100',
+            u'2013-Q1 CPT (\xa3)': '1',
+            '2012-Q4 Vol.': '',
+            u'2012-Q4 CPT (\xa3)': '',
+        }))
+        zero_previous_vol_service = Service(details({
+            '2013-Q1 Vol.': '100',
+            u'2013-Q1 CPT (\xa3)': '1',
+            '2012-Q4 Vol.': '0',
+            u'2012-Q4 CPT (\xa3)': '0',
+        }))
+
+        assert_that(increase_service.latest_kpi_for('cost_change'), is_(4))
+        assert_that(decrease_service.latest_kpi_for('cost_change'), is_(0.5))
+        assert_that(no_previous_vol_service.latest_kpi_for('cost_change'), is_(None))
+        assert_that(zero_previous_vol_service.latest_kpi_for('cost_change'), is_(None))
+
 class TestSummingTotalTransactions(unittest.TestCase):
 
     def test_sum_of_total_transactions(self):

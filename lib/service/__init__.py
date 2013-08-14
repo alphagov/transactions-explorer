@@ -50,10 +50,10 @@ class Service:
             else:
                 takeup = None
             
-            cost_per = as_number(self['%s_cpt' % quarter])
+            cost_per_transaction = as_number(self['%s_cpt' % quarter])
             
-            if cost_per is not None:
-                cost = cost_per * volume
+            if cost_per_transaction is not None:
+                cost = cost_per_transaction * volume
             else:
                 cost = None
             
@@ -66,7 +66,7 @@ class Service:
                 'digital_volume':   self['%s_digital_vol' % quarter],
                 'digital_volume_num': digital_volume,
                 'cost_per':         self['%s_cpt' % quarter],
-                'cost_per_number':  cost_per,
+                'cost_per_number':  cost_per_transaction,
                 'cost_per_digital': self['%s_digital_cpt' % quarter],
                 'completion':       self['%s_completion_rate' % quarter],
                 'satisfaction':     self['%s_user_satisfaction' % quarter],
@@ -74,35 +74,16 @@ class Service:
 
             def change_factor(previous, current):
                 factor = None
-                if previous and previous != 0:
+                if current and previous and previous != 0:
                     factor = current / previous
                 return factor
 
             if previous_quarter is not None:
                 self.has_previous_quarter = True
                 data['volume_change'] = change_factor(previous_quarter['volume_num'], volume)
-
-                if takeup is not None and previous_quarter['takeup'] is not None:
-                    if previous_quarter['takeup'] == 0:
-                        data['takeup_change'] = takeup * 100
-                    else:
-                        data['takeup_change'] = takeup / previous_quarter['takeup']
-                else:
-                    data['takeup_change'] = None
-                if cost and previous_quarter['cost']:
-                    if previous_quarter['cost'] == 0:
-                        data['cost_change'] = cost * 100
-                    else:
-                        data['cost_change'] = cost / previous_quarter['cost']
-                else:
-                    data['cost_change'] = None
-                if cost_per and previous_quarter['cost_per_number']:
-                    if previous_quarter['cost_per_number'] == 0:
-                        data['cost_per_change'] = cost_per * 100
-                    else:
-                        data['cost_per_change'] = cost_per / previous_quarter['cost_per_number']
-                else:
-                    data['cost_per_change'] = None
+                data['takeup_change'] = change_factor(previous_quarter['takeup'], takeup)
+                data['cost_per_change'] = change_factor(previous_quarter['cost_per_number'], cost_per_transaction)
+                data['cost_change'] = change_factor(previous_quarter['cost'], cost)
                 data['previous_quarter'] = previous_quarter['quarter']
             
             previous_quarter = data
