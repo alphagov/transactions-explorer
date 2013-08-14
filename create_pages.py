@@ -108,5 +108,3 @@ if __name__ == "__main__":
 
     # Copy the assets folder entirely, as well
     dir_util.copy_tree('assets', '%s/assets' % OUTPUT_DIR)
-    dir_util.copy_tree('search/src', '%s/assets' % OUTPUT_DIR)
-    dir_util.copy_tree('search/lib', '%s/assets' % OUTPUT_DIR)

@@ -103,9 +103,8 @@
         </tbody>
         </table>
 
+        {% include "treemap_javascript.html" %} 
         <!--[if gt IE 8]><!-->
-        <script type="text/javascript" src="/assets/javascripts/d3.v3.js"></script>
-        <script type="text/javascript" src="/assets/javascripts/table-to-tree-map.js"></script>
         <script>
             $(document).ready(function() {
                 if ($(".treemap").length) {

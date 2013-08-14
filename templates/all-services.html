@@ -24,15 +24,7 @@
 
             {% include "departments_table.html" %}
 
-            <!--[if gt IE 8]><!-->
-            <script type="text/javascript" src="/assets/javascripts/d3.v3.js"></script>
-            <script type="text/javascript" src="/assets/javascripts/table-to-tree-map.js"></script>
-            <script>
-              var tree = Tree.fromHtmlTable(
-                d3.selectAll("tbody tr"));
-              TreeMapLayout.display("services-treemap", tree);
-            </script>
-            <!--<![endif]-->
+            {% include "treemap_javascript.html" %} 
 
             <div class="application-notice info-notice table-margin">
                 <p>* Figures are based on data for high-volume services only</p>

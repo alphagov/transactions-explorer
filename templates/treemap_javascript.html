@@ -1,0 +1,14 @@
+<!--[if gt IE 8]><!-->
+<script type="text/javascript" src="/assets/javascripts/lib/d3.v3.js"></script>
+<script type="text/javascript" src="/assets/javascripts/table-to-tree-map.js"></script>
+<script>
+  $(document).ready(function() {
+      if ($("#services-treemap").length) {
+        var tree = Tree.fromHtmlTable(
+          d3.selectAll("tbody tr"));
+        TreeMapLayout.display("services-treemap", tree);
+      }
+  });
+</script>
+<!--<![endif]-->
+
