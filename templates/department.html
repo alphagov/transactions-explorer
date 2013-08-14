@@ -31,6 +31,8 @@
 
         <div style="clear:both;"></div>
 
+        {# {% include "departments_table.html" %} #}
+
         <table id="transactions-table" class="full_width_table">
         <thead>
         <tr>
@@ -73,11 +75,11 @@
                 data-body="{{ department.name }}"
                 data-body-abbr="{{ department.abbr }}"
                 data-url="{{ service.url }}"
-                data-bubblelink="{{ service.link|as_absolute_path }}"
+                data-href="{{ service.link|as_absolute_path }}"
                 data-label="{{ service.name }}"
                 data-title="{{ service.name }}"
-                data-color="#2e358b"
-                data-text-color="#fff">
+                data-text-color="#fff"
+                data-dept-class="{{ service.abbr }}">
                 <th scope="row">
                     {% if service.high_volume %}
                         <a href="{{ service.link|as_absolute_path }}">{{ service.name }}</a>
@@ -101,20 +103,16 @@
         </tbody>
         </table>
 
-        <script type="text/javascript">
-            $(document).ready(function() {
-                if ($("#bubble").length) {
-                    gds.transactions.views.index( "hmrc" , "bubble", "transactions-table");
-                }
-            });
-        </script>
-
         <!--[if gt IE 8]><!-->
         <script type="text/javascript" src="/assets/javascripts/d3.v3.js"></script>
         <script type="text/javascript" src="/assets/javascripts/table-to-tree-map.js"></script>
         <script>
-          var tree = Tree.fromHtmlTable(d3.selectAll("tbody tr"));
-          TreeMapLayout.display("department-treemap", tree);
+            $(document).ready(function() {
+                if ($(".treemap").length) {
+                    var tree = Tree.fromHtmlTable(d3.selectAll("tbody tr"), 40);
+                    TreeMapLayout.display("department-treemap", tree);
+                }
+            });
         </script>
         <!--<![endif]-->
 

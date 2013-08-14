@@ -39,15 +39,18 @@ var Tree = (function () {
     return roundedValue.toString();
   };
 
+  var hasValue 
+
   var valuesFrom = function(selection) {
     return selection[0].map(function (row) {
       var volume = parseInt(row.getAttribute("data-volume"), 10);
+        volume = isNaN(volume) ? 0 : volume;
       return {
         name: row.getAttribute("data-title"),
-        size: volume,
+        size: volume, 
         volumeShortened: formatNumericLabel(volume),
         volumeLabel: row.getAttribute("data-volumelabel"),
-        url: row.getAttribute("data-bubbleLink"),
+        url: row.getAttribute("data-href"),
         color: row.getAttribute("data-color"),
         textColor: row.getAttribute('data-text-color'),
         cost: row.getAttribute('data-cost'),
@@ -84,10 +87,9 @@ var Tree = (function () {
       return val.size;
     });
     
-    // var threshold = values.reduce(max).size / thresholdRatio;
     var threshold = sumVals / thresholdRatio;
     var splitValues = partition(values, function (v) {
-      return v.size > threshold; });
+      return (v.size > threshold || v.url); });
     var children = splitValues.left;
     if (splitValues.right.length) {
       var otherValue = splitValues.right.reduce(sum);
@@ -169,20 +171,12 @@ var TreeMapLayout = (function () {
     
     var div = d3.select('#'+divId);
 
-    console.log(treemap.nodes);
-    // var maxDy = d3.max(treemap.nodes, 'dy');
-
-    // console.log(div.datum(treeData).selectAll("node").data(treemap.nodes);
-
-    // console.log(maxDx);
-    
     var node = div.datum(treeData).selectAll(".node")
       .data(treemap.nodes)
       .enter().append("div")
       .attr("class", getNodeClass)
       .attr('data-tooltip', createTip)    
       .call(position)
-      // .style("background", function(d) { return d.color ? d.color : color(d.name); })
       .append("a")
         .attr('href',function(d){ return d.url ? d.url : null })
         .style("color", function(d) { return d.textColor ? d.textColor : null; })
@@ -209,7 +203,6 @@ var TreeMapLayout = (function () {
       $figure.find('.node').on('mouseenter',function(){
         var $this = $(this),
             bg = $this.css('background-color');
-        console.log(bg);
         $cap.html($this.data('tooltip'));
         $('<span class="keyBlock"/>').css('background-color',bg).prependTo($cap);
       });
