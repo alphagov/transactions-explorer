@@ -24,6 +24,7 @@ arguments = parse_args_for_create(sys.argv[1:])
 input = arguments.services_data
 
 filters.path_prefix = arguments.path_prefix
+filters.asset_prefix = arguments.asset_prefix
 
 data = open(input)
 
