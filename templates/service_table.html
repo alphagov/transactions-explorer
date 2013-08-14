@@ -55,8 +55,8 @@
     <tbody>
         {% for service in items %}
 
-            <tr data-volume="{{ service.most_recent_kpis.volume_num|int }}"
-                data-volumeLabel=" {{ service.most_recent_kpis.volume_num|as_grouped_number }} "
+            <tr data-volume="{{ service.latest_kpi_for('volume_num')|int }}"
+                data-volumeLabel=" {{ service.latest_kpi_for('volume_num')|as_grouped_number }} "
                 data-category="{{ service.category }}"
                 data-body="{{ service.body }}"
                 data-body-abbr="{{ service.agency_abbr }}"
@@ -76,26 +76,26 @@
                 <td>{{ service.abbr }}</td>
 
                 <td class="amount">
-                    {{ cell_content(quarter=service.most_recent_kpis['quarter'],
-                                    value=service.most_recent_kpis.cost,
+                    {{ cell_content(quarter=service.latest_kpi_for('quarter'),
+                                    value=service.latest_kpi_for('cost'),
                                     cell_format=table.money_cell) }}
                 </td>
 
                 <td class="amount">
-                    {{ cell_content(quarter=service.most_recent_kpis['quarter'],
-                                    value=service.most_recent_kpis.cost_per_number,
+                    {{ cell_content(quarter=service.latest_kpi_for('quarter'),
+                                    value=service.latest_kpi_for('cost_per_number'),
                                     cell_format=table.money_cell) }}
                 </td>
 
                 <td class="amount">
-                    {{ cell_content(quarter=service.most_recent_kpis['quarter'],
-                                    value=service.most_recent_kpis.takeup,
+                    {{ cell_content(quarter=service.latest_kpi_for('quarter'),
+                                    value=service.latest_kpi_for('takeup'),
                                     cell_format=table.percentage_cell) }}
                 </td>
 
                 <td class="amount">
-                    {{ cell_content(quarter=service.most_recent_kpis['quarter'],
-                                    value=service.most_recent_kpis.volume_num,
+                    {{ cell_content(quarter=service.latest_kpi_for('quarter'),
+                                    value=service.latest_kpi_for('volume_num'),
                                     cell_format=table.number_cell) }}
                 </td>
 

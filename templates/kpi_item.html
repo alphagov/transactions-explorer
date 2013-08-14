@@ -10,13 +10,13 @@
     {% else %}
       <h2>{{ value|as_magnitude }}</h2>
     {% endif %}
-    <h3>{{ service.most_recent_kpis.quarter }}</h3>
+    <h3>{{ service.latest_kpi_for('quarter') }}</h3>
   </div>
   
   {% if service.has_previous_quarter and change is not none %}
     <div class="change col-35">
       <h2 class="{% if change != 0 %}{% if change < 1 %}decrease {{decrease_class}}{% elif change > 1 %}increase {{increase_class}}{% endif %}{% endif %}">{{ change|as_percentage_change }}</h2>
-      <h3>{{ service.most_recent_kpis.previous_quarter }}</h3>
+      <h3>{{ service.latest_kpi_for('previous_quarter') }}</h3>
     </div>
     <div class="previous clear-div">
       <details>
