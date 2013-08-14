@@ -47,8 +47,8 @@
                 data-category=""
                 data-body=""
                 data-body-abbr=""
-                data-url="{{ department.link|as_absolute_path }}"
-                data-href="{{ department.link|as_absolute_path }}"
+                data-url="{{ department.link|as_absolute_url }}"
+                data-href="{{ department.link|as_absolute_url }}"
                 data-label="{{ department.abbr }}"
                 data-title="{{ department.name }}"
                 data-text-color="#fff"
@@ -56,7 +56,7 @@
                 data-dept-class="{{ department.abbr }}"
                 >
                 
-                <th scope="row"><a href="{{ department.link|as_absolute_path }}">{{ department.name }}</a></th>
+                <th scope="row"><a href="{{ department.link|as_absolute_url }}">{{ department.name }}</a></th>
                 <td class="amount"> {{ department.takeup|as_percentage }} </td>
                 <td class="amount"> {{ table.money_cell(department.cost) }} </td>
                 <td class="amount"> {{ department.data_coverage|as_percentage }} </td>

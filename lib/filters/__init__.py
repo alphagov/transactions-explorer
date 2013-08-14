@@ -124,7 +124,7 @@ def number_as_grouped_number(num):
         return locale.format('%d', num, grouping=True)
 
 
-def string_as_absolute_path(string):
+def string_as_absolute_url(string):
     return join_url_parts(path_prefix, string)
 
 

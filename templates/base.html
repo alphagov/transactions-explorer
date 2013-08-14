@@ -30,18 +30,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="og:image" content="{{ STATIC_HOST }}/opengraph-image.png">
     <script src="{{ STATIC_HOST }}/libs/jquery/jquery-1.7.2.js" type="text/javascript"></script><script defer src="{{ STATIC_HOST }}/application.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-36369871-1']);
-        _gaq.push(['_setDomainName', 'cabinetoffice.gov.uk']);
-        _gaq.push(['_trackPageview']);
-
-        (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
+    {% include "google-analytics.html" %}
     <link rel="stylesheet" media="screen" href="{{ 'stylesheets/index.css' | as_asset_url }}">
     <link rel="stylesheet" media="screen" href="{{ 'stylesheets/treemap.css' | as_asset_url }}">
     <!--[if lt IE 9]>
@@ -74,7 +63,7 @@
                         </a>
                         <ul id="proposition-links">
                             <li><a href="/performance/dashboard">GOV.UK performance</a></li>
-                            <li><a href="{{ ''|as_absolute_path }}" class="active">Transactions Explorer</a></li>
+                            <li><a href="{{ ''|as_absolute_url }}" class="active">Transactions Explorer</a></li>
                             <li><a href="/performance/services">Services</a></li>
                         </ul>
                     </nav>
@@ -87,10 +76,10 @@
         <section id="content" role="main" class="group"><!--<div class="pattern-status">{% raw %}{{ page.status }}{% endraw %}</div>-->
             <nav class="performance-nav">
                 <ul>
-                    <li><a href="{{ ''|as_absolute_path }}" class="{% if current_navigation_link == 'home' %}active{% endif %}">Overview</a></li>
-                    <li><a href="{{ 'all-services/by-transactions-per-year/descending'|as_absolute_path }}" class="{% if current_navigation_link == 'all-services' %}active{% endif %}">All services</a></li>
-                    <li><a href="{{ 'high-volume-services/by-transactions-per-year/descending'|as_absolute_path }}" class="{% if current_navigation_link == 'high-volume-services' %}active{% endif %}">High-volume services</a></li>
-                    <li><a href="{{ 'about-data'|as_absolute_path }}" class="{% if current_navigation_link == 'about' %}active{% endif %}">About the data</a></li>
+                    <li><a href="{{ ''|as_absolute_url }}" class="{% if current_navigation_link == 'home' %}active{% endif %}">Overview</a></li>
+                    <li><a href="{{ 'all-services/by-transactions-per-year/descending'|as_absolute_url }}" class="{% if current_navigation_link == 'all-services' %}active{% endif %}">All services</a></li>
+                    <li><a href="{{ 'high-volume-services/by-transactions-per-year/descending'|as_absolute_url }}" class="{% if current_navigation_link == 'high-volume-services' %}active{% endif %}">High-volume services</a></li>
+                    <li><a href="{{ 'about-data'|as_absolute_url }}" class="{% if current_navigation_link == 'about' %}active{% endif %}">About the data</a></li>
                 </ul>
             </nav>
 
