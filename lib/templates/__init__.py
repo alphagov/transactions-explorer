@@ -26,7 +26,7 @@ jinja.filters['as_financial_magnitude'] = number_as_financial_magnitude
 jinja.filters['as_percentage'] = number_as_percentage
 jinja.filters['as_percentage_change'] = number_as_percentage_change
 jinja.filters['as_grouped_number'] = number_as_grouped_number
-jinja.filters['as_absolute_path'] = string_as_absolute_path
+jinja.filters['as_absolute_url'] = string_as_absolute_url
 jinja.filters['slugify'] = slugify
 
 
