@@ -24,12 +24,18 @@ class FetchArgumentParsing(unittest.TestCase):
 
 class CreateArgumentParsing(unittest.TestCase):
 
-    def test_default_services_data_file_on_data_dir(self):
+    def test_default_services_data_file_and_prefix_on_data_dir(self):
         argument = parse_args_for_create([])
 
         assert_that(argument.services_data, is_('data/services.csv'))
+        assert_that(argument.path_prefix, is_('/'))
 
     def test_parse_services_data_param(self):
         argument = parse_args_for_create(['--services-data', '/var/test.csv'])
 
         assert_that(argument.services_data, is_('/var/test.csv'))
+
+    def test_parse_path_prefix_parma(self):
+        argument = parse_args_for_create(['--path-prefix', '/some/path'])
+
+        assert_that(argument.path_prefix, is_('/some/path'))

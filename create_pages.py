@@ -7,7 +7,7 @@ from lib.params import parse_args_for_create
 
 from lib.service import Service, latest_quarter, sorted_ignoring_empty_values, Department
 
-from lib import templates
+from lib import templates, filters
 from lib.csv import map_services_to_csv_data, map_services_to_dicts
 
 from lib.service import Service, latest_quarter, sorted_ignoring_empty_values,\
@@ -22,6 +22,8 @@ templates.output_dir = OUTPUT_DIR
 
 arguments = parse_args_for_create(sys.argv[1:])
 input = arguments.services_data
+
+filters.path_prefix = arguments.path_prefix
 
 data = open(input)
 
@@ -60,7 +62,7 @@ if __name__ == "__main__":
     })
     for service in high_volume_services:
         render('service_detail.html',
-               out=service.link,
+               out="%s.html" % service.link,
                vars={'service': service,
                      'department': Department(service.department, [service])})
 

@@ -17,5 +17,8 @@ def parse_args_for_create(args):
     parser.add_argument('--services-data',
                         help='Services CSV datafile',
                         default='data/services.csv')
+    parser.add_argument('--path-prefix',
+                        help='Prefix for generated URL paths',
+                        default='/')
 
     return parser.parse_args(args)
