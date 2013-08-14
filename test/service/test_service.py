@@ -51,6 +51,14 @@ class TestService(unittest.TestCase):
 
         assert_that(service.latest_kpi_for('volume_num'), is_(None))
 
+    def test_kpi_with_missing_property(self):
+        service = Service(details({
+           '2012-Q4 Vol.': '5'
+        }))
+
+        assert_that(service.latest_kpi_for('volume_change'), is_(None))
+
+
     def test_most_recent_kpi_with_given_attribute(self):
         service = Service(details({
             '2012-Q4 Vol.': '10',

@@ -69,10 +69,10 @@ if __name__ == "__main__":
     sort_orders = [
         ("by-name", lambda service: service.name_of_service),
         ("by-department", lambda service: service.abbr),
-        ("by-total-cost", lambda service: service.most_recent_kpis['cost']),
-        ("by-cost-per-transaction", lambda service: service.most_recent_kpis['cost_per_number']),
-        ("by-digital-takeup", lambda service: service.most_recent_kpis['takeup']),
-        ("by-transactions-per-year", lambda service: service.most_recent_kpis['volume_num']),
+        ("by-total-cost", lambda service: service.latest_kpi_for('cost')),
+        ("by-cost-per-transaction", lambda service: service.latest_kpi_for('cost_per_number')),
+        ("by-digital-takeup", lambda service: service.latest_kpi_for('takeup')),
+        ("by-transactions-per-year", lambda service: service.latest_kpi_for('volume_num')),
     ]
     generate_sorted_pages(high_volume_services, 'high-volume-services', 'high-volume-services',
                           sort_orders, {'latest_quarter': latest_quarter})

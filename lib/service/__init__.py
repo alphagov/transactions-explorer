@@ -8,7 +8,7 @@ from lib.slugify import keyify, slugify
 
 
 def latest_quarter(services):
-    return max(service.most_recent_kpis['quarter'] for service in services)
+    return max(service.latest_kpi_for('quarter') for service in services)
 
 
 def sorted_ignoring_empty_values(services, key, reverse=False):
@@ -128,14 +128,14 @@ class Service:
         return re.sub('\s*$', '', self.description_of_service)
 
     def latest_kpi_for(self, attribute):
-        latest_kpis = self.most_recent_kpis
+        latest_kpis = self._most_recent_kpis
         if latest_kpis is None:
             return None
         else:
-            return latest_kpis[attribute]
+            return latest_kpis.get(attribute)
 
     @property
-    def most_recent_kpis(self):
+    def _most_recent_kpis(self):
         if len(self.kpis) > 0:
             return self.kpis[-1]
 
@@ -169,7 +169,7 @@ class Service:
     def most_up_to_date_volume(self):
         most_recent_yearly_volume = None
         if self.has_kpis:
-            most_recent_yearly_volume = self.most_recent_kpis['volume_num']
+            most_recent_yearly_volume = self.latest_kpi_for('volume_num')
         return most_recent_yearly_volume
 
     def historical_data(self, key):
@@ -335,7 +335,7 @@ def total_transaction_volume(services):
     def _sum(memo, service):
         number_of_transactions = 0
         if service.has_kpis:
-            number_of_transactions = service.most_recent_kpis['volume_num']
+            number_of_transactions = service.latest_kpi_for('volume_num')
         return number_of_transactions + memo
 
     return reduce(_sum, services, 0)
