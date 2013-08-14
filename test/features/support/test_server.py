@@ -1,4 +1,5 @@
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+import mimetypes
 import os
 import re
 import threading
@@ -38,11 +39,7 @@ def wait_until(condition, timeout=15, interval=0.1):
 
 
 def get_content_type(full_path):
-    return {
-        "css": "text/css",
-        "js": "application/javascript",
-        "html": "text/html"
-    }.get(full_path.rsplit('.', 1)[1], "text/plain")
+    return mimetypes.guess_type(full_path)[0]
 
 
 class TestServer(BaseHTTPRequestHandler):

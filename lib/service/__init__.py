@@ -156,7 +156,7 @@ class Service:
 
     @property
     def link(self):
-        return '%s/%s.html' % ('service-details', self.slug)
+        return '%s/%s' % ('service-details', self.slug)
 
     @property
     def most_up_to_date_volume(self):
@@ -275,7 +275,7 @@ class Department(object):
 
     @property
     def link(self):
-        return 'department/%s/by-transactions-per-year/descending.html'\
+        return 'department/%s/by-transactions-per-year/descending'\
                % slugify(self.abbr)
 
     def _aggregate(self, attr, high_volume_only=False):

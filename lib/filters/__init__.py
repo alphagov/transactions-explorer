@@ -11,6 +11,8 @@ TWO_DECIMAL_PLACES = Decimal('0.01')
 
 locale.setlocale(locale.LC_ALL, 'en_GB.utf-8')
 
+path_prefix = '/'
+
 
 def as_number(num):
     if num:
@@ -121,5 +123,5 @@ def number_as_grouped_number(num):
         return locale.format('%d', num, grouping=True)
 
 def string_as_absolute_path(string):
-    return '/' + string
+    return path_prefix + string
 
