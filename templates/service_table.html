@@ -73,7 +73,7 @@
                     <a href="{{ service.link|as_absolute_url }}">{{ service.name_of_service }}</a>
                 </th>
 
-                <td>{{ service.abbr }}</td>
+                <td><abbr title="{{ service.department }}">{{ service.abbr }}</abbr></td>
 
                 <td class="amount">
                     {{ cell_content(quarter=service.latest_kpi_for('quarter'),
