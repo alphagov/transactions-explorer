@@ -18,6 +18,7 @@ jinja = Environment(
 
 jinja.globals['STATIC_HOST'] = 'https://assets.digital.cabinet-office.gov.uk/static'
 jinja.globals['CSV_LOCATION'] = '/transaction-volumes.csv'
+jinja.globals['GA_ACCOUNT'] = 'UA-36369871-1'
 
 jinja.filters['as_magnitude'] = number_as_magnitude
 jinja.filters['as_financial_magnitude'] = number_as_financial_magnitude
