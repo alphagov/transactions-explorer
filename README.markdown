@@ -32,6 +32,7 @@ parametrized with the following arguments:
 * Generate the site with `python create_pages.py`. It can be parametrized with
 the following argument:
   * `--services-data`: Services CSV datafile (default: `data/services.csv`)
+  * `--path-prefix`: Prefix for generated URL paths (default: `/`)
 * [optional] symlink the contents of assets/javascripts to output/assets/javascripts 
 for faster feedback than running create_pages each time.
 * run python `test/features/support/stub_server.py &`. 

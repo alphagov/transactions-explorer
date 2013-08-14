@@ -1,0 +1,25 @@
+{% macro th_content(text, sort, current_sort, title=None, default_direction="ascending") -%}
+    {% if sort != current_sort.order %}
+        <a href="../{{ sort }}/{{ default_direction }}" title="{{ title }}">{{ text }}</a>
+    {% elif current_sort.direction == "ascending" %}
+        <a href="../{{ sort }}/descending" title="{{ title }}">{{ text }}</a>
+        <span class="sort-ind">▲</span>
+    {% else %}
+        <a href="../{{ sort }}/ascending" title="{{ title }}">{{ text }}</a>
+        <span class="sort-ind">▼</span>
+    {% endif %}
+{%- endmacro %}
+
+{% macro money_cell(value) -%}
+    {% if value -%}
+        &pound;{{ value|as_financial_magnitude }}
+    {%- endif %}
+{%- endmacro %}
+
+{% macro percentage_cell(value) -%}
+    {{ value|as_percentage }}
+{%- endmacro %}
+
+{% macro number_cell(value) -%}
+    {{ value|as_grouped_number }}
+{%- endmacro %}

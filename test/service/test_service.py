@@ -17,7 +17,7 @@ class TestService(unittest.TestCase):
                                    'Name of service': 'Add Beautiful Code'}))
 
         assert_that(service.link,
-                    is_('service-details/abc-add-beautiful-code.html'))
+                    is_('service-details/abc-add-beautiful-code'))
 
     def test_zero_volumes(self):
         service = Service(details({'2012-Q4 Vol.': '0',
