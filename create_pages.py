@@ -30,6 +30,9 @@ data = open(input)
 reader = unicodecsv.DictReader(data)
 
 services = [Service(details=row) for row in reader]
+
+services_with_details = [service for service in services if service.has_details_page]
+
 high_volume_services = [service for service in services if service.high_volume]
 latest_quarter = latest_quarter(high_volume_services)
 
@@ -60,7 +63,7 @@ if __name__ == "__main__":
         'services_count': len(services),
         'total_transactions': total_transaction_volume(services)
     })
-    for service in high_volume_services:
+    for service in services_with_details:
         render('service_detail.html',
                out="%s.html" % service.link,
                vars={'service': service,
