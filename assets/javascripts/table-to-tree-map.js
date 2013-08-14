@@ -80,7 +80,6 @@ var Tree = (function () {
   };
 
   var condenseValuesUnderThreshold = function(values, thresholdRatio) {
-    console.log(values);
     if (thresholdRatio == null) {
       return values;
     }
@@ -88,16 +87,12 @@ var Tree = (function () {
       return val.size;
     });
     
-    // var threshold = values.reduce(max).size / thresholdRatio;
     var threshold = sumVals / thresholdRatio;
-    console.log('threshold',threshold);
     var splitValues = partition(values, function (v) {
       return (v.size > threshold || v.url); });
-    console.log(splitValues);
     var children = splitValues.left;
     if (splitValues.right.length) {
       var otherValue = splitValues.right.reduce(sum);
-      console.log(otherValue);
       children.push({
         name: "Others",
         size: otherValue.size
@@ -176,19 +171,12 @@ var TreeMapLayout = (function () {
     
     var div = d3.select('#'+divId);
 
-    // var maxDy = d3.max(treemap.nodes, 'dy');
-
-    // console.log(div.datum(treeData).selectAll("node").data(treemap.nodes);
-
-    // console.log(maxDx);
-    
     var node = div.datum(treeData).selectAll(".node")
       .data(treemap.nodes)
       .enter().append("div")
       .attr("class", getNodeClass)
       .attr('data-tooltip', createTip)    
       .call(position)
-      // .style("background", function(d) { return d.color ? d.color : color(d.name); })
       .append("a")
         .attr('href',function(d){ return d.url ? d.url : null })
         .style("color", function(d) { return d.textColor ? d.textColor : null; })
