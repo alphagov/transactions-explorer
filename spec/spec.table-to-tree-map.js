@@ -230,7 +230,7 @@ describe("Table To Treemap", function () {
       createTests(999999, 1999999, 10000, function(i) { return (Math.round(i / 10000) / 100).toPrecision(3) + "m"; });
     });
 
-    describe("rounding changes", function () {
+    describe("Number Formatting", function () {
       it("should now show millions to two decimal places", function () {
         expect(formatNumericLabel(1220000)).toBe("1.22m");
       });
@@ -240,8 +240,22 @@ describe("Table To Treemap", function () {
         expect(formatNumericLabel(1010000)).toBe("1.01m");
         expect(formatNumericLabel(9099000)).toBe("9.10m");
         expect(formatNumericLabel(1009900)).toBe("1.01m");
+      });
+
+      var numberWithCommas = Tree.numberWithCommas;
+
+      it("should add commas to separate a number by thousands (return as a string)", function () {
+        expect(numberWithCommas(1000000)).toBe("1,000,000");
+        expect(numberWithCommas(9999)).toBe("9,999");
+        expect(numberWithCommas(19823749873249)).toBe("19,823,749,873,249");
+        expect(numberWithCommas(100)).toBe("100");
+        expect(numberWithCommas(10)).toBe("10");
+        expect(numberWithCommas(0)).toBe("0");
       })
     });
+
+
+
   });
 });
 

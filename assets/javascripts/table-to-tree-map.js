@@ -39,7 +39,12 @@ var Tree = (function () {
     return roundedValue.toString();
   };
 
-  var hasValue 
+  // http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+  var numberWithCommas = function(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  var hasValue;
 
   var valuesFrom = function(selection) {
     return selection[0].map(function (row) {
@@ -95,7 +100,10 @@ var Tree = (function () {
       var otherValue = splitValues.right.reduce(sum);
       children.push({
         name: "Others",
-        size: otherValue.size
+        size: otherValue.size,
+        volumeLabel : numberWithCommas(otherValue.size),
+        cost : otherValue.cost
+
       });
     }
     return children; 
@@ -103,6 +111,7 @@ var Tree = (function () {
   
   return {
     formatNumericLabel: formatNumericLabel,
+    numberWithCommas: numberWithCommas,
     fromHtmlTable: function(selection, thresholdRatio) {
       var values = valuesFrom(selection);
 
