@@ -4,7 +4,11 @@
 <script>
   $(document).ready(function() {
       if ($(".treemap").length) {
-        var tree = Tree.fromHtmlTable(d3.selectAll("tbody tr"), '{{ treshold }}');
+        {% if threshold %}
+        var tree = Tree.fromHtmlTable(d3.selectAll("tbody tr"), '{{ threshold }}');
+        {% else %} 
+        var tree = Tree.fromHtmlTable(d3.selectAll("tbody tr"));
+        {% endif %}
         TreeMapLayout.display("{{ treemapDivId }}", tree);
       }
   });
