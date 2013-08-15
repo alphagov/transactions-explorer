@@ -126,7 +126,7 @@ def string_as_absolute_url(string):
 
 
 def string_as_asset_url(string):
-    return join_url_parts(asset_prefix, string)
+    return join_url_parts(join_url_parts(path_prefix, asset_prefix), string)
 
 
 def string_as_static_url(string):
