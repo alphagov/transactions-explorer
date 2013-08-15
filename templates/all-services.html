@@ -24,7 +24,10 @@
 
             {% include "departments_table.html" %}
 
-            {% include "treemap_javascript.html" %} 
+            {% with %}
+                {% set treemapDivId='services-treemap' %}
+                {% include "treemap_javascript.html" %}
+            {% endwith %}
 
             <div class="application-notice info-notice table-margin">
                 <p>* Figures are based on data for high-volume services only</p>

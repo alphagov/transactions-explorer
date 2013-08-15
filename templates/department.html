@@ -103,17 +103,11 @@
         </tbody>
         </table>
 
-        {% include "treemap_javascript.html" %} 
-        <!--[if gt IE 8]><!-->
-        <script>
-            $(document).ready(function() {
-                if ($(".treemap").length) {
-                    var tree = Tree.fromHtmlTable(d3.selectAll("tbody tr"), 40);
-                    TreeMapLayout.display("department-treemap", tree);
-                }
-            });
-        </script>
-        <!--<![endif]-->
+         {% with %}
+            {% set treemapDivId='department-treemap' %}
+            {% set treshold=40 %}
+            {% include "treemap_javascript.html" %}
+        {% endwith %}
 
         <div class="form-download">
             <p>

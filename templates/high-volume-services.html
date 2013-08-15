@@ -24,7 +24,10 @@
 
             {% include "service_table.html" %}
 
-            {% include "treemap_javascript.html" %} 
+            {% with %}
+                {% set treemapDivId='services-treemap' %}
+                {% include "treemap_javascript.html" %}
+            {% endwith %}
 
             <div id="old-data" class="application-notice info-notice table-margin">
                 <p>* Q1 2013 data not provided for this metric; see service page for information on obtaining latest data</p>
