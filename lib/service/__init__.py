@@ -167,7 +167,7 @@ class Service:
 
     @property
     def has_details_page(self):
-        return getattr(self, 'detailed_view') == 'yes'
+        return self.detailed_view == 'yes'
 
     @property
     def most_up_to_date_volume(self):
