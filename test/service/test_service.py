@@ -147,6 +147,21 @@ class TestService(unittest.TestCase):
 
         assert_that(service.agency_abbreviation, is_("A and B and C"))
 
+    def test_has_detailed_page_when_in_csv(self):
+        service_with_details = Service(details({
+            "Detailed view?": "yes"
+        }))
+        service_without_details = Service(details({
+             "Detailed view?": ""
+        }))
+        service_explicitly_without_details = Service(details({
+             "Detailed view?": "no"
+        }))
+
+        assert_that(service_with_details.has_details_page, is_(True))
+        assert_that(service_without_details.has_details_page, is_(False))
+        assert_that(service_explicitly_without_details.has_details_page, is_(False))
+
 
 class TestSummingTotalTransactions(unittest.TestCase):
 

@@ -81,7 +81,7 @@
                 data-text-color="#fff"
                 data-dept-class="{{ service.abbr }}">
                 <th scope="row">
-                    {% if service.high_volume %}
+                    {% if service.has_details_page %}
                         <a href="{{ service.link|as_absolute_url }}">{{ service.name }}</a>
                     {% else %}
                         {{ service.name }}
