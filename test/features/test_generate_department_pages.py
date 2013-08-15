@@ -42,6 +42,8 @@ class GenerateDepartmentPages(BrowserTest):
 
     def test_treemap_has_one_leaf_node_for_each_transaction(self):
         self.browser.visit("http://0.0.0.0:8000/department/def/by-transactions-per-year/descending")
+
+        self.browser.is_element_present_by_css('.treemap .leaf', 5)
         treemap_nodes = self.browser.find_by_css('.treemap .leaf')
 
         assert_that(len(treemap_nodes), is_(5))
