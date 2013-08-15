@@ -1,7 +1,8 @@
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 import locale
 
-from re import match, sub
+from re import sub
+from lib.filters import digest
 
 
 NO_DECIMAL_PLACE = Decimal('1')
@@ -12,6 +13,8 @@ TWO_DECIMAL_PLACES = Decimal('0.01')
 locale.setlocale(locale.LC_ALL, 'en_GB.utf-8')
 
 path_prefix = '/'
+asset_prefix = '/assets/'
+static_prefix = 'https://assets.digital.cabinet-office.gov.uk/static'
 
 
 def as_number(num):
@@ -49,7 +52,7 @@ def _round(num, precision):
 def number_as_magnitude(num):
     if num is None:
         return 0
-    if type(num) is str or type(num) is unicode:
+    if isinstance(num, basestring):
         num = as_number(num)
     if type(num) is not Decimal:
         num = Decimal(num)
@@ -61,7 +64,7 @@ def number_as_magnitude(num):
 def number_as_financial_magnitude(num):
     if num is None:
         return 0
-    if type(num) is str or type(num) is unicode:
+    if isinstance(num, basestring):
         num = as_number(num)
     if type(num) is not Decimal:
         num = Decimal(num)
@@ -77,7 +80,7 @@ def number_as_financial_magnitude(num):
 
 
 def number_as_percentage(num):
-    if type(num) is str or type(num) is unicode:
+    if isinstance(num, basestring):
         num = as_number(num)
 
     if num is None:
@@ -108,20 +111,27 @@ def number_as_percentage_change(num):
 
 
 def number_as_grouped_number(num):
+    if isinstance(num, basestring):
+        num = as_number(num)
+        
     if num is None:
         return ''
 
-    if type(num) is str or type(num) is unicode:
-        num = float(as_number(num))
-    
-    if num < 100:
-        num = '%.02f' % num
-        return num
-        return num.rstrip('0.')
-    else:
-        num = round(num)
-        return locale.format('%d', num, grouping=True)
+    num = round(num)
+    return locale.format('%d', num, grouping=True)
+
 
 def string_as_absolute_url(string):
-    return path_prefix.rstrip('/') + '/' + string
+    return join_url_parts(path_prefix, string)
 
+
+def string_as_asset_url(string):
+    return join_url_parts(asset_prefix, string)
+
+
+def string_as_static_url(string):
+    return join_url_parts(static_prefix, digest.digest(string))
+
+
+def join_url_parts(prefix, suffix):
+    return prefix.rstrip('/') + '/' + suffix.lstrip('/')

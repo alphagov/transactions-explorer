@@ -21,7 +21,6 @@ class FetchArgumentParsing(unittest.TestCase):
         assert_that(argument.oauth_tokens, is_('/var/google/token.dat'))
 
 
-
 class CreateArgumentParsing(unittest.TestCase):
 
     def test_default_services_data_file_and_prefix_on_data_dir(self):

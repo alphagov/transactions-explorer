@@ -3,6 +3,7 @@ import sys
 from distutils import dir_util
 
 import unicodecsv
+from lib.filters import digest
 from lib.params import parse_args_for_create
 
 from lib.service import Service, latest_quarter, sorted_ignoring_empty_values, Department
@@ -10,8 +11,7 @@ from lib.service import Service, latest_quarter, sorted_ignoring_empty_values, D
 from lib import templates, filters
 from lib.csv import map_services_to_csv_data, map_services_to_dicts
 
-from lib.service import Service, latest_quarter, sorted_ignoring_empty_values,\
-    total_transaction_volume
+from lib.service import total_transaction_volume
 from lib.slugify import slugify
 from lib.templates import render, render_csv, render_search_json
 
@@ -24,12 +24,19 @@ arguments = parse_args_for_create(sys.argv[1:])
 input = arguments.services_data
 
 filters.path_prefix = arguments.path_prefix
+filters.asset_prefix = arguments.asset_prefix
+
+if arguments.static_digests:
+    digest.load_digests(arguments.static_digests)
 
 data = open(input)
 
 reader = unicodecsv.DictReader(data)
 
 services = [Service(details=row) for row in reader]
+
+services_with_details = [service for service in services if service.has_details_page]
+
 high_volume_services = [service for service in services if service.high_volume]
 latest_quarter = latest_quarter(high_volume_services)
 
@@ -60,7 +67,7 @@ if __name__ == "__main__":
         'services_count': len(services),
         'total_transactions': total_transaction_volume(services)
     })
-    for service in high_volume_services:
+    for service in services_with_details:
         render('service_detail.html',
                out="%s.html" % service.link,
                vars={'service': service,
