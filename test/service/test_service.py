@@ -268,6 +268,23 @@ class TestService(unittest.TestCase):
         assert_that(no_previous_vol_service.latest_kpi_for('cost_change'), is_(None))
         assert_that(zero_previous_vol_service.latest_kpi_for('cost_change'), is_(None))
 
+    def test_has_detailed_page_when_in_csv(self):
+        service_with_details = Service(details({
+            "Detailed view?": "yes"
+        }))
+        service_without_details = Service(details({
+             "Detailed view?": ""
+        }))
+        service_explicitly_without_details = Service(details({
+             "Detailed view?": "no"
+        }))
+
+        assert_that(service_with_details.has_details_page, is_(True))
+        assert_that(service_without_details.has_details_page, is_(False))
+        assert_that(service_explicitly_without_details.has_details_page, is_(False))
+
+
+
 class TestSummingTotalTransactions(unittest.TestCase):
 
     def test_sum_of_total_transactions(self):

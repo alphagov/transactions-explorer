@@ -148,6 +148,10 @@ class Service:
         return '%s/%s' % ('service-details', self.slug)
 
     @property
+    def has_details_page(self):
+        return self.detailed_view == 'yes'
+
+    @property
     def most_up_to_date_volume(self):
         most_recent_yearly_volume = None
         if self.has_kpis:

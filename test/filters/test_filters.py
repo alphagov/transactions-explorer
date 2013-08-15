@@ -1,6 +1,5 @@
 from hamcrest import assert_that, is_
-from lib import filters
-from lib.filters import number_as_magnitude, number_as_financial_magnitude, string_as_absolute_url
+from lib.filters import number_as_magnitude, number_as_financial_magnitude, join_url_parts, number_as_grouped_number
 
 
 def test_number_as_magnitude():
@@ -103,22 +102,33 @@ def test_number_as_financial_magnitude():
     assert_that(number_as_financial_magnitude(123600000000), is_("124bn"))
 
 
-class Test_string_as_link:
-    def setUp(self):
-        self._default_path_prefix = filters.path_prefix
+def test_number_as_grouped_number():
+    assert_that(number_as_grouped_number(123456789), is_("123,456,789"))
+    assert_that(number_as_grouped_number(123), is_("123"))
 
-    def tearDown(self):
-        filters.path_prefix = self._default_path_prefix
+    assert_that(number_as_grouped_number(4567.22), is_("4,567"))
+    assert_that(number_as_grouped_number(4567.98), is_("4,568"))
 
+    assert_that(number_as_grouped_number("not a number"), is_(""))
+
+
+class Test_join_url_parts(object):
     def test_string_as_link(self):
-        assert_that(string_as_absolute_url('some/path'), is_('/some/path'))
+        assert_that(
+            join_url_parts('/', 'some/path'),
+            is_('/some/path'))
 
     def test_string_as_link_with_user_defined_path_prefix(self):
-        filters.path_prefix = '/custom/prefix/'
-        assert_that(string_as_absolute_url('some/path'),
-                    is_('/custom/prefix/some/path'))
+        assert_that(
+            join_url_parts('/custom/prefix/', 'some/path'),
+            is_('/custom/prefix/some/path'))
 
     def test_string_as_link_adds_trailing_slash_after_prefix(self):
-        filters.path_prefix = '/custom/prefix'
-        assert_that(string_as_absolute_url('some/path'),
-                    is_('/custom/prefix/some/path'))
+        assert_that(
+            join_url_parts('/custom/prefix', 'some/path'),
+            is_('/custom/prefix/some/path'))
+
+    def test_string_as_link_does_not_add_double_slashes(self):
+        assert_that(
+            join_url_parts('/custom/prefix/', '/some/path'),
+            is_('/custom/prefix/some/path'))
