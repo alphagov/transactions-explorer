@@ -19,4 +19,4 @@ if [ -n "${ASSET_PREFIX}" ]; then CREATE_ARGS="${CREATE_ARGS} --asset-prefix ${A
 python create_pages.py $CREATE_ARGS
 
 cd output
-tar -zcvf ../artefacts/service-explorer.tgz .
+tar -zcvf ../artefacts/transactions-explorer.tgz .
