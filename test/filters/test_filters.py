@@ -109,6 +109,8 @@ def test_number_as_grouped_number():
     assert_that(number_as_grouped_number(4567.22), is_("4,567"))
     assert_that(number_as_grouped_number(4567.98), is_("4,568"))
 
+    assert_that(number_as_grouped_number("not a number"), is_(""))
+
 
 class Test_join_url_parts(object):
     def test_string_as_link(self):
