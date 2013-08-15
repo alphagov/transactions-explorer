@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
 from lib.filters import as_number
 
 CSV_FORMAT = [("Department", lambda s: s.department),
@@ -9,19 +11,19 @@ CSV_FORMAT = [("Department", lambda s: s.department),
                lambda s: as_number(getattr(s, "2012_q4_vol"))),
               ("2012 Q4: digital volume",
                lambda s: as_number(getattr(s, "2012_q4_digital_vol"))),
-              ("2012 Q4: cost per transaction",
+              ("2012 Q4: cost per transaction (£)",
                lambda s: as_number(getattr(s, "2012_q4_cpt"))),
               ("2013 Q1: volume",
                lambda s: as_number(getattr(s, "2013_q1_vol"))),
               ("2013 Q1: digital volume",
                lambda s: as_number(getattr(s, "2013_q1_digital_vol"))),
-              ("2013 Q1: cost per transaction",
+              ("2013 Q1: cost per transaction (£)",
                lambda s: as_number(getattr(s, "2013_q1_cpt"))),
               ("2013 Q2: volume",
                lambda s: as_number(getattr(s, "2013_q2_vol"))),
               ("2013 Q2: digital volume",
                lambda s: as_number(getattr(s, "2013_q2_digital_vol"))),
-              ("2013 Q2: cost per transaction",
+              ("2013 Q2: cost per transaction (£)",
                lambda s: as_number(getattr(s, "2013_q2_cpt"))),
               ("Service Type", lambda s: s.category),
               ("URL", lambda s: s.url),
