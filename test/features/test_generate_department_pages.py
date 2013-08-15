@@ -46,6 +46,7 @@ class GenerateDepartmentPages(BrowserTest):
         self.browser.is_element_present_by_css('.treemap .leaf', 5)
         treemap_nodes = self.browser.find_by_css('.treemap .leaf')
 
+        assert_that(self.browser.html, is_(5))
         assert_that(len(treemap_nodes), is_(5))
 
     def test_first_element_sorted_by_transaction_name_descending(self):
