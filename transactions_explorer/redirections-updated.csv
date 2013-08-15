@@ -1,6 +1,6 @@
-Old URL,New URL,Status,Suggested Link,Archive Link
-http://transactionalservices.alphagov.co.uk/,https://www.gov.uk/performance/transactions-explorer,301,,
-http://transactionsexplorer.cabinetoffice.gov.uk/,https://www.gov.uk/performance/transactions-explorer,301,,
+Old Url,New Url,Status,Suggested Link,Archive Link
+http://transactionalservices.alphagov.co.uk/,https://www.gov.uk/performance/transactions-explorer/,301,,
+http://transactionsexplorer.cabinetoffice.gov.uk/,https://www.gov.uk/performance/transactions-explorer/,301,,
 http://transactionsexplorer.cabinetoffice.gov.uk/aboutData,https://www.gov.uk/performance/transactions-explorer/about-data,301,,
 http://transactionsexplorer.cabinetoffice.gov.uk/allservices,https://www.gov.uk/performance/transactions-explorer/all-services/by-cost-per-transaction/descending,301,,
 http://transactionsexplorer.cabinetoffice.gov.uk/allservices?direction=asc&format=csv&orderBy=datacoverage,https://www.gov.uk/performance/transactions-explorer/transaction-volumes.csv,301,,
