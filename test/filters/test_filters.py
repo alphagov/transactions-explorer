@@ -1,5 +1,5 @@
 from hamcrest import assert_that, is_
-from lib.filters import number_as_magnitude, number_as_financial_magnitude, join_url_parts, number_as_grouped_number
+from lib.filters import number_as_magnitude, number_as_financial_magnitude, join_url_parts, string_as_static_url, digest, number_as_grouped_number
 
 
 def test_number_as_magnitude():
@@ -132,3 +132,23 @@ class Test_join_url_parts(object):
         assert_that(
             join_url_parts('/custom/prefix/', '/some/path'),
             is_('/custom/prefix/some/path'))
+
+
+class Test_string_as_static_url:
+    def setUp(self):
+        digest.set_digests({})
+
+    def test_return_url_with_digest(self):
+        digest.set_digests({
+            'asset.css': 'asset-1425361275412.css'
+        })
+        assert_that(
+            string_as_static_url('asset.css'),
+            is_('https://assets.digital.cabinet-office.gov.uk/static/asset-1425361275412.css')
+        )
+
+    def test_fallback_to_plain_url_when_digest_is_unknown(self):
+        assert_that(
+            string_as_static_url('asset.css'),
+            is_('https://assets.digital.cabinet-office.gov.uk/static/asset.css')
+        )
