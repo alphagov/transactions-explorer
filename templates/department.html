@@ -75,7 +75,9 @@
                 data-body="{{ department.name }}"
                 data-body-abbr="{{ department.abbr }}"
                 data-url="{{ service.url }}"
-                data-href="{{ service.link|as_absolute_url }}"
+                {% if service.has_details_page %}
+                    data-href="{{ service.link|as_absolute_url }}"
+                {% endif %}
                 data-label="{{ service.name }}"
                 data-title="{{ service.name }}"
                 data-text-color="#fff"
