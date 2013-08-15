@@ -1,7 +1,8 @@
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 import locale
 
-from re import match, sub
+from re import sub
+from lib.filters import digest
 
 
 NO_DECIMAL_PLACE = Decimal('1')
@@ -13,6 +14,7 @@ locale.setlocale(locale.LC_ALL, 'en_GB.utf-8')
 
 path_prefix = '/'
 asset_prefix = '/assets/'
+static_prefix = 'https://assets.digital.cabinet-office.gov.uk/static'
 
 
 def as_number(num):
@@ -125,6 +127,10 @@ def string_as_absolute_url(string):
 
 def string_as_asset_url(string):
     return join_url_parts(asset_prefix, string)
+
+
+def string_as_static_url(string):
+    return join_url_parts(static_prefix, digest.digest(string))
 
 
 def join_url_parts(prefix, suffix):
