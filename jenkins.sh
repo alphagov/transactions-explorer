@@ -9,4 +9,4 @@ virtualenv --clear --no-site-packages $VIRTUALENV_DIR
 source $VIRTUALENV_DIR/bin/activate
 
 ./run_tests.sh
-./build-artefact.sh
+./build_artefact.sh
