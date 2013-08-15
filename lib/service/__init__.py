@@ -74,7 +74,7 @@ class Service:
 
             def change_factor(previous, current):
                 factor = None
-                if current and previous and previous != 0:
+                if current is not None and previous is not None and previous != 0:
                     factor = current / previous
                 return factor
 

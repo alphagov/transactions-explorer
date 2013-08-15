@@ -164,11 +164,16 @@ class TestService(unittest.TestCase):
             '2013-Q1 Vol.': '100',
             '2012-Q4 Vol.': '0',
         }))
+        zero_current_vol_service = Service(details({
+            '2013-Q1 Vol.': '0',
+            '2012-Q4 Vol.': '100',
+        }))
 
         assert_that(increase_service.latest_kpi_for('volume_change'), is_(2))
         assert_that(decrease_service.latest_kpi_for('volume_change'), is_(0.5))
         assert_that(no_previous_vol_service.latest_kpi_for('volume_change'), is_(None))
         assert_that(zero_previous_vol_service.latest_kpi_for('volume_change'), is_(None))
+        assert_that(zero_current_vol_service.latest_kpi_for('volume_change'), is_(0))
 
     def test_calculate_takeup_change_from_previous_value(self):
         increase_service = Service(details({
