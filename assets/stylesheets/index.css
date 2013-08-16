@@ -1681,44 +1681,45 @@ a:hover span.alpha-tag {
 
 nav.performance-nav {
   border-top: 10px solid #097f96;
-  margin: -2em 0em 2em 0em;
   border-bottom: 1px solid #bfc1c3;
-  padding:0.5em 15px 0;
+  margin: -2em 0em 2em 0em;
+  padding-top:0.5em;
+  padding-right:15px;
 }
 
 nav.performance-nav ul {
   list-style:none;
-  padding: 0 0 0 33.33%;
-  margin: 0 0 0.5em 0.3em;
+  padding: 0 0 0 15px;
+  margin: 0 0 0.5em 33.33%;
 }
 
 nav.performance-nav ul li {
-  display:inline-block;
-  margin-right:1em;
+  display:inline;
 }
   
 nav.performance-nav a {
   color:#0b0c0c;
   text-decoration:none;
+  margin-right:1em;
 }
 
 nav.performance-nav a.active {
+  color:#0b0c0c;
   border-bottom:1px solid #0b0c0c;
 }
+nav.performance-nav a:visited {
+  color:#0b0c0c;
+}
 nav.performance-nav a:hover {
+  color:#0b0c0c;
   border-bottom:1px solid #0b0c0c;
 }
 
 
 @media (max-width: 820px) {
   nav.performance-nav ul {
-    padding: 0;
-  }
-}
-
-@media (max-width: 768px) {
-  #global-header .header-proposition #proposition-links li {
-    width:100%;
+    margin-left: 0;
+    padding-left: 0;
   }
 }
 
@@ -1733,6 +1734,7 @@ nav.performance-nav a:hover {
   nav.performance-nav ul li a {
     padding:0;
   }
+
 }
 
 @media (max-width: 379px) {
