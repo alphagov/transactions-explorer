@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+    <header class="page-header group">
+        <hgroup>
+            <h1>Search results</h1>
+        </hgroup>
+    </header>
+
+    <div class="group">
+    <article role="article" class="group">
+
+    {% include "search_box.html" %}
+
+    <noscript>
+        <section class="content-group">
+            <p>Transactions Explorer search relies on JavaScript being enabled in your browser.</p>
+            <p>You can still view <a href="{{ EXPLORER_HOST }}/all-services/by-transactions-per-year/descending.html">All services on the Transactions Explorer</a>.</p>
+        </section>
+    </noscript>
+
+    <section class="content-group">
+    <div id="search_results">
+    <table id="transactions-table" class="full_width_table">
+    <thead>
+    <tr>
+        <th scope="col">Transactional service</th>
+        <th scope="col">Agency / body</th>
+        <th scope="col">Category</th>
+        <th scope="col">Web link</th>
+        <th scope="col" class="amount">Transactions per year<span class="sort-ind">▼</span></th>
+    </tr>
+    </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    </div>
+
+    <div class="form-download">
+        <p>{% include "csv_download_link.html" %}</p>
+    </div>
+
+    </section>
+    </article>
+    </div>
+    {% include "search_javascript.html" %}
+{% endblock %}

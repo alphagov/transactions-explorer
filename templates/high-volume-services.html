@@ -24,15 +24,11 @@
 
             {% include "service_table.html" %}
 
-            <!--[if gt IE 8]><!-->
-            <script type="text/javascript" src="{{ 'javascripts/d3.v3.js' | as_asset_url }}"></script>
-            <script type="text/javascript" src="{{ 'javascripts/table-to-tree-map.js' | as_asset_url }}"></script>
-            <script>
-              var tree = Tree.fromHtmlTable(d3.selectAll("tbody tr"));
-              TreeMapLayout.display("services-treemap", tree);
-            </script>
-            <!--<![endif]-->
-            
+            {% with %}
+                {% set treemapDivId='services-treemap' %}
+                {% include "treemap_javascript.html" %}
+            {% endwith %}
+
             <div id="old-data" class="application-notice info-notice table-margin">
                 <p>* Q1 2013 data not provided for this metric; see service page for information on obtaining latest data</p>
             </div>
