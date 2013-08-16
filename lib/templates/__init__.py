@@ -32,22 +32,25 @@ jinja.filters['slugify'] = slugify
 
 
 def render(template_name, out, vars):
-    print out
-
     template = jinja.get_template(template_name)
     page = template.render(**vars)
-    output_path = os.path.join(output_dir, out)
-    create_directory(os.path.dirname(output_path))
-    with open(output_path, 'w') as output:
+    with _output_file(out) as output:
         output.write(page.encode('utf8'))
 
 
 def render_csv(maps, out):
-    with open(os.path.join(output_dir, out), 'w') as output:
+    with _output_file(out) as output:
         writer = csv.writer(output, dialect="excel")
         writer.writerows(maps)
 
 
 def render_search_json(maps, out):
-    with open(os.path.join(output_dir, out), 'w') as output:
+    with _output_file(out) as output:
         json.dump(maps, output)
+
+
+def _output_file(path):
+    print path
+    output_path = os.path.join(output_dir, path)
+    create_directory(os.path.dirname(output_path))
+    return open(output_path, 'w')
