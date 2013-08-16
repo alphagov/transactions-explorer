@@ -18,3 +18,5 @@ branches:
   - release
 notifications: 
   email: false
+after_success: 
+- ./tag_release.sh
