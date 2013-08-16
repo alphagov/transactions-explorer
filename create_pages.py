@@ -106,10 +106,10 @@ if __name__ == "__main__":
                               services_sort_orders, {'department': department})
 
     csv_map = map_services_to_csv_data(services)
-    render_csv(csv_map, 'transaction-volumes.csv')
+    render_csv(csv_map, 'data/transaction-volumes.csv')
 
     json_map = map_services_to_dicts(services)
-    render_search_json(json_map, 'search.json')
+    render_search_json(json_map, 'data/search.json')
 
     render('search.html', 'search.html', {})
 
