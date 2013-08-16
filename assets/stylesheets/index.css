@@ -1651,6 +1651,10 @@ article.service-details section h2 {
   background-color: yellow; }
 
 
+header.page-header div {
+  margin: 0;
+  padding: 0;
+}
 
 span.alpha-tag {
   text-transform: uppercase;
