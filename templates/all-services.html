@@ -10,6 +10,8 @@
     </hgroup>
 </header>
 
+{% include "search_box.html" %}
+
 <div class="group">
     <article role="article" class="group">
         <section class="content-group">
@@ -22,15 +24,10 @@
 
             {% include "departments_table.html" %}
 
-            <!--[if gt IE 8]><!-->
-            <script type="text/javascript" src="{{ 'javascripts/d3.v3.js' | as_asset_url }}"></script>
-            <script type="text/javascript" src="{{ 'javascripts/table-to-tree-map.js' | as_asset_url }}"></script>
-            <script>
-              var tree = Tree.fromHtmlTable(
-                d3.selectAll("tbody tr"));
-              TreeMapLayout.display("services-treemap", tree);
-            </script>
-            <!--<![endif]-->
+            {% with %}
+                {% set treemapDivId='services-treemap' %}
+                {% include "treemap_javascript.html" %}
+            {% endwith %}
 
             <div class="application-notice info-notice table-margin">
                 <p>* Figures are based on data for high-volume services only</p>
@@ -43,5 +40,7 @@
         </section>
     </article>
 </div>
+
+{% include "search_javascript.html" %}
 
 {% endblock %}

@@ -1,0 +1,16 @@
+<!--[if gt IE 8]><!-->
+<script type="text/javascript" src="{{ 'javascripts/d3.v3.js' | as_asset_url }}"></script>
+<script type="text/javascript" src="{{ 'javascripts/table-to-tree-map.js' | as_asset_url }}"></script>
+<script>
+  $(document).ready(function() {
+      if ($(".treemap").length) {
+        {% if threshold %}
+        var tree = Tree.fromHtmlTable(d3.selectAll("tbody tr"), '{{ threshold }}');
+        {% else %} 
+        var tree = Tree.fromHtmlTable(d3.selectAll("tbody tr"));
+        {% endif %}
+        TreeMapLayout.display("{{ treemapDivId }}", tree);
+      }
+  });
+</script>
+<!--<![endif]-->
