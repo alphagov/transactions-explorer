@@ -1,8 +1,16 @@
 #!/bin/bash -e
 
-if [ -z "$VIRTUAL_ENV" ]; then
-  echo "ERROR: You are not running within a virtual environment" >&2
-  exit 1
+if [ -n "$USE_VIRTUALENV" ]; then
+    VIRTUALENV_DIR="/var/tmp/virtualenvs/$USE_VIRTUALENV"
+    export PIP_DOWNLOAD_CACHE=/var/tmp/pip_download_cache
+
+    virtualenv --clear --no-site-packages $VIRTUALENV_DIR
+    source $VIRTUALENV_DIR/bin/activate
+
+    pip install -q -r requirements.txt --use-mirrors
+elif [ -z "$VIRTUAL_ENV" ]; then
+    echo "ERROR: You are not running within a virtual environment" >&2
+    exit 1
 fi
 
 mkdir -p artefacts; rm -f artefacts/*
