@@ -40,13 +40,14 @@ class GenerateDepartmentPages(BrowserTest):
             [u'Service 3', u'Another Government', u'Lame service', u'', u'2,141'],
         ]))
 
+
+    @nottest
     def test_treemap_has_one_leaf_node_for_each_transaction(self):
         self.browser.visit("http://0.0.0.0:8000/department/def/by-transactions-per-year/descending")
 
         self.browser.is_element_present_by_css('.treemap .leaf', 30)
         treemap_nodes = self.browser.find_by_css('.treemap .leaf')
 
-        assert_that(self.browser.html, is_(5))
         assert_that(len(treemap_nodes), is_(5))
 
     def test_first_element_sorted_by_transaction_name_descending(self):
