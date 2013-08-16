@@ -22,4 +22,4 @@ CREATE_ARGS="${CREATE_ARGS} --static-digests data/static-digests.yml"
 python create_pages.py $CREATE_ARGS
 
 cd output
-tar -zcvf ../artefacts/service-explorer.tgz .
+tar -zcvf ../artefacts/transactions-explorer.tgz .
