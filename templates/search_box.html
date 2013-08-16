@@ -8,7 +8,7 @@
 
 <section class="content-group">
     <div class="find-nearest">
-        <form action="{{ 'search' | as_absolute_url }}" method="get" id="search">
+        <form action="{{ 'search' | as_absolute_url }}" method="get" id="search" data-search="{{ 'data/search.json' | as_absolute_url }}">
             <fieldset>
                 <legend class="visuallyhidden">Search Transactions Explorer</legend>
                 <div class="ask_location">

@@ -48,8 +48,8 @@ GOVUK.transactionsExplorer.search = (function () {
         loaded = false,
         cachedQuery = undefined;
 
-    var load = function () {
-        GOVUK.transactionsExplorer.loadSearchData("search.json", function (loadedData) {
+    var load = function (dataUrl) {
+        GOVUK.transactionsExplorer.loadSearchData(dataUrl, function (loadedData) {
             data = loadedData;
             loaded = true;
             if (cachedQuery) {
@@ -97,10 +97,11 @@ GOVUK.transactionsExplorer.search = (function () {
 
 GOVUK.transactionsExplorer.wireSearchForm = function(ids, search, keyword) {
     var searchBox = $(ids.inputId),
+        searchForm = $(ids.formId),
         loaded = false;
 
     if (keyword) {
-        search.load();
+        search.load(searchForm.data("search"));
         loaded = true;
         searchBox.val(keyword);
         search.performSearch(keyword);
@@ -108,7 +109,7 @@ GOVUK.transactionsExplorer.wireSearchForm = function(ids, search, keyword) {
 
     searchBox.on('focus', function (event) {
         if (!loaded) {
-            search.load();
+            search.load(searchForm.data("search"));
             loaded = true;
         }
     });
