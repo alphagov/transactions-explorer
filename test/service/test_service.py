@@ -105,12 +105,11 @@ class TestService(unittest.TestCase):
             '2012-Q4 Digital vol.': '10',
             u'2012-Q4 CPT (\xa3)': "2.00",
             "2013-Q1 Vol.": "2,000",
-            u'2013-Q1 CPT (\xa3)': "2.00",
             '2013-Q1 Digital vol.': '10',
             u'High-volume?': 'yes'
         }))
 
-        assert_that(float(service.data_coverage), close_to(0.6667, 0.001))
+        assert_that(float(service.data_coverage), close_to(0.5555, 0.001))
 
     def test_most_up_to_date_volume(self):
         service_with_one_vol = Service(details({'2013-Q1 Vol.': '200'}))
