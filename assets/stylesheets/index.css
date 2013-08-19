@@ -1087,10 +1087,6 @@ footer#footer div.footer-wrapper div.footer-meta {
   border: none;
   margin: 0; }
 
-/* line 54, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-footer#footer .footer-meta .copyright a {
-  background: transparent url(https://assets.digital.cabinet-office.gov.uk/static/govuk-crest-795cd6afb205d81a4267e100e11debe1.png) no-repeat 50% 0; }
-
 /* line 57, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 header.page-header hgroup {
   margin: 0;
