@@ -122,7 +122,7 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
                             "<td class='js-row-abbr'></td>" +
                             "<td class='js-row-category'></td>" + 
                             "<td class='js-row-transaction'></td>" + 
-                            "<td class='js-row-transactions'></td>" +
+                            "<td class='js-row-transactions amount'></td>" +
                         "</tr>",
         NO_RESULTS_TEMPLATE = "<tr><th colspan='5'>No results for that query</th></tr>";
     
