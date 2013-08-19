@@ -24,7 +24,7 @@ class TestService(unittest.TestCase):
                                    '2012-Q4 Digital vol.': '0'}))
 
         assert_that(service.latest_kpi_for('takeup'),
-                    is_(None))
+                    is_(0))
 
     def test_volumes(self):
         service = Service(details({'2012-Q4 Vol.': '10',
