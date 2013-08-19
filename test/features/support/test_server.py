@@ -2,9 +2,11 @@ from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import mimetypes
 import os
 import re
+import socket
 import threading
 import time
 from urlparse import urlparse
+import errno
 import requests
 import signal
 import sys
@@ -53,6 +55,11 @@ def get_content_type(full_path):
     return mimetypes.guess_type(full_path)[0]
 
 
+def _is_broken_pipe(socket_error):
+    return (isinstance(socket_error.args, tuple)
+            and socket_error[0] == errno.EPIPE)
+
+
 class TestServer(BaseHTTPRequestHandler):
 
     thread = None
@@ -82,12 +89,17 @@ class TestServer(BaseHTTPRequestHandler):
         return
 
     def do_GET(self):
-        if self.path == "/__alive__":
-            self.__alive()
-        else:
-            self.__serve_file()
-
-        return
+        try:
+            if self.path == "/__alive__":
+                self.__alive()
+            else:
+                self.__serve_file()
+        except socket.error as e:
+            if _is_broken_pipe(e):
+                # client closed connection - ignore it
+                pass
+            else:
+                raise e
 
     def log_request(self, code='-', size='-'):
         pass
