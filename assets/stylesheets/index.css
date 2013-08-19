@@ -1082,11 +1082,6 @@ article .table-margin {
 #content * {
   font-family: ntatabularnumbers, nta, arial, sans-serif; }
 
-/* line 50, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-footer#footer div.footer-wrapper div.footer-meta {
-  border: none;
-  margin: 0; }
-
 /* line 57, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 header.page-header hgroup {
   margin: 0;
