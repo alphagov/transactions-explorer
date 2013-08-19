@@ -5,7 +5,7 @@ if [ -z "$VIRTUAL_ENV" ]; then
     exit 1
 fi
 
-mkdir -p artefacts; rm -f artefacts/*
+mkdir -p artefacts
 mkdir -p output; rm -Rf output/*
 
 if [ -n "${PATH_PREFIX}" ]; then CREATE_ARGS="${CREATE_ARGS} --path-prefix ${PATH_PREFIX}"; fi
