@@ -1254,7 +1254,7 @@ header.page-header hgroup.te-image h2 {
 
 /* line 196, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 header.page-header hgroup.te-image {
-  background: url(/assets/images/TE_homepage_graphic.svg) no-repeat top left;
+  background: url(/transactions-explorer/assets/images/TE_homepage_graphic.svg) no-repeat top left;
   background-size: contain;
   background-position-x: right; }
 
