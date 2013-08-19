@@ -1657,7 +1657,7 @@ a:hover span.alpha-tag {
   color: white;
   border-bottom:1px solid #097F96;
 }
-#global-header .header-proposition #proposition-links li a.:hover {
+#global-header .header-proposition #proposition-links li a:hover {
   border-bottom:1px solid #097F96;
   text-decoration:none;
 }
