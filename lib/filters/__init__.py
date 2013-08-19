@@ -13,7 +13,7 @@ TWO_DECIMAL_PLACES = Decimal('0.01')
 locale.setlocale(locale.LC_ALL, 'en_GB.utf-8')
 
 path_prefix = '/'
-asset_prefix = '/assets/'
+asset_prefix = '/transactions-explorer/assets/'
 static_prefix = 'https://assets.digital.cabinet-office.gov.uk/static'
 
 
