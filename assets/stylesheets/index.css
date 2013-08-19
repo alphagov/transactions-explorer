@@ -87,11 +87,6 @@
 .performance-hidden {
   display: none; }
 
-/* line 15, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/layout.scss */
-#wrapper {
-  max-width: 1020px;
-  margin: 0 auto; }
-
 /* line 20, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/layout.scss */
 #wrapper * {
   -webkit-box-sizing: border-box;
@@ -1746,4 +1741,9 @@ nav.performance-nav a:hover {
 
 #search-box {
   min-width: 20em;
+}
+
+#wrapper {
+  margin: 0 auto;
+  border-bottom-color: #097f96;
 }
