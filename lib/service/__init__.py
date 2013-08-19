@@ -18,12 +18,13 @@ def sorted_ignoring_empty_values(services, key, reverse=False):
 
 
 class Service:
-    valid_quarters = [
+    EXPECTED_QUARTERS = [
         # worked through oldest to newest to calculate %age changes
         '2012_q4',
         '2013_q1',
         '2013_q2',
     ]
+    COVERAGE_ATTRIBUTES = ['digital_volume_num', 'volume_num', 'cost']
 
     def __init__(self, details):
         for key in details:
@@ -37,7 +38,7 @@ class Service:
         previous_quarter = None
         self.has_previous_quarter = False
         
-        for quarter in self.valid_quarters:
+        for quarter in self.EXPECTED_QUARTERS:
             volume = as_number(self['%s_vol' % quarter])
             if volume is None:
                 continue
@@ -123,13 +124,14 @@ class Service:
 
     @property
     def data_coverage(self):
-        kpi_provided = lambda kpi: self._attributes_present(kpi,
-                                ['digital_volume_num', 'volume_num', 'cost'])
+        def count_provided_attributes(kpi):
+            return len([a for a in map(lambda attr: kpi[attr],
+                                       self.COVERAGE_ATTRIBUTES) if a is not None])
 
-        present = Decimal(len(filter(kpi_provided, self.kpis)))
-        total = Decimal(len(self.valid_quarters))
+        provided = sum(map(count_provided_attributes, self.kpis))
+        total = Decimal(len(self.EXPECTED_QUARTERS) * len(self.COVERAGE_ATTRIBUTES))
 
-        return present / total
+        return provided / total
 
     def _attributes_present(self, kpi, attrs):
         return all(kpi[attr] is not None for attr in attrs)
