@@ -1142,13 +1142,6 @@ h2#narrative {
     font-family: nta, arial, sans-serif !important;
     color: #912b88; }
 
-/* line 94, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-nav span.alpha-tag {
-  padding: 2px 5px 2px 5px;
-  margin-left: 5px;
-  background-color: #EC096D;
-  color: white; }
-
 /* line 100, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 nav span.beta-tag {
   padding: 2px 5px 2px 5px;
