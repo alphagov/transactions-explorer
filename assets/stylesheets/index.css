@@ -1063,6 +1063,7 @@ article .help-notice {
 
 /* line 32, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 article .info-notice {
+  border-left-width: 0px;
   background: url(https://assets.digital.cabinet-office.gov.uk/static/icon-information.png) no-repeat scroll 98% 1em #d5e8f3; }
   /* line 34, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
   article .info-notice h2 {
@@ -1091,11 +1092,6 @@ a[rel="external"]:after {
 /* line 66, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 a[rel="external"]:hover:after {
   background-position: right -385px; }
-
-/* line 69, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-article .form-download {
-  margin: 1em 0em 1.5em 0em;
-  background: url("https://assets.digital.cabinet-office.gov.uk/static/icon-file-download-94eed1f1fc1bdef08f0ec9667bed474d.png") no-repeat scroll 98% 1em #d5e8f3; }
 
 /* layout */
 /* line 75, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
@@ -1743,4 +1739,15 @@ nav.performance-nav a:hover {
 #wrapper {
   margin: 0 auto;
   border-bottom-color: #097f96;
+}
+
+
+article .transactions-explorer-download {
+  margin-top: 16px;
+  padding: 4px 16px 4px 16px;
+  background: url("https://assets.digital.cabinet-office.gov.uk/static/icon-file-download-94eed1f1fc1bdef08f0ec9667bed474d.png") no-repeat scroll 98% 1em #d5e8f3; }
+
+article .transactions-explorer-download a {
+    background-image: none;
+    display: inline;
 }
