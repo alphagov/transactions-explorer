@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% set current_navigation_link='all-services' %}
+{% set page_title = department.name %}
 
 {% import "table_macros.html" as table %}
 
@@ -27,9 +28,11 @@
 
     <section class="content-group">
 
+        <!--[if gt IE 8]><!-->
         <figure id="department-treemap" class="treemap"></figure>
 
         <div style="clear:both;"></div>
+        <!--<![endif]-->
 
         {# {% include "departments_table.html" %} #}
 
@@ -111,11 +114,7 @@
             {% include "treemap_javascript.html" %}
         {% endwith %}
 
-        <div class="form-download">
-            <p>
-                {% include "csv_download_link.html" %}
-            </p>
-        </div>
+        {% include "csv_download_link.html" %}
 
         </section>
     </article>

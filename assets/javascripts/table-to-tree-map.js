@@ -7,13 +7,14 @@ var Tree = (function () {
    * and some rounding issues.
    */
   var formatNumericLabel = function(value) {
-    if (value == 0) return "0";
+    if (value === 0) return "0";
     
     var magnitudes = {
       million:  {value: 1e6, suffix:"m"},
       thousand: {value: 1e3, suffix:"k"},
       unit:     {value: 1, suffix:""}
     };
+
     var magnitude = function(num, n) {
           return Math.pow(10, n - Math.ceil(Math.log(Math.abs(num)) / Math.LN10));
         },
@@ -42,7 +43,7 @@ var Tree = (function () {
   // http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
   var numberWithCommas = function(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
+  };
 
   var hasValue;
 
@@ -132,7 +133,7 @@ var TreeMapLayout = (function () {
       .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; })
       .style('position','absolute')
       .style("cursor", function(d) { return d.url ? "pointer" : ""; });
-  }
+  };
 
   var getNodeClass = function (d) {
     var classes = ["none", "ellipsis", "small", "medium", "large", "x-large", "xx-large"],
@@ -158,16 +159,17 @@ var TreeMapLayout = (function () {
       tip += ' (total cost: ' + d.cost + ')';
     }
     return tip;
-  }
+  };
 
 
   var makeTree = function (divId, treeData, options) {
     var options = options || {},
         el = document.getElementById(divId);
-        if(el){
-          var width = options.width || el.offsetWidth,
-          height = options.height || el.offsetHeight;
-        }
+    
+    if(el){
+        var width = options.width || el.offsetWidth,
+            height = options.height || el.offsetHeight;
+    }
 
     var color = d3.scale.category20c();
     
