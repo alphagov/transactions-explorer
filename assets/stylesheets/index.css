@@ -1351,7 +1351,6 @@ table.full_width_table {
 /* Service Details */
 /* line 263, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 article.service-details section h2 {
-  margin-top: 1.6em;
   border-bottom: 5px solid #108095;
   padding: 16px 0 8px 0;
   margin: 16px 0 16px 0;
