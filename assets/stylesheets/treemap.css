@@ -83,6 +83,10 @@ figure.treemap:hover .node:hover {
   text-overflow: ellipsis;
 }
 
+.node.none a {
+  text-indent:-999em;
+}
+
 .node.ellipsis a {
   padding:0;
   text-align:center;
