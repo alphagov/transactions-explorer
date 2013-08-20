@@ -1751,3 +1751,16 @@ article .transactions-explorer-download a {
     background-image: none;
     display: inline;
 }
+
+/*Matching performance platform service header*/
+
+.service-details-header h1 span.strapline {
+  display: block;
+  font-family: "ntatabularnumbers","nta",Arial,sans-serif;
+  font-size: 27px;
+  line-height: 1.11111;
+  font-weight: 400;
+  text-transform: none;
+  color: #6f777b;
+  margin-bottom: 5px;
+}
