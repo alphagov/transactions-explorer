@@ -1768,4 +1768,13 @@ article .transactions-explorer-download a {
   #search-box{
     min-width: 15em
   }
+  article th, 
+  article tr{
+    font-size: 12px;
+    padding:0.4em 0.2em 0.4em .5em;
+  }
+  table th:nth-child(n+2):nth-child(-n+3),
+  table td:nth-child(n+2):nth-child(-n+3){
+    display: none;
+  }
 }
