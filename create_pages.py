@@ -114,4 +114,4 @@ if __name__ == "__main__":
     render('search.html', 'search.html', {})
 
     # Copy the assets folder entirely, as well
-    dir_util.copy_tree('assets', '%s/transactions-explorer/assets' % OUTPUT_DIR)
+    dir_util.copy_tree('assets', '%s/transactions-explorer' % OUTPUT_DIR)
