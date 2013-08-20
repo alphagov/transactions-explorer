@@ -1,6 +1,13 @@
 
 /* Treemap */
 
+
+@media (max-width: 379px) {
+  figure.treemap {
+    display:none;
+  }
+}
+
 figure.treemap {
   position:relative;
   width:100%;
@@ -424,3 +431,5 @@ text-transform: none; }
 .node.wo{
   background: #a33038;
 }
+
+
