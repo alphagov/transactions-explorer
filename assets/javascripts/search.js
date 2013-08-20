@@ -95,16 +95,16 @@ GOVUK.transactionsExplorer.search = (function () {
     };
 }());
 
-GOVUK.transactionsExplorer.wireSearchForm = function(ids, search, keyword) {
+GOVUK.transactionsExplorer.wireSearchForm = function(ids, search, parameters) {
     var searchBox = $(ids.inputId),
         searchForm = $(ids.formId),
         loaded = false;
 
-    if (keyword) {
+    if (parameters.keyword) {
         search.load(searchForm.data("search"));
         loaded = true;
-        searchBox.val(keyword);
-        search.performSearch(keyword);
+        searchBox.val(parameters.keyword);
+        search.performSearch(parameters.keyword);
     }
 
     searchBox.on('focus', function (event) {
@@ -187,16 +187,20 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
     };
 }());
 
-GOVUK.transactionsExplorer.getSearchKeyword = function (documentSearchString) {
-    var searchParam = undefined;
-    if (documentSearchString) {
-        var matchedUrlParams = documentSearchString.match(/(?:keyword)=([^&]+)/);
-        if (matchedUrlParams && matchedUrlParams.length === 2) {
-            searchParam = decodeURIComponent(matchedUrlParams[1]).replace(/\+/g, ' ');
-        }
+GOVUK.transactionsExplorer.getQueryParams = function(search) {
+    var decode = function(string) {
+        if (!string) return string;
+        return decodeURIComponent(string).replace(/\+/g, ' ');
+    };
+
+    var searchParts = search.substring(1).split('&');
+    var params = {};
+    for (var i = 0; i < searchParts.length; ++i) {
+        var entry = searchParts[i].split('=', 2);
+        params[decode(entry[0])] = decode(entry[1]);
     }
-    return searchParam;
-};
+    return params;
+}
 
 GOVUK.transactionsExplorer.initSearch = function () {
     $(function () {
@@ -206,7 +210,7 @@ GOVUK.transactionsExplorer.initSearch = function () {
         buttonId: '#search-button'
         },
         GOVUK.transactionsExplorer.search,
-        GOVUK.transactionsExplorer.getSearchKeyword(document.location.search));
+        GOVUK.transactionsExplorer.getQueryParams(document.location.search));
     GOVUK.transactionsExplorer.searchResultsTable.wireTable('#transactions-table');
     });
 };

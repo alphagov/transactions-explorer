@@ -1,30 +1,31 @@
 describe("Searching for services on the transaction explorer. ", function() {
-    describe('extracting keywords from document.location.search', function () {
-        it('should trim out the keyword (search query)', function () {
-            var keyword = GOVUK.transactionsExplorer.getSearchKeyword('?keyword=iAmKeyword');
-            expect(keyword).toBe('iAmKeyword');
-        });
-        
-        it('should deal with spaces (search query)', function () {
-            var keyword = GOVUK.transactionsExplorer.getSearchKeyword('?keyword=son%20of%20keyword');
-            expect(keyword).toBe('son of keyword');
+
+    describe('getQueryParams', function () {
+        it('should return query params as an object', function () {
+            var params = GOVUK.transactionsExplorer.getQueryParams('?a=1&b=2');
+            expect(params).toEqual({a:'1', b:'2'});
         });
 
-        it('should ignore extra keywords', function () {
-            var keyword1 = GOVUK.transactionsExplorer.getSearchKeyword('?keyword=revengeOfKeyword&foo=bar');
-            var keyword2 = GOVUK.transactionsExplorer.getSearchKeyword('?bar=foo&keyword=returnOfKeyword');
-            var keyword3 = GOVUK.transactionsExplorer.getSearchKeyword('?zap=monkey&keyword=the%20mask%20of%20keyword&foo=bar');
-            
-            expect(keyword1).toBe('revengeOfKeyword');
-            expect(keyword2).toBe('returnOfKeyword');
-            expect(keyword3).toBe('the mask of keyword');
+        it('should decode escape sequences', function() {
+            var params = GOVUK.transactionsExplorer.getQueryParams('?keyword=son%20of%20keyword');
+            expect(params).toEqual({keyword:'son of keyword'});
         });
 
-        it('should replaces +\'s with spaces', function () {
-            var keyword = GOVUK.transactionsExplorer.getSearchKeyword('?keyword=lost+in+keyword');
-
-            expect(keyword).toBe('lost in keyword');
+        it('should replaces +\'s with spaces', function() {
+            var params = GOVUK.transactionsExplorer.getQueryParams('?keyword=lost+in+keyword');
+            expect(params).toEqual({keyword:'lost in keyword'});
         });
+
+        it('should handle params with no value', function() {
+            var params = GOVUK.transactionsExplorer.getQueryParams('?param1&param2');
+            expect(params).toEqual({param1: undefined, param2: undefined});
+        });
+
+        it('should return empty params if there is no querystring', function() {
+            var params = GOVUK.transactionsExplorer.getQueryParams('');
+            expect(params).toEqual({});
+        });
+
     });
 
     describe("The search form", function() {
@@ -43,7 +44,7 @@ describe("Searching for services on the transaction explorer. ", function() {
                 searchForm: "#search",
                 inputId: "#search-box",
                 buttonId: "#search-button"
-            }, fakeSearch);
+            }, fakeSearch, {});
         });
 
         afterEach(function() {
@@ -56,7 +57,7 @@ describe("Searching for services on the transaction explorer. ", function() {
                     searchForm: "#search",
                     inputId: "#search-box",
                     buttonId: "#search-button"
-                }, fakeSearch, 'iAmAKeyWord');
+                }, fakeSearch, {keyword: 'iAmAKeyWord'});
                 expect(fakeSearch.performSearch).toHaveBeenCalledWith('iAmAKeyWord');
             });
         });
