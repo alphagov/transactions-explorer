@@ -11,7 +11,10 @@
   <div class="group">
     <section class="content-group service-details-header">
       <div class="col-50">
-        <h1>{{ service.name|e }}</h1>
+        <h1>
+            <span class="strapline">Service performance</span>
+            {{ service.name|e }}
+        </h1>
       </div>
       <div class="col-50">
         <dl>
