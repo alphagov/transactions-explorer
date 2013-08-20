@@ -125,4 +125,11 @@
       </section>
     </article>
   </div>
+  <script>
+    var wireDetails = function () {
+        $('details').on('click', function () { $(this).find('table').toggle(); });
+        $('details').click();
+    };
+    $(wireDetails);
+  </script>
 {% endblock %}
