@@ -147,7 +147,7 @@ describe("Table To Treemap", function () {
     });
 
     it("should shorten displayed text to make it fit", function () {
-      wrapper.style('height', '20px');
+      wrapper.style('height', '30px');
 
       var data = {
         name: "TreeMap sample",
