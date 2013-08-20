@@ -1063,6 +1063,7 @@ article .help-notice {
 
 /* line 32, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 article .info-notice {
+  border-left-width: 0px;
   background: url(https://assets.digital.cabinet-office.gov.uk/static/icon-information.png) no-repeat scroll 98% 1em #d5e8f3; }
   /* line 34, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
   article .info-notice h2 {
