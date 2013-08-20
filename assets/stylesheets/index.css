@@ -1,4 +1,4 @@
-@-ms-viewport {
+/*/*/*/*/*/*@-ms-viewport {
   width: device-width; }
 
 @-o-viewport {
@@ -712,7 +712,7 @@
     background-position: 9px center;
     background-size: auto 40px; } }
 @media (min-width: 641px) {
-  /* line 737, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+   line 737, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss 
   #whitehall-wrapper .organisation-logo-stacked-single-identity-large {
     padding: 40px 0 0 10px;
     background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png");
@@ -1042,6 +1042,14 @@
 #whitehall-wrapper .wales-office .organisation-logo {
   border-color: #a33038; }
 
+
+/* content reset */
+/* line 43, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
+#content * {
+  /*font-family: "ntatabularnumbers", "nta", arial, sans-serif; */
+}
+
+
 /*layout overrides*/
 /* line 26, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 article h1 {
@@ -1072,10 +1080,6 @@ article .info-notice {
 /* line 39, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 article .table-margin {
   margin: 1em 0em 1.5em 0em; }
-
-/* line 43, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#content * {
-  font-family: ntatabularnumbers, nta, arial, sans-serif; }
 
 /* line 57, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 header.page-header hgroup {
@@ -1728,6 +1732,10 @@ nav.performance-nav a:hover {
 
 /* Search */
 
+input[type=text] {
+  font-family: nta, sans-serif;
+}
+
 #search_results {
   margin-top: 1em;
 }
@@ -1744,3 +1752,4 @@ nav.performance-nav a:hover {
   margin: 0 auto;
   border-bottom-color: #097f96;
 }
+*/*/*/*/*/*/
