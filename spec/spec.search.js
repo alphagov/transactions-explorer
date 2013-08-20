@@ -109,26 +109,71 @@ describe("Searching for services on the transaction explorer. ", function() {
         });
     });
 
+    describe("performSearch", function () {
+        beforeEach(function () {
+            spyOn(GOVUK.transactionsExplorer.search, 'searchServices');
+            spyOn(GOVUK.transactionsExplorer.searchResultsTable, 'update');
+            spyOn(GOVUK.transactionsExplorer, 'loadSearchData').andCallFake(function (_, callback) {
+                callback(null);
+            });
+
+            GOVUK.transactionsExplorer.search.load();
+        });
+
+        it("should invoke searchServices with query parameters", function() {
+            GOVUK.transactionsExplorer.search.performSearch(
+                {keyword: 'coffee', sortBy: 'service', direction: 'ascending'}
+            );
+
+            expect(GOVUK.transactionsExplorer.search.searchServices).toHaveBeenCalledWith(
+                {keyword: 'coffee', sortBy: 'service', direction: 'ascending'}, null);
+        });
+
+        it("should apply default values of sortBy and direction if missing", function() {
+            GOVUK.transactionsExplorer.search.performSearch(
+                {keyword: 'tea'}
+            );
+
+            expect(GOVUK.transactionsExplorer.search.searchServices).toHaveBeenCalledWith(
+                {keyword: 'tea', sortBy: 'volume', direction: 'descending'}, null);
+        });
+
+        it("should fallback to default values if actual values are bonkers", function() {
+            GOVUK.transactionsExplorer.search.performSearch(
+                {keyword: 'tea', sortBy: 'bonkers-property', direction: 'left'}
+            );
+
+            expect(GOVUK.transactionsExplorer.search.searchServices).toHaveBeenCalledWith(
+                {keyword: 'tea', sortBy: 'volume', direction: 'descending'}, null);
+        });
+
+    });
+
     describe("Loading on slow connections", function () {
+
+        var completeLoading;
+
         beforeEach(function () {
             spyOn(GOVUK.transactionsExplorer.search, 'searchServices');
             spyOn(GOVUK.transactionsExplorer, 'loadSearchData').andCallFake(function (_, callback) {
-                callback(null);
+                completeLoading = callback;
             });
             spyOn(GOVUK.transactionsExplorer.searchResultsTable, 'update');
         });
 
         it("should cache most recent query until the search json is loaded", function () {
+            GOVUK.transactionsExplorer.search.load();
+
             GOVUK.transactionsExplorer.search.performSearch({keyword: 'coffee'});
             GOVUK.transactionsExplorer.search.performSearch({keyword: 'tea'});
             GOVUK.transactionsExplorer.search.performSearch({keyword: 'bacon'});
             
             expect(GOVUK.transactionsExplorer.search.searchServices).not.toHaveBeenCalled();
-            
-            GOVUK.transactionsExplorer.search.load();
-            
+
+            completeLoading("received data");
+
             expect(GOVUK.transactionsExplorer.search.searchServices).toHaveBeenCalledWith(
-                {keyword: 'bacon', sortBy: jasmine.any(String), direction: jasmine.any(String)}, null);
+                {keyword: 'bacon', sortBy: jasmine.any(String), direction: jasmine.any(String)}, "received data");
         });
     });
 

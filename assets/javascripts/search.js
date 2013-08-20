@@ -58,6 +58,7 @@ GOVUK.transactionsExplorer.search = (function () {
         cachedQuery = undefined;
 
     var load = function (dataUrl) {
+        loaded = false;
         GOVUK.transactionsExplorer.loadSearchData(dataUrl, function (loadedData) {
             data = loadedData;
             loaded = true;
