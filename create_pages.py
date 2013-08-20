@@ -75,7 +75,7 @@ if __name__ == "__main__":
 
     sort_orders = [
         ("by-name", lambda service: service.name_of_service),
-        ("by-department", lambda service: service.abbr),
+        ("by-department", lambda service: service.abbr.lower()),
         ("by-total-cost", lambda service: service.latest_kpi_for('cost')),
         ("by-cost-per-transaction", lambda service: service.latest_kpi_for('cost_per_number')),
         ("by-digital-takeup", lambda service: service.latest_kpi_for('takeup')),
@@ -96,7 +96,7 @@ if __name__ == "__main__":
 
     services_sort_orders = [
         ("by-name", lambda service: service.name_of_service),
-        ("by-agency", lambda service: service.agency_abbreviation),
+        ("by-agency", lambda service: service.agency_abbreviation.lower()),
         ("by-category", lambda service: service.category),
         ("by-transactions-per-year", lambda service: service.most_up_to_date_volume),
     ]
