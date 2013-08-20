@@ -166,10 +166,16 @@ var TreeMapLayout = (function () {
     var options = options || {},
         el = document.getElementById(divId);
     
-    if(el){
-        var width = options.width || el.offsetWidth,
-            height = options.height || el.offsetHeight;
+    if (!el) {
+      // Wrapper element not found
+      return;
     }
+
+    var width = options.width || el.offsetWidth,
+        height = options.height || el.offsetHeight;
+    
+    // Clean up wrapper element before populating
+    el.innerHTML = '';
 
     var color = d3.scale.category20c();
     
