@@ -39,19 +39,6 @@ figure.treemap:hover .node:hover {
   opacity: 1;
 }
 
-/* line 388, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-.node {
-/*  -webkit-font-smoothing: antialiased;
-  position: relative; 
-  -webkit-transition: all .05s ease-in;
-  -moz-transition: all .05s ease-in;
-  transition: all .05s ease-in;*/
-}
-
-.node.parent{
-  /*display: none*/
-}
-
 /* line 391, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .node .label {
   width: 100%;
@@ -71,16 +58,19 @@ figure.treemap:hover .node:hover {
   padding:.5em;
   display: block;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow:ellipsis;
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
 }
 
 .node .amount {
   display:block;
   white-space:nowrap;
-  overflow: hidden;
-  font-family:   "ntatabularnumbers", "nta", Arial, sans-serif;
+  font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
   font-weight: bold;
-  text-overflow: ellipsis;
 }
 
 .node.none a {
@@ -148,10 +138,9 @@ figure.treemap:hover .node:hover {
 /* line 26, ./_assets/stylesheets/treemap.scss */
 .node.small .amount {
   font-family: "nta", Arial, sans-serif;
-  font-size: 16px;
-  font-size: 1.6rem;
+  font-size: 14px;
+  font-size: 1.4rem;
   line-height: 1.25;
-  font-weight: 300;
   text-transform: none;
   font-weight: 700; }
   @media (max-width: 640px) {
@@ -299,14 +288,6 @@ text-transform: none; }
     .node.x-large .amount {
       font-size: 5.3rem;
       line-height: 1.03774; } }
-
-.node a{
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
 
 .node{
   background:seagreen;
