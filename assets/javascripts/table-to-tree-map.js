@@ -227,7 +227,7 @@ var TreeMapLayout = (function () {
             bg = $this.css('background-color'),
             tooltipText = $this.data('tooltip'),
             serviceDetails = rsplit(tooltipText, ':');
-        $cap.html('<div class="service-name">' + serviceDetails[0] + '</div>' + serviceDetails[1]);
+        $cap.html('<div class="service-name">' + serviceDetails[0] + '</div>' + '<div class="transactions-per-year">' + serviceDetails[1] + '</div>');
         $('<span class="keyBlock"/>').css('background-color',bg).prependTo($cap);
       });
       $figure.on('mouseleave', function () {

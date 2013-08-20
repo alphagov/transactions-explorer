@@ -21,6 +21,12 @@ figure.treemap figcaption .service-name {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+figure.treemap figcaption .transactions-per-year {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .treemap figcaption .keyBlock{
