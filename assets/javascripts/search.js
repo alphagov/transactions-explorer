@@ -58,20 +58,39 @@ GOVUK.transactionsExplorer.search = (function () {
         });
     };
 
-    var searchServices = function (query, services) {
+    var searchServices = function (query, services, sortBy, sortDirection) {
+        sortBy = sortBy || 'transactionsPerYear';
+        sortDirection = sortDirection || 'descending';
+
+        var ascending = function(aService, anotherService) {
+            if (aService.service[sortBy]  <  anotherService.service[sortBy]) return -1;
+            if (aService.service[sortBy]  >  anotherService.service[sortBy]) return 1;
+            if (aService.service[sortBy] === anotherService.service[sortBy]) return 0;
+        };
+
+        var descending = function(aService, anotherService) {
+            return -ascending(aService, anotherService);
+        };
+
+        var blanksAtTheEnd = function(aService, anotherService) {
+            if (!aService.service[sortBy]) return 1;
+            if (!anotherService.service[sortBy]) return -1;
+            return 0;
+        };
+
+        var comparator = sortDirection === 'ascending' ? ascending : descending;
+
         var scoredServices = $.map(services, function (service, index) {
             return {
                 service: service,
                 score: GOVUK.transactionsExplorer.scoreService(query, service)
             };
         });
+
         var matchedServices = $.grep(scoredServices, function(n, i) {
             return (n.score > 0);
-        }).sort(function (first, next) {
-            if (first.score > next.score) return -1;
-            if (first.score < next.score) return 1;
-            if (first.score === next.score) return 0;
-        });
+        }).sort(comparator).sort(blanksAtTheEnd);
+
         return $.map(matchedServices, function(scoredService, index) {
             return scoredService.service;
         });

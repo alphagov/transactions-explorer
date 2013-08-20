@@ -204,7 +204,7 @@ describe("Searching for services on the transaction explorer. ", function() {
             expect(searchResults[0].department).toBe('second department');
         });
 
-        it("should order results according to score", function () {
+        it("should order results by transactions per year descending as default", function () {
             var services = [{
                 agencyOrBodyAbbreviation: "gds",
                 service: "lower rated",
@@ -239,6 +239,36 @@ describe("Searching for services on the transaction explorer. ", function() {
             searchResults = GOVUK.transactionsExplorer.search.searchServices('gds', services);
             expect(searchResults.length).toEqual(2);
             expect(searchResults[0].service).toBe('highly rated');
+        });
+
+        it("should sort results according to params", function () {
+            var services = [
+                buildService({ service: "bbbb", agencyOrBodyAbbreviation: "gds", transactionsPerYear: 100}),
+                buildService({ service: "cccc", agencyOrBodyAbbreviation: "gds", transactionsPerYear: 10}),
+                buildService({ service: "aaaa", agencyOrBodyAbbreviation: "gds", transactionsPerYear: 1})
+            ];
+
+            searchResults = GOVUK.transactionsExplorer.search.searchServices('gds', services, 'service', 'ascending');
+
+            expect(searchResults[0].service).toBe('aaaa');
+            expect(searchResults[1].service).toBe('bbbb');
+            expect(searchResults[2].service).toBe('cccc');
+        });
+
+        it("should leave empty values at the end regardless of the direction", function () {
+            var services = [
+                buildService({ service: "bbbb", agencyOrBodyAbbreviation: "gds", category: "zzzz"}),
+                buildService({ service: "cccc", agencyOrBodyAbbreviation: "gds", category: "aaaa"}),
+                buildService({ service: "aaaa", agencyOrBodyAbbreviation: "gds", category: ""})
+            ];
+
+            searchResults = GOVUK.transactionsExplorer.search.searchServices('gds', services, 'category', 'ascending');
+
+            expect(searchResults[2].service).toBe('aaaa');
+
+            searchResults = GOVUK.transactionsExplorer.search.searchServices('gds', services, 'category', 'descending');
+
+            expect(searchResults[2].service).toBe('aaaa');
         });
     });
 
@@ -375,3 +405,17 @@ describe("Searching for services on the transaction explorer. ", function() {
     });
 });
 
+function buildService(properties) {
+    var defaultProperties = {
+                agencyOrBodyAbbreviation: "DEF",
+                service: "default service name",
+                departmentAbbreviation: "DEFDEP",
+                agencyOrBody: "default agency",
+                transactionsPerYear: 0,
+                department: "default department",
+                category: "default category",
+                transactionLink: "default link",
+                keywords: []
+            };
+    return $.extend(defaultProperties, properties);
+}
