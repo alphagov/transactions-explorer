@@ -1,6 +1,8 @@
 {% set kpis=service.find_recent_kpis_with_attributes([key]) %}
 {% set value = kpis.get(key) %}
 {% set change = kpis.get(change_key) %}
+{% set quarter = kpis.get('quarter') %}
+
 
 <div class="kpi-item col-50">
   
@@ -14,7 +16,7 @@
     {% else %}
       <h2>{{ value|as_magnitude }}</h2>
     {% endif %}
-    <h3>{{ kpis.get('quarter') }}</h3>
+    <h3>{{ quarter }}</h3>
   </div>
   
   {% if change is not none %}
@@ -26,7 +28,7 @@
       <details>
         <summary role="button" aria-expanded="false">Historical Data</summary>
         <table>
-          {% for previous in service.historical_data(key) %}
+          {% for previous in service.historical_data_before(quarter, key) %}
             <tr>
               <th>{{previous.quarter}}</th>
               {% if value_type == 'money' %}
