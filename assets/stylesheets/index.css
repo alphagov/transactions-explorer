@@ -1753,3 +1753,19 @@ article .transactions-explorer-download a {
     background-image: none;
     display: inline;
 }
+
+
+/* mobile portrait */
+/*@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {*/
+@media only screen and (max-width:479px){
+  input[type='text'],
+  input[type='search']{
+    /*display: none*/
+    border-radius: 0;
+    -webkit-appearance: none;
+    margin-left: 0;
+  }
+  #search-box{
+    min-width: 15em
+  }
+}
