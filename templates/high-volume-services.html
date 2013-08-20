@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
-
 {% set current_navigation_link='high-volume-services' %}
+{% set page_title = 'High volume services' %}
 
 {% block body %}
 
@@ -16,7 +16,9 @@
         <section class="content-group">
             <h1>Annual volume of transactions</h1>
 
+            <!--[if gt IE 8]><!-->
             <figure id="services-treemap" class="treemap"></figure>
+            <!--<![endif]-->
 
             {% include "service_table.html" %}
 
@@ -26,12 +28,10 @@
             {% endwith %}
 
             <div id="old-data" class="application-notice info-notice table-margin">
-                <p>* Q1 2013 data not provided for this metric; see service page for information on obtaining latest data</p>
+                <p>* {{ latest_quarter }} data not provided for this metric; see service page for information on obtaining latest data</p>
             </div>
 
-            <div class="form-download">
-                <p>{% include "csv_download_link.html" %}</p>
-            </div>
+            {% include "csv_download_link.html" %}
 
         </section>
     </article>

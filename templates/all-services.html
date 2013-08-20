@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% set current_navigation_link='all-services' %}
+{% set page_title = 'All services' %}
 
 {% block body %}
 
@@ -17,10 +18,11 @@
         <section class="content-group">
             <h1>Annual volume of transactions by department</h1>
 
+            <!--[if gt IE 8]><!-->
             <figure id="services-treemap" class="treemap"></figure>
 
-
             <div style="clear:both;"></div>
+            <!--<![endif]-->
 
             {% include "departments_table.html" %}
 
@@ -32,11 +34,8 @@
             <div class="application-notice info-notice table-margin">
                 <p>* Figures are based on data for high-volume services only</p>
             </div>
-            <div class="form-download">
-                <p>
-                    {% include "csv_download_link.html" %}
-                </p>
-            </div>
+
+            {% include "csv_download_link.html" %}
         </section>
     </article>
 </div>

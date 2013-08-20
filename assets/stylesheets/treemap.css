@@ -15,6 +15,20 @@ figure.treemap figcaption {
   font-weight:bold;
 }
 
+figure.treemap figcaption .service-name {
+    display: inline-block;
+    max-width: 550px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+figure.treemap figcaption .transactions-per-year {
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .treemap figcaption .keyBlock{
   width:30px;
   height: 30px;
@@ -76,7 +90,7 @@ figure.treemap:hover .node:hover {
 }
 
 .node.none a {
-  visibility:hidden;
+  text-indent:-999em;
 }
 
 .node.ellipsis a {

@@ -155,9 +155,6 @@ var TreeMapLayout = (function () {
     if(d && d.volumeLabel){
       tip = d.name + ': ' + d.volumeLabel + ' transactions per year';
     }
-    if(d.cost){
-      tip += ' (total cost: ' + d.cost + ')';
-    }
     return tip;
   };
 
@@ -204,6 +201,20 @@ var TreeMapLayout = (function () {
             });
         });
 
+    var rsplit = function (str, matchThis) {
+        var length = str.length, whereToSplit = undefined;
+        for (var i = length; i > 0; i--) {
+            if (str[i] === matchThis) {
+                whereToSplit = i;
+                break;
+            }
+        }
+        return [
+            str.slice(0,whereToSplit + 1),
+            str.slice(whereToSplit + 1, length)
+        ];
+    };
+
     if (window.$) {
       var $figure = $('#' + divId);
       var $cap = $('<figcaption/>').appendTo($figure);
@@ -213,8 +224,10 @@ var TreeMapLayout = (function () {
 
       $figure.find('.node').on('mouseenter',function(){
         var $this = $(this),
-            bg = $this.css('background-color');
-        $cap.html($this.data('tooltip'));
+            bg = $this.css('background-color'),
+            tooltipText = $this.data('tooltip'),
+            serviceDetails = rsplit(tooltipText, ':');
+        $cap.html('<div class="service-name">' + serviceDetails[0] + '</div>' + '<div class="transactions-per-year">' + serviceDetails[1] + '</div>');
         $('<span class="keyBlock"/>').css('background-color',bg).prependTo($cap);
       });
       $figure.on('mouseleave', function () {
