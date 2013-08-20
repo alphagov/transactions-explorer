@@ -155,9 +155,6 @@ var TreeMapLayout = (function () {
     if(d && d.volumeLabel){
       tip = d.name + ': ' + d.volumeLabel + ' transactions per year';
     }
-    if(d.cost){
-      tip += ' (total cost: ' + d.cost + ')';
-    }
     return tip;
   };
 
