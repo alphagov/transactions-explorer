@@ -1770,7 +1770,7 @@ article .transactions-explorer-download a {
   }
   article th, 
   article tr{
-    font-size: 12px;
+    font-size: 14px;
     padding:0.4em 0.2em 0.4em .5em;
   }
   table th:nth-child(n+2):nth-child(-n+3),
