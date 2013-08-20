@@ -1098,6 +1098,12 @@ article .form-download {
   margin: 1em 0em 1.5em 0em;
   background: url("https://assets.digital.cabinet-office.gov.uk/static/icon-file-download-94eed1f1fc1bdef08f0ec9667bed474d.png") no-repeat scroll 98% 1em #d5e8f3; }
 
+article .form-download a {
+    background-image: none;
+    padding-left: 16px;
+    display: inline;
+}
+
 /* layout */
 /* line 75, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .find-location-for-service {
