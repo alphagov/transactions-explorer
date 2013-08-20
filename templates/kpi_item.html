@@ -14,7 +14,7 @@
     {% else %}
       <h2>{{ value|as_magnitude }}</h2>
     {% endif %}
-    <h3>{{ service.latest_kpi_for('quarter') }}</h3>
+    <h3>{{ kpis.get('quarter') }}</h3>
   </div>
   
   {% if service.has_previous_quarter and change is not none %}
