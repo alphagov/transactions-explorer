@@ -11,11 +11,13 @@ figure.treemap {
 figure.treemap figcaption {
   position:absolute;
   left:0;
-  bottom:-50px;
+  top:480px;
   font-weight:bold;
 }
 
 .treemap figcaption .keyBlock{
+  position:absolute;
+  float: left;
   width:30px;
   height: 30px;
   background-color: black;
@@ -23,6 +25,15 @@ figure.treemap figcaption {
   margin-bottom: -9px;
   margin-right: 10px;
 }
+
+.treemap figcaption .caption{
+   position:relative;
+   float: right;
+   top: 5px;
+   left: 40px;
+   display:inline-block;
+}
+
 
 figure.treemap:hover .node {
   opacity: .5;

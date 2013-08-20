@@ -214,8 +214,9 @@ var TreeMapLayout = (function () {
       $figure.find('.node').on('mouseenter',function(){
         var $this = $(this),
             bg = $this.css('background-color');
-        $cap.html($this.data('tooltip'));
-        $('<span class="keyBlock"/>').css('background-color',bg).prependTo($cap);
+
+        $cap.html($('<div class="caption"/>').text($this.data('tooltip')));
+        $('<div class="keyBlock"/>').css('background-color',bg).prependTo($cap);
       });
       $figure.on('mouseleave', function () {
         $cap.empty();
