@@ -106,10 +106,10 @@ GOVUK.transactionsExplorer.search = (function () {
             .sort(comparator).sort(withBlanksAtTheEnd(sortProperty));
     };
 
-    function normaliseSortParams(queryParams) {
+    var normaliseSortParams = function(queryParams) {
         if (!SORT_PROPERTIES[queryParams.sortBy]) queryParams.sortBy = 'volume';
-        queryParams.direction = queryParams.direction === 'ascending' ? 'ascending' : 'descending'
-    }
+        queryParams.direction = queryParams.direction === 'ascending' ? 'ascending' : 'descending';
+    };
 
     var performSearch = function (queryParams) {
         normaliseSortParams(queryParams);
@@ -179,7 +179,7 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
             return '<a href="' + link  + '">' + text + '</a><span class="sort-ind">' + currentDirection + '</span>';
         }
         return '<a href="' + link  + '">' + text + '</a>';
-    }
+    };
     
     var transactionLink = function (transactionLink) {
         if (transactionLink) {
@@ -202,7 +202,7 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
         }
     };
 
-    function updateColumnHeaders(queryParams) {
+    var updateColumnHeaders = function(queryParams) {
         $('th.sortable').each(function (i, elem) {
             var th = $(elem);
             var link = function (direction) {
@@ -219,7 +219,7 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
                 th.addClass("sorted descending");
             }
         });
-    }
+    };
 
     var update = function (services, queryParams) {
         var rows = [];
@@ -263,7 +263,7 @@ GOVUK.transactionsExplorer.getQueryParams = function(search) {
         params[decode(entry[0])] = decode(entry[1]);
     }
     return params;
-}
+};
 
 GOVUK.transactionsExplorer.initSearch = function () {
     $(function () {
