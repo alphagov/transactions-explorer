@@ -75,81 +75,36 @@ describe("Searching for services on the transaction explorer. ", function() {
 
     });
 
-    describe("Result ranking", function() {
+    describe("Search matching", function() {
         describe("score:", function() {
-            it('should score a search result with the number of transactions if the service contains the search term', function() {
-                var score = GOVUK.transactionsExplorer.scoreService('wibble', {
-                    agencyOrBodyAbbreviation: "DOW",
-                    service: "Request to wibble",
-                    departmentAbbreviation: "DOW",
-                    agencyOrBody: "",
-                    transactionsPerYear: 4500,
-                    department: "Department of Wibble",
-                    category: "",
-                    keywords: []
-                });
+            it('should return true if the service contains the search term', function() {
+                var service = buildService({department: "Department of Wibble"});
 
-                expect(score).toBe(4500);
+                var result = GOVUK.transactionsExplorer.isSearchMatch('wibble', service);
+
+                expect(result).toBe(true);
             });
 
-            it('should return a score of 0 if the service does not match the search term', function() {
-                var score = GOVUK.transactionsExplorer.scoreService('mongoose', {
-                    agencyOrBodyAbbreviation: "DOW",
-                    service: "Request to wibble",
-                    departmentAbbreviation: "DOW",
-                    agencyOrBody: "",
-                    transactionsPerYear: 4500,
-                    department: "Department of Wibble",
-                    category: "",
-                    keywords: []
-                });
+            it('should return false if the service does not match the search term', function() {
+                var result = GOVUK.transactionsExplorer.isSearchMatch('mongoose', buildService({}));
 
-                expect(score).toBe(0);
+                expect(result).toBe(false);
             });
 
-            it('should return a score of 1 if the service matches the search term but does not have any transactions', function() {
-                var score = GOVUK.transactionsExplorer.scoreService('Ninjas', {
-                    agencyOrBodyAbbreviation: "DON",
-                    service: "Dial a ninja",
-                    departmentAbbreviation: "DON",
-                    agencyOrBody: "",
-                    transactionsPerYear: null,
-                    department: "Department of Ninjas",
-                    category: "",
-                    keywords: []
-                });
+            it('should ignore case when matching', function() {
+                var service = buildService({department: "Department of Ninjas"});
 
-                expect(score).toBe(1);
-            });
+                var result = GOVUK.transactionsExplorer.isSearchMatch('NINJAS', service);
 
-            it('should ignore case when ranking results', function() {
-                var score = GOVUK.transactionsExplorer.scoreService('NINJAS', {
-                    agencyOrBodyAbbreviation: "DON",
-                    service: "Dial a ninja",
-                    departmentAbbreviation: "DON",
-                    agencyOrBody: "",
-                    transactionsPerYear: 7777,
-                    department: "Department of Ninjas",
-                    category: "",
-                    keywords: []
-                });
-
-                expect(score).toBe(7777);
+                expect(result).toBe(true);
             });
 
             it('should search for keywords', function () {
-                var score = GOVUK.transactionsExplorer.scoreService('grog', {
-                    agencyOrBodyAbbreviation: "DOP",
-                    service: "Post a pirate",
-                    departmentAbbreviation: "DOP",
-                    agencyOrBody: "",
-                    transactionsPerYear: 5000,
-                    department: "Department of Pirates",
-                    category: "",
-                    keywords: ['pirates','parrots','grog']
-                });
+                var service = buildService({keywords: ['pirates','parrots','grog']});
 
-                expect(score).toBe(5000);
+                var result = GOVUK.transactionsExplorer.isSearchMatch('grog', service);
+
+                expect(result).toBe(true);
             });
         });
     });

@@ -9,7 +9,7 @@ GOVUK.transactionsExplorer.loadSearchData = function(dataUrl, callback) {
     }).done(callback);
 };
 
-GOVUK.transactionsExplorer.scoreService = (function () {
+GOVUK.transactionsExplorer.isSearchMatch = (function () {
     var SEARCH_FIELDS = [
         "agencyOrBodyAbbreviation",
         "service",
@@ -20,27 +20,29 @@ GOVUK.transactionsExplorer.scoreService = (function () {
         "category"
     ];
 
-    var scoreService = function (searchTerm, service) {
-        var score = 0;
+    var isSearchMatch = function(searchTerm, service) {
+        var search = searchTerm.toLowerCase();
+        var found = false;
+
         $.each(SEARCH_FIELDS, function (i, field) {
-            var valueToSearch,
-                termToUse = searchTerm.toLowerCase();
+            var valueToSearch;
+
             if (field === "keywords") {
                 valueToSearch = service[field].join(' ').toLowerCase();
             } else {
                 valueToSearch = service[field].toLowerCase();
             }
 
-            if (valueToSearch.search(termToUse) >= 0) {
-                //FIXME this is pretty inefficient but $ doesn't provide a reduce
-                score = service.transactionsPerYear || 1;
+            if (valueToSearch.search(search) >= 0) {
+                found = true;
+                return false; // breaks the loop
             }
-
         });
-        return score;
+
+        return found;
     };
 
-    return scoreService;
+    return isSearchMatch;
 }());
 
 GOVUK.transactionsExplorer.search = (function () {
@@ -65,41 +67,42 @@ GOVUK.transactionsExplorer.search = (function () {
         });
     };
 
-    var searchServices = function (params, services) {
-        var sortProperty = SORT_PROPERTIES[params.sortBy];
-
-        var ascending = function(aService, anotherService) {
-            if (aService.service[sortProperty]  <  anotherService.service[sortProperty]) return -1;
-            if (aService.service[sortProperty]  >  anotherService.service[sortProperty]) return 1;
-            if (aService.service[sortProperty] === anotherService.service[sortProperty]) return 0;
+    var propertyComparator = function(property) {
+        return function (anObject, anotherObject) {
+            if (anObject[property] < anotherObject[property]) return -1;
+            if (anObject[property] > anotherObject[property]) return 1;
+            if (anObject[property] === anotherObject[property]) return 0;
         };
+    };
 
-        var descending = function(aService, anotherService) {
-            return -ascending(aService, anotherService);
+    var reversed = function(comparator) {
+        return function (anObject, anotherObject) {
+            return -comparator(anObject, anotherObject);
         };
+    };
 
-        var blanksAtTheEnd = function(aService, anotherService) {
-            if (!aService.service[sortProperty]) return 1;
-            if (!anotherService.service[sortProperty]) return -1;
+    var withBlanksAtTheEnd = function(property) {
+        return function (anObject, anotherObject) {
+            if (!anObject[property]) return 1;
+            if (!anotherObject[property]) return -1;
             return 0;
         };
+    };
 
-        var comparator = params.direction === 'ascending' ? ascending : descending;
+    var searchServices = function (params, services) {
+        var sortProperty = SORT_PROPERTIES[params.sortBy];
+        var comparator = propertyComparator(sortProperty);
 
-        var scoredServices = $.map(services, function (service, index) {
-            return {
-                service: service,
-                score: GOVUK.transactionsExplorer.scoreService(params.keyword, service)
-            };
-        });
+        if (params.direction !== 'ascending') {
+            comparator = reversed(comparator);
+        }
 
-        var matchedServices = $.grep(scoredServices, function(n, i) {
-            return (n.score > 0);
-        }).sort(comparator).sort(blanksAtTheEnd);
+        var matchingSearch = function(service) {
+            return GOVUK.transactionsExplorer.isSearchMatch(params.keyword, service);
+        };
 
-        return $.map(matchedServices, function(scoredService, index) {
-            return scoredService.service;
-        });
+        return $.grep(services, matchingSearch)
+            .sort(comparator).sort(withBlanksAtTheEnd(sortProperty));
     };
 
     function normaliseSortParams(queryParams) {
@@ -234,7 +237,7 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
         } else {
             table.find('tbody').html(rows.join(''));
         }
-        
+
         updateColumnHeaders(queryParams);
     };
 
