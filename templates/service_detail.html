@@ -85,7 +85,7 @@
                 {% set decrease_class='green' %}
                 {% include "kpi_item.html" %}
               {% endwith %}
-              {% if not service.latest_kpi_for('cost_per') %}
+              {% if not service.find_recent_kpis_with_attributes(['cost_per']) %}
                 <div class="clear-div"></div>
               {% endif %}
             {% endif %}
