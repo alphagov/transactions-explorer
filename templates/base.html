@@ -2,7 +2,11 @@
 <!--[if lt IE 9]><html class="lte-ie8 " lang="en"><![endif]--><!--[if gt IE 8]><!--><html lang="en" class="">
 <!--<![endif]--><head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Transactions Explorer: transactional services data from the UK government</title>
+    <title>
+        {% set title_prefix = page_title + ' - ' if page_title is defined else '' %}
+        {{ title_prefix }}Transactions Explorer: transactional services performance data from the UK government
+    </title>
+    <!--{% block head %}{% endblock %}-->
     <script type="text/javascript">
         (function(){if(navigator.userAgent.match(/IEMobile\/10\.0/)){var d=document,c="appendChild",a=d.createElement("style");a[c](d.createTextNode("@-ms-viewport{width:auto!important}"));d.getElementsByTagName("head")[0][c](a);}})();
     </script><!--[if gt IE 8]><!-->

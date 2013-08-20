@@ -37,12 +37,12 @@ class Service:
         self.kpis = []
         previous_quarter = None
         self.has_previous_quarter = False
-        
+
         for quarter in self.EXPECTED_QUARTERS:
             volume = as_number(self['%s_vol' % quarter])
             if volume is None:
                 continue
-            
+
             digital_volume = as_number(self['%s_digital_vol' % quarter])
             if digital_volume == 0:
                 takeup = 0
@@ -50,14 +50,14 @@ class Service:
                 takeup = digital_volume / volume
             else:
                 takeup = None
-            
+
             cost_per_transaction = as_number(self['%s_cpt' % quarter])
-            
+
             if cost_per_transaction is not None:
                 cost = cost_per_transaction * volume
             else:
                 cost = None
-            
+
             data = {
                 'quarter':          Quarter.parse(quarter),
                 'takeup':           takeup,
@@ -86,15 +86,15 @@ class Service:
                 data['cost_per_change'] = change_factor(previous_quarter['cost_per_number'], cost_per_transaction)
                 data['cost_change'] = change_factor(previous_quarter['cost'], cost)
                 data['previous_quarter'] = previous_quarter['quarter']
-            
+
             previous_quarter = data
             self.kpis.append(data)
             self.has_kpis = True
-    
+
     @property
     def name(self):
         return re.sub('\s*$', '', self.name_of_service)
-    
+
     @property
     def body(self):
         return self.agency_body
@@ -160,18 +160,13 @@ class Service:
             most_recent_yearly_volume = self.latest_kpi_for('volume_num')
         return most_recent_yearly_volume
 
-    def historical_data(self, key):
-        data = []
-        
-        if len(self.kpis) > 1:
-            for quarter in reversed(self.kpis):
-                data.append({
-                    'quarter': quarter['quarter'],
-                    'value': quarter.get(key, None),
-                })
-        
-        return data[1:]
-    
+    def historical_data_before(self, quarter, key):
+        key_data = lambda k: {'quarter': k['quarter'], 'value': k.get(key)}
+        previous_kpis = filter(lambda k: k['quarter'] < quarter, self.kpis)
+
+        return map(key_data, reversed(previous_kpis))
+
+
     def __getitem__(self, key):
         return self.__dict__[key]
 

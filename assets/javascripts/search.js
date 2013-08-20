@@ -267,14 +267,13 @@ GOVUK.transactionsExplorer.getQueryParams = function(search) {
 
 GOVUK.transactionsExplorer.initSearch = function () {
     $(function () {
-    GOVUK.transactionsExplorer.wireSearchForm({
-        formId: '#search',
-        inputId: '#search-box',
-        buttonId: '#search-button'
-        },
-        GOVUK.transactionsExplorer.search,
-        GOVUK.transactionsExplorer.getQueryParams(document.location.search));
-    GOVUK.transactionsExplorer.searchResultsTable.wireTable('#transactions-table');
+        GOVUK.transactionsExplorer.searchResultsTable.wireTable('#transactions-table');
+        GOVUK.transactionsExplorer.wireSearchForm({
+            formId: '#search',
+            inputId: '#search-box',
+            buttonId: '#search-button'
+            },
+            GOVUK.transactionsExplorer.search,
+            GOVUK.transactionsExplorer.getQueryParams(document.location.search));
     });
 };
-
