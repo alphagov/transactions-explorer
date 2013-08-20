@@ -172,7 +172,8 @@ describe("Searching for services on the transaction explorer. ", function() {
             
             GOVUK.transactionsExplorer.search.load();
             
-            expect(GOVUK.transactionsExplorer.search.searchServices).toHaveBeenCalledWith('bacon', null);
+            expect(GOVUK.transactionsExplorer.search.searchServices).toHaveBeenCalledWith(
+                {keyword: 'bacon', sortBy: jasmine.any(String), direction: jasmine.any(String)}, null);
         });
     });
 
@@ -199,56 +200,19 @@ describe("Searching for services on the transaction explorer. ", function() {
                 transactionLink: "temp link",
                 keywords: []
             }];
-            searchResults = GOVUK.transactionsExplorer.search.searchServices('second', services);
+            searchResults = GOVUK.transactionsExplorer.search.searchServices({keyword: 'second'}, services);
             expect(searchResults.length).toEqual(1);
             expect(searchResults[0].department).toBe('second department');
         });
 
-        it("should order results by transactions per year descending as default", function () {
-            var services = [{
-                agencyOrBodyAbbreviation: "gds",
-                service: "lower rated",
-                departmentAbbreviation: "co",
-                agencyOrBody: "",
-                transactionsPerYear: 23,
-                department: "first department",
-                category: "some category",
-                transactionLink: "temp link",
-                keywords: []
-            },{
-                agencyOrBodyAbbreviation: "gds",
-                service: "highly rated",
-                departmentAbbreviation: "co",
-                agencyOrBody: "",
-                transactionsPerYear: 999,
-                department: "second department",
-                category: "some category",
-                transactionLink: "temp link",
-                keywords: []
-            },{
-                agencyOrBodyAbbreviation: "nomatch",
-                service: "highly rated",
-                departmentAbbreviation: "foo",
-                agencyOrBody: "",
-                transactionsPerYear: 999,
-                department: "second department",
-                category: "some category",
-                transactionLink: "temp link",
-                keywords: []
-            }];
-            searchResults = GOVUK.transactionsExplorer.search.searchServices('gds', services);
-            expect(searchResults.length).toEqual(2);
-            expect(searchResults[0].service).toBe('highly rated');
-        });
-
         it("should sort results according to params", function () {
             var services = [
-                buildService({ service: "bbbb", agencyOrBodyAbbreviation: "gds", transactionsPerYear: 100}),
-                buildService({ service: "cccc", agencyOrBodyAbbreviation: "gds", transactionsPerYear: 10}),
-                buildService({ service: "aaaa", agencyOrBodyAbbreviation: "gds", transactionsPerYear: 1})
+                buildService({ service: "bbbb", agencyOrBodyAbbreviation: "gds" }),
+                buildService({ service: "cccc", agencyOrBodyAbbreviation: "gds" }),
+                buildService({ service: "aaaa", agencyOrBodyAbbreviation: "gds" })
             ];
 
-            searchResults = GOVUK.transactionsExplorer.search.searchServices('gds', services, 'service', 'ascending');
+            searchResults = GOVUK.transactionsExplorer.search.searchServices({keyword: 'gds', sortBy: 'service', direction: 'ascending'}, services);
 
             expect(searchResults[0].service).toBe('aaaa');
             expect(searchResults[1].service).toBe('bbbb');
@@ -257,18 +221,18 @@ describe("Searching for services on the transaction explorer. ", function() {
 
         it("should leave empty values at the end regardless of the direction", function () {
             var services = [
-                buildService({ service: "bbbb", agencyOrBodyAbbreviation: "gds", category: "zzzz"}),
-                buildService({ service: "cccc", agencyOrBodyAbbreviation: "gds", category: "aaaa"}),
-                buildService({ service: "aaaa", agencyOrBodyAbbreviation: "gds", category: ""})
+                buildService({ agencyOrBodyAbbreviation: "gds", category: "zzzz" }),
+                buildService({ agencyOrBodyAbbreviation: "gds", category: "aaaa" }),
+                buildService({ agencyOrBodyAbbreviation: "gds", category: "" })
             ];
 
-            searchResults = GOVUK.transactionsExplorer.search.searchServices('gds', services, 'category', 'ascending');
+            searchResults = GOVUK.transactionsExplorer.search.searchServices({keyword: 'gds', sortBy: 'category', direction: 'ascending'}, services);
 
-            expect(searchResults[2].service).toBe('aaaa');
+            expect(searchResults[2].category).toBe('');
 
-            searchResults = GOVUK.transactionsExplorer.search.searchServices('gds', services, 'category', 'descending');
+            searchResults = GOVUK.transactionsExplorer.search.searchServices({keyword: 'gds', sortBy: 'category', direction: 'descending'}, services);
 
-            expect(searchResults[2].service).toBe('aaaa');
+            expect(searchResults[2].category).toBe('');
         });
     });
 
