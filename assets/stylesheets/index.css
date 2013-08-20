@@ -712,7 +712,7 @@
     background-position: 9px center;
     background-size: auto 40px; } }
 @media (min-width: 641px) {
-   line 737, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss 
+   /* line 737, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-single-identity-large {
     padding: 40px 0 0 10px;
     background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png");
