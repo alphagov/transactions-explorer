@@ -58,7 +58,7 @@ describe("Searching for services on the transaction explorer. ", function() {
                     inputId: "#search-box",
                     buttonId: "#search-button"
                 }, fakeSearch, {keyword: 'iAmAKeyWord'});
-                expect(fakeSearch.performSearch).toHaveBeenCalledWith('iAmAKeyWord');
+                expect(fakeSearch.performSearch).toHaveBeenCalledWith({keyword: 'iAmAKeyWord'});
             });
         });
 
@@ -164,9 +164,9 @@ describe("Searching for services on the transaction explorer. ", function() {
         });
 
         it("should cache most recent query until the search json is loaded", function () {
-            GOVUK.transactionsExplorer.search.performSearch('coffee');
-            GOVUK.transactionsExplorer.search.performSearch('tea');
-            GOVUK.transactionsExplorer.search.performSearch('bacon');
+            GOVUK.transactionsExplorer.search.performSearch({keyword: 'coffee'});
+            GOVUK.transactionsExplorer.search.performSearch({keyword: 'tea'});
+            GOVUK.transactionsExplorer.search.performSearch({keyword: 'bacon'});
             
             expect(GOVUK.transactionsExplorer.search.searchServices).not.toHaveBeenCalled();
             

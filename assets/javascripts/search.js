@@ -77,15 +77,15 @@ GOVUK.transactionsExplorer.search = (function () {
         });
     };
 
-    var performSearch = function (query) {
+    var performSearch = function (queryParams) {
         if (loaded) {
-            var results = GOVUK.transactionsExplorer.search.searchServices(query, data);
+            var results = GOVUK.transactionsExplorer.search.searchServices(queryParams.keyword, data);
             GOVUK.transactionsExplorer.searchResultsTable.update(results);
         } else {
-            cachedQuery = query;
+            cachedQuery = queryParams;
         }
 
-        $("table tbody").highlight(query);
+        $("table tbody").highlight(queryParams.keyword);
     };
 
     return {
@@ -104,7 +104,7 @@ GOVUK.transactionsExplorer.wireSearchForm = function(ids, search, parameters) {
         search.load(searchForm.data("search"));
         loaded = true;
         searchBox.val(parameters.keyword);
-        search.performSearch(parameters.keyword);
+        search.performSearch(parameters);
     }
 
     searchBox.on('focus', function (event) {
