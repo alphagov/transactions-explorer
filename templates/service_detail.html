@@ -67,7 +67,7 @@
                 {% set title='Digital take-up' %}
                 {% set key='takeup' %}
                 {% set change_key='takeup_change' %}
-                {% set change=service.latest_kpi_for('takeup_change') %}
+                {% set value_type='percentage' %}
                 {% set increase_class='green' %}
                 {% set decrease_class='red' %}
                 {% include "kpi_item.html" %}
@@ -81,6 +81,7 @@
                 {% set title='Total Cost' %}
                 {% set key='cost' %}
                 {% set change_key='cost_change' %}
+                {% set value_type='money' %}
                 {% set increase_class='red' %}
                 {% set decrease_class='green' %}
                 {% include "kpi_item.html" %}

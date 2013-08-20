@@ -32,7 +32,7 @@
             <tr>
               <th>{{previous.quarter}}</th>
               {% if value_type == 'money' %}
-                <td>£{{previous.value|as_grouped_number}}</td>
+                <td>£{{previous.value|as_financial_magnitude}}</td>
               {% elif value_type == 'percentage' %}
                 <td>{{previous.value|as_percentage}}</td>
               {% else %}
