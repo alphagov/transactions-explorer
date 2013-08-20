@@ -78,7 +78,7 @@
             {% endif %}
           
             {# TOTAL COST #}
-            {% if service.latest_kpi_for('takeup') is not none %}
+            {% if service.latest_kpi_for('cost') is not none %}
               {% with %}
                 {% set title='Total Cost' %}
                 {% set key='cost' %}
