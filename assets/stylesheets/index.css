@@ -1,4 +1,4 @@
-/*/*/*/*/*/*@-ms-viewport {
+@-ms-viewport {
   width: device-width; }
 
 @-o-viewport {
@@ -16,11 +16,11 @@
 
 
 @media (max-width: 640px) {
-  /* line 88, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+  /* line 88, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss 
   nav.performance-nav {
     height: auto;
     width: auto; }
-    /* line 93, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+    /* line 93, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss 
     nav.performance-nav #menu-toggle {
       display: inline-block;
       float: right;
@@ -1752,4 +1752,3 @@ input[type=text] {
   margin: 0 auto;
   border-bottom-color: #097f96;
 }
-*/*/*/*/*/*/
