@@ -150,6 +150,40 @@ var TreeMapLayout = (function () {
     return nClass;
   };
 
+  var setNodeContent = function (d) {
+    // switch to position='static' to enable measurement of true height
+    this.style.position = 'static';
+    var availableHeight = this.parentNode.clientHeight,
+        actualHeight = Infinity,
+        name = d.name,
+        text,
+        node = d3.select(this);
+
+    // shorten displayed text until everything fits
+    while (actualHeight > availableHeight) {
+      text = name;
+      if (name.length > 0 && name.length !== d.name.length) {
+        text += '…';
+      }
+      node.text(text);
+      if (d.volumeShortened) {
+        node.append('span')
+          .attr('class', 'amount')
+          .text(function (d) {
+            return d.volumeShortened;
+          });
+      }
+      if (name.length === 0) {
+        break;
+      }
+      actualHeight = this.offsetHeight;
+      name = name.substring(0, name.length - 1);
+    }
+
+    // reset to position='absolute' to make link display across whole node area
+    this.style.position = 'absolute';
+  };
+
   var createTip = function(d){
     var tip = null;
     if(d && d.volumeLabel){
@@ -177,9 +211,7 @@ var TreeMapLayout = (function () {
           return a.value - b.value;
         });
     
-    var div = d3.select('#'+divId);
-
-    var node = div.datum(treeData).selectAll(".node")
+    var node = d3.select('#'+divId).datum(treeData).selectAll(".node")
       .data(treemap.nodes)
       .enter().append("div")
       .attr("class", getNodeClass)
@@ -188,17 +220,12 @@ var TreeMapLayout = (function () {
       .append("a")
         .attr('href',function(d){ return d.url ? d.url : null })
         .style("color", function(d) { return d.textColor ? d.textColor : null; })
-        .text(function(d) {
-          return d.children ?  null : d.name;
-        })
         .call(function (selection) {
-          selection.filter(function (d) {
-            return !!d.volumeShortened;
-          }).append('span')
-            .attr('class', 'amount')
-            .text(function (d) {
-              return d.volumeShortened;
-            });
+          selection
+            .filter(function (d) {
+              return !d.children;
+            })
+            .each(setNodeContent);
         });
 
     var rsplit = function (str, matchThis) {

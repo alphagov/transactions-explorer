@@ -1,5 +1,6 @@
 describe("Table To Treemap", function () {
 
+  var wrapper;
   beforeEach(function () {
     table = d3.select("body").append("table").append("tbody");
     table.append("tr")
@@ -25,7 +26,7 @@ describe("Table To Treemap", function () {
       .attr("data-volume", "19");
     
     // Also add in a testmap div
-    d3.select('body').append('div')
+    wrapper = d3.select('body').append('div')
       .attr('id','testmap')
       .style({
         width: '960px',
@@ -143,6 +144,33 @@ describe("Table To Treemap", function () {
       expect(classes[6]).shouldContain(['node', 'ellipsis', 'leaf', 'dfid']);
       expect(classes[7]).shouldContain(['node', 'ellipsis', 'leaf', 'defra']);
       expect(classes[8]).shouldContain(['node', 'none', 'leaf', 'hmrc']);
+    });
+
+    it("should shorten displayed text to make it fit", function () {
+      wrapper.style('height', '30px');
+
+      var data = {
+        name: "TreeMap sample",
+        children: [
+          { name: "Service 1 has a very long name that needs to be shortened", size: 20 },
+          { name: "Service 2 also has a name that is shortened in favour of the amount", size: 20, volumeShortened: '44' },
+          { name: "Service 3", size: 50, volumeShortened: '' }
+        ]
+      };
+
+      TreeMapLayout.display("testmap", data);
+
+      var treeNodes = d3.selectAll('div.node a')[0].map(function(d) { return d.innerHTML; });
+
+      expect(treeNodes[1].length < data.children[0].name.length).toBe(true);
+      expect(treeNodes[1].indexOf('…')).not.toEqual(-1);
+
+      expect(treeNodes[2].length < data.children[1].name.length).toBe(true);
+      expect(treeNodes[2].indexOf('…')).not.toEqual(-1);
+      expect(treeNodes[2].indexOf('<span class="amount">44</span>')).not.toEqual(-1);
+
+      expect(treeNodes[3].length).toEqual(data.children[2].name.length);
+      expect(treeNodes[3].indexOf('…')).toEqual(-1);
     });
   });
 
