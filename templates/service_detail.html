@@ -50,12 +50,11 @@
           <div class="kpi">
           
             {# TRANSACTIONS PER YEAR #}
-            {% if service.latest_kpi_for('volume') is not none %}
+            {% if service.find_recent_kpis_with_attributes(['volume']) is not none %}
               {% with %}
                 {% set title='Transactions per year' %}
                 {% set key='volume' %}
-                {% set value=service.latest_kpi_for('volume') %}
-                {% set change=service.latest_kpi_for('volume_change') %}
+                {% set change_key='volume_change' %}
                 {% set increase_class='green' %}
                 {% set decrease_class='red' %}
                 {% include "kpi_item.html" %}
@@ -63,12 +62,11 @@
             {% endif %}
           
             {# DIGITAL TAKE-UP #}
-            {% if service.latest_kpi_for('takeup') is not none %}
+            {% if service.find_recent_kpis_with_attributes(['takeup']) is not none %}
               {% with %}
                 {% set title='Digital take-up' %}
                 {% set key='takeup' %}
-                {% set value=service.latest_kpi_for('takeup') %}
-                {% set value_type='percentage' %}
+                {% set change_key='takeup_change' %}
                 {% set change=service.latest_kpi_for('takeup_change') %}
                 {% set increase_class='green' %}
                 {% set decrease_class='red' %}
@@ -78,13 +76,11 @@
             {% endif %}
           
             {# TOTAL COST #}
-            {% if service.latest_kpi_for('takeup') is not none %}
+            {% if service.find_recent_kpis_with_attributes(['cost']) is not none %}
               {% with %}
                 {% set title='Total Cost' %}
                 {% set key='cost' %}
-                {% set value=service.latest_kpi_for('cost') %}
-                {% set value_type='money' %}
-                {% set change=service.latest_kpi_for('cost_change') %}
+                {% set change_key='cost_change' %}
                 {% set increase_class='red' %}
                 {% set decrease_class='green' %}
                 {% include "kpi_item.html" %}
@@ -95,13 +91,12 @@
             {% endif %}
           
             {# COST PER TRANSACTION #}
-            {% if service.latest_kpi_for('cost_per_number') is not none %}
+            {% if service.find_recent_kpis_with_attributes(['cost_per_number']) is not none %}
               {% with %}
                 {% set title='Cost per transaction' %}
-                {% set key='cost_per' %}
-                {% set value=service.latest_kpi_for('cost_per_number') %}
+                {% set key='cost_per_number' %}
+                {% set change_key='cost_per_change' %}
                 {% set value_type='money' %}
-                {% set change=service.latest_kpi_for('cost_per_change') %}
                 {% set increase_class='red' %}
                 {% set decrease_class='green' %}
                 {% include "kpi_item.html" %}
