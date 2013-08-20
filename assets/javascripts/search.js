@@ -200,14 +200,12 @@ GOVUK.transactionsExplorer.getSearchKeyword = function (documentSearchString) {
 
 GOVUK.transactionsExplorer.initSearch = function () {
     $(function () {
-    GOVUK.transactionsExplorer.wireSearchForm({
-        formId: '#search',
-        inputId: '#search-box',
-        buttonId: '#search-button'
-        },
-        GOVUK.transactionsExplorer.search,
-        GOVUK.transactionsExplorer.getSearchKeyword(document.location.search));
-    GOVUK.transactionsExplorer.searchResultsTable.wireTable('#transactions-table');
+        GOVUK.transactionsExplorer.searchResultsTable.wireTable('#transactions-table');
+        GOVUK.transactionsExplorer.wireSearchForm({
+            formId: '#search',
+            inputId: '#search-box',
+            buttonId: '#search-button'},
+            GOVUK.transactionsExplorer.search,
+            GOVUK.transactionsExplorer.getSearchKeyword(document.location.search));
     });
 };
-
