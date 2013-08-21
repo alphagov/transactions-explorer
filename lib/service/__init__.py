@@ -213,6 +213,7 @@ class Department(object):
         'DH': 'single-identity',
         'FCO': 'single-identity',
         'HMT': 'single-identity',
+        'HMRC': 'hmrc',
         'HOME OFFICE': 'ho',
         'MOD': 'mod',
         'MOJ': 'single-identity',
