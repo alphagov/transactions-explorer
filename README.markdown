@@ -1,5 +1,5 @@
-Service Explorer
-================
+Transactions Explorer
+=====================
 
 [![Build Status](https://travis-ci.org/alphagov/transactions-explorer.png?branch=master)](https://travis-ci.org/alphagov/transactions-explorer)
 

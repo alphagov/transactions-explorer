@@ -1252,9 +1252,9 @@ header.page-header hgroup.te-image h2 {
 
 /* line 196, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 header.page-header hgroup.te-image {
-  background: url(/transactions-explorer/images/TE_homepage_graphic.svg) no-repeat top left;
-  background-size: contain;
-  background-position-x: right; }
+  background: url(/transactions-explorer/images/TE_homepage_graphic.svg) no-repeat;
+  background-position: top right;
+  background-size: contain; }
 
 @media (max-width: 800px) {
   /* line 202, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
@@ -1751,6 +1751,19 @@ article .transactions-explorer-download {
 article .transactions-explorer-download a {
     background-image: none;
     display: inline;
+}
+
+/*Matching performance platform service header*/
+
+.service-details-header h1 span.strapline {
+  display: block;
+  font-family: "ntatabularnumbers","nta",Arial,sans-serif;
+  font-size: 27px;
+  line-height: 1.11111;
+  font-weight: 400;
+  text-transform: none;
+  color: #6f777b;
+  margin-bottom: 5px;
 }
 
 
