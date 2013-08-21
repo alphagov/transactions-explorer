@@ -1,7 +1,7 @@
 var GOVUK = GOVUK || {};
 GOVUK.transactionsExplorer = GOVUK.transactionsExplorer || {};
 
-GOVUK.transactionsExplorer.loadSearchData = function(dataUrl, callback) {
+GOVUK.transactionsExplorer.loadSearchData = function (dataUrl, callback) {
     $.ajax({
         method: "GET",
         url: dataUrl,
@@ -9,7 +9,7 @@ GOVUK.transactionsExplorer.loadSearchData = function(dataUrl, callback) {
     }).done(callback);
 };
 
-GOVUK.transactionsExplorer.scoreService = (function () {
+GOVUK.transactionsExplorer.isSearchMatch = (function () {
     var SEARCH_FIELDS = [
         "agencyOrBodyAbbreviation",
         "service",
@@ -20,35 +20,80 @@ GOVUK.transactionsExplorer.scoreService = (function () {
         "category"
     ];
 
-    var scoreService = function (searchTerm, service) {
-        var score = 0;
+    var isSearchMatch = function (searchTerm, service) {
+        var search = searchTerm.toLowerCase();
+        var found = false;
+
         $.each(SEARCH_FIELDS, function (i, field) {
-            var valueToSearch,
-                termToUse = searchTerm.toLowerCase();
+            var valueToSearch;
+
             if (field === "keywords") {
                 valueToSearch = service[field].join(' ').toLowerCase();
             } else {
                 valueToSearch = service[field].toLowerCase();
             }
 
-            if (valueToSearch.search(termToUse) >= 0) {
-                //FIXME this is pretty inefficient but $ doesn't provide a reduce
-                score = service.transactionsPerYear || 1;
+            if (valueToSearch.search(search) >= 0) {
+                found = true;
+                return false; // breaks the loop
             }
-
         });
-        return score;
+
+        return found;
     };
 
-    return scoreService;
+    return isSearchMatch;
+}());
+
+GOVUK.transactionsExplorer.serviceComparator = (function () {
+    var propertyComparator = function (property) {
+        return function (anObject, anotherObject) {
+            if (anObject[property] < anotherObject[property]) return -1;
+            if (anObject[property] > anotherObject[property]) return 1;
+            if (anObject[property] === anotherObject[property]) return 0;
+        };
+    };
+
+    var reversed = function (comparator) {
+        return function (anObject, anotherObject) {
+            return -comparator(anObject, anotherObject);
+        };
+    };
+
+    var buildPropertyComparator = function (direction, property) {
+        if (direction === 'descending') {
+            return reversed(propertyComparator(property));
+        }
+        return propertyComparator(property)
+    };
+
+    var serviceComparator = function (property, direction) {
+        var compare = buildPropertyComparator(direction, property);
+
+        return function (anObject, anotherObject) {
+            if (!anObject[property]) return 1;
+            if (!anotherObject[property]) return -1;
+            return compare(anObject, anotherObject);
+        };
+    };
+
+    return serviceComparator;
 }());
 
 GOVUK.transactionsExplorer.search = (function () {
+    var SORT_PROPERTIES = {
+        'service': 'service',
+        'category': 'category',
+        'agency': 'agencyOrBodyAbbreviation',
+        'volume': 'transactionsPerYear'
+    };
+
     var data = [],
         loaded = false,
         cachedQuery = undefined;
 
     var load = function (dataUrl) {
+        loaded = false;
         GOVUK.transactionsExplorer.loadSearchData(dataUrl, function (loadedData) {
             data = loadedData;
             loaded = true;
@@ -58,34 +103,33 @@ GOVUK.transactionsExplorer.search = (function () {
         });
     };
 
-    var searchServices = function (query, services) {
-        var scoredServices = $.map(services, function (service, index) {
-            return {
-                service: service,
-                score: GOVUK.transactionsExplorer.scoreService(query, service)
-            };
-        });
-        var matchedServices = $.grep(scoredServices, function(n, i) {
-            return (n.score > 0);
-        }).sort(function (first, next) {
-            if (first.score > next.score) return -1;
-            if (first.score < next.score) return 1;
-            if (first.score === next.score) return 0;
-        });
-        return $.map(matchedServices, function(scoredService, index) {
-            return scoredService.service;
-        });
+    var searchServices = function (params, services) {
+        var sortProperty = SORT_PROPERTIES[params.sortBy];
+        var comparator = GOVUK.transactionsExplorer.serviceComparator(sortProperty, params.direction);
+
+        var matchingSearch = function (service) {
+            return GOVUK.transactionsExplorer.isSearchMatch(params.keyword, service);
+        };
+
+        return $.grep(services, matchingSearch).sort(comparator);
     };
 
-    var performSearch = function (query) {
+    var normaliseSortParams = function (queryParams) {
+        if (!SORT_PROPERTIES[queryParams.sortBy]) queryParams.sortBy = 'volume';
+        queryParams.direction = queryParams.direction === 'ascending' ? 'ascending' : 'descending';
+    };
+
+    var performSearch = function (queryParams) {
+        normaliseSortParams(queryParams);
+
         if (loaded) {
-            var results = GOVUK.transactionsExplorer.search.searchServices(query, data);
-            GOVUK.transactionsExplorer.searchResultsTable.update(results);
+            var results = GOVUK.transactionsExplorer.search.searchServices(queryParams, data);
+            GOVUK.transactionsExplorer.searchResultsTable.update(results, queryParams);
         } else {
-            cachedQuery = query;
+            cachedQuery = queryParams;
         }
 
-        $("table tbody").highlight(query);
+        $("table tbody").highlight(queryParams.keyword);
     };
 
     return {
@@ -95,16 +139,16 @@ GOVUK.transactionsExplorer.search = (function () {
     };
 }());
 
-GOVUK.transactionsExplorer.wireSearchForm = function(ids, search, keyword) {
+GOVUK.transactionsExplorer.wireSearchForm = function (ids, search, parameters) {
     var searchBox = $(ids.inputId),
         searchForm = $(ids.formId),
         loaded = false;
 
-    if (keyword) {
+    if (parameters.keyword) {
         search.load(searchForm.data("search"));
         loaded = true;
-        searchBox.val(keyword);
-        search.performSearch(keyword);
+        searchBox.val(parameters.keyword);
+        search.performSearch(parameters);
     }
 
     searchBox.on('focus', function (event) {
@@ -117,37 +161,46 @@ GOVUK.transactionsExplorer.wireSearchForm = function(ids, search, keyword) {
 
 GOVUK.transactionsExplorer.searchResultsTable = (function () {
     var table = undefined,
-        ROW_TEMPLATE =  "<tr class='i-get-removed'>" + 
-                            "<th class='js-row-header'></th>" + 
-                            "<td class='js-row-abbr'></td>" +
-                            "<td class='js-row-category'></td>" + 
-                            "<td class='js-row-transaction'></td>" + 
-                            "<td class='js-row-transactions amount'></td>" +
-                        "</tr>",
+        ROW_TEMPLATE = "<tr class='i-get-removed'>" +
+            "<th class='js-row-header'></th>" +
+            "<td class='js-row-abbr'></td>" +
+            "<td class='js-row-category'></td>" +
+            "<td class='js-row-transaction'></td>" +
+            "<td class='js-row-transactions amount'></td>" +
+            "</tr>",
         NO_RESULTS_TEMPLATE = "<tr><th colspan='5'>No results for that query</th></tr>";
-    
+
     var wireTable = function (id) {
         table = $(id);
     };
-    
+
     var rowHeader = function (serviceName, link) {
         if (link) {
-            return '<a href="' + link  + '">' + serviceName + '</a>';
+            return '<a href="' + link + '">' + serviceName + '</a>';
         } else {
             return serviceName;
         }
     };
-    
+
+    var columnHeader = function (text, link, currentDirection) {
+        if (currentDirection) {
+            return '<a href="' + link + '">' + text + '</a><span class="sort-ind">' + currentDirection + '</span>';
+        }
+        return '<a href="' + link + '">' + text + '</a>';
+    };
+
     var transactionLink = function (transactionLink) {
         if (transactionLink) {
-            return '<a rel="external" href="' + transactionLink + '">Access service</a>'; 
+            return '<a rel="external" href="' + transactionLink + '">Access service</a>';
         } else {
             return "&nbsp;";
         }
     };
 
     var abbreviation = function (abbreviation, title) {
-        if (!abbreviation) { return title; }
+        if (!abbreviation) {
+            return title;
+        }
         return '<abbr title="' + title + '">' + abbreviation + '</abbr>'
     }
 
@@ -159,17 +212,36 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
         }
     };
 
-    var update = function (services) {
+    var updateColumnHeaders = function (queryParams) {
+        $('th.sortable').each(function (i, elem) {
+            var th = $(elem);
+            var link = function (direction) {
+                return 'search?' + $.param({ keyword: queryParams.keyword, sortBy: th.data('sort-by'), direction: direction});
+            }
+
+            if (th.data('sort-by') !== queryParams.sortBy) {
+                th.html(columnHeader(th.text(), link(th.data('default-direction'))));
+            } else if (queryParams.direction === 'ascending') {
+                th.html(columnHeader(th.text(), link('descending'), '&#9650;'));
+                th.addClass("sorted ascending");
+            } else {
+                th.html(columnHeader(th.text(), link('ascending'), '&#9660;'));
+                th.addClass("sorted descending");
+            }
+        });
+    };
+
+    var update = function (services, queryParams) {
         var rows = [];
 
         $.each(services, function (i, service) {
             var row = $(ROW_TEMPLATE);
             row.find('.js-row-header').html(rowHeader(service['service'], service['detailsLink']));
-            row.find('.js-row-abbr').html(abbreviation(service['agencyOrBodyAbbreviation'],service['agencyOrBody']));
+            row.find('.js-row-abbr').html(abbreviation(service['agencyOrBodyAbbreviation'], service['agencyOrBody']));
             row.find('.js-row-category').html(service['category']);
             row.find('.js-row-transaction').html(transactionLink(service['transactionLink']));
             row.find('.js-row-transactions').html(transactionsPerYear(service['transactionsPerYear']));
-        
+
             rows.push('<tr>' + row.html() + '</tr>');
         });
 
@@ -179,6 +251,7 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
             table.find('tbody').html(rows.join(''));
         }
 
+        updateColumnHeaders(queryParams);
     };
 
     return {
@@ -187,25 +260,30 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
     };
 }());
 
-GOVUK.transactionsExplorer.getSearchKeyword = function (documentSearchString) {
-    var searchParam = undefined;
-    if (documentSearchString) {
-        var matchedUrlParams = documentSearchString.match(/(?:keyword)=([^&]+)/);
-        if (matchedUrlParams && matchedUrlParams.length === 2) {
-            searchParam = decodeURIComponent(matchedUrlParams[1]).replace(/\+/g, ' ');
-        }
+GOVUK.transactionsExplorer.getQueryParams = function (search) {
+    var decode = function (string) {
+        if (!string) return string;
+        return decodeURIComponent(string).replace(/\+/g, ' ');
+    };
+
+    var searchParts = search.substring(1).split('&');
+    var params = {};
+    for (var i = 0; i < searchParts.length; ++i) {
+        var entry = searchParts[i].split('=', 2);
+        params[decode(entry[0])] = decode(entry[1]);
     }
-    return searchParam;
+    return params;
 };
 
 GOVUK.transactionsExplorer.initSearch = function () {
     $(function () {
         GOVUK.transactionsExplorer.searchResultsTable.wireTable('#transactions-table');
         GOVUK.transactionsExplorer.wireSearchForm({
-            formId: '#search',
-            inputId: '#search-box',
-            buttonId: '#search-button'},
+                formId: '#search',
+                inputId: '#search-box',
+                buttonId: '#search-button'
+            },
             GOVUK.transactionsExplorer.search,
-            GOVUK.transactionsExplorer.getSearchKeyword(document.location.search));
+            GOVUK.transactionsExplorer.getQueryParams(document.location.search));
     });
 };
