@@ -150,13 +150,44 @@ var TreeMapLayout = (function () {
     return nClass;
   };
 
+  var setNodeContent = function (d) {
+    // switch to position='static' to enable measurement of true height
+    this.style.position = 'static';
+    var availableHeight = this.parentNode.clientHeight,
+        actualHeight = Infinity,
+        name = d.name,
+        text,
+        node = d3.select(this);
+
+    // shorten displayed text until everything fits
+    while (actualHeight > availableHeight) {
+      text = name;
+      if (name.length > 0 && name.length !== d.name.length) {
+        text += '…';
+      }
+      node.text(text);
+      if (d.volumeShortened) {
+        node.append('span')
+          .attr('class', 'amount')
+          .text(function (d) {
+            return d.volumeShortened;
+          });
+      }
+      if (name.length === 0) {
+        break;
+      }
+      actualHeight = this.offsetHeight;
+      name = name.substring(0, name.length - 1);
+    }
+
+    // reset to position='absolute' to make link display across whole node area
+    this.style.position = 'absolute';
+  };
+
   var createTip = function(d){
     var tip = null;
     if(d && d.volumeLabel){
       tip = d.name + ': ' + d.volumeLabel + ' transactions per year';
-    }
-    if(d.cost){
-      tip += ' (total cost: ' + d.cost + ')';
     }
     return tip;
   };
@@ -180,9 +211,7 @@ var TreeMapLayout = (function () {
           return a.value - b.value;
         });
     
-    var div = d3.select('#'+divId);
-
-    var node = div.datum(treeData).selectAll(".node")
+    var node = d3.select('#'+divId).datum(treeData).selectAll(".node")
       .data(treemap.nodes)
       .enter().append("div")
       .attr("class", getNodeClass)
@@ -191,18 +220,27 @@ var TreeMapLayout = (function () {
       .append("a")
         .attr('href',function(d){ return d.url ? d.url : null })
         .style("color", function(d) { return d.textColor ? d.textColor : null; })
-        .text(function(d) {
-          return d.children ?  null : d.name;
-        })
         .call(function (selection) {
-          selection.filter(function (d) {
-            return !!d.volumeShortened;
-          }).append('span')
-            .attr('class', 'amount')
-            .text(function (d) {
-              return d.volumeShortened;
-            });
+          selection
+            .filter(function (d) {
+              return !d.children;
+            })
+            .each(setNodeContent);
         });
+
+    var rsplit = function (str, matchThis) {
+        var length = str.length, whereToSplit = undefined;
+        for (var i = length; i > 0; i--) {
+            if (str[i] === matchThis) {
+                whereToSplit = i;
+                break;
+            }
+        }
+        return [
+            str.slice(0,whereToSplit + 1),
+            str.slice(whereToSplit + 1, length)
+        ];
+    };
 
     if (window.$) {
       var $figure = $('#' + divId);
@@ -213,8 +251,10 @@ var TreeMapLayout = (function () {
 
       $figure.find('.node').on('mouseenter',function(){
         var $this = $(this),
-            bg = $this.css('background-color');
-        $cap.html($this.data('tooltip'));
+            bg = $this.css('background-color'),
+            tooltipText = $this.data('tooltip'),
+            serviceDetails = rsplit(tooltipText, ':');
+        $cap.html('<div class="service-name">' + serviceDetails[0] + '</div>' + '<div class="transactions-per-year">' + serviceDetails[1] + '</div>');
         $('<span class="keyBlock"/>').css('background-color',bg).prependTo($cap);
       });
       $figure.on('mouseleave', function () {
