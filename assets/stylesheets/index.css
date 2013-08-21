@@ -16,11 +16,11 @@
 
 
 @media (max-width: 640px) {
-   /*line 88, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+  /* line 88, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
   nav.performance-nav {
     height: auto;
     width: auto; }
-     /*line 93, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
+    /* line 93, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
     nav.performance-nav #menu-toggle {
       display: inline-block;
       float: right;
@@ -712,7 +712,7 @@
     background-position: 9px center;
     background-size: auto 40px; } }
 @media (min-width: 641px) {
-   /* line 737, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
+  /* line 737, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-single-identity-large {
     padding: 40px 0 0 10px;
     background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png");
@@ -1041,13 +1041,6 @@
 /* line 93, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
 #whitehall-wrapper .wales-office .organisation-logo {
   border-color: #a33038; }
-
-
-/* content reset */
-/* line 43, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#content * {
-  /*font-family: "ntatabularnumbers", "nta", arial, sans-serif; */
-}
 
 
 /*layout overrides*/
