@@ -159,25 +159,39 @@ var TreeMapLayout = (function () {
         text,
         node = d3.select(this);
 
-    // shorten displayed text until everything fits
+    var volumeSpan = '';
+    if (d.volumeShortened) {
+      volumeSpan = '<span class="amount">' + d.volumeShortened + '</span>';
+    }
+
+    // Check if trimming of name could yield a good result
+    this.style['white-space'] = 'nowrap';
+    text = name + volumeSpan;
+    this.innerHTML = text;
+    actualHeight = this.offsetHeight;
+    this.style['white-space'] = 'normal';
+    if (actualHeight > availableHeight) {
+      // Content does not fit, even when name is on single line.
+      // Simply display volume.
+      this.innerHTML = volumeSpan;
+      return;
+    }
+
+    // Shorten name until everything fits
+    actualHeight = Infinity;
     while (actualHeight > availableHeight) {
       text = name;
       if (name.length > 0 && name.length !== d.name.length) {
         text += '…';
       }
-      node.text(text);
-      if (d.volumeShortened) {
-        node.append('span')
-          .attr('class', 'amount')
-          .text(function (d) {
-            return d.volumeShortened;
-          });
-      }
-      if (name.length === 0) {
+      text += volumeSpan;
+      this.innerHTML = text;
+
+      if (name.length <= 0) {
         break;
       }
       actualHeight = this.offsetHeight;
-      name = name.substring(0, name.length - 1);
+      name = name.substring(0, name.length - 4);
     }
 
     // reset to position='absolute' to make link display across whole node area
@@ -197,10 +211,16 @@ var TreeMapLayout = (function () {
     var options = options || {},
         el = document.getElementById(divId);
     
-    if(el){
-        var width = options.width || el.offsetWidth,
-            height = options.height || el.offsetHeight;
+    if (!el) {
+      // Wrapper element not found
+      return;
     }
+
+    var width = options.width || el.offsetWidth,
+        height = options.height || el.offsetHeight;
+    
+    // Clean up wrapper element before populating
+    el.innerHTML = '';
 
     var color = d3.scale.category20c();
     
@@ -254,7 +274,7 @@ var TreeMapLayout = (function () {
             bg = $this.css('background-color'),
             tooltipText = $this.data('tooltip'),
             serviceDetails = rsplit(tooltipText, ':');
-        $cap.html('<div class="service-name">' + serviceDetails[0] + '</div>' + '<div class="transactions-per-year">' + serviceDetails[1] + '</div>');
+        $cap.html('<span class="service-name">' + serviceDetails[0] + '</span><span class="service-details">' + serviceDetails[1] + '</span>');
         $('<span class="keyBlock"/>').css('background-color',bg).prependTo($cap);
       });
       $figure.on('mouseleave', function () {

@@ -1069,7 +1069,9 @@ article .info-notice {
   /* line 34, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
   article .info-notice h2 {
     font-family: nta, arial, sans-serif !important;
-    margin-top: 0.5em; }
+    margin-top: 0.5em; 
+    margin-right: 2em;
+  }
 
 /* line 39, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 article .table-margin {
@@ -1346,7 +1348,6 @@ table.full_width_table {
 /* Service Details */
 /* line 263, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 article.service-details section h2 {
-  margin-top: 1.6em;
   border-bottom: 5px solid #108095;
   padding: 16px 0 8px 0;
   margin: 16px 0 16px 0;
@@ -1839,4 +1840,29 @@ article .transactions-explorer-download a {
   text-transform: none;
   color: #6f777b;
   margin-bottom: 5px;
+}
+
+
+/* mobile portrait */
+/*@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {*/
+@media only screen and (max-width:479px){
+  input[type='text'],
+  input[type='search']{
+    /*display: none*/
+    border-radius: 0;
+    -webkit-appearance: none;
+    margin-left: 0;
+  }
+  #search-box{
+    min-width: 15em
+  }
+  article th, 
+  article tr{
+    font-size: 14px;
+    padding:0.4em 0.2em 0.4em .5em;
+  }
+  table th:nth-child(n+2):nth-child(-n+3),
+  table td:nth-child(n+2):nth-child(-n+3){
+    display: none;
+  }
 }
