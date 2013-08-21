@@ -219,6 +219,20 @@ describe("Searching for services on the transaction explorer. ", function() {
             expect(searchResults[2].service).toBe('cccc');
         });
 
+        it("should map sortBy param to the correct service property", function () {
+            var services = [
+                buildService({ agencyOrBodyAbbreviation: "gds", transactionsPerYear:  100}),
+                buildService({ agencyOrBodyAbbreviation: "gds", transactionsPerYear:  1000}),
+                buildService({ agencyOrBodyAbbreviation: "gds", transactionsPerYear:  10})
+            ];
+
+            searchResults = GOVUK.transactionsExplorer.search.searchServices({keyword: 'gds', sortBy: 'volume', direction: 'ascending'}, services);
+
+            expect(searchResults[0].transactionsPerYear).toBe(10);
+            expect(searchResults[1].transactionsPerYear).toBe(100);
+            expect(searchResults[2].transactionsPerYear).toBe(1000);
+        });
+
         it("should leave empty values at the end regardless of the direction", function () {
             var services = [
                 buildService({ agencyOrBodyAbbreviation: "gds", category: "zzzz" }),
@@ -233,6 +247,55 @@ describe("Searching for services on the transaction explorer. ", function() {
             searchResults = GOVUK.transactionsExplorer.search.searchServices({keyword: 'gds', sortBy: 'category', direction: 'descending'}, services);
 
             expect(searchResults[2].category).toBe('');
+        });
+    });
+
+    describe("serviceComparator", function() {
+        describe("ascending", function() {
+            it('should compare services on a property in ascending order', function() {
+                var aService = buildService({service: 'anaconda'});
+                var anotherService = buildService({service: 'zebra'});
+
+                var compare = GOVUK.transactionsExplorer.serviceComparator('service', 'ascending');
+
+                expect(compare(aService, anotherService)).toBeLessThan(0);
+                expect(compare(anotherService, aService)).toBeGreaterThan(0);
+                expect(compare(aService, aService)).toEqual(0);
+            });
+
+            it('should order blanks after values', function() {
+                var aService = buildService({service: 'anaconda'});
+                var anotherService = buildService({service: ''});
+
+                var compare = GOVUK.transactionsExplorer.serviceComparator('service', 'ascending');
+
+                expect(compare(aService, anotherService)).toBeLessThan(0);
+                expect(compare(anotherService, aService)).toBeGreaterThan(0);
+            });
+        });
+
+        describe("descending", function() {
+            it('should compare services on a property in descending order', function() {
+                var aService = buildService({service: 'anaconda'});
+                var anotherService = buildService({service: 'zebra'});
+
+                var compare = GOVUK.transactionsExplorer.serviceComparator('service', 'descending');
+
+                expect(compare(aService, anotherService)).toBeGreaterThan(0);
+                expect(compare(anotherService, aService)).toBeLessThan(0);
+                expect(compare(aService, aService)).toEqual(0);
+            });
+
+
+            it('should order blanks after values', function() {
+                var aService = buildService({service: 'anaconda'});
+                var anotherService = buildService({service: ''});
+
+                var compare = GOVUK.transactionsExplorer.serviceComparator('service', 'descending');
+
+                expect(compare(aService, anotherService)).toBeLessThan(0);
+                expect(compare(anotherService, aService)).toBeGreaterThan(0);
+            });
         });
     });
 
