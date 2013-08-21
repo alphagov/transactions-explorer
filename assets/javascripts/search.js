@@ -212,10 +212,10 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
             if (th.data('sort-by') !== queryParams.sortBy) {
                 th.html(columnHeader(th.text(), link(th.data('default-direction'))));
             } else if (queryParams.direction === 'ascending') {
-                th.html(columnHeader(th.text(), link('descending'), '▲'));
+                th.html(columnHeader(th.text(), link('descending'), '&#9650;'));
                 th.addClass("sorted ascending");
             } else {
-                th.html(columnHeader(th.text(), link('ascending'), '▼'));
+                th.html(columnHeader(th.text(), link('ascending'), '&#9660;'));
                 th.addClass("sorted descending");
             }
         });
