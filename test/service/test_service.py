@@ -58,7 +58,6 @@ class TestService(unittest.TestCase):
 
         assert_that(service.latest_kpi_for('volume_change'), is_(None))
 
-
     def test_most_recent_kpi_with_given_attribute(self):
         service = Service(details({
             '2012-Q4 Vol.': '10',
@@ -106,10 +105,27 @@ class TestService(unittest.TestCase):
             u'2012-Q4 CPT (\xa3)': "2.00",
             "2013-Q1 Vol.": "2,000",
             '2013-Q1 Digital vol.': '10',
+            '2013-Q2 Vol.': '',
+            '2013-Q2 Digital vol.': '',
             u'High-volume?': 'yes'
         }))
 
         assert_that(float(service.data_coverage), close_to(0.5555, 0.001))
+
+    def test_coverage_with_non_requested_metrics(self):
+        service = Service(details({
+            "2012-Q4 Vol.": "2,000",
+            '2012-Q4 Digital vol.': '10',
+            u'2012-Q4 CPT (\xa3)': "2.00",
+            "2013-Q1 Vol.": "2,000",
+            '2013-Q1 Digital vol.': '10',
+            '2013-Q2 Vol.': 'n/a',
+            '2013-Q2 Digital vol.': '',
+            u'High-volume?': 'yes'
+        }))
+
+        # 5 / 8
+        assert_that(float(service.data_coverage), close_to(0.625, 0.001))
 
     def test_most_up_to_date_volume(self):
         service_with_one_vol = Service(details({'2013-Q1 Vol.': '200'}))
@@ -295,7 +311,8 @@ class TestSummingTotalTransactions(unittest.TestCase):
 
     def test_sum_of_total_transactions_when_kpis_are_missing(self):
         services = [Service(details({})),
-                    Service(details({'2013-Q2 Vol.': '100'}))]
+                    Service(details({'2013-Q2 Vol.': '100'})),
+                    Service(details({'2013-Q2 Vol.': 'n/a'}))]
 
         assert_that(services[0].has_kpis, is_(False))
         assert_that(total_transaction_volume(services), is_(100))

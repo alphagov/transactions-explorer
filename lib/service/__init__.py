@@ -2,6 +2,7 @@ from decimal import Decimal
 from functools import total_ordering
 from itertools import groupby
 import re
+import itertools
 
 from lib.filters import as_number
 from lib.slugify import keyify, slugify
@@ -24,7 +25,7 @@ class Service:
         '2013_q1',
         '2013_q2',
     ]
-    COVERAGE_ATTRIBUTES = ['digital_volume_num', 'volume_num', 'cost']
+    COVERAGE_ATTRIBUTES = ['vol', 'digital_vol', 'cpt']
 
     def __init__(self, details):
         for key in details:
@@ -124,14 +125,18 @@ class Service:
 
     @property
     def data_coverage(self):
-        def count_provided_attributes(kpi):
-            return len([a for a in map(lambda attr: kpi[attr],
-                                       self.COVERAGE_ATTRIBUTES) if a is not None])
+        def is_requested(attr):
+            return str(self[attr]).lower() != "n/a"
 
-        provided = sum(map(count_provided_attributes, self.kpis))
-        total = Decimal(len(self.EXPECTED_QUARTERS) * len(self.COVERAGE_ATTRIBUTES))
+        def is_provided(attr):
+            return as_number(self[attr]) is not None
 
-        return provided / total
+        all_attrs = map('_'.join, itertools.product(
+            self.EXPECTED_QUARTERS, self.COVERAGE_ATTRIBUTES))
+        all_requested = filter(is_requested, all_attrs)
+        all_provided = filter(is_provided, all_requested)
+
+        return Decimal(len(all_provided)) / Decimal(len(all_requested))
 
     def _attributes_present(self, kpi, attrs):
         return all(kpi[attr] is not None for attr in attrs)
@@ -189,6 +194,9 @@ class Quarter:
 
     def __eq__(self, quarter):
         return (self.year, self.quarter) == (quarter.year, quarter.quarter)
+
+    def __repr__(self):
+        return '<Quarter year=%s quarter=%s>' % (self.year, self.quarter)
 
     @classmethod
     def parse(cls, str):
