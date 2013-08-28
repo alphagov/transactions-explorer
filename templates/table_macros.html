@@ -3,10 +3,10 @@
         <a href="../{{ sort }}/{{ default_direction }}" title="{{ title }}">{{ text }}</a>
     {% elif current_sort.direction == "ascending" %}
         <a href="../{{ sort }}/descending" title="{{ title }}">{{ text }}</a>
-        <span class="sort-ind">▲</span>
+        <span class="sort-ind">&#9650;</span>
     {% else %}
         <a href="../{{ sort }}/ascending" title="{{ title }}">{{ text }}</a>
-        <span class="sort-ind">▼</span>
+        <span class="sort-ind">&#9660;</span>
     {% endif %}
 {%- endmacro %}
 

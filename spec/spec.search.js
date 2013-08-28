@@ -1,30 +1,31 @@
 describe("Searching for services on the transaction explorer. ", function() {
-    describe('extracting keywords from document.location.search', function () {
-        it('should trim out the keyword (search query)', function () {
-            var keyword = GOVUK.transactionsExplorer.getSearchKeyword('?keyword=iAmKeyword');
-            expect(keyword).toBe('iAmKeyword');
-        });
-        
-        it('should deal with spaces (search query)', function () {
-            var keyword = GOVUK.transactionsExplorer.getSearchKeyword('?keyword=son%20of%20keyword');
-            expect(keyword).toBe('son of keyword');
+
+    describe('getQueryParams', function () {
+        it('should return query params as an object', function () {
+            var params = GOVUK.transactionsExplorer.getQueryParams('?a=1&b=2');
+            expect(params).toEqual({a:'1', b:'2'});
         });
 
-        it('should ignore extra keywords', function () {
-            var keyword1 = GOVUK.transactionsExplorer.getSearchKeyword('?keyword=revengeOfKeyword&foo=bar');
-            var keyword2 = GOVUK.transactionsExplorer.getSearchKeyword('?bar=foo&keyword=returnOfKeyword');
-            var keyword3 = GOVUK.transactionsExplorer.getSearchKeyword('?zap=monkey&keyword=the%20mask%20of%20keyword&foo=bar');
-            
-            expect(keyword1).toBe('revengeOfKeyword');
-            expect(keyword2).toBe('returnOfKeyword');
-            expect(keyword3).toBe('the mask of keyword');
+        it('should decode escape sequences', function() {
+            var params = GOVUK.transactionsExplorer.getQueryParams('?keyword=son%20of%20keyword');
+            expect(params).toEqual({keyword:'son of keyword'});
         });
 
-        it('should replaces +\'s with spaces', function () {
-            var keyword = GOVUK.transactionsExplorer.getSearchKeyword('?keyword=lost+in+keyword');
-
-            expect(keyword).toBe('lost in keyword');
+        it('should replaces +\'s with spaces', function() {
+            var params = GOVUK.transactionsExplorer.getQueryParams('?keyword=lost+in+keyword');
+            expect(params).toEqual({keyword:'lost in keyword'});
         });
+
+        it('should handle params with no value', function() {
+            var params = GOVUK.transactionsExplorer.getQueryParams('?param1&param2');
+            expect(params).toEqual({param1: undefined, param2: undefined});
+        });
+
+        it('should return empty params if there is no querystring', function() {
+            var params = GOVUK.transactionsExplorer.getQueryParams('');
+            expect(params).toEqual({});
+        });
+
     });
 
     describe("The search form", function() {
@@ -43,7 +44,7 @@ describe("Searching for services on the transaction explorer. ", function() {
                 searchForm: "#search",
                 inputId: "#search-box",
                 buttonId: "#search-button"
-            }, fakeSearch);
+            }, fakeSearch, {});
         });
 
         afterEach(function() {
@@ -56,8 +57,8 @@ describe("Searching for services on the transaction explorer. ", function() {
                     searchForm: "#search",
                     inputId: "#search-box",
                     buttonId: "#search-button"
-                }, fakeSearch, 'iAmAKeyWord');
-                expect(fakeSearch.performSearch).toHaveBeenCalledWith('iAmAKeyWord');
+                }, fakeSearch, {keyword: 'iAmAKeyWord'});
+                expect(fakeSearch.performSearch).toHaveBeenCalledWith({keyword: 'iAmAKeyWord'});
             });
         });
 
@@ -74,104 +75,105 @@ describe("Searching for services on the transaction explorer. ", function() {
 
     });
 
-    describe("Result ranking", function() {
+    describe("Search matching", function() {
         describe("score:", function() {
-            it('should score a search result with the number of transactions if the service contains the search term', function() {
-                var score = GOVUK.transactionsExplorer.scoreService('wibble', {
-                    agencyOrBodyAbbreviation: "DOW",
-                    service: "Request to wibble",
-                    departmentAbbreviation: "DOW",
-                    agencyOrBody: "",
-                    transactionsPerYear: 4500,
-                    department: "Department of Wibble",
-                    category: "",
-                    keywords: []
-                });
+            it('should return true if the service contains the search term', function() {
+                var service = buildService({department: "Department of Wibble"});
 
-                expect(score).toBe(4500);
+                var result = GOVUK.transactionsExplorer.isSearchMatch('wibble', service);
+
+                expect(result).toBe(true);
             });
 
-            it('should return a score of 0 if the service does not match the search term', function() {
-                var score = GOVUK.transactionsExplorer.scoreService('mongoose', {
-                    agencyOrBodyAbbreviation: "DOW",
-                    service: "Request to wibble",
-                    departmentAbbreviation: "DOW",
-                    agencyOrBody: "",
-                    transactionsPerYear: 4500,
-                    department: "Department of Wibble",
-                    category: "",
-                    keywords: []
-                });
+            it('should return false if the service does not match the search term', function() {
+                var result = GOVUK.transactionsExplorer.isSearchMatch('mongoose', buildService({}));
 
-                expect(score).toBe(0);
+                expect(result).toBe(false);
             });
 
-            it('should return a score of 1 if the service matches the search term but does not have any transactions', function() {
-                var score = GOVUK.transactionsExplorer.scoreService('Ninjas', {
-                    agencyOrBodyAbbreviation: "DON",
-                    service: "Dial a ninja",
-                    departmentAbbreviation: "DON",
-                    agencyOrBody: "",
-                    transactionsPerYear: null,
-                    department: "Department of Ninjas",
-                    category: "",
-                    keywords: []
-                });
+            it('should ignore case when matching', function() {
+                var service = buildService({department: "Department of Ninjas"});
 
-                expect(score).toBe(1);
-            });
+                var result = GOVUK.transactionsExplorer.isSearchMatch('NINJAS', service);
 
-            it('should ignore case when ranking results', function() {
-                var score = GOVUK.transactionsExplorer.scoreService('NINJAS', {
-                    agencyOrBodyAbbreviation: "DON",
-                    service: "Dial a ninja",
-                    departmentAbbreviation: "DON",
-                    agencyOrBody: "",
-                    transactionsPerYear: 7777,
-                    department: "Department of Ninjas",
-                    category: "",
-                    keywords: []
-                });
-
-                expect(score).toBe(7777);
+                expect(result).toBe(true);
             });
 
             it('should search for keywords', function () {
-                var score = GOVUK.transactionsExplorer.scoreService('grog', {
-                    agencyOrBodyAbbreviation: "DOP",
-                    service: "Post a pirate",
-                    departmentAbbreviation: "DOP",
-                    agencyOrBody: "",
-                    transactionsPerYear: 5000,
-                    department: "Department of Pirates",
-                    category: "",
-                    keywords: ['pirates','parrots','grog']
-                });
+                var service = buildService({keywords: ['pirates','parrots','grog']});
 
-                expect(score).toBe(5000);
+                var result = GOVUK.transactionsExplorer.isSearchMatch('grog', service);
+
+                expect(result).toBe(true);
             });
         });
     });
 
+    describe("performSearch", function () {
+        beforeEach(function () {
+            spyOn(GOVUK.transactionsExplorer.search, 'searchServices');
+            spyOn(GOVUK.transactionsExplorer.searchResultsTable, 'update');
+            spyOn(GOVUK.transactionsExplorer, 'loadSearchData').andCallFake(function (_, callback) {
+                callback(null);
+            });
+
+            GOVUK.transactionsExplorer.search.load();
+        });
+
+        it("should invoke searchServices with query parameters", function() {
+            GOVUK.transactionsExplorer.search.performSearch(
+                {keyword: 'coffee', sortBy: 'service', direction: 'ascending'}
+            );
+
+            expect(GOVUK.transactionsExplorer.search.searchServices).toHaveBeenCalledWith(
+                {keyword: 'coffee', sortBy: 'service', direction: 'ascending'}, null);
+        });
+
+        it("should apply default values of sortBy and direction if missing", function() {
+            GOVUK.transactionsExplorer.search.performSearch(
+                {keyword: 'tea'}
+            );
+
+            expect(GOVUK.transactionsExplorer.search.searchServices).toHaveBeenCalledWith(
+                {keyword: 'tea', sortBy: 'volume', direction: 'descending'}, null);
+        });
+
+        it("should fallback to default values if actual values are bonkers", function() {
+            GOVUK.transactionsExplorer.search.performSearch(
+                {keyword: 'tea', sortBy: 'bonkers-property', direction: 'left'}
+            );
+
+            expect(GOVUK.transactionsExplorer.search.searchServices).toHaveBeenCalledWith(
+                {keyword: 'tea', sortBy: 'volume', direction: 'descending'}, null);
+        });
+
+    });
+
     describe("Loading on slow connections", function () {
+
+        var completeLoading;
+
         beforeEach(function () {
             spyOn(GOVUK.transactionsExplorer.search, 'searchServices');
             spyOn(GOVUK.transactionsExplorer, 'loadSearchData').andCallFake(function (_, callback) {
-                callback(null);
+                completeLoading = callback;
             });
             spyOn(GOVUK.transactionsExplorer.searchResultsTable, 'update');
         });
 
         it("should cache most recent query until the search json is loaded", function () {
-            GOVUK.transactionsExplorer.search.performSearch('coffee');
-            GOVUK.transactionsExplorer.search.performSearch('tea');
-            GOVUK.transactionsExplorer.search.performSearch('bacon');
+            GOVUK.transactionsExplorer.search.load();
+
+            GOVUK.transactionsExplorer.search.performSearch({keyword: 'coffee'});
+            GOVUK.transactionsExplorer.search.performSearch({keyword: 'tea'});
+            GOVUK.transactionsExplorer.search.performSearch({keyword: 'bacon'});
             
             expect(GOVUK.transactionsExplorer.search.searchServices).not.toHaveBeenCalled();
-            
-            GOVUK.transactionsExplorer.search.load();
-            
-            expect(GOVUK.transactionsExplorer.search.searchServices).toHaveBeenCalledWith('bacon', null);
+
+            completeLoading("received data");
+
+            expect(GOVUK.transactionsExplorer.search.searchServices).toHaveBeenCalledWith(
+                {keyword: 'bacon', sortBy: jasmine.any(String), direction: jasmine.any(String)}, "received data");
         });
     });
 
@@ -198,46 +200,102 @@ describe("Searching for services on the transaction explorer. ", function() {
                 transactionLink: "temp link",
                 keywords: []
             }];
-            searchResults = GOVUK.transactionsExplorer.search.searchServices('second', services);
+            searchResults = GOVUK.transactionsExplorer.search.searchServices({keyword: 'second'}, services);
             expect(searchResults.length).toEqual(1);
             expect(searchResults[0].department).toBe('second department');
         });
 
-        it("should order results according to score", function () {
-            var services = [{
-                agencyOrBodyAbbreviation: "gds",
-                service: "lower rated",
-                departmentAbbreviation: "co",
-                agencyOrBody: "",
-                transactionsPerYear: 23,
-                department: "first department",
-                category: "some category",
-                transactionLink: "temp link",
-                keywords: []
-            },{
-                agencyOrBodyAbbreviation: "gds",
-                service: "highly rated",
-                departmentAbbreviation: "co",
-                agencyOrBody: "",
-                transactionsPerYear: 999,
-                department: "second department",
-                category: "some category",
-                transactionLink: "temp link",
-                keywords: []
-            },{
-                agencyOrBodyAbbreviation: "nomatch",
-                service: "highly rated",
-                departmentAbbreviation: "foo",
-                agencyOrBody: "",
-                transactionsPerYear: 999,
-                department: "second department",
-                category: "some category",
-                transactionLink: "temp link",
-                keywords: []
-            }];
-            searchResults = GOVUK.transactionsExplorer.search.searchServices('gds', services);
-            expect(searchResults.length).toEqual(2);
-            expect(searchResults[0].service).toBe('highly rated');
+        it("should sort results according to params", function () {
+            var services = [
+                buildService({ service: "bbbb", agencyOrBodyAbbreviation: "gds" }),
+                buildService({ service: "cccc", agencyOrBodyAbbreviation: "gds" }),
+                buildService({ service: "aaaa", agencyOrBodyAbbreviation: "gds" })
+            ];
+
+            searchResults = GOVUK.transactionsExplorer.search.searchServices({keyword: 'gds', sortBy: 'service', direction: 'ascending'}, services);
+
+            expect(searchResults[0].service).toBe('aaaa');
+            expect(searchResults[1].service).toBe('bbbb');
+            expect(searchResults[2].service).toBe('cccc');
+        });
+
+        it("should map sortBy param to the correct service property", function () {
+            var services = [
+                buildService({ agencyOrBodyAbbreviation: "gds", transactionsPerYear:  100}),
+                buildService({ agencyOrBodyAbbreviation: "gds", transactionsPerYear:  1000}),
+                buildService({ agencyOrBodyAbbreviation: "gds", transactionsPerYear:  10})
+            ];
+
+            searchResults = GOVUK.transactionsExplorer.search.searchServices({keyword: 'gds', sortBy: 'volume', direction: 'ascending'}, services);
+
+            expect(searchResults[0].transactionsPerYear).toBe(10);
+            expect(searchResults[1].transactionsPerYear).toBe(100);
+            expect(searchResults[2].transactionsPerYear).toBe(1000);
+        });
+
+        it("should leave empty values at the end regardless of the direction", function () {
+            var services = [
+                buildService({ agencyOrBodyAbbreviation: "gds", category: "zzzz" }),
+                buildService({ agencyOrBodyAbbreviation: "gds", category: "aaaa" }),
+                buildService({ agencyOrBodyAbbreviation: "gds", category: "" })
+            ];
+
+            searchResults = GOVUK.transactionsExplorer.search.searchServices({keyword: 'gds', sortBy: 'category', direction: 'ascending'}, services);
+
+            expect(searchResults[2].category).toBe('');
+
+            searchResults = GOVUK.transactionsExplorer.search.searchServices({keyword: 'gds', sortBy: 'category', direction: 'descending'}, services);
+
+            expect(searchResults[2].category).toBe('');
+        });
+    });
+
+    describe("serviceComparator", function() {
+        describe("ascending", function() {
+            it('should compare services on a property in ascending order', function() {
+                var aService = buildService({service: 'anaconda'});
+                var anotherService = buildService({service: 'zebra'});
+
+                var compare = GOVUK.transactionsExplorer.serviceComparator('service', 'ascending');
+
+                expect(compare(aService, anotherService)).toBeLessThan(0);
+                expect(compare(anotherService, aService)).toBeGreaterThan(0);
+                expect(compare(aService, aService)).toEqual(0);
+            });
+
+            it('should order blanks after values', function() {
+                var aService = buildService({service: 'anaconda'});
+                var anotherService = buildService({service: ''});
+
+                var compare = GOVUK.transactionsExplorer.serviceComparator('service', 'ascending');
+
+                expect(compare(aService, anotherService)).toBeLessThan(0);
+                expect(compare(anotherService, aService)).toBeGreaterThan(0);
+            });
+        });
+
+        describe("descending", function() {
+            it('should compare services on a property in descending order', function() {
+                var aService = buildService({service: 'anaconda'});
+                var anotherService = buildService({service: 'zebra'});
+
+                var compare = GOVUK.transactionsExplorer.serviceComparator('service', 'descending');
+
+                expect(compare(aService, anotherService)).toBeGreaterThan(0);
+                expect(compare(anotherService, aService)).toBeLessThan(0);
+                expect(compare(aService, aService)).toEqual(0);
+            });
+
+
+            it('should order blanks after values', function() {
+                var aService = buildService({service: 'anaconda'});
+                var anotherService = buildService({service: ''});
+
+                var compare = GOVUK.transactionsExplorer.serviceComparator('service', 'descending');
+
+                expect(compare(aService, anotherService)).toBeLessThan(0);
+                expect(compare(anotherService, aService)).toBeGreaterThan(0);
+            });
         });
     });
 
@@ -374,3 +432,17 @@ describe("Searching for services on the transaction explorer. ", function() {
     });
 });
 
+function buildService(properties) {
+    var defaultProperties = {
+                agencyOrBodyAbbreviation: "DEF",
+                service: "default service name",
+                departmentAbbreviation: "DEFDEP",
+                agencyOrBody: "default agency",
+                transactionsPerYear: 0,
+                department: "default department",
+                category: "default category",
+                transactionLink: "default link",
+                keywords: []
+            };
+    return $.extend(defaultProperties, properties);
+}
