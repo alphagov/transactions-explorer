@@ -42,8 +42,9 @@ for faster feedback than running create_pages each time.
 
 Testing
 -------
-Unit tests can be run with `nosetests -a '!feature'`
+Unit tests can be run with `./run_tests.sh`
 
 After generating the site as described above you can test
 it generated correctly by running `nosetests` (or `nosetests -a feature`
 to skip unit tests.
+
