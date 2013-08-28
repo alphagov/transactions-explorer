@@ -1870,3 +1870,25 @@ article .transactions-explorer-download a {
     display: none;
   }
 }
+
+.service-title-text {
+  width: 64.99%;
+  float: left;
+}
+
+.service-title-logo {
+  width: 34.99%;
+  float: left;
+}
+
+@media (max-width: 700px) {
+  .service-title-text {
+    width: 100%;
+    float: none;
+    margin-left: 0;
+  }
+
+  .service-title-logo {
+      display: none;
+  }
+}
