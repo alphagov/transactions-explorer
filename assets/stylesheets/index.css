@@ -1807,13 +1807,17 @@ article .transactions-explorer-download a {
   margin-bottom: 5px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 640px) {
   .service-details-header h1 span.strapline {
     font-size: 18px;
   }
 
   .service-details-info {
     font-size: 14px;
+  }
+
+  .service-details-header dl dd {
+    margin-left: 110px;
   }
 }
 
@@ -1857,6 +1861,10 @@ article .transactions-explorer-download a {
     width: 100%;
     float: none;
     margin-left: 0;
+  }
+
+  .service-title-text h1 {
+    line-height: 35px;
   }
 
   .service-title-logo {
