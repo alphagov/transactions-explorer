@@ -14,67 +14,6 @@
 @-o-viewport {
   width: device-width; }
 
-
-@media (max-width: 640px) {
-  /* line 88, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-  nav.performance-nav {
-    height: auto;
-    width: auto; }
-    /* line 93, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-    nav.performance-nav #menu-toggle {
-      display: inline-block;
-      float: right;
-      padding-right: 23px;
-      padding-left: 15px;
-      width: auto; }
-    /* line 103, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-    nav.performance-nav .inner-nav {
-      min-height: 40px; }
-      /* line 105, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-      nav.performance-nav .inner-nav ul {
-        height: auto;
-        display: none; }
-    /* line 112, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-    nav.performance-nav .menu-wrapper:hover #menu-toggle {
-      background-color: #dee0e2; }
-      /* line 114, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-      nav.performance-nav .menu-wrapper:hover #menu-toggle:after {
-        content: " \25B2"; }
-    /* line 119, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-    nav.performance-nav .menu-wrapper:hover .inner-nav ul {
-      display: block; }
-    /* line 124, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-    nav.performance-nav a {
-      padding: 10px 8px 7px 8px; }
-      /* line 127, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-      nav.performance-nav a.top-level {
-        display: block;
-        float: left;
-        width: auto;
-        margin: 0;
-        padding: 10px 8px 6px 15px; }
-    /* line 136, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-    nav.performance-nav .sub-level a {
-      display: block;
-      width: auto;
-      padding-left: 8px;
-      color: black; }
-    /* line 143, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-    nav.performance-nav ul {
-      display: block;
-      height: auto;
-      margin: 0 0 0 0; }
-    /* line 149, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-    nav.performance-nav li.sub-level {
-      padding: 0 15px 0 15px;
-      margin: 0;
-      float: none;
-      display: block;
-      background-color: #dee0e2;
-      clear: both; }
-      /* line 157, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-      nav.performance-nav li.sub-level:last-child {
-        padding-bottom: 3px; } }
 @media (max-width: 379px) {
   /* line 167, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
   nav.performance-nav a.top-level .alpha-tag {
@@ -1712,16 +1651,32 @@ nav.performance-nav a:hover {
 
 @media (max-width: 640px) {
   nav.performance-nav {
+    height: auto;
+    width: auto;
+    padding-top: 0px;
     margin-top:-1em;
+    overflow:hidden;
   }
-  nav.performance-nav ul li {
-    display:block;
-    margin-bottom:0.5em;
+
+  nav.performance-nav ul {
+    display: block;
+    height: auto;
+    margin: 0 0 0 0;
   }
+
+  nav.performance-nav a {
+    padding: 10px 8px 7px 8px;
+    font-size: 12px;
+  }
+
+  nav.performance-nav li {
+    float: left;
+    width: 49.99%;
+  }
+
   nav.performance-nav ul li a {
     padding:0;
   }
-
 }
 
 @media (max-width: 379px) {
