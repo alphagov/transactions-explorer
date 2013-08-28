@@ -17,8 +17,9 @@ jinja = Environment(
 )
 
 jinja.globals['CSV_LOCATION'] = '/transaction-volumes.csv'
-jinja.globals['GA_ACCOUNT'] = 'UA-36369871-1'
-jinja.globals['GA_DOMAIN'] = 'gov.uk'
+
+jinja.globals['GA_ACCOUNT'] = 'UA-26179049-1'
+jinja.globals['GA_DOMAIN'] = 'www.gov.uk'
 
 jinja.filters['as_magnitude'] = number_as_magnitude
 jinja.filters['as_financial_magnitude'] = number_as_financial_magnitude
