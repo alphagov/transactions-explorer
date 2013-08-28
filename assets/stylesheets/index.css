@@ -1152,7 +1152,7 @@ section.content-group > h1 {
   padding-bottom: 0; }
 
 /* line 175, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#whitehall-wrapper .organisation-logo span, #whitehall-wrapper h1 {
+.organisation-logo span, #whitehall-wrapper h1 {
   font-size: 27px;
   line-height: 30px;
   font-family: Helvetica,Arial;
@@ -1854,6 +1854,11 @@ article .transactions-explorer-download a {
 .service-title-logo {
   width: 34.99%;
   float: left;
+}
+
+.service-title-logo span {
+  font-size: 17px;
+  line-height: 30px;
 }
 
 @media (max-width: 700px) {
