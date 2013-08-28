@@ -1184,8 +1184,12 @@ section.content-group > h1 {
 
 /* line 155, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .service-details-header h1 {
+  font-size: 48px;
+  line-height: 50px;
   display: inline-block;
-  margin-right: 0.5em; }
+  margin-right: 0.5em;
+  margin-bottom: 30px;
+}
 /* line 159, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .service-details-header dl {
   margin: 0 0 0 0;
