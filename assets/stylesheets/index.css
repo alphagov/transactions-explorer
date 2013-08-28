@@ -1816,6 +1816,10 @@ article .transactions-explorer-download a {
     font-size: 14px;
   }
 
+  .service-details-info a[rel="external"]:after {
+    background-position: right 1px;
+  }
+
   .service-details-header dl dd {
     margin-left: 110px;
   }
