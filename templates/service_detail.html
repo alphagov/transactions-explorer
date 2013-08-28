@@ -16,7 +16,7 @@
         {% if department.css_class_postfix %}
           <div class="organisations-show">
               <div class="{{ department.name_slug }}">
-                  <h1 class="service-department">
+                  <h1>
                       <span class="organisation-logo organisation-logo-stacked-{{department.css_class_postfix}} organisation-logo-stacked-{{department.css_class_postfix}}-medium">
                           <span>{{ department.name }}</span>
                       </span>
@@ -28,7 +28,7 @@
         {% endif %}
       </div>
 
-      <div class="col-50">
+      <div class="service-details-info col-50">
         <dl>
           {% if service.body %}
             <dt>Agency/body:</dt>
