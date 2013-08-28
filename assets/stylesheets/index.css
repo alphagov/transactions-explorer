@@ -1860,6 +1860,10 @@ article .transactions-explorer-download a {
   float: left;
 }
 
+.service-title-logo #whitehall-wrapper {
+    float: right;
+}
+
 .service-title-logo span {
   font-size: 17px;
   line-height: 30px;
