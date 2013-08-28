@@ -1289,16 +1289,17 @@ header.page-header hgroup.te-image {
   .headline p {
     margin-top: 0em;
     font-family: "nta", Arial, sans-serif;
-    font-size: 16px;
-    font-size: 1.6rem;
+    /*font-size: 16px;
+    font-size: 1.6rem;*/
+    color: #0b0c0c;
     line-height: 1.25;
     font-weight: 300;
     text-transform: none; }
-    @media (max-width: 640px) {
+    /*@media (max-width: 640px) {*/
       /* line 220, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-      .headline p {
+/*      .headline p {
         font-size: 1.4rem;
-        line-height: 1.14286; } }
+        line-height: 1.14286; } }*/
 
 /* line 225, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .headline-details div {
