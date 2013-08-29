@@ -14,67 +14,6 @@
 @-o-viewport {
   width: device-width; }
 
-
-@media (max-width: 640px) {
-  /* line 88, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-  nav.performance-nav {
-    height: auto;
-    width: auto; }
-    /* line 93, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-    nav.performance-nav #menu-toggle {
-      display: inline-block;
-      float: right;
-      padding-right: 23px;
-      padding-left: 15px;
-      width: auto; }
-    /* line 103, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-    nav.performance-nav .inner-nav {
-      min-height: 40px; }
-      /* line 105, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-      nav.performance-nav .inner-nav ul {
-        height: auto;
-        display: none; }
-    /* line 112, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-    nav.performance-nav .menu-wrapper:hover #menu-toggle {
-      background-color: #dee0e2; }
-      /* line 114, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-      nav.performance-nav .menu-wrapper:hover #menu-toggle:after {
-        content: " \25B2"; }
-    /* line 119, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-    nav.performance-nav .menu-wrapper:hover .inner-nav ul {
-      display: block; }
-    /* line 124, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-    nav.performance-nav a {
-      padding: 10px 8px 7px 8px; }
-      /* line 127, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-      nav.performance-nav a.top-level {
-        display: block;
-        float: left;
-        width: auto;
-        margin: 0;
-        padding: 10px 8px 6px 15px; }
-    /* line 136, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-    nav.performance-nav .sub-level a {
-      display: block;
-      width: auto;
-      padding-left: 8px;
-      color: black; }
-    /* line 143, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-    nav.performance-nav ul {
-      display: block;
-      height: auto;
-      margin: 0 0 0 0; }
-    /* line 149, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-    nav.performance-nav li.sub-level {
-      padding: 0 15px 0 15px;
-      margin: 0;
-      float: none;
-      display: block;
-      background-color: #dee0e2;
-      clear: both; }
-      /* line 157, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-      nav.performance-nav li.sub-level:last-child {
-        padding-bottom: 3px; } }
 @media (max-width: 379px) {
   /* line 167, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
   nav.performance-nav a.top-level .alpha-tag {
@@ -1184,8 +1123,12 @@ section.content-group > h1 {
 
 /* line 155, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .service-details-header h1 {
+  font-size: 48px;
+  line-height: 50px;
   display: inline-block;
-  margin-right: 0.5em; }
+  margin-right: 0.5em;
+  margin-bottom: 30px;
+}
 /* line 159, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .service-details-header dl {
   margin: 0 0 0 0;
@@ -1197,13 +1140,19 @@ section.content-group > h1 {
   .service-details-header dl dd {
     margin-left: 150px; }
 
+@media (max-width: 700px) {
+  .service-details-header h1 {
+      font-size: 32px;
+  }
+}
+
 /* line 171, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 #whitehall-wrapper {
   border: none;
   padding-bottom: 0; }
 
 /* line 175, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-#whitehall-wrapper .organisation-logo span, #whitehall-wrapper h1 {
+.organisation-logo span, #whitehall-wrapper h1 {
   font-size: 27px;
   line-height: 30px;
   font-family: Helvetica,Arial;
@@ -1698,16 +1647,32 @@ nav.performance-nav a:hover {
 
 @media (max-width: 640px) {
   nav.performance-nav {
+    height: auto;
+    width: auto;
+    padding-top: 0px;
     margin-top:-1em;
+    overflow:hidden;
   }
-  nav.performance-nav ul li {
-    display:block;
-    margin-bottom:0.5em;
+
+  nav.performance-nav ul {
+    display: block;
+    height: auto;
+    margin: 0 0 0 0;
   }
+
+  nav.performance-nav a {
+    padding: 10px 8px 7px 8px;
+    font-size: 12px;
+  }
+
+  nav.performance-nav li {
+    float: left;
+    width: 49.99%;
+  }
+
   nav.performance-nav ul li a {
     padding:0;
   }
-
 }
 
 @media (max-width: 379px) {
@@ -1838,6 +1803,24 @@ article .transactions-explorer-download a {
   margin-bottom: 5px;
 }
 
+@media (max-width: 640px) {
+  .service-details-header h1 span.strapline {
+    font-size: 18px;
+  }
+
+  .service-details-info {
+    font-size: 14px;
+  }
+
+  .service-details-info a[rel="external"]:after {
+    background-position: right 1px;
+  }
+
+  .service-details-header dl dd {
+    margin-left: 110px;
+  }
+}
+
 
 /* mobile portrait */
 /*@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {*/
@@ -1860,5 +1843,40 @@ article .transactions-explorer-download a {
   table th:nth-child(n+2):nth-child(-n+3),
   table td:nth-child(n+2):nth-child(-n+3){
     display: none;
+  }
+}
+
+.service-title-text {
+  width: 64.99%;
+  float: left;
+}
+
+.service-title-logo {
+  width: 34.99%;
+  float: left;
+}
+
+.service-title-logo #whitehall-wrapper {
+    float: right;
+}
+
+.service-title-logo span {
+  font-size: 17px;
+  line-height: 30px;
+}
+
+@media (max-width: 700px) {
+  .service-title-text {
+    width: 100%;
+    float: none;
+    margin-left: 0;
+  }
+
+  .service-title-text h1 {
+    line-height: 35px;
+  }
+
+  .service-title-logo {
+      display: none;
   }
 }

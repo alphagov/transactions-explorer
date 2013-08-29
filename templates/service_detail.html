@@ -3,20 +3,34 @@
 {% set page_title = service.name %}
 
 {% block body %}
-  <header class="page-header group no-right-margin">
-    <hgroup>
-      {% include "logo_and_header.html" %}
-    </hgroup>
-  </header>
   <div class="group">
     <section class="content-group service-details-header">
-      <div class="col-50">
+      <div class="service-title-text">
         <h1>
             <span class="strapline">Service performance</span>
             {{ service.name|e }}
         </h1>
       </div>
-      <div class="col-50">
+
+      <div class="service-title-logo">
+          <div id="whitehall-wrapper" class="no-border">
+            {% if department.css_class_postfix %}
+              <div class="organisations-show">
+                  <div class="{{ department.name_slug }}">
+                      <h1>
+                          <span class="organisation-logo organisation-logo-stacked-{{department.css_class_postfix}} organisation-logo-stacked-{{department.css_class_postfix}}-medium">
+                              <span>{{ department.name }}</span>
+                          </span>
+                      </h1>
+                  </div>
+              </div>
+            {% else %}
+              <h1 class="service-department">{{ department.name }}</h1>
+            {% endif %}
+          </div>
+      </div>
+
+      <div class="service-details-info col-50">
         <dl>
           {% if service.body %}
             <dt>Agency/body:</dt>
