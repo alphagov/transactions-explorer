@@ -1046,9 +1046,12 @@ a[rel="external"]:hover:after {
   margin-bottom: 1em;
 }
 
+.search-box-and-button {
+  display:inline;
+}
+
 @media (max-width: 640px) {
   .find-nearest {
-    margin-top: 0.5em;
     margin-bottom: 0.5em;
   }
 }
@@ -1705,7 +1708,7 @@ input[type=text] {
 }
 
 #search-box {
-  min-width: 20em;
+  min-width: 15em;
 }
 
 #wrapper {
