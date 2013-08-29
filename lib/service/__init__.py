@@ -29,7 +29,7 @@ class Service:
 
     def __init__(self, details):
         for key in details:
-            setattr(self, keyify(key), details[key] )
+            setattr(self, keyify(key), details[key])
         self.has_kpis = False
         self.calculate_quarterly_kpis()
         self.keywords = self._split_keywords(details)
