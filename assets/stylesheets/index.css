@@ -1880,3 +1880,15 @@ article .transactions-explorer-download a {
       display: none;
   }
 }
+
+.department-details-info {
+  font-size: 18px;
+  font-weight: 400;
+  color: #6f777b;
+}
+
+@media (max-width: 640px) {
+  .department-details-info {
+    font-size: 14px;
+  }
+}
