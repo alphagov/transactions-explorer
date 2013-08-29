@@ -19,7 +19,7 @@ static_prefix = 'https://assets.digital.cabinet-office.gov.uk/static'
 
 def as_number(num):
     if num:
-        just_numbers = sub( r'[^\d\.]+', '', num)
+        just_numbers = sub(r'[^\d\.]+', '', num)
         try:
             return Decimal(just_numbers)
         except InvalidOperation:
