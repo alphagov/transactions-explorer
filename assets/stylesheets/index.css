@@ -1846,37 +1846,37 @@ article .transactions-explorer-download a {
   }
 }
 
-.service-title-text {
+.page-title {
   width: 64.99%;
   float: left;
 }
 
-.service-title-logo {
+.department-logo {
   width: 34.99%;
   float: left;
 }
 
-.service-title-logo #whitehall-wrapper {
+.department-logo #whitehall-wrapper {
     float: right;
 }
 
-.service-title-logo span {
+.department-logo span {
   font-size: 17px;
   line-height: 30px;
 }
 
 @media (max-width: 700px) {
-  .service-title-text {
+  .page-title {
     width: 100%;
     float: none;
     margin-left: 0;
   }
 
-  .service-title-text h1 {
+  .page-title h1 {
     line-height: 35px;
   }
 
-  .service-title-logo {
+  .department-logo {
       display: none;
   }
 }
