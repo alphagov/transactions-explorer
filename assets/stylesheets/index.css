@@ -1042,18 +1042,19 @@ a[rel="external"]:hover:after {
   position: relative; }
 
 .find-nearest {
-  margin-top: 1em;
+  margin-top: 2em;
   margin-bottom: 1em;
-}
-
-.search-box-and-button {
-  display:inline;
 }
 
 @media (max-width: 640px) {
   .find-nearest {
+      margin-top: 1em;
     margin-bottom: 0.5em;
   }
+}
+
+.search-box-and-button {
+  display:inline-block;
 }
 
 /* line 84, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
