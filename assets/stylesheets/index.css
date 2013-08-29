@@ -1041,6 +1041,22 @@ a[rel="external"]:hover:after {
   padding: 1em 0.75em 1em 3.5em;
   position: relative; }
 
+.find-nearest {
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+@media (max-width: 640px) {
+  .find-nearest {
+      margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
+}
+
+.search-box-and-button {
+  display:inline-block;
+}
+
 /* line 84, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 h2#narrative {
   font-family: "nta", Arial, sans-serif;
@@ -1073,7 +1089,7 @@ nav span.beta-tag {
 section.content-group > h1 {
   border-bottom: 5px solid #108095;
   padding: 16px 0 8px 0;
-  margin: 16px 0 16px 0; }
+  margin: 0px 0 16px 0; }
 
 /* line 113, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .left {
@@ -1651,6 +1667,7 @@ nav.performance-nav a:hover {
     width: auto;
     padding-top: 0px;
     margin-top:-1em;
+    margin-bottom:1em;
     overflow:hidden;
   }
 
@@ -1691,12 +1708,8 @@ input[type=text] {
   margin-top: 1em;
 }
 
-#search label {
-  font-weight: bold;
-}
-
 #search-box {
-  min-width: 20em;
+  min-width: 15em;
 }
 
 #wrapper {
