@@ -115,7 +115,8 @@ def test_number_as_grouped_number():
 def test_number_as_percentage_change():
     assert_that(number_as_percentage_change(None), is_("0%"))
     assert_that(number_as_percentage_change(1.0), is_("0%"))
-    assert_that(number_as_percentage_change(1.00001111), is_("0%"))
+    assert_that(number_as_percentage_change(1.00001), is_("0%"))
+    assert_that(number_as_percentage_change(0.999991), is_("0%"))
 
     assert_that(number_as_percentage_change(0.0), is_("-100%"))
     assert_that(number_as_percentage_change(2.0), is_("100%"))

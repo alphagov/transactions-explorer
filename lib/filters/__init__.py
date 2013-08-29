@@ -2,6 +2,7 @@ from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 import locale
 
 from re import sub
+import math
 from lib.filters import digest
 
 
@@ -104,6 +105,9 @@ def number_as_percentage_change(num):
         return '0%'
 
     num = (num * 100) - 100
+    if abs(num) < 0.001:
+        return '0%'
+
     percentage = '%.2f' % num
     return '%s%%' % percentage.rstrip('0').rstrip('.')
 

@@ -20,8 +20,9 @@
   </div>
   
   {% if change is not none %}
+  {% set change_string = change|as_percentage_change %}
     <div class="change col-35">
-      <h2 class="{% if change != 0 %}{% if change < 1 %}decrease {{decrease_class}}{% elif change > 1 %}increase {{increase_class}}{% endif %}{% endif %}">{{ change|as_percentage_change }}</h2>
+      <h2 class="{% if change_string != '0%' %}{% if change < 1 %}decrease {{decrease_class}}{% elif change > 1 %}increase {{increase_class}}{% endif %}{% endif %}">{{ change_string }}</h2>
       <h3>{{ kpis.get('previous_quarter') }}</h3>
     </div>
     <div class="previous clear-div">
