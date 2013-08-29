@@ -1691,10 +1691,6 @@ input[type=text] {
   margin-top: 1em;
 }
 
-#search label {
-  font-weight: bold;
-}
-
 #search-box {
   min-width: 20em;
 }
