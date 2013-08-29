@@ -5,6 +5,7 @@ describe("Table To Treemap", function () {
     table = d3.select("body").append("table").append("tbody");
     table.append("tr")
       .attr("data-title", "service1")
+      .attr("data-label", "srvc1")
       .attr("data-href", "service1")
       .attr("data-volume", "1000");
     table.append("tr")
@@ -48,6 +49,7 @@ describe("Table To Treemap", function () {
       
       expect(treeMap.name).toBe("Service Explorer");
       expect(treeMap.children[0].name).toBe("service1");
+      expect(treeMap.children[0].nameShortened).toBe("srvc1");
       expect(treeMap.children[0].size).toBe(1000);
       expect(treeMap.children[1].name).toBe("service2");
       expect(treeMap.children[1].size).toBe(2000);
@@ -172,6 +174,47 @@ describe("Table To Treemap", function () {
       expect(treeNodes[3].length).toEqual(data.children[2].name.length);
       expect(treeNodes[3].indexOf('…')).toEqual(-1);
     });
+
+    it("should use a shortened name when available to make it fit", function () {
+      wrapper.style('height', '30px');
+
+      var data = {
+        name: "TreeMap sample",
+        children: [
+          {
+            name: "Service 1 has a very long name that needs to be shortened",
+            nameShortened: "Service 1",
+            size: 20
+          },
+          {
+            name: "Service 2 also has a name that is shortened in favour of the amount",
+            nameShortened: "Service 2 shortname is still too long",
+            size: 20,
+            volumeShortened: '44'
+          },
+          {
+            name: "Service 3",
+            size: 50,
+            volumeShortened: ''
+          }
+        ]
+      };
+
+      TreeMapLayout.display("testmap", data);
+
+      var treeNodes = d3.selectAll('div.node a')[0].map(function(d) { return d.innerHTML; });
+
+      expect(treeNodes[1].length).toEqual(data.children[0].nameShortened.length);
+      expect(treeNodes[1].indexOf('…')).toEqual(-1);
+
+      expect(treeNodes[2].length < data.children[1].name.length).toBe(true);
+      expect(treeNodes[2].indexOf('…')).not.toEqual(-1);
+      expect(treeNodes[2].indexOf('<span class="amount">44</span>')).not.toEqual(-1);
+
+      expect(treeNodes[3].length).toEqual(data.children[2].name.length);
+      expect(treeNodes[3].indexOf('…')).toEqual(-1);
+    });
+
   });
 
   describe("formatNumericLabel", function() {

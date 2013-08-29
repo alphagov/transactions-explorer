@@ -53,6 +53,7 @@ var Tree = (function () {
         volume = isNaN(volume) ? 0 : volume;
       return {
         name: row.getAttribute("data-title"),
+        nameShortened: row.getAttribute("data-label"),
         size: volume, 
         volumeShortened: formatNumericLabel(volume),
         volumeLabel: row.getAttribute("data-volumelabel"),
@@ -162,6 +163,25 @@ var TreeMapLayout = (function () {
     var volumeSpan = '';
     if (d.volumeShortened) {
       volumeSpan = '<span class="amount">' + d.volumeShortened + '</span>';
+    }
+
+    // Check if it fits as-is
+    this.innerHTML = name + volumeSpan;
+    if (this.offsetHeight <= availableHeight) {
+      // Content fits, all good.
+      return;
+    }
+    
+    if (d.nameShortened) {
+      // Use shortened name when available
+      name = d.nameShortened;
+
+      // Check if it fits when shortened name is used
+      this.innerHTML = name + volumeSpan;
+      if (this.offsetHeight <= availableHeight) {
+        // Content fits when shortened name is used, all good.
+        return;
+      }
     }
 
     // Check if trimming of name could yield a good result
