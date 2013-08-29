@@ -102,12 +102,10 @@ def number_as_percentage(num):
 def number_as_percentage_change(num):
     if num is None:
         return '0%'
-    else:
-        num = (num * 100) - 100
-        if num == 0:
-            return '0%'
-        percentage = '%.2f' % num
-        return '%s%%' % percentage.rstrip('0').rstrip('.')
+
+    num = (num * 100) - 100
+    percentage = '%.2f' % num
+    return '%s%%' % percentage.rstrip('0').rstrip('.')
 
 
 def number_as_grouped_number(num):

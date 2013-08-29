@@ -114,9 +114,14 @@ def test_number_as_grouped_number():
 
 def test_number_as_percentage_change():
     assert_that(number_as_percentage_change(None), is_("0%"))
+    assert_that(number_as_percentage_change(1.0), is_("0%"))
+    assert_that(number_as_percentage_change(1.00001111), is_("0%"))
 
-    assert_that(number_as_percentage_change(0), is_("-100%"))
-    assert_that(number_as_percentage_change(2), is_("100%"))
+    assert_that(number_as_percentage_change(0.0), is_("-100%"))
+    assert_that(number_as_percentage_change(2.0), is_("100%"))
+
+    assert_that(number_as_percentage_change(1.1234567), is_("12.35%"))
+    assert_that(number_as_percentage_change(0.1234567), is_("-87.65%"))
 
 class Test_join_url_parts(object):
     def test_string_as_link(self):
