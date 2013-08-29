@@ -1,5 +1,5 @@
 from hamcrest import assert_that, is_
-from lib.filters import number_as_magnitude, number_as_financial_magnitude, join_url_parts, string_as_static_url, digest, number_as_grouped_number
+from lib.filters import number_as_magnitude, number_as_financial_magnitude, join_url_parts, string_as_static_url, digest, number_as_grouped_number, number_as_percentage_change
 
 
 def test_number_as_magnitude():
@@ -111,6 +111,12 @@ def test_number_as_grouped_number():
 
     assert_that(number_as_grouped_number("not a number"), is_(""))
 
+
+def test_number_as_percentage_change():
+    assert_that(number_as_percentage_change(None), is_("0%"))
+
+    assert_that(number_as_percentage_change(0), is_("-100%"))
+    assert_that(number_as_percentage_change(2), is_("100%"))
 
 class Test_join_url_parts(object):
     def test_string_as_link(self):
