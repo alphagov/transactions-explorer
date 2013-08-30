@@ -119,7 +119,7 @@ class TestService(unittest.TestCase):
             u'2012-Q4 CPT (\xa3)': "2.00",
             "2013-Q1 Vol.": "2,000",
             '2013-Q1 Digital vol.': '10',
-            '2013-Q2 Vol.': 'n/a',
+            '2013-Q2 Vol.': '***',
             '2013-Q2 Digital vol.': '',
             u'High-volume?': 'yes'
         }))
@@ -312,7 +312,7 @@ class TestSummingTotalTransactions(unittest.TestCase):
     def test_sum_of_total_transactions_when_kpis_are_missing(self):
         services = [Service(details({})),
                     Service(details({'2013-Q2 Vol.': '100'})),
-                    Service(details({'2013-Q2 Vol.': 'n/a'}))]
+                    Service(details({'2013-Q2 Vol.': '***'}))]
 
         assert_that(services[0].has_kpis, is_(False))
         assert_that(total_transaction_volume(services), is_(100))
