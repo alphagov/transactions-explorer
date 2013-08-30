@@ -70,6 +70,10 @@ figure.treemap:hover .node:hover {
   right:0;
 }
 
+.node a:hover {
+    text-decoration: underline;
+}
+
 .node .amount {
   display:block;
   white-space:nowrap;
