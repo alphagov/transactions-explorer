@@ -12,7 +12,7 @@ page.viewportSize = { width: 1024, height: 768 };
 var domain = args[1],
     pagePaths = JSON.parse(fs.open(args[2], 'r').read()),
     outputDir = args[3];
-    
+
 var renderPage = function (pages) {
     var urlFragment = pages.pop(),
         url = domain + urlFragment;
@@ -33,5 +33,10 @@ var renderPage = function (pages) {
     });
 };
 
-renderPage(pagePaths);
+try {
+    renderPage(pagePaths);
+} catch (e) {
+    console.log('exiting on error');
+    phantom.exit();
+}
 
