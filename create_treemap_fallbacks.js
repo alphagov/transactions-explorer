@@ -20,5 +20,5 @@ if __name__ == "__main__":
     with open('treemaps.json', 'w') as out:
         json.dump(matched_files, out)
 
-    subprocess.call(['phantomjs', 'un-js.js', 'http://localhost:8080/', 'treemaps.json', 'output'])
+    subprocess.call(['phantomjs', 'grab_treemap_html.js', 'http://localhost:8080/', 'treemaps.json', 'output'])
 
