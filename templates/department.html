@@ -28,12 +28,10 @@
 
     <section class="content-group">
 
-        <!--[if gt IE 8]><!-->
         <h1>Annual volume of transactions by service</h1>
-        <figure id="department-treemap" class="treemap"></figure>
+        <figure id="department-treemap" class="treemap" data-treemap-url="{{ treemap_url | as_absolute_url }}"></figure>
 
         <div style="clear:both;"></div>
-        <!--<![endif]-->
 
         <h1>All department services</h1>
         {# {% include "departments_table.html" %} #}
