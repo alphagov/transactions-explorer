@@ -27,6 +27,9 @@ class Service:
     ]
     COVERAGE_ATTRIBUTES = ['vol', 'digital_vol', 'cpt']
 
+    # A marker used in the spreadsheet to show that a metric was not requested
+    NOT_REQUESTED_MARKER = '***'
+
     def __init__(self, details):
         for key in details:
             setattr(self, keyify(key), details[key])
@@ -126,7 +129,7 @@ class Service:
     @property
     def data_coverage(self):
         def is_requested(attr):
-            return str(self[attr]).lower() != "n/a"
+            return str(self[attr]).lower() != self.NOT_REQUESTED_MARKER
 
         def is_provided(attr):
             return as_number(self[attr]) is not None
