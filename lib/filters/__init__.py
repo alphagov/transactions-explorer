@@ -105,7 +105,7 @@ def number_as_percentage_change(num):
         return '0%'
 
     num = (num * 100) - 100
-    if abs(num) < 0.001:
+    if abs(num) < 0.01:
         return '0%'
 
     percentage = '%.2f' % num
