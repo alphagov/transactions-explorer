@@ -1905,3 +1905,7 @@ article .transactions-explorer-download a {
     font-size: 14px;
   }
 }
+
+article td {
+    font-family: "ntatabularnumbers","nta",Arial,sans-serif;
+}
