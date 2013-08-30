@@ -43,7 +43,7 @@
     padding: 1em; } }
 /* line 14, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .service-details article h1 {
-  font-family: "nta", Arial, sans-serif;
+  font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
   font-size: 36px;
   font-size: 3.6rem;
   line-height: 1.11111;
@@ -64,7 +64,7 @@
     padding: 15px; }
   /* line 8, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisations-box h3 {
-    font-family: "nta", Arial, sans-serif;
+    font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
     font-size: 14px;
     font-size: 1.4rem;
     line-height: 1.42857;
@@ -94,7 +94,7 @@
     margin: 0 -10px 10px; }
     /* line 18, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
     #whitehall-wrapper .organisations-box ol li {
-      font-family: "nta", Arial, sans-serif;
+      font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
       font-size: 16px;
       font-size: 1.6rem;
       line-height: 1.25;
@@ -985,7 +985,7 @@
 /*layout overrides*/
 /* line 26, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 article h1 {
-  font-family: "nta", Arial, sans-serif;
+  font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
   font-size: 24px;
   font-size: 2.4rem;
   line-height: 1.25;
@@ -1007,7 +1007,7 @@ article .info-notice {
   background: url(https://assets.digital.cabinet-office.gov.uk/static/icon-information.png) no-repeat scroll 98% 1em #d5e8f3; }
   /* line 34, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
   article .info-notice h2 {
-    font-family: nta, arial, sans-serif !important;
+    font-family: "ntatabularnumbers", "nta", Arial, sans-serif !important;
     margin-top: 0.5em; 
     margin-right: 2em;
   }
@@ -1059,7 +1059,7 @@ a[rel="external"]:hover:after {
 
 /* line 84, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 h2#narrative {
-  font-family: "nta", Arial, sans-serif;
+  font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
   font-size: 36px;
   font-size: 3.6rem;
   line-height: 1.11111;
@@ -1075,7 +1075,7 @@ h2#narrative {
       line-height: 1.04167; } }
   /* line 88, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
   h2#narrative strong {
-    font-family: nta, arial, sans-serif !important;
+    font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
     color: #912b88; }
 
 /* line 100, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
@@ -1179,7 +1179,7 @@ section.content-group > h1 {
 
 /* line 185, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 header.page-header hgroup h1 {
-  font-family: "nta", Arial, sans-serif;
+  font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
   font-size: 48px;
   font-size: 4.8rem;
   line-height: 1.04167;
@@ -1196,7 +1196,7 @@ header.page-header hgroup h1 {
 /* line 189, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 header.page-header hgroup h2 {
   color: #6f777b;
-  font-family: "nta", Arial, sans-serif;
+  font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
   font-size: 24px;
   font-size: 2.4rem;
   line-height: 1.25;
@@ -1234,8 +1234,7 @@ header.page-header hgroup.te-image {
     margin-top: 0.5em;
     margin-bottom: 0em;
     color: #097f96;
-    font-family: nta, arial, sans-serif !important;
-    font-family: "nta", Arial, sans-serif;
+    font-family: "ntatabularnumbers", "nta", Arial, sans-serif !important;
     font-size: 80px;
     font-size: 8rem;
     line-height: 1;
@@ -1249,11 +1248,11 @@ header.page-header hgroup.te-image {
         line-height: 1.03774; } }
   /* line 219, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
   .headline a {
-    font-family: nta, arial, sans-serif !important; }
+    font-family: "ntatabularnumbers", "nta", Arial, sans-serif !important; }
   /* line 220, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
   .headline p {
     margin-top: 0em;
-    font-family: "nta", Arial, sans-serif;
+    font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
     color: #0b0c0c;
     line-height: 1.25;
     font-weight: 300;
@@ -1312,7 +1311,7 @@ article.service-details section h2 {
   border-bottom: 5px solid #108095;
   padding: 16px 0 8px 0;
   margin: 16px 0 16px 0;
-  font-family: "nta", Arial, sans-serif;
+  font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
   font-size: 24px;
   font-size: 2.4rem;
   line-height: 1.25;
@@ -1326,7 +1325,7 @@ article.service-details section h2 {
 
 /* line 272, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .service-details article h1 {
-  font-family: "nta", Arial, sans-serif;
+  font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
   font-size: 48px;
   font-size: 4.8rem;
   line-height: 1.04167;
@@ -1355,7 +1354,7 @@ article.service-details section h2 {
     margin-bottom: 0em;
     padding-top: 0;
     padding-bottom: 0;
-    font-family: "nta", Arial, sans-serif;
+    font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
     font-size: 16px;
     font-size: 1.6rem;
     line-height: 1.25;
@@ -1376,7 +1375,7 @@ article.service-details section h2 {
     /* line 300, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
     .kpi .kpi-item h1 {
       margin-top: 0em;
-      font-family: "nta", Arial, sans-serif;
+      font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
       font-size: 19px;
       font-size: 1.9rem;
       line-height: 1.31579;
@@ -1700,7 +1699,7 @@ nav.performance-nav a:hover {
 /* Search */
 
 input[type=text] {
-  font-family: nta, sans-serif;
+  font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
 }
 
 #search_results {
