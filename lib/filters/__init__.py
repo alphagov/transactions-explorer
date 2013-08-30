@@ -108,7 +108,7 @@ def number_as_percentage_change(num):
     if abs(num) < 0.01:
         return '0%'
 
-    percentage = '%.2f' % num
+    percentage = '%+.2f' % num
     return '%s%%' % percentage.rstrip('0').rstrip('.')
 
 
