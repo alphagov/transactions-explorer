@@ -7,15 +7,21 @@
 
 {% block body %}
 
-<header class="page-header group">
-    <hgroup>
-        {% include "logo_and_header.html" %}
-
-        <h2>Transactional services provided by the department, its agencies or sponsored public bodies</h2>
-    </hgroup>
-</header>
-
 <div class="group">
+    <section class="content-group service-details-header">
+      <div class="page-title">
+        <h1>
+            <span class="strapline">Department services</span>
+            {{ department.name }}
+            <p class="department-details-info">Transactional services provided by the department, its agencies or sponsored public bodies</p>
+        </h1>
+      </div>
+
+      {% include "logo_and_header.html" %}
+
+      <div class="clear-div"></div>
+    </section>
+
     <article role="article" class="group">
 
     {% if department.high_volume_count > 0 %}
