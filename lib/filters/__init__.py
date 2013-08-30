@@ -2,6 +2,7 @@ from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 import locale
 
 from re import sub
+import math
 from lib.filters import digest
 
 
@@ -100,14 +101,15 @@ def number_as_percentage(num):
 
 
 def number_as_percentage_change(num):
-    if num == 0:
+    if num is None:
         return '0%'
-    else:
-        num = ( num * 100 ) - 100
-        if num == 0:
-            return '0%'
-        percentage = '%.2f' % num
-        return '%s%%' % percentage.rstrip('0.')
+
+    num = (num * 100) - 100
+    if abs(num) < 0.01:
+        return '0%'
+
+    percentage = '%+.2f' % num
+    return '%s%%' % percentage.rstrip('0').rstrip('.')
 
 
 def number_as_grouped_number(num):
