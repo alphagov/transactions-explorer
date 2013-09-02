@@ -18,3 +18,15 @@
   });
 </script>
 <!--<![endif]-->
+
+<script>
+  $(document).ready(function() {
+      if ($(".treemap").length) {
+        if (typeof(d3) === 'undefined') {
+          $('.treemap').load($('.treemap').data('treemap-url'));
+          return;
+        }
+      }
+    });
+</script>
+
