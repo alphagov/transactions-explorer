@@ -14,7 +14,7 @@ CREATE_ARGS="${CREATE_ARGS} --static-digests data/static-digests.yml"
 
 python create_pages.py $CREATE_ARGS
 
-#python ./test/features/support/test_server.py 46576 >> /dev/null 2>&1 &
+python ./test/features/support/test_server.py 46576 >> /dev/null 2>&1 &
 
 server_pid=$!
 echo pid is $server_pid
