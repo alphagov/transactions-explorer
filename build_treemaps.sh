@@ -8,7 +8,7 @@ fi
 mkdir -p artefacts
 mkdir -p output; rm -Rf output/*
 
-python create_pages.py
+python create_pages.py --path-prefix "${PATH_PREFIX}"
 
 python ./test/features/support/test_server.py 46576 >> /dev/null 2>&1 &
 
