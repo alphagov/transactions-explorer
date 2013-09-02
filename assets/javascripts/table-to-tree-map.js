@@ -8,7 +8,7 @@ var Tree = (function () {
    */
   var formatNumericLabel = function(value) {
     if (value === 0) return "0";
-    
+
     var magnitudes = {
       million:  {value: 1e6, suffix:"m"},
       thousand: {value: 1e3, suffix:"k"},
@@ -54,7 +54,7 @@ var Tree = (function () {
       return {
         name: row.getAttribute("data-title"),
         nameShortened: row.getAttribute("data-label"),
-        size: volume, 
+        size: volume,
         volumeShortened: formatNumericLabel(volume),
         volumeLabel: row.getAttribute("data-volumelabel"),
         url: row.getAttribute("data-href"),
@@ -93,7 +93,7 @@ var Tree = (function () {
     var sumVals = d3.sum(values,function(val){
       return val.size;
     });
-    
+
     var threshold = sumVals / thresholdRatio;
     var splitValues = partition(values, function (v) {
       return (v.size > threshold || v.url); });
@@ -108,17 +108,17 @@ var Tree = (function () {
 
       });
     }
-    return children; 
+    return children;
   };
-  
+
   return {
     formatNumericLabel: formatNumericLabel,
     numberWithCommas: numberWithCommas,
     fromHtmlTable: function(selection, thresholdRatio) {
       var values = valuesFrom(selection);
 
-      return { 
-        name: "Service Explorer", 
+      return {
+        name: "Service Explorer",
         children: condenseValuesUnderThreshold(values, thresholdRatio)
       };
     }
@@ -168,10 +168,11 @@ var TreeMapLayout = (function () {
     // Check if it fits as-is
     this.innerHTML = name + volumeSpan;
     if (this.offsetHeight <= availableHeight) {
+      this.style.position = 'absolute';
       // Content fits, all good.
       return;
     }
-    
+
     if (d.nameShortened) {
       // Use shortened name when available
       name = d.nameShortened;
@@ -179,6 +180,7 @@ var TreeMapLayout = (function () {
       // Check if it fits when shortened name is used
       this.innerHTML = name + volumeSpan;
       if (this.offsetHeight <= availableHeight) {
+        this.style.position = 'absolute';
         // Content fits when shortened name is used, all good.
         return;
       }
@@ -191,6 +193,7 @@ var TreeMapLayout = (function () {
     actualHeight = this.offsetHeight;
     this.style['white-space'] = 'normal';
     if (actualHeight > availableHeight) {
+      this.style.position = 'absolute';
       // Content does not fit, even when name is on single line.
       // Simply display volume.
       this.innerHTML = volumeSpan;
@@ -230,7 +233,7 @@ var TreeMapLayout = (function () {
   var makeTree = function (divId, treeData, options) {
     var options = options || {},
         el = document.getElementById(divId);
-    
+
     if (!el) {
       // Wrapper element not found
       return;
@@ -238,25 +241,25 @@ var TreeMapLayout = (function () {
 
     var width = options.width || el.offsetWidth,
         height = options.height || el.offsetHeight;
-    
+
     // Clean up wrapper element before populating
     el.innerHTML = '';
 
     var color = d3.scale.category20c();
-    
+
     var treemap = d3.layout.treemap()
         .size([width, height])
         .value(function(d) { return d.size; })
         .sort(function(a, b) {
           return a.value - b.value;
         });
-    
+
     var node = d3.select('#'+divId).datum(treeData).selectAll(".node")
       .data(treemap.nodes)
       .enter().append("div")
       .attr("class", getNodeClass)
       .attr('data-tooltip', createTip)
-      .attr('title', createTip)    
+      .attr('title', createTip)
       .call(position)
       .append("a")
         .attr('href',function(d){ return d.url ? d.url : null })

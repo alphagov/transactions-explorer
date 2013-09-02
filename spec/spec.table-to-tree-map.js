@@ -25,7 +25,7 @@ describe("Table To Treemap", function () {
     table.append("tr")
       .attr("data-title", "service6")
       .attr("data-volume", "19");
-    
+
     // Also add in a testmap div
     wrapper = d3.select('body').append('div')
       .attr('id','testmap')
@@ -46,7 +46,7 @@ describe("Table To Treemap", function () {
   describe("HTML Table to D3 TreeMap", function () {
     it("should convert html table to d3 treemap representation", function () {
       var treeMap = Tree.fromHtmlTable(d3.selectAll("tbody tr"), 20);
-      
+
       expect(treeMap.name).toBe("Service Explorer");
       expect(treeMap.children[0].name).toBe("service1");
       expect(treeMap.children[0].nameShortened).toBe("srvc1");
@@ -215,12 +215,39 @@ describe("Table To Treemap", function () {
       expect(treeNodes[3].indexOf('…')).toEqual(-1);
     });
 
+    it("passes if all treemap nodes are positioned absolutely (not stactically)", function () {
+
+      wrapper.style('height', '30px');
+
+      var data = {
+        name: "TreeMap sample",
+        children: [
+          { name: "Service 1 has a very long name that needs to be shortened", size: 20 },
+          { name: "Service 2 also has a name that is shortened in favour of the amount", size: 20, volumeShortened: '44' },
+          { name: "Service 3", size: 50, volumeShortened: '' }
+        ]
+      };
+
+      TreeMapLayout.display("testmap", data);
+
+      var positions = d3.selectAll('div.node a')[0].map(function(d) {
+          return d.style.position;
+      });
+
+      // cut out the parent node
+      positions.splice(0, 1);
+
+      expect(positions).toEqual(['absolute','absolute','absolute']);
+
+    });
+
+
   });
 
   describe("formatNumericLabel", function() {
-    
+
     var formatNumericLabel = Tree.formatNumericLabel;
-    
+
     it("should display entire numbers from 0 to 499", function() {
       expect(formatNumericLabel(0)).toBe('0');
       expect(formatNumericLabel(1)).toBe('1');
