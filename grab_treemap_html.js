@@ -19,16 +19,20 @@ var renderPage = function (pages) {
 
     console.log('visiting: ' + url);
     page.open(url, function () {
-        var html = page.evaluate(function () {
-            return document.getElementsByClassName('treemap')[0].outerHTML;
-        });
-
-        fs.write(outputDir + '/treemaps/' + urlFragment + '.html', html);
-
-        if (pages.length > 0) {
-            renderPage(pages); 
-        } else {
-            phantom.exit();
+        try {
+            var html = page.evaluate(function () {
+                return document.getElementsByClassName('treemap')[0].innerHTML;
+            });
+           
+           fs.write(outputDir + '/treemaps/' + urlFragment + '.html', html);
+        } catch (e) {
+            console.log(e);
+        } finally {
+            if (pages.length > 0) {
+                renderPage(pages); 
+            } else {
+                phantom.exit();
+            }
         }
     });
 };

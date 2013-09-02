@@ -2,6 +2,7 @@ import fnmatch
 import os
 import json
 import subprocess
+import sys
 
 matched_files = []
 domain = "http://localhost:8080/"
@@ -11,6 +12,8 @@ look_in = [ os.path.join('output', 'department'),
 
 
 if __name__ == "__main__":
+    base_url = sys.argv[1] if len(sys.argv) > 1 else 'http://localhost:8080/'
+
     for path in look_in:
         for root, dirnames, filenames in os.walk(path):
             for filename in fnmatch.filter(filenames, '*.html'):
@@ -20,5 +23,5 @@ if __name__ == "__main__":
     with open('treemaps.json', 'w') as out:
         json.dump(matched_files, out)
 
-    subprocess.call(['phantomjs', 'grab_treemap_html.js', 'http://localhost:8080/', 'treemaps.json', 'output'])
+    subprocess.call(['phantomjs', 'grab_treemap_html.js', base_url, 'treemaps.json', 'output'])
 

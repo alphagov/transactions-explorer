@@ -14,5 +14,14 @@ CREATE_ARGS="${CREATE_ARGS} --static-digests data/static-digests.yml"
 
 python create_pages.py $CREATE_ARGS
 
+#python ./test/features/support/test_server.py 46576 >> /dev/null 2>&1 &
+
+server_pid=$!
+echo pid is $server_pid
+
+python create_treemap_fallbacks.py 'http://localhost:46576/'
+
+kill $server_pid
+
 cd output
 tar -zcvf "../artefacts/${ARTEFACT_NAME}" .
