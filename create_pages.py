@@ -47,9 +47,11 @@ def generate_sorted_pages(items, page_name, output_prefix, sort_orders, extra_va
     for sort_order, key in sort_orders:
         for direction in ['ascending', 'descending']:
             reverse = (direction == 'descending')
+            treemap_url = "treemaps/%s/%s/%s" % (output_prefix, sort_order, direction)
             variables = dict({
                 'items': sorted_ignoring_empty_values(items, key=key,
                                                       reverse=reverse),
+                'treemap_url': treemap_url,
                 'current_sort': {
                     'order': sort_order,
                     'direction': direction

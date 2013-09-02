@@ -259,6 +259,7 @@ var TreeMapLayout = (function () {
       .enter().append("div")
       .attr("class", getNodeClass)
       .attr('data-tooltip', createTip)
+      .attr('title', createTip)
       .call(position)
       .append("a")
         .attr('href',function(d){ return d.url ? d.url : null })
