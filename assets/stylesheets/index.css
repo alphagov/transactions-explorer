@@ -1904,6 +1904,7 @@ article .transactions-explorer-download a {
   }
 }
 
-article td {
+article td, article p {
     font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
 }
+
