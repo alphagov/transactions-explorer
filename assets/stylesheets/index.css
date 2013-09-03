@@ -999,7 +999,14 @@ article h1 {
 
 /* line 29, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 article .help-notice {
-  background: url(https://assets.digital.cabinet-office.gov.uk/static/icon-important-a03e91e21fcafa717c52b03f9ecc4846.png) no-repeat scroll 98% 1em #eaedef; }
+  background: url(https://assets.digital.cabinet-office.gov.uk/static/icon-important-a03e91e21fcafa717c52b03f9ecc4846.png) no-repeat scroll 98% 1em #eaedef;
+}
+
+article .help-notice p {
+    font-weight: normal;
+    padding-left: 0.5em;
+    margin-right: 2em;
+}
 
 /* line 32, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 article .info-notice {
