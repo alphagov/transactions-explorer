@@ -149,7 +149,8 @@ describe("Table To Treemap", function () {
     });
 
     it("should shorten displayed text to make it fit", function () {
-      wrapper.style('height', '30px');
+      wrapper.style('height', '60px');
+      wrapper.style('width', '300px');
 
       var data = {
         name: "TreeMap sample",
@@ -164,6 +165,7 @@ describe("Table To Treemap", function () {
 
       var treeNodes = d3.selectAll('div.node a')[0].map(function(d) { return d.innerHTML; });
 
+      console.log(d3.selectAll('div.node')[0]);
       expect(treeNodes[1].length < data.children[0].name.length).toBe(true);
       expect(treeNodes[1].indexOf('…')).not.toEqual(-1);
 
@@ -176,7 +178,8 @@ describe("Table To Treemap", function () {
     });
 
     it("should use a shortened name when available to make it fit", function () {
-      wrapper.style('height', '30px');
+      wrapper.style('height', '60px');
+      wrapper.style('width', '300px');
 
       var data = {
         name: "TreeMap sample",

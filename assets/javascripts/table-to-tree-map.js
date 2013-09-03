@@ -155,10 +155,23 @@ var TreeMapLayout = (function () {
     // switch to position='static' to enable measurement of true height
     this.style.position = 'static';
     var availableHeight = this.parentNode.clientHeight,
+        classes = this.parentNode.className,
         actualHeight = Infinity,
         name = d.name,
         text,
         node = d3.select(this);
+
+    if (classes.indexOf("none") > -1) {
+        this.style.position = 'absolute';
+        this.innerHTML = '&nbsp;';
+        return;
+    }
+
+    if (classes.indexOf("ellipsis") > -1) {
+        this.style.position = 'absolute';
+        this.innerHTML = '…';
+        return;
+    }
 
     var volumeSpan = '';
     if (d.volumeShortened) {
