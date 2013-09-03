@@ -15,7 +15,7 @@ python ./test/features/support/test_server.py 46576 >> /dev/null 2>&1 &
 server_pid=$!
 echo pid of server is $server_pid
 
-python create_treemap_fallbacks.py 'http://localhost:46576/'
+python create_treemap_fallbacks.py 'http://localhost:46576/' 30 5
 
 kill $server_pid
 

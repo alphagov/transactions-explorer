@@ -5,6 +5,16 @@ import subprocess
 import sys
 from time import sleep
 
+
+if len(sys.argv) is not 4:
+    print "Usage\n\t python create_treemap_fallbacks.py [base_url] [timeout] [max_retries]"
+    exit(1)
+
+
+base_url = sys.argv[1]
+timeout = int(sys.argv[2])
+max_retries = int(sys.argv[3])
+
 input_paths = [os.path.join('output', 'department'),
                os.path.join('output', 'all-services'),
                os.path.join('output', 'high-volume-services')]
@@ -31,9 +41,9 @@ def generate_treemaps(input_files):
                                'treemaps.json',
                                'output'])
 
-    sleep(30)
+    sleep(timeout)
     if process.poll() is None:
-        print "killing"
+        print "[TREEMAP RENDERING] Phantom seems to be hanging... killing process"
         process.terminate()
 
 
@@ -41,11 +51,15 @@ def diff(a, b):
     return [aa for aa in a if aa not in b]
 
 if __name__ == "__main__":
-    base_url = sys.argv[1] if len(sys.argv) > 1 else 'http://localhost:8080/'
     input_files = find_html_files(input_paths, 1)
+    retries = 0
+    running = True
 
-    while input_files:
+    while input_files and running:
+        print "[TREEMAP RENDERING] Generating treemap HTML. Retries left %i." % (max_retries - retries)
         generate_treemaps(input_files)
+        retries = retries + 1
         input_files = diff(input_files, find_html_files(output_path, 2))
+        running = retries < max_retries
 
     print "Finished"
