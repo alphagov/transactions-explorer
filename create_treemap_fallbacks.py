@@ -3,6 +3,7 @@ import json
 import os
 import subprocess
 import sys
+import threading
 from time import sleep
 
 
@@ -35,16 +36,23 @@ def generate_treemaps(input_files):
     with open('treemaps.json', 'w') as out:
         json.dump(input_files, out)
 
+    def timeout_callback(p):
+      if p.poll() is None:
+        try:
+          print "[TREEMAP RENDERING] Phantom seems to be hanging... killing process"
+          p.kill()
+        except:
+          pass
+
     process = subprocess.Popen(['phantomjs',
                                'grab_treemap_html.js',
                                base_url,
                                'treemaps.json',
                                'output'])
 
-    sleep(timeout)
-    if process.poll() is None:
-        print "[TREEMAP RENDERING] Phantom seems to be hanging... killing process"
-        process.terminate()
+    timer = threading.Timer(timeout, timeout_callback, [process])
+    timer.start()
+    process.wait()
 
 
 def diff(a, b):
