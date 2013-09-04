@@ -165,7 +165,6 @@ describe("Table To Treemap", function () {
 
       var treeNodes = d3.selectAll('div.node a')[0].map(function(d) { return d.innerHTML; });
 
-      console.log(d3.selectAll('div.node')[0]);
       expect(treeNodes[1].length < data.children[0].name.length).toBe(true);
       expect(treeNodes[1].indexOf('…')).not.toEqual(-1);
 
