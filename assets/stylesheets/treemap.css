@@ -81,26 +81,11 @@ figure.treemap:hover .node:hover {
   font-weight: bold;
 }
 
-.node.none a {
-  text-indent:-999em;
-}
-
 .node.ellipsis a {
-  padding:0;
-  text-align:center;
-  visibility:hidden;
+    padding: 0;
+    text-align: center;
 }
 
-.node.ellipsis a:before {
-  display:block;
-  content:'...';
-  visibility:visible;
-  position:absolute;
-  top:0;
-  bottom:0;
-  left:0;
-  right:0;
-}
 .node.small {
   font-size: 14px;
   font-size: 1.4rem;

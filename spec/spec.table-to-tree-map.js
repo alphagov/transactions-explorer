@@ -149,7 +149,8 @@ describe("Table To Treemap", function () {
     });
 
     it("should shorten displayed text to make it fit", function () {
-      wrapper.style('height', '30px');
+      wrapper.style('height', '60px');
+      wrapper.style('width', '300px');
 
       var data = {
         name: "TreeMap sample",
@@ -176,7 +177,8 @@ describe("Table To Treemap", function () {
     });
 
     it("should use a shortened name when available to make it fit", function () {
-      wrapper.style('height', '30px');
+      wrapper.style('height', '60px');
+      wrapper.style('width', '300px');
 
       var data = {
         name: "TreeMap sample",
