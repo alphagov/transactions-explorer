@@ -7,6 +7,13 @@ Generates a static HTML version of the [Transactions Explorer][tx].
 
 [tx]: http://transactionsexplorer.cabinetoffice.gov.uk
 
+## Prerequisites
+
+This README expects you to have the `virtualenv` and `virtualenvwrapper` python packages installed. You can do this with the following command.
+
+```
+pip install virtualenv virtualenvwrapper
+```
 
 ## Using the app
 
@@ -50,8 +57,8 @@ the following argument:
   * `--static-digests` Path to manifest file containing assets digests (default: None) You can download the current digests from https://assets.digital.cabinet-office.gov.uk/static/manifest.yml
 * [optional] symlink the contents of assets/javascripts to output/assets/javascripts 
 for faster feedback than running create_pages each time.
-* run python `test/features/support/stub_server.py &`. 
-* visit localhost:8000/all-services or similar.
+* run `./serve.sh` 
+* visit `http://localhost:8080/all-services`.
 * dance.
 
 
