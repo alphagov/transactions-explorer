@@ -151,14 +151,33 @@ var TreeMapLayout = (function () {
     return nClass;
   };
 
+  var contentForClass = function(classes) {
+    if (classes.indexOf("none") > -1) {
+        return '&nbsp;';
+    }
+    if (classes.indexOf("ellipsis") > -1) {
+        return '…';
+    }
+    return null;
+  }
+
   var setNodeContent = function (d) {
     // switch to position='static' to enable measurement of true height
     this.style.position = 'static';
     var availableHeight = this.parentNode.clientHeight,
+        classes = this.parentNode.className,
         actualHeight = Infinity,
         name = d.name,
         text,
         node = d3.select(this);
+
+    text = contentForClass(classes);
+
+    if (text != null) {
+        this.style.position = 'absolute';
+        this.innerHTML = text;
+        return;
+    }
 
     var volumeSpan = '';
     if (d.volumeShortened) {
