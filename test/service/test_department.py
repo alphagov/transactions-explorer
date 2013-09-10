@@ -350,7 +350,9 @@ class TestDepartmentDataCoverage(unittest.TestCase):
 
         dept = Department("Agengy for Beatiful Code", services)
 
-        assert_that(dept.data_coverage, is_(0.5))
+        coverage = dept.data_coverage
+
+        assert_that(coverage.percentage, is_(0.5))
 
     def test_data_coverage_excludes_non_high_volume_services(self):
         services = [
@@ -374,7 +376,9 @@ class TestDepartmentDataCoverage(unittest.TestCase):
 
         dept = Department("Agengy for Beatiful Code", services)
 
-        assert_that(float(dept.data_coverage), close_to(0.3333, 0.001))
+        coverage = dept.data_coverage
+
+        assert_that(float(coverage.percentage), close_to(0.3333, 0.001))
 
     def test_data_coverage_is_none_when_no_high_volume_services(self):
         services = [

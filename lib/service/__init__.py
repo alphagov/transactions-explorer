@@ -301,7 +301,7 @@ class Department(object):
         if total_services == 0:
             return None
         else:
-            return sum(service.data_coverage.percentage for service in high_volume_services) / total_services
+            return Coverage(sum(service.data_coverage.percentage for service in high_volume_services), total_services)
 
 
 class ServiceKpiAggregator(object):
