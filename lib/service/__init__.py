@@ -296,12 +296,11 @@ class Department(object):
     @property
     def data_coverage(self):
         high_volume_services = filter(lambda s: s.high_volume, self.services)
-        total_services = len(high_volume_services)
-
-        if total_services == 0:
+        if len(high_volume_services) == 0:
             return None
-        else:
-            return Coverage(sum(service.data_coverage.percentage for service in high_volume_services), total_services)
+
+        coverages = map(lambda s: s.data_coverage, high_volume_services)
+        return reduce(lambda dept_cov, serv_cov: dept_cov + serv_cov, coverages)
 
 
 class ServiceKpiAggregator(object):
@@ -342,3 +341,6 @@ class Coverage(object):
     @property
     def percentage(self):
         return Decimal(self.provided) / Decimal(self.requested)
+
+    def __add__(self, other):
+        return Coverage(self.provided + other.provided, self.requested + other.requested)

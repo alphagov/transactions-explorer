@@ -353,6 +353,8 @@ class TestDepartmentDataCoverage(unittest.TestCase):
         coverage = dept.data_coverage
 
         assert_that(coverage.percentage, is_(0.5))
+        assert_that(coverage.requested, is_(18))
+        assert_that(coverage.provided, is_(9))
 
     def test_data_coverage_excludes_non_high_volume_services(self):
         services = [
@@ -379,6 +381,8 @@ class TestDepartmentDataCoverage(unittest.TestCase):
         coverage = dept.data_coverage
 
         assert_that(float(coverage.percentage), close_to(0.3333, 0.001))
+        assert_that(coverage.requested, is_(9))
+        assert_that(coverage.provided, is_(3))
 
     def test_data_coverage_is_none_when_no_high_volume_services(self):
         services = [
@@ -403,3 +407,29 @@ class TestDepartmentDataCoverage(unittest.TestCase):
 
         assert_that(dept.data_coverage, is_(None))
 
+    def test_data_coverage_when_quarter_not_provided(self):
+        services = [
+            Service(details({
+                "2012-Q4 Vol.": "2,000",
+                '2012-Q4 Digital vol.': '10',
+                u'2012-Q4 CPT (\xa3)': "2.00",
+                "2013-Q1 Vol.": "***",
+                u'2013-Q1 CPT (\xa3)': "***",
+                '2013-Q1 Digital vol.': '***',
+                u'High-volume?': 'yes'
+            })),
+            Service(details({
+                "2012-Q4 Vol.": "1,000",
+                u'2012-Q4 CPT (\xa3)': "3.00",
+                '2012-Q4 Digital vol.': '10',
+                u'High-volume?': 'yes'
+            })),
+        ]
+
+        dept = Department("Agengy for Beatiful Code", services)
+
+        coverage = dept.data_coverage
+
+        assert_that(float(coverage.percentage), close_to(0.4, 0.001))
+        assert_that(coverage.requested, is_(15))
+        assert_that(coverage.provided, is_(6))
