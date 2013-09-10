@@ -300,7 +300,7 @@ class Department(object):
             return None
 
         coverages = map(lambda s: s.data_coverage, high_volume_services)
-        return reduce(lambda dept_cov, serv_cov: dept_cov + serv_cov, coverages)
+        return sum(coverages, Coverage(0, 0))
 
 
 class ServiceKpiAggregator(object):
