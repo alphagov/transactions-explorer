@@ -324,13 +324,8 @@ class ServiceKpiAggregator(object):
 
 
 def total_transaction_volume(services):
-    def _sum(memo, service):
-        number_of_transactions = 0
-        if service.has_kpis:
-            number_of_transactions = service.latest_kpi_for('volume_num')
-        return number_of_transactions + memo
-
-    return reduce(_sum, services, 0)
+    volumes = filter(None, map(lambda s: s.most_up_to_date_volume, services))
+    return sum(volumes)
 
 
 class Coverage(object):
