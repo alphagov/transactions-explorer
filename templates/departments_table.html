@@ -59,7 +59,7 @@
                 <th scope="row"><a href="{{ department.link|as_absolute_url }}">{{ department.name }}</a></th>
                 <td class="amount"> {{ department.takeup|as_percentage }} </td>
                 <td class="amount"> {{ table.money_cell(department.cost) }} </td>
-                <td class="amount"> {{ department.data_coverage|as_percentage }} </td>
+                <td class="amount"> {{ department.data_coverage.percentage|as_percentage if department.data_coverage }} </td>
                 <td class="amount"> {{ department.volume|as_grouped_number }} </td>
             </tr>
 

@@ -139,7 +139,7 @@ class Service:
         all_requested = filter(is_requested, all_attrs)
         all_provided = filter(is_provided, all_requested)
 
-        return Decimal(len(all_provided)) / Decimal(len(all_requested))
+        return Coverage(len(all_provided), len(all_requested))
 
     def _attributes_present(self, kpi, attrs):
         return all(kpi[attr] is not None for attr in attrs)
@@ -296,12 +296,11 @@ class Department(object):
     @property
     def data_coverage(self):
         high_volume_services = filter(lambda s: s.high_volume, self.services)
-        total_services = len(high_volume_services)
-
-        if total_services == 0:
+        if len(high_volume_services) == 0:
             return None
-        else:
-            return sum(service.data_coverage for service in high_volume_services) / total_services
+
+        coverages = map(lambda s: s.data_coverage, high_volume_services)
+        return sum(coverages, Coverage(0, 0))
 
 
 class ServiceKpiAggregator(object):
@@ -325,10 +324,18 @@ class ServiceKpiAggregator(object):
 
 
 def total_transaction_volume(services):
-    def _sum(memo, service):
-        number_of_transactions = 0
-        if service.has_kpis:
-            number_of_transactions = service.latest_kpi_for('volume_num')
-        return number_of_transactions + memo
+    volumes = filter(None, map(lambda s: s.most_up_to_date_volume, services))
+    return sum(volumes)
 
-    return reduce(_sum, services, 0)
+
+class Coverage(object):
+    def __init__(self, provided, requested):
+        self.provided = provided
+        self.requested = requested
+
+    @property
+    def percentage(self):
+        return Decimal(self.provided) / Decimal(self.requested)
+
+    def __add__(self, other):
+        return Coverage(self.provided + other.provided, self.requested + other.requested)

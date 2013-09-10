@@ -91,7 +91,7 @@ if __name__ == "__main__":
         ("by-department", lambda department: department.name),
         ("by-digital-takeup", lambda department: department.takeup),
         ("by-cost", lambda department: department.cost),
-        ("by-data-coverage", lambda department: department.data_coverage),
+        ("by-data-coverage", lambda department: department.data_coverage.percentage if department.data_coverage else None),
         ("by-transactions-per-year", lambda department: department.volume),
     ]
     generate_sorted_pages(departments, 'all-services', 'all-services', department_sort_orders)
