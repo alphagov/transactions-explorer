@@ -87,7 +87,7 @@
                 {% if service.has_details_page %}
                     data-href="{{ service.link|as_absolute_url }}"
                 {% endif %}
-                data-label="{{ service.name }}"
+                data-label="{{ service.short_service_name }}"
                 data-title="{{ service.name }}"
                 data-text-color="#fff"
                 data-dept-class="{{ service.abbr }}">
