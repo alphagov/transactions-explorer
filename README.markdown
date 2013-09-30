@@ -39,11 +39,11 @@ After setting this up for the first time, you just need to run
 * Create a new installed application in the [Google APIs console][console],
 with "Drive API" service enabled, download the `client_secrets.json` file
 and store it in `data/`
-* Run `python fetch_csv.py`. This will authenticate against Google in your browser,
-then download the Transactions Explorer document to `data/services.csv`. It can be
-parametrized with the following arguments:
-  * `--client-secrets`: Google API client secrets JSON file (default: `data/client_secrets.json`)
-  * `--oauth-tokens`: Google API OAuth tokens file (default: `data/tokens.dat`)
+* Fetch the data through either of the methods below:
+  * Run `python fetch_csv.py`. This will authenticate against Google in your browser, then download the Transactions Explorer document to `data/services.csv`. It can be parametrized with the following arguments:
+      * `--client-secrets`: Google API client secrets JSON file (default: `data/client_secrets.json`)
+      * `--oauth-tokens`: Google API OAuth tokens file (default: `data/tokens.dat`)
+  * Run `./fetch_data.sh` script. It will perform the above task, installing the required dependencies and using the default values.
 
 [console]: https://code.google.com/apis/console/
 
@@ -55,6 +55,7 @@ the following argument:
   * `--services-data`: Services CSV datafile (default: `data/services.csv`)
   * `--path-prefix`: Prefix for generated URL paths (default: `/`)
   * `--static-digests` Path to manifest file containing assets digests (default: None) You can download the current digests from https://assets.digital.cabinet-office.gov.uk/static/manifest.yml
+* [alternative] Generate the site with `./build_artefact.sh` script. It will run the above command with all the defaults.
 * [optional] symlink the contents of assets/javascripts to output/assets/javascripts 
 for faster feedback than running create_pages each time.
 * run `./serve.sh` 
