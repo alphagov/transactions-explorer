@@ -2,7 +2,7 @@ from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 import locale
 
 from re import sub
-import math
+import hashlib
 from lib.filters import digest
 
 
@@ -123,17 +123,27 @@ def number_as_grouped_number(num):
     return locale.format('%d', num, grouping=True)
 
 
+def asset_md5(asset_name):
+    md5 = hashlib.md5()
+    f = open("assets/{0}".format(asset_name))
+    md5.update(f.read())
+    return md5.hexdigest()
+
+
 def string_as_absolute_url(string):
     return join_url_parts(path_prefix, string)
 
 
 def string_as_asset_url(string):
-    return join_url_parts(asset_prefix, string)
+    return join_url_parts(asset_prefix, string, query_string=asset_md5(string))
 
 
 def string_as_static_url(string):
     return join_url_parts(static_prefix, digest.digest(string))
 
 
-def join_url_parts(prefix, suffix):
-    return prefix.rstrip('/') + '/' + suffix.lstrip('/')
+def join_url_parts(prefix, suffix, query_string=None):
+    url = prefix.rstrip('/') + '/' + suffix.lstrip('/')
+    if query_string:
+        url += "?" + query_string
+    return url
