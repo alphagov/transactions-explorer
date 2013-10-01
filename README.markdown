@@ -50,7 +50,7 @@ and store it in `data/`
 
 ### Generating site
 
-* Generate the site with `python create_pages.py`. It can be parametrized with
+* Generate the site with `python create_pages.py`. It can be parameterised with
 the following argument:
   * `--services-data`: Services CSV datafile (default: `data/services.csv`)
   * `--path-prefix`: Prefix for generated URL paths (default: `/`)
