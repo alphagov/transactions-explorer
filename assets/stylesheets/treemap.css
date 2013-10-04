@@ -340,7 +340,7 @@ text-transform: none; }
   background: #0A4D3A;
 }
 /*department-for-work-pensions*/
-.node.dwp:hover{
+.node.dwp{
   background: #00beb7;
 }
 .node.dwp:hover{
