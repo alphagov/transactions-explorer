@@ -6,6 +6,8 @@
         {%- else -%}
             {{ cell_format(value) }}
         {%- endif %}
+    {%- else -%}
+        <span class="olddata" title="Latest data not provided">*</span>
     {%- endif %}
 {%- endmacro %}
 
