@@ -270,125 +270,209 @@ text-transform: none; }
       line-height: 1.03774; } }
 
 .node{
-  background:seagreen;
+  background: #2E8B57; /* "seagreen" */
+}
+.node:hover{
+  background: #2B6F37; /* "seagreen" */
 }
 /* attorney generals office */
 .node.ago{
   background: #9f1888;
 }
+.node.ago:hover{
+  background: #7D0069;
+}
 /* cabinet office */
 .node.co{
   background: #005abb;
+}
+.node.co:hover{
+  background: #063E9D;
 }
 /* business innovation and skills*/
 .node.bis{
   background: #003479;
 }
+.node.bis:hover{
+  background: #032058;
+}
 /*department-for-communities-and-local-government*/
 .node.dclg{
   background: #00857e;
+}
+.node.dclg:hover{
+  background: #0D665E;
 }
 /*department-for-culture-media-sport*/
 .node.dcms{
   background: #d40072;
 }
+.node.dcms:hover{
+  background: #B80057;
+}
 /*department-for-education*/
 .node.dfe{
   background: #003a69;
+}
+.node.dfe:hover{
+  background: #042449;
 }
 /*department-for-environment-food-rural-affairs*/
 .node.defra{
   background: #898700;
 }
+.node.defra:hover{
+  background: #6A6904;
+}
 /*department-for-international-development*/
 .node.dfid{
   background: #002878;
+}
+.node.dfid:hover{
+  background: #011758;
 }
 /*department-for-transport*/
 .node.dft{
   background: #006c56;
 }
+.node.dft:hover{
+  background: #0A4D3A;
+}
 /*department-for-work-pensions*/
-.node.dwp{
+.node.dwp:hover{
   background: #00beb7;
+}
+.node.dwp:hover{
+  background: #15A59D;
 }
 /*department-of-energy-climate-change*/
 .node.decc{
   background: #009ddb;
 }
+.node.decc:hover{
+  background: #0F80C4;
+}
 /*department-of-health*/
 .node.dh{
   background: #00ad93;
 }
+.node.dh:hover{
+  background: #129276;
+}
 /*foreign-commonwealth-office*/
 .node.fco{
   background: #002e74;
+}
+.node.fco:hover{
+  background: #021C53;
 }
 /*guess work*/
 /*government-equalities-office*/
 .node.geo{
   background: #9325b2;
 }
+.node.geo:hover{
+  background: #750095;
+}
 /*guess work*/
 /*hm-government*/
 .node.hmg{
   background: #0076c0;
 }
+.node.hmg:hover{
+  background: #0A58A3;
+}
 /*hm-revenue-customs*/
 .node.hmrc{
   background: #009390;
+}
+.node.hmrc:hover{
+  background: #0F7572;
 }
 /*guess work*/
 /*hm-treasury*/
 .node.hmt{
   background: #af292e;
 }
+.node.hmt:hover{
+  background: #90151F;
+}
 /*home-office*/
 .node.home-office{
   background: #9325b2;
+}
+.node.home-office:hover{
+  background: #750095;
 }
 /*ministry-of-defence*/
 .node.mod{
   background: #4d2942;
 }
+.node.mod:hover{
+  background: #301829;
+}
 /*ministry-of-justice*/
 .node.moj{
   background: #231f20;
+}
+.node.moj:hover{
+  background: #121010;
 }
 /*guess work*/
 /*northern-ireland-office*/
 .node.nio{
   background: #002663;
 }
+.node.nio:hover{
+  background: #021644;
+}
 /*guess work*/
 /*office-of-the-advocate-general-for-scotland*/
 .node.oags{
   background: #002663;
+}
+.node.oags:hover{
+  background: #021644;
 }
 /*guess work*/
 /*office-of-the-leader-of-the-house-of-lords*/
 .node.olhl{
   background: #9c132e;
 }
+.node.olhl:hover{
+  background: #7A0020;
+}
 /*guess work*/
 /*scotland-office*/
 .node.so{
   background: #002663;
+}
+.node.so:hover{
+  background: #021644;
 }
 /*guess work*/
 /*the-office-of-the-leader-of-the-house-of-commons*/
 .node.olhc{
   background: #317023;
 }
+.node.olhc:hover{
+  background: #225317;
+}
 /*guess work*/
 /*uk-export-finance*/
 .node.uef{
   background: #005747;
 }
+.node.uef:hover{
+  background: #073A2E;
+}
 /*guess work*/
 /*wales-office*/
-.node.wo{
+.node.wo:hover{
   background: #a33038;
+}
+.node.wo:hover{
+  background: #831C26;
 }
 
 
