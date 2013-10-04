@@ -40,6 +40,7 @@ figure.treemap figcaption .service-name {
 figure.treemap:hover .node {
   opacity: .5;
 }
+figure.treemap:hover figcaption:hover ~ .node,
 figure.treemap:hover .node:hover {
   opacity: 1;
 }
