@@ -1579,11 +1579,17 @@ article.service-details section h2 {
 
 /* line 489, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 #transactions-table .sort-ind {
-  display: inline-block;
+  padding-right: 0.6em;
+}
+#transactions-table .sort-ind:after {
+  content: "\00a0\00a0\25B2"; /* Ascending (up arrow) */
   font-size: 8px;
-  height: 8px;
-  padding-left: 5px;
-  vertical-align: top; }
+  position: absolute;
+}
+#transactions-table .sort-ind--desc:after {
+  content: "\00a0\00a0\25BC"; /* Descending (down arrow) */
+}
+
 
 /* line 497, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .highlight {

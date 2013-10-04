@@ -2,11 +2,9 @@
     {% if sort != current_sort.order %}
         <a href="../{{ sort }}/{{ default_direction }}" title="{{ title }}">{{ text }}</a>
     {% elif current_sort.direction == "ascending" %}
-        <a href="../{{ sort }}/descending" title="{{ title }}">{{ text }}</a>
-        <span class="sort-ind">&#9650;</span>
+        <a href="../{{ sort }}/descending" title="{{ title }}" class="sort-ind">{{ text }}</a>
     {% else %}
-        <a href="../{{ sort }}/ascending" title="{{ title }}">{{ text }}</a>
-        <span class="sort-ind">&#9660;</span>
+        <a href="../{{ sort }}/ascending" title="{{ title }}" class="sort-ind sort-ind--desc">{{ text }}</a>
     {% endif %}
 {%- endmacro %}
 
