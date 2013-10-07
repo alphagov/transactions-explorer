@@ -307,7 +307,7 @@ var TreeMapLayout = (function () {
 
     if (window.$) {
       var $figure = $('#' + divId);
-      var $cap = $('<figcaption/>').appendTo($figure);
+      var $cap = $('<figcaption/>').prependTo($figure);
 
       // hide the first wrapping node
       $figure.find('.node').first().hide();
