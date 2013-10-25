@@ -12,7 +12,7 @@ class test_search(BrowserTest):
     def test_search_page(self):
         self.browser.visit("http://0.0.0.0:8000/search?keyword=gds")
 
-        assert_that(self.browser.find_by_css('h1').text,
+        assert_that(self.browser.find_by_css('#wrapper h1').text,
                     is_('Search results'))
 
         assert_that(self.browser.find_by_css('tbody tr'), has_length(7))
