@@ -34,11 +34,6 @@
       <link href="{{ 'fonts.css' | as_static_url }}" media="all" rel="stylesheet" type="text/css" />
     <!--<![endif]-->
 
-    {% include "google-analytics.html" %}
-    <link rel="stylesheet" media="screen" href="{{ 'stylesheets/index.css' | as_asset_url }}">
-    <link rel="stylesheet" media="screen" href="{{ 'stylesheets/treemap.css' | as_asset_url }}">
-
-
     <!--[if lt IE 9]>
       <script src="{{ 'ie.js' | as_static_url }}" type="text/javascript"></script>
     <![endif]-->
@@ -64,6 +59,9 @@
 
 <link href="{{ 'print.css' | as_static_url }}?body=1" media="print" rel="stylesheet" type="text/css" />
 
+{% include "google-analytics.html" %}
+<link rel="stylesheet" media="screen" href="{{ 'stylesheets/index.css' | as_asset_url }}">
+<link rel="stylesheet" media="screen" href="{{ 'stylesheets/treemap.css' | as_asset_url }}">
 
   <script src="{{ 'libs/jquery/jquery-1.7.2.js' | as_static_url }}?body=1" type="text/javascript"></script>
 <script defer="defer" src="{{ 'libs/jquery/jquery-ui-1.8.16.custom.min.js' | as_static_url }}?body=1" type="text/javascript"></script>
