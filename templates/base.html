@@ -59,7 +59,6 @@
 
 <link href="{{ 'print.css' | as_static_url }}?body=1" media="print" rel="stylesheet" type="text/css" />
 
-{% include "google-analytics.html" %}
 <link rel="stylesheet" media="screen" href="{{ 'stylesheets/index.css' | as_asset_url }}">
 <link rel="stylesheet" media="screen" href="{{ 'stylesheets/treemap.css' | as_asset_url }}">
 
@@ -86,33 +85,7 @@
 <script defer="defer" src="{{ 'analytics/print-tracking.js' | as_static_url }}?body=1" type="text/javascript"></script>
 <script defer="defer" src="{{ 'analytics.js' | as_static_url }}?body=1" type="text/javascript"></script>
 <script defer="defer" src="{{ 'application.js' | as_static_url }}?body=1" type="text/javascript"></script>
-<script id="ga-params" type="text/javascript">
-  var GOVUK = GOVUK || {};
-  GOVUK.Analytics = GOVUK.Analytics || {};
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-26179049-1']);
-  if(document.domain=='www.gov.uk') {
-    _gaq.push(['_setDomainName', '.www.gov.uk']);
-  } else {
-    _gaq.push(['_setDomainName', document.domain]);
-  }
-  _gaq.push(['_setAllowLinker', true]);
-    // track pixel density ratio
-  if (window.devicePixelRatio) {
-    _gaq.push(['_setCustomVar', 11, 'Pixel Ratio', String(window.devicePixelRatio), 2 ]);
-  }
-</script>
-<script type="text/javascript">
-  _gaq.push(['_gat._anonymizeIp']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-
-
+{% include "google-analytics.html" %}
 
   </head>
 
@@ -145,7 +118,7 @@
               <ul id="proposition-links">
                 <li><a href="/performance/services">Services</a></li>
                 <li><a href="/performance/dashboard">GOV.UK performance</a></li>
-                <li><a href="{{ ''|as_absolute_url }}" class="active">Transactions Explorer</a></li>                           
+                <li><a href="{{ ''|as_absolute_url }}" class="active">Transactions Explorer</a></li>
               </ul>
             </nav>
           </div>
@@ -166,7 +139,7 @@
     </div>
   </section>
 
-  
+
 
 
   <div id="wrapper" class="group">
@@ -257,7 +230,7 @@
 
     <script src="{{ 'govuk-template.js' | as_static_url }}" type="text/javascript"></script>
 
-      
+
 
   </body>
 </html>
