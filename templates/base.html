@@ -10,39 +10,33 @@
     <script type="text/javascript">
         (function(){if(navigator.userAgent.match(/IEMobile\/10\.0/)){var d=document,c="appendChild",a=d.createElement("style");a[c](d.createTextNode("@-ms-viewport{width:auto!important}"));d.getElementsByTagName("head")[0][c](a);}})();
     </script><!--[if gt IE 8]><!-->
-    <link href="{{ 'application.css' | as_static_url }}" media="screen" rel="stylesheet" type="text/css">
-    <!--<![endif]--><!--[if IE 6]><link href="{{ 'application-ie6.css' | as_static_url }}" media="screen" rel="stylesheet" type="text/css" /><![endif]--><!--[if IE 7]><link href="{{ 'application-ie7.css' | as_static_url }}" media="screen" rel="stylesheet" type="text/css" /><![endif]--><!--[if IE 8]><link href="{{ 'application-ie8.css' | as_static_url }}" media="screen" rel="stylesheet" type="text/css" /><![endif]--><link href="{{ 'print.css' | as_static_url }}" media="print" rel="stylesheet" type="text/css">
+    <link href="{{ 'stylesheets/application.css' | as_asset_url }}" media="screen" rel="stylesheet" type="text/css">
+    <!--<![endif]--><!--[if IE 6]><link href="{{ 'stylesheets/application-ie6.css' | as_asset_url }}" media="screen" rel="stylesheet" type="text/css" /><![endif]--><!--[if IE 7]><link href="{{ 'stylesheets/application-ie7.css' | as_asset_url }}" media="screen" rel="stylesheet" type="text/css" /><![endif]--><!--[if IE 8]><link href="{{ 'stylesheets/application-ie8.css' | as_asset_url }}" media="screen" rel="stylesheet" type="text/css" /><![endif]--><link href="{{ 'stylesheets/print.css' | as_asset_url }}" media="print" rel="stylesheet" type="text/css">
     <!--[if IE 8]>
     <script type="text/javascript">
         (function(){if(window.opera){return;}
         setTimeout(function(){var a=document,g,b={families:(g=
-        ["nta"]),urls:["{{ 'fonts-ie8.css' | as_static_url }}"]},
-        c="{{ 'libs/goog/webfont-debug.js' | as_static_url }}",d="script",
+        ["nta"]),urls:["{{ 'stylesheets/fonts-ie8.css' | as_asset_url }}"]},
+        c="{{ 'javascripts/libs/goog/webfont-debug.js' | as_asset_url }}",d="script",
         e=a.createElement(d),f=a.getElementsByTagName(d)[0],h=g.length;WebFontConfig
         ={custom:b},e.src=c,f.parentNode.insertBefore(e,f);for(;h=h-1;a.documentElement
         .className+=' wf-'+g[h].replace(/\s/g,'').toLowerCase()+'-n4-loading');},0)
         })()
     </script>
-    <![endif]--><!--[if gte IE 9]><!--><link href="{{ 'fonts.css' | as_static_url }}" media="all" rel="stylesheet" type="text/css">
+    <![endif]--><!--[if gte IE 9]><!--><link href="{{ 'stylesheets/fonts.css' | as_asset_url }}" media="all" rel="stylesheet" type="text/css">
     <!--<![endif]--><!--[if lt IE 9]>
-    <script src="{{ 'ie.js' | as_static_url }}" type="text/javascript"></script>
-    <![endif]--><link rel="shortcut icon" href="{{ 'favicon.ico' | as_static_url }}" type="image/x-icon">
-    <!-- For third-generation iPad with high-resolution Retina display: --><link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ 'apple-touch-icon-144x144.png' | as_static_url }}">
-    <!-- For iPhone with high-resolution Retina display: --><link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ 'apple-touch-icon-114x114.png' | as_static_url }}">
-    <!-- For first- and second-generation iPad: --><link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ 'apple-touch-icon-72x72.png' | as_static_url }}">
-    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: --><link rel="apple-touch-icon-precomposed" href="{{ 'apple-touch-icon-57x57.png' | as_static_url }}">
+    <script src="{{ 'javascripts/ie.js' | as_asset_url }}" type="text/javascript"></script>
+    <![endif]--><link rel="shortcut icon" href="{{ 'images/favicon.ico' | as_asset_url }}" type="image/x-icon">
+    <!-- For third-generation iPad with high-resolution Retina display: --><link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ 'images/apple-touch-icon-144x144.png' | as_asset_url }}">
+    <!-- For iPhone with high-resolution Retina display: --><link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ 'images/apple-touch-icon-114x114.png' | as_asset_url }}">
+    <!-- For first- and second-generation iPad: --><link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ 'images/apple-touch-icon-72x72.png' | as_asset_url }}">
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: --><link rel="apple-touch-icon-precomposed" href="{{ 'images/apple-touch-icon-57x57.png' | as_asset_url }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="og:image" content="{{ 'opengraph-image.png' | as_static_url }}">
-    <script src="{{ 'libs/jquery/jquery-1.7.2.js' | as_static_url }}" type="text/javascript"></script><script defer src="{{ 'application.js' | as_static_url }}" type="text/javascript"></script>
+    <meta name="og:image" content="{{ 'images/opengraph-image.png' | as_asset_url }}">
+    <script src="{{ 'javascripts/libs/jquery/jquery-1.7.2.js' | as_asset_url }}" type="text/javascript"></script><script defer src="{{ 'javascripts/application.js' | as_asset_url }}" type="text/javascript"></script>
     {% include "google-analytics.html" %}
     <link rel="stylesheet" media="screen" href="{{ 'stylesheets/index.css' | as_asset_url }}">
     <link rel="stylesheet" media="screen" href="{{ 'stylesheets/treemap.css' | as_asset_url }}">
-    <!--[if lt IE 9]>
-    <link type="text/css" href="{{ 'ie.css' | as_static_url }}" rel="stylesheet" media="all">
-    <![endif]-->
-    <!--[if lt IE 7]>
-    <link type="text/css" href="{{ 'ie-more.css' | as_static_url }}" rel="stylesheet" media="all">
-    <![endif]-->
 </head>
     <body class="">
     <script type="text/javascript">document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script><a href="#content" class="visuallyhidden">Skip to main content</a>
@@ -53,7 +47,7 @@
             <div class="header-global">
                 <div class="header-logo">
                     <a href="/" title="Go to the GOV.UK homepage" id="logo" class="content">
-                        <img src="{{ 'gov.uk_logotype-2x.png' | as_static_url }}" alt="GOV.UK">
+                        <img src="{{ 'images/gov.uk_logotype-2x.png' | as_asset_url }}" alt="GOV.UK">
                     </a>
                 </div>
             </div>
@@ -68,7 +62,7 @@
                         <ul id="proposition-links">
                             <li><a href="/performance/services">Services</a></li>
                             <li><a href="/performance/dashboard">GOV.UK performance</a></li>
-                            <li><a href="{{ ''|as_absolute_url }}" class="active">Transactions Explorer</a></li>                           
+                            <li><a href="{{ ''|as_absolute_url }}" class="active">Transactions Explorer</a></li>
                         </ul>
                     </nav>
                 </div>

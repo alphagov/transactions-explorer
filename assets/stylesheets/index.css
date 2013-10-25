@@ -155,13 +155,13 @@
 /* line 77, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-single-identity {
   padding: 3px 0 2px 35px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_13px.png");
+  background-image: url("../images/org_crest_13px.png");
   background-position: 5px center;
   background-size: auto 20px; }
 /* line 85, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-stacked-single-identity {
   padding: 20px 0 0 6px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_13px.png");
+  background-image: url("../images/org_crest_13px.png");
   background-position: 5px top;
   background-size: auto 20px; }
 /* line 93, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
@@ -173,17 +173,17 @@
   /* line 100, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-single-identity,
   #whitehall-wrapper .organisation-logo-stacked-single-identity {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_13px_x2.png"); } }
+    background-image: url("../images/org_crest_13px_x2.png"); } }
 /* line 106, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-bis {
   padding: 3px 0 2px 30px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/bis_crest_13px.png");
+  background-image: url("../images/bis_crest_13px.png");
   background-position: 5px center;
   background-size: auto 20px; }
 /* line 114, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-stacked-bis {
   padding: 20px 0 0 6px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/bis_crest_13px.png");
+  background-image: url("../images/bis_crest_13px.png");
   background-position: 5px top;
   background-size: auto 20px; }
 /* line 122, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
@@ -195,17 +195,17 @@
   /* line 129, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-bis,
   #whitehall-wrapper .organisation-logo-stacked-bis {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/bis_crest_13px_x2.png"); } }
+    background-image: url("../images/bis_crest_13px_x2.png"); } }
 /* line 135, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-so {
   padding: 3px 0 2px 35px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/so_crest_13px.png");
+  background-image: url("../images/so_crest_13px.png");
   background-position: 5px center;
   background-size: auto 20px; }
 /* line 143, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-stacked-so {
   padding: 20px 0 0 6px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/so_crest_13px.png");
+  background-image: url("../images/so_crest_13px.png");
   background-position: 5px top;
   background-size: auto 20px; }
 /* line 151, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
@@ -217,17 +217,17 @@
   /* line 158, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-so,
   #whitehall-wrapper .organisation-logo-stacked-so {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/so_crest_13px_x2.png"); } }
+    background-image: url("../images/so_crest_13px_x2.png"); } }
 /* line 164, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-ho {
   padding: 5px 0 5px 24px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ho_crest_13px.png");
+  background-image: url("../images/ho_crest_13px.png");
   background-position: 5px center;
   background-size: auto 25px; }
 /* line 172, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-stacked-ho {
   padding: 25px 0 0 6px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ho_crest_13px.png");
+  background-image: url("../images/ho_crest_13px.png");
   background-position: 5px top;
   background-size: auto 25px; }
 /* line 180, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
@@ -239,17 +239,17 @@
   /* line 187, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-ho,
   #whitehall-wrapper .organisation-logo-stacked-ho {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ho_crest_13px_x2.png"); } }
+    background-image: url("../images/ho_crest_13px_x2.png"); } }
 /* line 193, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-mod {
   padding: 5px 0 5px 30px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/mod_crest_13px.png");
+  background-image: url("../images/mod_crest_13px.png");
   background-position: 5px center;
   background-size: auto 25px; }
 /* line 201, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-stacked-mod {
   padding: 25px 0 0 6px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/mod_crest_13px.png");
+  background-image: url("../images/mod_crest_13px.png");
   background-position: 5px top;
   background-size: auto 25px; }
 /* line 209, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
@@ -261,17 +261,17 @@
   /* line 216, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-mod,
   #whitehall-wrapper .organisation-logo-stacked-mod {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/mod_crest_13px_x2.png"); } }
+    background-image: url("../images/mod_crest_13px_x2.png"); } }
 /* line 222, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-wales {
   padding: 5px 0 5px 26px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/wales_crest_13px.png");
+  background-image: url("../images/wales_crest_13px.png");
   background-position: 5px center;
   background-size: auto 25px; }
 /* line 230, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-stacked-wales {
   padding: 25px 0 0 6px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/wales_crest_13px.png");
+  background-image: url("../images/wales_crest_13px.png");
   background-position: 5px top;
   background-size: auto 25px; }
 /* line 238, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
@@ -283,17 +283,17 @@
   /* line 245, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-wales,
   #whitehall-wrapper .organisation-logo-stacked-wales {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/wales_crest_13px_x2.png"); } }
+    background-image: url("../images/wales_crest_13px_x2.png"); } }
 /* line 251, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-coastguard {
   padding: 5px 0 5px 26px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/coastguard_13px.png");
+  background-image: url("../images/coastguard_13px.png");
   background-position: 5px center;
   background-size: auto 25px; }
 /* line 259, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-stacked-coastguard {
   padding: 25px 0 0 6px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/coastguard_13px.png");
+  background-image: url("../images/coastguard_13px.png");
   background-position: 5px top;
   background-size: auto 25px; }
 /* line 267, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
@@ -305,17 +305,17 @@
   /* line 274, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-coastguard,
   #whitehall-wrapper .organisation-logo-stacked-coastguard {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/coastguard_13px_x2.png"); } }
+    background-image: url("../images/coastguard_13px_x2.png"); } }
 /* line 280, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-portcullis {
   padding: 3px 0 2px 26px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/portcullis_13px.png");
+  background-image: url("../images/portcullis_13px.png");
   background-position: 5px center;
   background-size: auto 20px; }
 /* line 288, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-stacked-portcullis {
   padding: 25px 0 0 6px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/portcullis_13px.png");
+  background-image: url("../images/portcullis_13px.png");
   background-position: 5px top;
   background-size: auto 20px; }
 /* line 296, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
@@ -327,17 +327,17 @@
   /* line 303, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-portcullis,
   #whitehall-wrapper .organisation-logo-stacked-portcullis {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/portcullis_13px_x2.png"); } }
+    background-image: url("../images/portcullis_13px_x2.png"); } }
 /* line 309, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-ukho {
   padding: 5px 0 5px 30px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ukho_13px.png");
+  background-image: url("../images/ukho_13px.png");
   background-position: 5px center;
   background-size: auto 25px; }
 /* line 317, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-stacked-ukho {
   padding: 25px 0 0 6px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ukho_13px.png");
+  background-image: url("../images/ukho_13px.png");
   background-position: 5px top;
   background-size: auto 25px; }
 /* line 325, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
@@ -349,17 +349,17 @@
   /* line 332, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-ukho,
   #whitehall-wrapper .organisation-logo-stacked-ukho {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ukho_13px_x2.png"); } }
+    background-image: url("../images/ukho_13px_x2.png"); } }
 /* line 338, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-eo {
   padding: 3px 0 2px 35px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_13px.png");
+  background-image: url("../images/org_crest_13px.png");
   background-position: 5px center;
   background-size: auto 20px; }
 /* line 346, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-stacked-eo {
   padding: 20px 0 0 1px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_13px.png");
+  background-image: url("../images/org_crest_13px.png");
   background-position: 0 top;
   background-size: auto 20px; }
 /* line 354, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
@@ -371,7 +371,7 @@
   /* line 361, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-eo,
   #whitehall-wrapper .organisation-logo-stacked-eo {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_13px_x2.png"); } }
+    background-image: url("../images/org_crest_13px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 367, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-no-identity-medium, #whitehall-wrapper .organisation-logo-identity-medium, #whitehall-wrapper .organisation-logo-single-identity-medium, #whitehall-wrapper .organisation-logo-stacked-single-identity-medium, #whitehall-wrapper .organisation-logo-bis-medium, #whitehall-wrapper .organisation-logo-stacked-bis-medium, #whitehall-wrapper .organisation-logo-hmrc-medium, #whitehall-wrapper .organisation-logo-stacked-hmrc-medium, #whitehall-wrapper .organisation-logo-so-medium, #whitehall-wrapper .organisation-logo-stacked-so-medium, #whitehall-wrapper .organisation-logo-ho-medium, #whitehall-wrapper .organisation-logo-stacked-ho-medium, #whitehall-wrapper .organisation-logo-mod-medium, #whitehall-wrapper .organisation-logo-stacked-mod-medium, #whitehall-wrapper .organisation-logo-wales-medium, #whitehall-wrapper .organisation-logo-stacked-wales-medium, #whitehall-wrapper .organisation-logo-coastguard-medium, #whitehall-wrapper .organisation-logo-stacked-coastguard-medium, #whitehall-wrapper .organisation-logo-portcullis-medium, #whitehall-wrapper .organisation-logo-stacked-portcullis-medium, #whitehall-wrapper .organisation-logo-ukho-medium, #whitehall-wrapper .organisation-logo-stacked-ukho-medium, #whitehall-wrapper .organisation-logo-eo-medium, #whitehall-wrapper .organisation-logo-stacked-eo-medium {
@@ -386,14 +386,14 @@
   /* line 382, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-single-identity-medium {
     padding: 3px 0 2px 44px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_18px.png");
+    background-image: url("../images/org_crest_18px.png");
     background-position: 6px center;
     background-size: auto 25px; } }
 @media (min-width: 641px) {
   /* line 391, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-single-identity-medium {
     padding: 25px 0 0 7px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_18px.png");
+    background-image: url("../images/org_crest_18px.png");
     background-position: 6px top;
     background-size: auto 25px; } }
 @media (min-width: 641px) {
@@ -406,19 +406,19 @@
   /* line 408, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-single-identity-medium,
   #whitehall-wrapper .organisation-logo-stacked-single-identity-medium {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_18px_x2.png"); } }
+    background-image: url("../images/org_crest_18px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 415, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-bis-medium {
     padding: 3px 0 2px 38px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/bis_crest_18px.png");
+    background-image: url("../images/bis_crest_18px.png");
     background-position: 6px center;
     background-size: auto 25px; } }
 @media (min-width: 641px) {
   /* line 424, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-bis-medium {
     padding: 25px 0 0 7px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/bis_crest_18px.png");
+    background-image: url("../images/bis_crest_18px.png");
     background-position: 6px top;
     background-size: auto 25px; } }
 @media (min-width: 641px) {
@@ -431,19 +431,19 @@
   /* line 441, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-bis-medium,
   #whitehall-wrapper .organisation-logo-stacked-bis-medium {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/bis_crest_18px_x2.png"); } }
+    background-image: url("../images/bis_crest_18px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 448, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-so-medium {
     padding: 3px 0 2px 45px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/so_crest_18px.png");
+    background-image: url("../images/so_crest_18px.png");
     background-position: 6px center;
     background-size: auto 25px; } }
 @media (min-width: 641px) {
   /* line 457, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-so-medium {
     padding: 25px 0 0 7px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/so_crest_18px.png");
+    background-image: url("../images/so_crest_18px.png");
     background-position: 6px top;
     background-size: auto 25px; } }
 @media (min-width: 641px) {
@@ -456,19 +456,19 @@
   /* line 474, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-so-medium,
   #whitehall-wrapper .organisation-logo-stacked-so-medium {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/so_crest_18px_x2.png"); } }
+    background-image: url("../images/so_crest_18px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 481, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-ho-medium {
     padding: 8px 0 7px 32px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ho_crest_18px.png");
+    background-image: url("../images/ho_crest_18px.png");
     background-position: 6px center;
     background-size: auto 35px; } }
 @media (min-width: 641px) {
   /* line 490, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-ho-medium {
     padding: 35px 0 0 7px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ho_crest_18px.png");
+    background-image: url("../images/ho_crest_18px.png");
     background-position: 6px top;
     background-size: auto 35px; } }
 @media (min-width: 641px) {
@@ -481,19 +481,19 @@
   /* line 507, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-ho-medium,
   #whitehall-wrapper .organisation-logo-stacked-ho-medium {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ho_crest_18px_x2.png"); } }
+    background-image: url("../images/ho_crest_18px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 514, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-mod-medium {
     padding: 8px 0 7px 36px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/mod_crest_18px.png");
+    background-image: url("../images/mod_crest_18px.png");
     background-position: 6px center;
     background-size: auto 35px; } }
 @media (min-width: 641px) {
   /* line 523, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-mod-medium {
     padding: 35px 0 0 7px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/mod_crest_18px.png");
+    background-image: url("../images/mod_crest_18px.png");
     background-position: 6px top;
     background-size: auto 35px; } }
 @media (min-width: 641px) {
@@ -506,19 +506,19 @@
   /* line 540, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-mod-medium,
   #whitehall-wrapper .organisation-logo-stacked-mod-medium {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/mod_crest_18px_x2.png"); } }
+    background-image: url("../images/mod_crest_18px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 547, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-wales-medium {
     padding: 8px 0 7px 35px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/wales_crest_18px.png");
+    background-image: url("../images/wales_crest_18px.png");
     background-position: 6px center;
     background-size: auto 35px; } }
 @media (min-width: 641px) {
   /* line 556, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-wales-medium {
     padding: 35px 0 0 7px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/wales_crest_18px.png");
+    background-image: url("../images/wales_crest_18px.png");
     background-position: 6px top;
     background-size: auto 35px; } }
 @media (min-width: 641px) {
@@ -531,19 +531,19 @@
   /* line 573, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-wales-medium,
   #whitehall-wrapper .organisation-logo-stacked-wales-medium {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/wales_crest_18px_x2.png"); } }
+    background-image: url("../images/wales_crest_18px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 580, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-coastguard-medium {
     padding: 8px 0 7px 35px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/coastguard_18px.png");
+    background-image: url("../images/coastguard_18px.png");
     background-position: 6px center;
     background-size: auto 35px; } }
 @media (min-width: 641px) {
   /* line 589, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-coastguard-medium {
     padding: 35px 0 0 7px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/coastguard_18px.png");
+    background-image: url("../images/coastguard_18px.png");
     background-position: 6px top;
     background-size: auto 35px; } }
 @media (min-width: 641px) {
@@ -556,19 +556,19 @@
   /* line 606, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-coastguard-medium,
   #whitehall-wrapper .organisation-logo-stacked-coastguard-medium {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/coastguard_18px_x2.png"); } }
+    background-image: url("../images/coastguard_18px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 613, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-portcullis-medium {
     padding: 3px 0 2px 34px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/portcullis_18px.png");
+    background-image: url("../images/portcullis_18px.png");
     background-position: 6px center;
     background-size: auto 25px; } }
 @media (min-width: 641px) {
   /* line 622, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-portcullis-medium {
     padding: 25px 0 0 7px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/portcullis_18px.png");
+    background-image: url("../images/portcullis_18px.png");
     background-position: 6px top;
     background-size: auto 25px; } }
 @media (min-width: 641px) {
@@ -581,19 +581,19 @@
   /* line 639, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-portcullis-medium,
   #whitehall-wrapper .organisation-logo-stacked-portcullis-medium {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/portcullis_18px_x2.png"); } }
+    background-image: url("../images/portcullis_18px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 646, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-ukho-medium {
     padding: 3px 0 2px 38px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ukho_18px.png");
+    background-image: url("../images/ukho_18px.png");
     background-position: 6px center;
     background-size: auto 25px; } }
 @media (min-width: 641px) {
   /* line 655, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-ukho-medium {
     padding: 25px 0 0 7px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ukho_18px.png");
+    background-image: url("../images/ukho_18px.png");
     background-position: 6px top;
     background-size: auto 25px; } }
 @media (min-width: 641px) {
@@ -606,19 +606,19 @@
   /* line 672, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-ukho-medium,
   #whitehall-wrapper .organisation-logo-stacked-ukho-medium {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ukho_18px_x2.png"); } }
+    background-image: url("../images/ukho_18px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 679, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-eo-medium {
     padding: 3px 0 2px 44px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_18px.png");
+    background-image: url("../images/org_crest_18px.png");
     background-position: 6px center;
     background-size: auto 25px; } }
 @media (min-width: 641px) {
   /* line 688, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-eo-medium {
     padding: 25px 0 0 1px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_18px.png");
+    background-image: url("../images/org_crest_18px.png");
     background-position: 0 top;
     background-size: auto 25px; } }
 @media (min-width: 641px) {
@@ -631,7 +631,7 @@
   /* line 705, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-eo-medium,
   #whitehall-wrapper .organisation-logo-stacked-eo-medium {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_18px_x2.png"); } }
+    background-image: url("../images/org_crest_18px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 713, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-no-identity-large, #whitehall-wrapper .organisation-logo-identity-large, #whitehall-wrapper .organisation-logo-single-identity-large, #whitehall-wrapper .organisation-logo-stacked-single-identity-large, #whitehall-wrapper .organisation-logo-bis-large, #whitehall-wrapper .organisation-logo-stacked-bis-large, #whitehall-wrapper .organisation-logo-hmrc-large, #whitehall-wrapper .organisation-logo-stacked-hmrc-large, #whitehall-wrapper .organisation-logo-so-large, #whitehall-wrapper .organisation-logo-stacked-so-large, #whitehall-wrapper .organisation-logo-ho-large, #whitehall-wrapper .organisation-logo-stacked-ho-large, #whitehall-wrapper .organisation-logo-mod-large, #whitehall-wrapper .organisation-logo-stacked-mod-large, #whitehall-wrapper .organisation-logo-wales-large, #whitehall-wrapper .organisation-logo-stacked-wales-large, #whitehall-wrapper .organisation-logo-coastguard-large, #whitehall-wrapper .organisation-logo-stacked-coastguard-large, #whitehall-wrapper .organisation-logo-portcullis-large, #whitehall-wrapper .organisation-logo-stacked-portcullis-large, #whitehall-wrapper .organisation-logo-ukho-large, #whitehall-wrapper .organisation-logo-stacked-ukho-large, #whitehall-wrapper .organisation-logo-eo-large, #whitehall-wrapper .organisation-logo-stacked-eo-large,
@@ -647,14 +647,14 @@
   /* line 728, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-single-identity-large {
     padding: 5px 0 5px 65px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png");
+    background-image: url("../images/org_crest_27px.png");
     background-position: 9px center;
     background-size: auto 40px; } }
 @media (min-width: 641px) {
   /* line 737, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-single-identity-large {
     padding: 40px 0 0 10px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png");
+    background-image: url("../images/org_crest_27px.png");
     background-position: 9px top;
     background-size: auto 40px; } }
 @media (min-width: 641px) {
@@ -667,19 +667,19 @@
   /* line 754, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-single-identity-large,
   #whitehall-wrapper .organisation-logo-stacked-single-identity-large {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px_x2.png"); } }
+    background-image: url("../images/org_crest_27px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 761, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-bis-large {
     padding: 5px 0 5px 56px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/bis_crest_27px.png");
+    background-image: url("../images/bis_crest_27px.png");
     background-position: 9px center;
     background-size: auto 40px; } }
 @media (min-width: 641px) {
   /* line 770, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-bis-large {
     padding: 40px 0 0 10px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/bis_crest_27px.png");
+    background-image: url("../images/bis_crest_27px.png");
     background-position: 9px top;
     background-size: auto 40px; } }
 @media (min-width: 641px) {
@@ -692,19 +692,19 @@
   /* line 787, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-bis-large,
   #whitehall-wrapper .organisation-logo-stacked-bis-large {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/bis_crest_27px_x2.png"); } }
+    background-image: url("../images/bis_crest_27px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 794, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-so-large {
     padding: 5px 0 5px 67px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/so_crest_27px.png");
+    background-image: url("../images/so_crest_27px.png");
     background-position: 9px center;
     background-size: auto 40px; } }
 @media (min-width: 641px) {
   /* line 803, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-so-large {
     padding: 40px 0 0 10px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/so_crest_27px.png");
+    background-image: url("../images/so_crest_27px.png");
     background-position: 9px top;
     background-size: auto 40px; } }
 @media (min-width: 641px) {
@@ -717,19 +717,19 @@
   /* line 820, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-so-large,
   #whitehall-wrapper .organisation-logo-stacked-so-large {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/so_crest_27px_x2.png"); } }
+    background-image: url("../images/so_crest_27px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 827, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-ho-large {
     padding: 10px 0 10px 46px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ho_crest_27px.png");
+    background-image: url("../images/ho_crest_27px.png");
     background-position: 9px center;
     background-size: auto 50px; } }
 @media (min-width: 641px) {
   /* line 836, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-ho-large {
     padding: 50px 0 0 10px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ho_crest_27px.png");
+    background-image: url("../images/ho_crest_27px.png");
     background-position: 9px top;
     background-size: auto 50px; } }
 @media (min-width: 641px) {
@@ -742,19 +742,19 @@
   /* line 853, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-ho-large,
   #whitehall-wrapper .organisation-logo-stacked-ho-large {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ho_crest_27px_x2.png"); } }
+    background-image: url("../images/ho_crest_27px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 860, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-mod-large {
     padding: 10px 0 10px 53px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/mod_crest_27px.png");
+    background-image: url("../images/mod_crest_27px.png");
     background-position: 9px center;
     background-size: auto 50px; } }
 @media (min-width: 641px) {
   /* line 869, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-mod-large {
     padding: 50px 0 0 10px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/mod_crest_27px.png");
+    background-image: url("../images/mod_crest_27px.png");
     background-position: 9px top;
     background-size: auto 50px; } }
 @media (min-width: 641px) {
@@ -767,19 +767,19 @@
   /* line 886, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-mod-large,
   #whitehall-wrapper .organisation-logo-stacked-mod-large {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/mod_crest_27px_x2.png"); } }
+    background-image: url("../images/mod_crest_27px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 893, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-wales-large {
     padding: 10px 0 10px 51px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/wales_crest_27px.png");
+    background-image: url("../images/wales_crest_27px.png");
     background-position: 9px center;
     background-size: auto 50px; } }
 @media (min-width: 641px) {
   /* line 902, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-wales-large {
     padding: 50px 0 0 10px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/wales_crest_27px.png");
+    background-image: url("../images/wales_crest_27px.png");
     background-position: 9px top;
     background-size: auto 50px; } }
 @media (min-width: 641px) {
@@ -792,19 +792,19 @@
   /* line 919, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-wales-large,
   #whitehall-wrapper .organisation-logo-stacked-wales-large {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/wales_crest_27px_x2.png"); } }
+    background-image: url("../images/wales_crest_27px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 926, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-coastguard-large {
     padding: 10px 0 10px 51px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/coastguard_27px.png");
+    background-image: url("../images/coastguard_27px.png");
     background-position: 9px center;
     background-size: auto 50px; } }
 @media (min-width: 641px) {
   /* line 935, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-coastguard-large {
     padding: 50px 0 0 10px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/coastguard_27px.png");
+    background-image: url("../images/coastguard_27px.png");
     background-position: 9px top;
     background-size: auto 50px; } }
 @media (min-width: 641px) {
@@ -817,19 +817,19 @@
   /* line 952, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-coastguard-large,
   #whitehall-wrapper .organisation-logo-stacked-coastguard-large {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/coastguard_27px_x2.png"); } }
+    background-image: url("../images/coastguard_27px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 959, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-portcullis-large {
     padding: 5px 0 5px 52px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/portcullis_27px.png");
+    background-image: url("../images/portcullis_27px.png");
     background-position: 9px center;
     background-size: auto 40px; } }
 @media (min-width: 641px) {
   /* line 968, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-portcullis-large {
     padding: 40px 0 0 10px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/portcullis_27px.png");
+    background-image: url("../images/portcullis_27px.png");
     background-position: 9px top;
     background-size: auto 40px; } }
 @media (min-width: 641px) {
@@ -842,19 +842,19 @@
   /* line 985, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-portcullis-large,
   #whitehall-wrapper .organisation-logo-stacked-portcullis-large {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/portcullis_27px_x2.png"); } }
+    background-image: url("../images/portcullis_27px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 992, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-ukho-large {
     padding: 10px 0 10px 53px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ukho_27px.png");
+    background-image: url("../images/ukho_27px.png");
     background-position: 9px center;
     background-size: auto 50px; } }
 @media (min-width: 641px) {
   /* line 1001, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-ukho-large {
     padding: 50px 0 0 10px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ukho_27px.png");
+    background-image: url("../images/ukho_27px.png");
     background-position: 9px top;
     background-size: auto 50px; } }
 @media (min-width: 641px) {
@@ -867,19 +867,19 @@
   /* line 1018, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-ukho-large,
   #whitehall-wrapper .organisation-logo-stacked-ukho-large {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/ukho_27px_x2.png"); } }
+    background-image: url("../images/ukho_27px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 1025, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-eo-large {
     padding: 5px 0 5px 65px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png");
+    background-image: url("../images/org_crest_27px.png");
     background-position: 9px center;
     background-size: auto 40px; } }
 @media (min-width: 641px) {
   /* line 1034, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-eo-large {
     padding: 40px 0 0 1px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png");
+    background-image: url("../images/org_crest_27px.png");
     background-position: 0 top;
     background-size: auto 40px; } }
 @media (min-width: 641px) {
@@ -892,7 +892,7 @@
   /* line 1051, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-eo-large,
   #whitehall-wrapper .organisation-logo-stacked-eo-large {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px_x2.png"); } }
+    background-image: url("../images/org_crest_27px_x2.png"); } }
 /* line 65, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_colours.scss */
 #whitehall-wrapper .attorney-generals-office .organisation-logo {
   border-color: #9f1888; }
@@ -999,7 +999,7 @@ article h1 {
 
 /* line 29, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 article .help-notice {
-  background: url(https://assets.digital.cabinet-office.gov.uk/static/icon-important-a03e91e21fcafa717c52b03f9ecc4846.png) no-repeat scroll 98% 1em #eaedef;
+  background: url(../images/icon-important-a03e91e21fcafa717c52b03f9ecc4846.png) no-repeat scroll 98% 1em #eaedef;
 }
 
 article .help-notice p {
@@ -1011,7 +1011,7 @@ article .help-notice p {
 /* line 32, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 article .info-notice {
   border-left-width: 0px;
-  background: url(https://assets.digital.cabinet-office.gov.uk/static/icon-information.png) no-repeat scroll 98% 1em #d5e8f3; }
+  background: url(../images/icon-information.png) no-repeat scroll 98% 1em #d5e8f3; }
   /* line 34, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
   article .info-notice h2 {
     font-family: "ntatabularnumbers", "nta", Arial, sans-serif !important;
@@ -1030,7 +1030,7 @@ header.page-header hgroup {
 
 /* line 61, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 a[rel="external"]:after {
-  background-image: url(https://assets.digital.cabinet-office.gov.uk/static/external-link-4247fe6cbf644abe4092032a36a5837e.png);
+  background-image: url(../images/external-link-4247fe6cbf644abe4092032a36a5837e.png);
   content: "\A0\A0\A0\A0\A0";
   background-position: right 3px; }
 
@@ -1041,7 +1041,7 @@ a[rel="external"]:hover:after {
 /* layout */
 /* line 75, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 .find-location-for-service {
-  background: #eaedef url(https://assets.digital.cabinet-office.gov.uk/static/locator-icon.png) no-repeat 1em 1em;
+  background: #eaedef url(../images/locator-icon.png) no-repeat 1em 1em;
   min-height: 2em;
   line-height: 2;
   margin: 2em -1em 0 -1em;
@@ -1731,7 +1731,7 @@ input[type=text] {
 article .transactions-explorer-download {
   margin-top: 16px;
   padding: 4px 16px 4px 16px;
-  background: url("https://assets.digital.cabinet-office.gov.uk/static/icon-file-download-94eed1f1fc1bdef08f0ec9667bed474d.png") no-repeat scroll 98% 1em #d5e8f3; }
+  background: url("../images/icon-file-download-94eed1f1fc1bdef08f0ec9667bed474d.png") no-repeat scroll 98% 1em #d5e8f3; }
 
 article .transactions-explorer-download a {
     background-image: none;
@@ -1742,13 +1742,13 @@ article .transactions-explorer-download a {
 /* line 106, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-hmrc {
   padding: 3px 0 2px 30px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/hmrc_crest_13px.png");
+  background-image: url("../images/hmrc_crest_13px.png");
   background-position: 5px center;
   background-size: auto 20px; }
 /* line 114, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
 #whitehall-wrapper .organisation-logo-stacked-hmrc {
   padding: 20px 0 0 6px;
-  background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/hmrc_crest_13px.png");
+  background-image: url("../images/hmrc_crest_13px.png");
   background-position: 5px top;
   background-size: auto 20px; }
 /* line 122, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
@@ -1760,19 +1760,19 @@ article .transactions-explorer-download a {
   /* line 129, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-hmrc,
   #whitehall-wrapper .organisation-logo-stacked-hmrc {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/hmrc_crest_13px_x2.png"); } }
+    background-image: url("../images/hmrc_crest_13px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 415, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-hmrc-medium {
     padding: 3px 0 2px 38px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/hmrc_crest_18px.png");
+    background-image: url("../images/hmrc_crest_18px.png");
     background-position: 6px center;
     background-size: auto 25px; } }
 @media (min-width: 641px) {
   /* line 424, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-hmrc-medium {
     padding: 25px 0 0 7px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/hmrc_crest_18px.png");
+    background-image: url("../images/hmrc_crest_18px.png");
     background-position: 6px top;
     background-size: auto 25px; } }
 @media (min-width: 641px) {
@@ -1785,19 +1785,19 @@ article .transactions-explorer-download a {
   /* line 441, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-hmrc-medium,
   #whitehall-wrapper .organisation-logo-stacked-hmrc-medium {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/hmrc_crest_18px_x2.png"); } }
+    background-image: url("../images/hmrc_crest_18px_x2.png"); } }
 @media (min-width: 641px) {
   /* line 761, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-hmrc-large {
     padding: 5px 0 5px 56px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/hmrc_crest_27px.png");
+    background-image: url("../images/hmrc_crest_27px.png");
     background-position: 9px center;
     background-size: auto 40px; } }
 @media (min-width: 641px) {
   /* line 770, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-stacked-hmrc-large {
     padding: 40px 0 0 10px;
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/hmrc_crest_27px.png");
+    background-image: url("../images/hmrc_crest_27px.png");
     background-position: 9px top;
     background-size: auto 40px; } }
 @media (min-width: 641px) {
@@ -1810,7 +1810,7 @@ article .transactions-explorer-download a {
   /* line 787, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/../whitehall/_organisations.scss */
   #whitehall-wrapper .organisation-logo-hmrc-large,
   #whitehall-wrapper .organisation-logo-stacked-hmrc-large {
-    background-image: url("https://assets.digital.cabinet-office.gov.uk/government/assets/crests/hmrc_crest_27px_x2.png"); } }
+    background-image: url("../images/hmrc_crest_27px_x2.png"); } }
 #whitehall-wrapper .hm-revenue-customs .organisation-logo {
   border-color: #009390; }
 
