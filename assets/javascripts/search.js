@@ -184,7 +184,7 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
 
     var columnHeader = function (text, link, currentDirection) {
         if (currentDirection) {
-            return '<a href="' + link + '">' + text + '</a><span class="sort-ind">' + currentDirection + '</span>';
+            return '<a href="' + link + '" class="sort-ind ' + currentDirection + '">' + text + '</a>';
         }
         return '<a href="' + link + '">' + text + '</a>';
     };
@@ -222,10 +222,10 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
             if (th.data('sort-by') !== queryParams.sortBy) {
                 th.html(columnHeader(th.text(), link(th.data('default-direction'))));
             } else if (queryParams.direction === 'ascending') {
-                th.html(columnHeader(th.text(), link('descending'), '&#9650;'));
+                th.html(columnHeader(th.text(), link('descending'), 'sort-ind--asc'));
                 th.addClass("sorted ascending");
             } else {
-                th.html(columnHeader(th.text(), link('ascending'), '&#9660;'));
+                th.html(columnHeader(th.text(), link('ascending'), 'sort-ind--desc'));
                 th.addClass("sorted descending");
             }
         });
