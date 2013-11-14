@@ -1,10 +1,10 @@
 {% macro th_content(text, sort, current_sort, title=None, default_direction="ascending") -%}
     {% if sort != current_sort.order %}
-        <a href="../{{ sort }}/{{ default_direction }}" title="{{ title }}">{{ text }}</a>
+        <a href="../{{ sort }}/{{ default_direction }}#transactions-table" title="{{ title }}">{{ text }}</a>
     {% elif current_sort.direction == "ascending" %}
-        <a href="../{{ sort }}/descending" title="{{ title }}" class="sort-ind">{{ text }}</a>
+        <a href="../{{ sort }}/descending#transactions-table" title="{{ title }}" class="sort-ind">{{ text }}</a>
     {% else %}
-        <a href="../{{ sort }}/ascending" title="{{ title }}" class="sort-ind sort-ind--desc">{{ text }}</a>
+        <a href="../{{ sort }}/ascending#transactions-table" title="{{ title }}" class="sort-ind sort-ind--desc">{{ text }}</a>
     {% endif %}
 {%- endmacro %}
 
