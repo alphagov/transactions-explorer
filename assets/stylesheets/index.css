@@ -1017,6 +1017,9 @@ article .info-notice {
     font-family: "ntatabularnumbers", "nta", Arial, sans-serif !important;
     margin-top: 0.5em; 
     margin-right: 2em;
+  } 
+  #old-data p {
+    padding-right: 3em;
   }
 
 /* line 39, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
