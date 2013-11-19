@@ -3,6 +3,8 @@ from functools import total_ordering
 from itertools import groupby
 import re
 import itertools
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
 from lib.filters import as_number
 from lib.slugify import keyify, slugify
@@ -190,7 +192,14 @@ class Quarter:
         self.quarter = quarter
 
     def __str__(self):
-        return "Q%s %s" % (self.quarter, self.year)
+        if self.year == 2012 and self.quarter == 4:
+            # Exception for Q4 2012
+            return "%s to %s" % (self.format_date(date(2011, 4, 1)), self.format_date(date(2012, 3, 1)))
+
+        q = self.quarter * 3
+        end_date = date(self.year, q, 1) - relativedelta(months=3)
+        start_date = end_date - relativedelta(months=11)
+        return "%s to %s" % (self.format_date(start_date), self.format_date(end_date))
 
     def __lt__(self, quarter):
         return (self.year, self.quarter) < (quarter.year, quarter.quarter)
@@ -200,6 +209,15 @@ class Quarter:
 
     def __repr__(self):
         return '<Quarter year=%s quarter=%s>' % (self.year, self.quarter)
+
+    month_abbreviations = [
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June',
+        'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'
+    ]
+
+    @classmethod
+    def format_date(cls, date):
+        return "%s %s" % (cls.month_abbreviations[date.month - 1], date.strftime('%Y'))
 
     @classmethod
     def parse(cls, str):

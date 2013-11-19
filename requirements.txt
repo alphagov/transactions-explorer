@@ -12,4 +12,5 @@ nose
 pyhamcrest
 splinter
 requests
+python-dateutil==1.5
 
