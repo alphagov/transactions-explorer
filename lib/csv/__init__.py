@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 from lib.filters import as_number
 
 CSV_FORMAT = [("Department", lambda s: s.department),
@@ -19,11 +19,11 @@ CSV_FORMAT = [("Department", lambda s: s.department),
                lambda s: as_number(getattr(s, "2013_q1_digital_vol"))),
               ("January 2012 to December 2012: cost per transaction (£)",
                lambda s: as_number(getattr(s, "2013_q1_cpt"))),
-              ("2013 April 2012 to March 2013: volume",
+              ("April 2012 to March 2013: volume",
                lambda s: as_number(getattr(s, "2013_q2_vol"))),
-              ("2013 April 2012 to March 2013: digital volume",
+              ("April 2012 to March 2013: digital volume",
                lambda s: as_number(getattr(s, "2013_q2_digital_vol"))),
-              ("2013 April 2012 to March 2013: cost per transaction (£)",
+              ("April 2012 to March 2013: cost per transaction (£)",
                lambda s: as_number(getattr(s, "2013_q2_cpt"))),
               ("Service Type", lambda s: s.category),
               ("URL", lambda s: s.url),
