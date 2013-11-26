@@ -1,4 +1,12 @@
 
+{% macro cell_content(value, cell_format) -%}
+    {% if value != None -%}
+        {{ cell_format(value) }}
+    {%- else -%}
+        <span class="olddata" title="No data provided">*</span>
+    {%- endif %}
+{%- endmacro %}
+
 {% import "table_macros.html" as table %}
 
 <table id="transactions-table" class="full_width_table">
@@ -57,10 +65,26 @@
                 >
                 
                 <th scope="row"><a href="{{ department.link|as_absolute_url }}">{{ department.name }}</a></th>
-                <td class="amount"> {{ department.takeup|as_percentage }} </td>
-                <td class="amount"> {{ table.money_cell(department.cost) }} </td>
-                <td class="amount"> {{ department.data_coverage.percentage|as_percentage if department.data_coverage }} </td>
-                <td class="amount"> {{ department.volume|as_grouped_number }} </td>
+                <td class="amount">
+                    
+                    {{ cell_content(value=department.takeup,
+                                    cell_format=table.percentage_cell ) }}
+                </td>
+                <td class="amount">
+                    {{ cell_content(value=department.cost,
+                                    cell_format=table.money_cell ) }}
+                </td>
+                <td class="amount">
+                    {% if department.data_coverage != None -%}
+                        {{ cell_content(value=department.data_coverage.percentage, cell_format=table.percentage_cell ) }}
+                    {%- else -%}
+                        <span class="olddata" title="No data provided">*</span>
+                    {%- endif %}
+                </td>
+                <td class="amount">
+                    {{ cell_content(value=department.volume,
+                                    cell_format=table.number_cell ) }}
+                </td>
             </tr>
 
         {% endfor %}
