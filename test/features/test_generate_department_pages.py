@@ -37,7 +37,7 @@ class GenerateDepartmentPages(BrowserTest):
         assert_that(table, is_([
             [u'Service 1', u'GDS', u'Exciting service', u'Access service', u'4,820,000'],
             [u'Service 2', u'GDS', u'', u'', u'17,150'],
-            [u'Service 3', u'Another Government', u'Lame service', u'', u'2,141'],
+            [u'Service 3', u'Another Government', u'Lame service', u'', u'2,141*'],
         ]))
 
 
