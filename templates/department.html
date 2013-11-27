@@ -107,7 +107,12 @@
                         <a rel="external" href="{{ service.url }}">Access service</a>
                     {% endif %}
                 </td>
-                <td class="amount"> {{ service.most_up_to_date_volume|as_grouped_number }} </td>
+                <td class="amount">
+                    {{ table.cell_content(quarter=service.latest_kpi_for('quarter'),
+                                    latest_quarter = latest_quarter,
+                                    value=service.most_up_to_date_volume,
+                                    cell_format=table.number_cell) }}
+                </td>
             </tr>
         {% endfor %}
 

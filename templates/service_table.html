@@ -1,16 +1,3 @@
-
-{% macro cell_content(value, quarter, cell_format) -%}
-    {% if value != None -%}
-        {% if quarter < latest_quarter -%}
-            <span class="olddata" title="Data received {{ quarter }}; latest data not provided">{{ cell_format(value) }}*</span>
-        {%- else -%}
-            {{ cell_format(value) }}
-        {%- endif %}
-    {%- else -%}
-        <span class="olddata" title="No data provided">*</span>
-    {%- endif %}
-{%- endmacro %}
-
 {% import "table_macros.html" as table %}
 
 <table id="transactions-table" class="full_width_table">
@@ -78,25 +65,29 @@
                 <td><abbr title="{{ service.department }}">{{ service.abbr }}</abbr></td>
 
                 <td class="amount">
-                    {{ cell_content(quarter=service.latest_kpi_for('quarter'),
+                    {{ table.cell_content(quarter=service.latest_kpi_for('quarter'),
+                                    latest_quarter = latest_quarter,
                                     value=service.latest_kpi_for('cost'),
                                     cell_format=table.money_cell) }}
                 </td>
 
                 <td class="amount">
-                    {{ cell_content(quarter=service.latest_kpi_for('quarter'),
+                    {{ table.cell_content(quarter=service.latest_kpi_for('quarter'),
+                                    latest_quarter = latest_quarter,
                                     value=service.latest_kpi_for('cost_per_number'),
                                     cell_format=table.money_cell) }}
                 </td>
 
                 <td class="amount">
-                    {{ cell_content(quarter=service.latest_kpi_for('quarter'),
+                    {{ table.cell_content(quarter=service.latest_kpi_for('quarter'),
+                                    latest_quarter = latest_quarter,
                                     value=service.latest_kpi_for('takeup'),
                                     cell_format=table.percentage_cell) }}
                 </td>
 
                 <td class="amount">
-                    {{ cell_content(quarter=service.latest_kpi_for('quarter'),
+                    {{ table.cell_content(quarter=service.latest_kpi_for('quarter'),
+                                    latest_quarter = latest_quarter,
                                     value=service.latest_kpi_for('volume_num'),
                                     cell_format=table.number_cell) }}
                 </td>

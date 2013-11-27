@@ -1,3 +1,15 @@
+{% macro cell_content(value, quarter, latest_quarter, cell_format) -%}
+    {% if value != None -%}
+        {% if quarter < latest_quarter -%}
+            <span class="olddata" title="Data received {{ quarter }}; latest data not provided">{{ cell_format(value) }}*</span>
+        {%- else -%}
+            {{ cell_format(value) }}
+        {%- endif %}
+    {%- else -%}
+        <span class="olddata" title="No data provided">*</span>
+    {%- endif %}
+{%- endmacro %}
+
 {% macro th_content(text, sort, current_sort, title=None, default_direction="ascending") -%}
     {% if sort != current_sort.order %}
         <a href="../{{ sort }}/{{ default_direction }}#transactions-table" title="{{ title }}">{{ text }}</a>

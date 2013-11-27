@@ -38,7 +38,7 @@ services = [Service(details=row) for row in reader]
 services_with_details = [service for service in services if service.has_details_page]
 
 high_volume_services = [service for service in services if service.high_volume]
-latest_quarter = latest_quarter(high_volume_services)
+latest_quarter = latest_quarter(services)
 
 departments = set(s.department for s in services)
 
@@ -52,6 +52,7 @@ def generate_sorted_pages(items, page_name, output_prefix, sort_orders, extra_va
                 'items': sorted_ignoring_empty_values(items, key=key,
                                                       reverse=reverse),
                 'treemap_url': treemap_url,
+                'latest_quarter': latest_quarter,
                 'current_sort': {
                     'order': sort_order,
                     'direction': direction
@@ -73,7 +74,8 @@ if __name__ == "__main__":
         render('service_detail.html',
                out="%s.html" % service.link,
                vars={'service': service,
-                     'department': Department(service.department, [service])})
+                     'department': Department(service.department, [service]),
+                     'latest_quarter': latest_quarter })
 
     sort_orders = [
         ("by-name", lambda service: service.name_of_service),
@@ -84,7 +86,7 @@ if __name__ == "__main__":
         ("by-transactions-per-year", lambda service: service.latest_kpi_for('volume_num')),
     ]
     generate_sorted_pages(high_volume_services, 'high-volume-services', 'high-volume-services',
-                          sort_orders, {'latest_quarter': latest_quarter})
+                          sort_orders)
 
     departments = Department.from_services(services)
     department_sort_orders = [
