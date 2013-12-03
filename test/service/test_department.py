@@ -329,7 +329,6 @@ class TestDepartmentDataCoverage(unittest.TestCase):
 
     def test_data_coverage_is_average_of_service_coverages(self):
         services = [
-            #66.66
             Service(details({
                 "2012-Q4 Vol.": "2,000",
                 '2012-Q4 Digital vol.': '10',
@@ -339,7 +338,6 @@ class TestDepartmentDataCoverage(unittest.TestCase):
                 '2013-Q1 Digital vol.': '10',
                 u'High-volume?': 'yes'
             })),
-            #33.33
             Service(details({
                 "2012-Q4 Vol.": "1,000",
                 u'2012-Q4 CPT (\xa3)': "3.00",
@@ -352,13 +350,12 @@ class TestDepartmentDataCoverage(unittest.TestCase):
 
         coverage = dept.data_coverage
 
-        assert_that(coverage.percentage, is_(0.5))
-        assert_that(coverage.requested, is_(18))
+        assert_that(coverage.percentage, is_(0.375))
+        assert_that(coverage.requested, is_(24))
         assert_that(coverage.provided, is_(9))
 
     def test_data_coverage_excludes_non_high_volume_services(self):
         services = [
-            #66.66
             Service(details({
                 "2012-Q4 Vol.": "2,000",
                 '2012-Q4 Digital vol.': '10',
@@ -367,7 +364,6 @@ class TestDepartmentDataCoverage(unittest.TestCase):
                 u'2013-Q1 CPT (\xa3)': "2.00",
                 '2013-Q1 Digital vol.': '10',
             })),
-            #33.33
             Service(details({
                 "2012-Q4 Vol.": "1,000",
                 u'2012-Q4 CPT (\xa3)': "3.00",
@@ -380,13 +376,12 @@ class TestDepartmentDataCoverage(unittest.TestCase):
 
         coverage = dept.data_coverage
 
-        assert_that(float(coverage.percentage), close_to(0.3333, 0.001))
-        assert_that(coverage.requested, is_(9))
+        assert_that(float(coverage.percentage), close_to(0.25, 0.001))
+        assert_that(coverage.requested, is_(12))
         assert_that(coverage.provided, is_(3))
 
     def test_data_coverage_is_none_when_no_high_volume_services(self):
         services = [
-            #66.66
             Service(details({
                 "2012-Q4 Vol.": "2,000",
                 '2012-Q4 Digital vol.': '10',
@@ -395,7 +390,6 @@ class TestDepartmentDataCoverage(unittest.TestCase):
                 u'2013-Q1 CPT (\xa3)': "2.00",
                 '2013-Q1 Digital vol.': '10',
             })),
-            #33.33
             Service(details({
                 "2012-Q4 Vol.": "1,000",
                 u'2012-Q4 CPT (\xa3)': "3.00",
@@ -430,6 +424,6 @@ class TestDepartmentDataCoverage(unittest.TestCase):
 
         coverage = dept.data_coverage
 
-        assert_that(float(coverage.percentage), close_to(0.4, 0.001))
-        assert_that(coverage.requested, is_(15))
+        assert_that(float(coverage.percentage), close_to(0.2857, 0.001))
+        assert_that(coverage.requested, is_(21))
         assert_that(coverage.provided, is_(6))
