@@ -7,8 +7,8 @@ from test.service import details
 class TestDepartment(unittest.TestCase):
 
     def test_department_creation(self):
-        d = Department("Agengy for Beatiful Code", [])
-        assert_that(d.name, is_("Agengy for Beatiful Code"))
+        d = Department("Agency for Beautiful Code", [])
+        assert_that(d.name, is_("Agency for Beautiful Code"))
 
     def test_building_a_list_of_departments_from_services(self):
         services = [
@@ -35,7 +35,7 @@ class TestDepartment(unittest.TestCase):
             Service(details({})),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.high_volume_count, is_(2))
 
@@ -67,7 +67,7 @@ class TestDepartmentLink(unittest.TestCase):
             Service(details({u'Abbr': "ABC"})),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.link, is_("department/abc/by-transactions-per-year/descending"))
 
@@ -79,7 +79,7 @@ class TestDepartmentAbbreviation(unittest.TestCase):
             Service(details({u'Abbr': "ABC"})),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.abbr, is_("ABC"))
 
@@ -92,7 +92,7 @@ class TestDepartmentVolume(unittest.TestCase):
             Service(details({"2012-Q4 Vol.": "2,000"})),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.volume, is_(3500))
 
@@ -102,7 +102,7 @@ class TestDepartmentVolume(unittest.TestCase):
             Service(details({"2012-Q4 Vol.": "2,000"}))
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.volume, is_(2000))
 
@@ -112,7 +112,7 @@ class TestDepartmentVolume(unittest.TestCase):
             Service(details({})),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.volume, is_(2000))
 
@@ -121,7 +121,7 @@ class TestDepartmentVolume(unittest.TestCase):
             Service(details({})),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.volume, is_(None))
 
@@ -142,7 +142,7 @@ class TestDepartmentCost(unittest.TestCase):
             })),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.cost, is_(7000))
 
@@ -159,7 +159,7 @@ class TestDepartmentCost(unittest.TestCase):
             })),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.cost, is_(4000))
 
@@ -175,7 +175,7 @@ class TestDepartmentCost(unittest.TestCase):
             })),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.cost, is_(None))
 
@@ -192,7 +192,7 @@ class TestDepartmentCost(unittest.TestCase):
             })),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.cost, is_(3000))
 
@@ -206,7 +206,7 @@ class TestDepartmentCost(unittest.TestCase):
             })),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.cost, is_(None))
 
@@ -226,7 +226,7 @@ class TestDepartmentCost(unittest.TestCase):
             })),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.cost, is_(7000))
 
@@ -247,7 +247,7 @@ class TestDepartmentTakeup(unittest.TestCase):
             })),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.takeup, is_(0.375))
 
@@ -263,7 +263,7 @@ class TestDepartmentTakeup(unittest.TestCase):
             })),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.takeup, is_(None))
 
@@ -279,7 +279,7 @@ class TestDepartmentTakeup(unittest.TestCase):
             })),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.takeup, is_(None))
 
@@ -301,7 +301,7 @@ class TestDepartmentTakeup(unittest.TestCase):
             })),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.takeup, is_(0.375))
 
@@ -320,7 +320,7 @@ class TestDepartmentTakeup(unittest.TestCase):
             })),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.takeup, is_(0.375))
 
@@ -346,7 +346,7 @@ class TestDepartmentDataCoverage(unittest.TestCase):
             })),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         coverage = dept.data_coverage
 
@@ -372,7 +372,7 @@ class TestDepartmentDataCoverage(unittest.TestCase):
             })),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         coverage = dept.data_coverage
 
@@ -397,7 +397,7 @@ class TestDepartmentDataCoverage(unittest.TestCase):
             })),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         assert_that(dept.data_coverage, is_(None))
 
@@ -420,7 +420,7 @@ class TestDepartmentDataCoverage(unittest.TestCase):
             })),
         ]
 
-        dept = Department("Agengy for Beatiful Code", services)
+        dept = Department("Agency for Beautiful Code", services)
 
         coverage = dept.data_coverage
 
