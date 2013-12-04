@@ -81,6 +81,7 @@ GOVUK.transactionsExplorer.serviceComparator = (function () {
 }());
 
 GOVUK.transactionsExplorer.search = (function () {
+
     var SORT_PROPERTIES = {
         'service': 'service',
         'category': 'category',
@@ -204,9 +205,13 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
         return '<abbr title="' + title + '">' + abbreviation + '</abbr>'
     }
 
-    var transactionsPerYear = function (transactionsPerYear) {
+    var transactionsPerYear = function (transactionsPerYear, historic) {
         if (transactionsPerYear) {
-            return transactionsPerYear.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            var str = transactionsPerYear.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            if (historic !== "") {
+                str = '<span class="olddata" title="Data received ' + historic + '; latest data not provided">' + str + '*</span>';
+            }
+            return str;
         } else {
             return "&nbsp;";
         }
@@ -240,7 +245,7 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
             row.find('.js-row-abbr').html(abbreviation(service['agencyOrBodyAbbreviation'], service['agencyOrBody']));
             row.find('.js-row-category').html(service['category']);
             row.find('.js-row-transaction').html(transactionLink(service['transactionLink']));
-            row.find('.js-row-transactions').html(transactionsPerYear(service['transactionsPerYear']));
+            row.find('.js-row-transactions').html(transactionsPerYear(service['transactionsPerYear'], service['historic']));
 
             rows.push('<tr>' + row.html() + '</tr>');
         });

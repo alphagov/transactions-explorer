@@ -23,8 +23,8 @@ class TestCSV(unittest.TestCase):
 
     def test_dict_generation(self):
         services = [
-            Service(details({"Name of service": "test_name", "Abbr": "tn"})),
-            Service(details({"Name of service": "test_name_2", "Abbr": "tn2"}))
+            Service(details({"Name of service": "test_name", "Abbr": "tn", "2012-Q4 Vol.": "6,400,000"})),
+            Service(details({"Name of service": "test_name_2", "Abbr": "tn2", "2012-Q4 Vol.": "6,400,000"}))
         ]
 
         dicts = dict_map([("name", lambda s: s.name),
@@ -32,8 +32,7 @@ class TestCSV(unittest.TestCase):
                          services)
 
         assert_that(dicts[0], has_entries({'name': 'test_name', 'abbr': 'tn'}))
-        assert_that(dicts[1], has_entries({'name': 'test_name_2',
-                                           'abbr': 'tn2'}))
+        assert_that(dicts[1], has_entries({'name': 'test_name_2', 'abbr': 'tn2'}))
 
     def test_strings_get_utf8_encoded(self):
         services = [Service(details({"Name of service": u"\u2019"}))]

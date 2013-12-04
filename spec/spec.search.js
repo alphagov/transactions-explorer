@@ -188,7 +188,8 @@ describe("Searching for services on the transaction explorer. ", function() {
                 department: "first department",
                 category: "some category",
                 transactionLink: "temp link",
-                keywords: []
+                keywords: [],
+                historic: ""
             },{
                 agencyOrBodyAbbreviation: "SA",
                 service: "some service for agency 2",
@@ -198,7 +199,8 @@ describe("Searching for services on the transaction explorer. ", function() {
                 department: "second department",
                 category: "some category",
                 transactionLink: "temp link",
-                keywords: []
+                keywords: [],
+                historic: ""
             }];
             searchResults = GOVUK.transactionsExplorer.search.searchServices({keyword: 'second'}, services);
             expect(searchResults.length).toEqual(1);
@@ -339,7 +341,8 @@ describe("Searching for services on the transaction explorer. ", function() {
                 category: "some category",
                 transactionLink: "http://www.bar.com",
                 keywords: [],
-                detailsLink: "http://www.foo.com"
+                detailsLink: "http://www.foo.com",
+                historic: ""
             }]);
 
             expect(resultsTable.find('th').first().html()).toBe('<a href="http://www.foo.com">some service</a>');
@@ -363,7 +366,8 @@ describe("Searching for services on the transaction explorer. ", function() {
                 category: "some category",
                 transactionLink: null,
                 keywords: [],
-                detailsLink: null 
+                detailsLink: null,
+                historic: ""
             }]);
 
             expect(resultsTable.find('th').first().html()).toBe('some service');
@@ -385,7 +389,8 @@ describe("Searching for services on the transaction explorer. ", function() {
                 category: "some category",
                 transactionLink: null,
                 keywords: [],
-                detailsLink: null 
+                detailsLink: null,
+                historic: ""
             }]);
 
             var resultsTable = $('#results');
@@ -404,7 +409,8 @@ describe("Searching for services on the transaction explorer. ", function() {
                 category: "some category",
                 transactionLink: null,
                 keywords: [],
-                detailsLink: null 
+                detailsLink: null,
+                historic: ""
             }]);
 
             var resultsTable = $('#results');
@@ -424,7 +430,8 @@ describe("Searching for services on the transaction explorer. ", function() {
                 department: "some department",
                 category: "some category",
                 transactionLink: "temp link",
-                keywords: []
+                keywords: [],
+                historic: ""
             });
 
             expect($('#mr-row').length).toBe(0);
@@ -442,7 +449,8 @@ function buildService(properties) {
                 department: "default department",
                 category: "default category",
                 transactionLink: "default link",
-                keywords: []
+                keywords: [],
+                historic: ""
             };
     return $.extend(defaultProperties, properties);
 }
