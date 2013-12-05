@@ -31,7 +31,7 @@ class TestService(unittest.TestCase):
                                    '2012-Q4 Digital vol.': '5'}))
 
         assert_that(service.latest_kpi_for('takeup'), is_(0.5))
- 
+
     def test_most_recent_kpi_takeup_is_none_if_no_matching_quarters(self):
         service = Service(details({'2012-Q4 Vol.': '10',
                                    '2013-Q1 Digital vol.': '5'}))
@@ -112,8 +112,8 @@ class TestService(unittest.TestCase):
 
         coverage = service.data_coverage
 
-        assert_that(float(coverage.percentage), close_to(0.5555, 0.001))
-        assert_that(coverage.requested, is_(9))
+        assert_that(float(coverage.percentage), close_to(0.41666, 0.001))
+        assert_that(coverage.requested, is_(12))
         assert_that(coverage.provided, is_(5))
 
     def test_coverage_with_non_requested_metrics(self):
@@ -128,11 +128,10 @@ class TestService(unittest.TestCase):
             u'High-volume?': 'yes'
         }))
 
-        # 5 / 8
         coverage = service.data_coverage
 
-        assert_that(float(coverage.percentage), close_to(0.625, 0.001))
-        assert_that(coverage.requested, is_(8))
+        assert_that(float(coverage.percentage), close_to(0.4545, 0.001))
+        assert_that(coverage.requested, is_(11))
         assert_that(coverage.provided, is_(5))
 
     def test_most_up_to_date_volume(self):
@@ -305,7 +304,6 @@ class TestService(unittest.TestCase):
         assert_that(service_with_details.has_details_page, is_(True))
         assert_that(service_without_details.has_details_page, is_(False))
         assert_that(service_explicitly_without_details.has_details_page, is_(False))
-
 
 
 class TestSummingTotalTransactions(unittest.TestCase):
