@@ -122,9 +122,9 @@ describe("Table To Treemap", function () {
       var data = {
         name: "TreeMap sample",
         children: [
-          { name: "Service 1", deptClass: "hmrc", size: 20 },
+          { name: "Service 1", deptClass: "hmrc", size: 35 },
           { name: "Service 2", deptClass: "hmrc", size: 40 },
-          { name: "Service 3", deptClass: "hmrc", size: 10 },
+          { name: "Service 3", deptClass: "hmrc", size: 30 },
           { name: "Service 4", deptClass: "dft", size: 8 },
           { name: "Service 5", deptClass: "silly-walks", size: 3 },
           { name: "Service 6", deptClass: "dfid", size: 1 },
@@ -143,7 +143,7 @@ describe("Table To Treemap", function () {
       expect(classes[3]).shouldContain(['node', 'large', 'leaf', 'hmrc']);
       expect(classes[4]).shouldContain(['node', 'medium', 'dft']);
       expect(classes[5]).shouldContain(['node', 'small', 'leaf', 'silly-walks']);
-      expect(classes[6]).shouldContain(['node', 'ellipsis', 'leaf', 'dfid']);
+      expect(classes[6]).shouldContain(['node', 'small', 'leaf', 'dfid']);
       expect(classes[7]).shouldContain(['node', 'ellipsis', 'leaf', 'defra']);
       expect(classes[8]).shouldContain(['node', 'none', 'leaf', 'hmrc']);
     });
