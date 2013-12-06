@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from lib.filters import as_number
+from lib.service import latest_quarter
 
 CSV_FORMAT = [("Department", lambda s: s.department),
               ("Department Abbreviation", lambda s: s.abbr),
@@ -77,11 +78,19 @@ def dict_map(mappings, services):
     val = lambda m, s: m[1](s)
     dicts = []
 
+    latest = latest_quarter(services)
+   
     for service in services:
-        key_vals = []
-        for mapping in mappings:
-            key_vals.append([key(mapping), val(mapping, service)])
-        dicts.append(dict(key_vals))
+      key_vals = []
+      for mapping in mappings:
+        key_vals.append([key(mapping), val(mapping, service)])
+
+      # Test and append quarter as string IF it's historical data
+      quarter = service.latest_kpi_for('quarter')
+      if quarter is not None and quarter < latest:
+          key_vals.append(["historic", str(quarter)])
+
+      dicts.append(dict(key_vals))
 
     return dicts
 

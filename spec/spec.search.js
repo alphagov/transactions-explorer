@@ -363,7 +363,7 @@ describe("Searching for services on the transaction explorer. ", function() {
                 category: "some category",
                 transactionLink: null,
                 keywords: [],
-                detailsLink: null 
+                detailsLink: null
             }]);
 
             expect(resultsTable.find('th').first().html()).toBe('some service');
@@ -385,7 +385,7 @@ describe("Searching for services on the transaction explorer. ", function() {
                 category: "some category",
                 transactionLink: null,
                 keywords: [],
-                detailsLink: null 
+                detailsLink: null
             }]);
 
             var resultsTable = $('#results');
@@ -404,7 +404,7 @@ describe("Searching for services on the transaction explorer. ", function() {
                 category: "some category",
                 transactionLink: null,
                 keywords: [],
-                detailsLink: null 
+                detailsLink: null
             }]);
 
             var resultsTable = $('#results');
@@ -428,6 +428,32 @@ describe("Searching for services on the transaction explorer. ", function() {
             });
 
             expect($('#mr-row').length).toBe(0);
+        });
+
+        it('should update the table with results and highlights historic dates', function() {
+            var resultsTable = $('#results');
+            GOVUK.transactionsExplorer.searchResultsTable.wireTable('#results');
+
+            GOVUK.transactionsExplorer.searchResultsTable.update([{
+                agencyOrBodyAbbreviation: "AA",
+                service: "some service",
+                departmentAbbreviation: "DA",
+                agencyOrBody: "",
+                transactionsPerYear: 9999,
+                department: "some department",
+                category: "some category",
+                transactionLink: "http://www.bar.com",
+                keywords: [],
+                detailsLink: "http://www.foo.com",
+                historic: 'Apr 2011 to Mar 2012'
+            }]);
+
+            expect(resultsTable.find('th').first().html()).toBe('<a href="http://www.foo.com">some service</a>');
+            expect(resultsTable.find('tr td').first().text()).toBe('AA');
+            expect($(resultsTable.find('tr td').get(1)).text()).toBe('some category');
+            expect($(resultsTable.find('tr td').get(2)).html()).toBe('<a rel="external" href="http://www.bar.com">Access service</a>');
+            expect($(resultsTable).find('tr td:eq(3) span.olddata').text()).toBe('9,999*');
+            expect($(resultsTable).find('tr td:eq(3) span.olddata').attr('title')).toBe('Data received Apr 2011 to Mar 2012; latest data not provided');
         });
     });
 });
