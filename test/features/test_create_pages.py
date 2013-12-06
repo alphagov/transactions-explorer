@@ -27,9 +27,6 @@ class test_create_pages(BrowserTest):
         assert_that(services, contains_string('10'))
         assert_that(transactions, contains_string('26.0m'))
 
-    @nottest
     def test_all_services(self):
-        self.browser.visit("http://0.0.0.0:8000/all-services")
-        assert_that(self.browser.find_by_css('#wrapper h1').text, is_("All Services"))
-        assert_that(self.browser.find_by_css('#navigation .current').text,
-                    is_("All services"))
+        self.browser.visit("http://0.0.0.0:8000/all-services/by-transactions-per-year/descending")
+        assert_that(self.browser.find_by_css('#wrapper h1').text, is_("Transactions Explorer"))
