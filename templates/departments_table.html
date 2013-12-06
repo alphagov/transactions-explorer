@@ -42,7 +42,7 @@
     <tbody>
         {% for department in items %}
             <tr data-volume="{{department.volume}}"
-                data-volumeLabel=" {{ department.volume|as_grouped_number }} "
+                data-volumeLabel="{{ department.volume|as_grouped_number }}"
                 data-category=""
                 data-body=""
                 data-body-abbr=""
