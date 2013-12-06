@@ -188,8 +188,7 @@ describe("Searching for services on the transaction explorer. ", function() {
                 department: "first department",
                 category: "some category",
                 transactionLink: "temp link",
-                keywords: [],
-                historic: ""
+                keywords: []
             },{
                 agencyOrBodyAbbreviation: "SA",
                 service: "some service for agency 2",
@@ -199,8 +198,7 @@ describe("Searching for services on the transaction explorer. ", function() {
                 department: "second department",
                 category: "some category",
                 transactionLink: "temp link",
-                keywords: [],
-                historic: ""
+                keywords: []
             }];
             searchResults = GOVUK.transactionsExplorer.search.searchServices({keyword: 'second'}, services);
             expect(searchResults.length).toEqual(1);
@@ -341,8 +339,7 @@ describe("Searching for services on the transaction explorer. ", function() {
                 category: "some category",
                 transactionLink: "http://www.bar.com",
                 keywords: [],
-                detailsLink: "http://www.foo.com",
-                historic: ""
+                detailsLink: "http://www.foo.com"
             }]);
 
             expect(resultsTable.find('th').first().html()).toBe('<a href="http://www.foo.com">some service</a>');
@@ -366,8 +363,7 @@ describe("Searching for services on the transaction explorer. ", function() {
                 category: "some category",
                 transactionLink: null,
                 keywords: [],
-                detailsLink: null,
-                historic: ""
+                detailsLink: null
             }]);
 
             expect(resultsTable.find('th').first().html()).toBe('some service');
@@ -389,8 +385,7 @@ describe("Searching for services on the transaction explorer. ", function() {
                 category: "some category",
                 transactionLink: null,
                 keywords: [],
-                detailsLink: null,
-                historic: ""
+                detailsLink: null
             }]);
 
             var resultsTable = $('#results');
@@ -409,8 +404,7 @@ describe("Searching for services on the transaction explorer. ", function() {
                 category: "some category",
                 transactionLink: null,
                 keywords: [],
-                detailsLink: null,
-                historic: ""
+                detailsLink: null
             }]);
 
             var resultsTable = $('#results');
@@ -430,11 +424,36 @@ describe("Searching for services on the transaction explorer. ", function() {
                 department: "some department",
                 category: "some category",
                 transactionLink: "temp link",
-                keywords: [],
-                historic: ""
+                keywords: []
             });
 
             expect($('#mr-row').length).toBe(0);
+        });
+
+        it('should update the table with results and highlights historic dates', function() {
+            var resultsTable = $('#results');
+            GOVUK.transactionsExplorer.searchResultsTable.wireTable('#results');
+
+            GOVUK.transactionsExplorer.searchResultsTable.update([{
+                agencyOrBodyAbbreviation: "AA",
+                service: "some service",
+                departmentAbbreviation: "DA",
+                agencyOrBody: "",
+                transactionsPerYear: 9999,
+                department: "some department",
+                category: "some category",
+                transactionLink: "http://www.bar.com",
+                keywords: [],
+                detailsLink: "http://www.foo.com",
+                historic: 'Apr 2011 to Mar 2012'
+            }]);
+
+            expect(resultsTable.find('th').first().html()).toBe('<a href="http://www.foo.com">some service</a>');
+            expect(resultsTable.find('tr td').first().text()).toBe('AA');
+            expect($(resultsTable.find('tr td').get(1)).text()).toBe('some category');
+            expect($(resultsTable.find('tr td').get(2)).html()).toBe('<a rel="external" href="http://www.bar.com">Access service</a>');
+            expect($(resultsTable).find('tr td:eq(3) span.olddata').text()).toBe('9,999*');
+            expect($(resultsTable).find('tr td:eq(3) span.olddata').attr('title')).toBe('Data received Apr 2011 to Mar 2012; latest data not provided');
         });
     });
 });
@@ -449,8 +468,7 @@ function buildService(properties) {
                 department: "default department",
                 category: "default category",
                 transactionLink: "default link",
-                keywords: [],
-                historic: ""
+                keywords: []
             };
     return $.extend(defaultProperties, properties);
 }

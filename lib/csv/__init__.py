@@ -84,13 +84,11 @@ def dict_map(mappings, services):
       key_vals = []
       for mapping in mappings:
         key_vals.append([key(mapping), val(mapping, service)])
-        # Test and append quarter as string IF it's historical data
-        quarter = service.latest_kpi_for('quarter')
-        historic = ""
-        if quarter is not None:
-          if quarter < latest:
-            historic = str(quarter)
-        key_vals.append(["historic", historic])
+
+      # Test and append quarter as string IF it's historical data
+      quarter = service.latest_kpi_for('quarter')
+      if quarter is not None and quarter < latest:
+          key_vals.append(["historic", str(quarter)])
 
       dicts.append(dict(key_vals))
 

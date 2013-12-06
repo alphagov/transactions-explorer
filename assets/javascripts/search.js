@@ -208,7 +208,7 @@ GOVUK.transactionsExplorer.searchResultsTable = (function () {
     var transactionsPerYear = function (transactionsPerYear, historic) {
         if (transactionsPerYear) {
             var str = transactionsPerYear.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            if (historic !== "") {
+            if (historic) {
                 str = '<span class="olddata" title="Data received ' + historic + '; latest data not provided">' + str + '*</span>';
             }
             return str;
