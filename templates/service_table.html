@@ -45,7 +45,7 @@
         {% for service in items %}
 
             <tr data-volume="{{ service.latest_kpi_for('volume_num')|int }}"
-                data-volumeLabel=" {{ service.latest_kpi_for('volume_num')|as_grouped_number }} "
+                data-volumeLabel="{{ service.latest_kpi_for('volume_num')|as_grouped_number }}"
                 data-category="{{ service.category }}"
                 data-body="{{ service.body }}"
                 data-body-abbr="{{ service.agency_abbr }}"

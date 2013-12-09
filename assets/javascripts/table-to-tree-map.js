@@ -137,18 +137,24 @@ var TreeMapLayout = (function () {
   };
 
   var getNodeClass = function (d) {
-    var classes = ["none", "ellipsis", "small", "medium", "large", "x-large", "xx-large"],
-        keys    = [0     , 1         , 2      , 3       , 4      , 5        , 6],
-        dxIndex = d3.scale.threshold().domain([20,50,130,200,250,400]).range(keys),
-        dyIndex = d3.scale.threshold().domain([10,40,100,150,200,400]).range(keys),
-        type    = d.children ? "group" : "leaf";
+    var type   = d.children ? "group" : "leaf",
+        nClass = ['node', classForSize(d.dx, d.dy), type].join(' ');
 
-    var nClass = ['node', classes[Math.min(dxIndex(d.dx), dyIndex(d.dy))], type].join(' ');
     if(d.deptClass){
       // currently using dashes to replace dept name spaces e.g. 'Home Office' becomes 'home-office'
       nClass += ' ' + d.deptClass.replace(/\s+/g, '-').toLowerCase();
     }
     return nClass;
+  };
+
+  var classForSize = function(width, height) {
+    var size = (width + height) / 2,
+        classes = ["none", "ellipsis", "small", "medium", "large", "x-large", "xx-large"],
+        keys    = [0     , 1         , 2      , 3       , 4      , 5        , 6],
+        sizeIndex = d3.scale.threshold().domain([10,40,150,300,350,400]).range(keys),
+        widthIndex = d3.scale.threshold().domain([20,50,130,200,250,400]).range(keys);
+
+    return classes[Math.min(sizeIndex(size), widthIndex(width))];
   };
 
   var contentForClass = function(classes) {
