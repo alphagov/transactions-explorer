@@ -1954,8 +1954,10 @@ p.explanatory, #content header p.explanatory {
 @media (max-width: 980px) {
   .about-nav {
     float: none;
+    font-size: 14px;
   }
   .about-group {
     float: none;
+    width: 100%;
   }
 }
