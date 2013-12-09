@@ -1950,3 +1950,12 @@ p.explanatory, #content header p.explanatory {
   width: 760px;
 
 }
+
+@media (max-width: 980px) {
+  .about-nav {
+    float: none;
+  }
+  .about-group {
+    float: none;
+  }
+}
