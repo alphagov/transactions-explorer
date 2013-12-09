@@ -1935,3 +1935,18 @@ p.explanatory, #content header p.explanatory {
   width: 65.625%;
   margin-bottom: 0;
 }
+
+.about-nav {
+  float: left;
+}
+
+.about-nav ol {
+  padding-left: 0px;
+  list-style-type: none;
+}
+
+.about-group {
+  float: right;
+  width: 760px;
+
+}
