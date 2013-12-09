@@ -140,7 +140,6 @@ var TreeMapLayout = (function () {
     var type   = d.children ? "group" : "leaf",
         nClass = ['node', classForSize(d.dx, d.dy), type].join(' ');
 
-    //var nClass = ['node', classes[Math.min(dxIndex(d.dx), dyIndex(d.dy))], type].join(' ');
     if(d.deptClass){
       // currently using dashes to replace dept name spaces e.g. 'Home Office' becomes 'home-office'
       nClass += ' ' + d.deptClass.replace(/\s+/g, '-').toLowerCase();
