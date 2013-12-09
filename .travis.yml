@@ -1,20 +1,16 @@
---- 
+---
 language: python
-python: 
-- 2.6
-- 2.7
-env: 
+python:
+  - 2.7
+env:
 - secure: |-
     WF3zgCer3gTFPEeJFICLJ0akll9waz4NTP1sJGlkkgwkLc/4vexe+YULBTz+
     DyQX37yKqjC95Ym9YM8cmEV4axjGTxGMvp5/B9OZGO4Mc/MwbJuZ5XBdFNgC
     KritpYvK2kQEVAAqWqvskgidQpxEU+WjzQ5Gtflmb6nklpemEQ4=
-matrix: 
-  allow_failures: 
-  - python: 2.6
 script:
-- ./run_tests.sh
-branches: 
-  except: 
-  - release
-notifications: 
+  - ./run_tests.sh
+branches:
+  except:
+    - release
+notifications:
   email: false
