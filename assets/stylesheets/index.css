@@ -2005,3 +2005,8 @@ p.explanatory, #content header p.explanatory {
 h1 {
   font-weight: bold;
 }
+
+#global-breadcrumb ol {
+  border-top-color: #097F96;
+  border-bottom: 1px solid #BFC1C3;
+}
