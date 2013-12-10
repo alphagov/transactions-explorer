@@ -1941,9 +1941,55 @@ p.explanatory, #content header p.explanatory {
   float: left;
 }
 
+.about-nav h1 {
+  font-weight: normal;
+}
+
 .about-nav ol {
+  display: block;
+  font-size: 16px;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: decimal;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  padding-bottom: 0px;
   padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+}
+
+
+.about-nav li {
+  display: list-item;
+  float: none;
+  font-size: 16px;
+  font-weight: normal;
+  list-style-image: none;
+  list-style-position: outside;
   list-style-type: none;
+  margin-bottom: 0px;
+  margin-left: 15px;
+  margin-right: 0px;
+  margin-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 5px;
+}
+
+.about-nav li:before {
+  content: "-";
+  position: relative;
+  float: left;
+  margin-left: -15px;
+  width: 15px;
+}
+
+.about-nav a {
+  text-decoration: none;
 }
 
 .about-group {
