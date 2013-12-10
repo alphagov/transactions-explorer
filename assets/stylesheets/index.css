@@ -1947,15 +1947,12 @@ p.explanatory, #content header p.explanatory {
 
 .about-group {
   float: right;
-  max-width: 66%;
-  width: 760px;
-
+  width: 66%;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 600px) {
   .about-nav {
-    float: none;
-    font-size: 14px;
+    display: none;
   }
   .about-group {
     float: none;
