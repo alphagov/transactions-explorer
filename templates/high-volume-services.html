@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
-{% set current_navigation_link='high-volume-services' %}
+{% set breadcrumbs=[
+  {'name':'Transactions Explorer', 'href':'all-services/by-transactions-per-year/descending'}
+] %}
 {% set page_title = 'High volume services' %}
 
 {% block body %}
@@ -19,6 +21,8 @@
 <div class="group">
     <article role="article" class="group">
         <section class="content-group">
+            <p class="explanatory">You can also see <a href="{{ 'all-services/by-transactions-per-year/descending'|as_absolute_url }}">all services</a>, or read more about <a href="{{ 'about-data'|as_absolute_url }}">how the data was collected</a>.</p>
+
             <h1>Annual volume of transactions by service</h1>
 
             <figure id="services-treemap" class="treemap" data-treemap-url="{{ treemap_url | as_absolute_url }}"></figure>

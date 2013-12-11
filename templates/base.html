@@ -115,11 +115,6 @@
                 Performance
                 <span class="alpha-tag">Alpha</span>
               </a>
-              <ul id="proposition-links">
-                <li><a href="/performance/services">Services</a></li>
-                <li><a href="/performance/dashboard">GOV.UK performance</a></li>
-                <li><a href="{{ ''|as_absolute_url }}" class="active">Transactions Explorer</a></li>
-              </ul>
             </nav>
           </div>
         </div>
@@ -143,16 +138,17 @@
 
 
   <div id="wrapper" class="group">
-    <section id="content" role="main" class="group"><!--<div class="pattern-status">{% raw %}{{ page.status }}{% endraw %}</div>-->
-      <nav class="performance-nav">
-        <ul>
-          <li><a href="{{ ''|as_absolute_url }}" class="{% if current_navigation_link == 'home' %}active{% endif %}">Overview</a></li>
-          <li><a href="{{ 'all-services/by-transactions-per-year/descending'|as_absolute_url }}" class="{% if current_navigation_link == 'all-services' %}active{% endif %}">All services</a></li>
-          <li><a href="{{ 'high-volume-services/by-transactions-per-year/descending'|as_absolute_url }}" class="{% if current_navigation_link == 'high-volume-services' %}active{% endif %}">High-volume services</a></li>
-          <li><a href="{{ 'about-data'|as_absolute_url }}" class="{% if current_navigation_link == 'about' %}active{% endif %}">About the data</a></li>
-        </ul>
-      </nav>
+    <div class="" id="global-breadcrumb">
+      <ol class="group" role="breadcrumbs">
+        <li><a href="/performance">Performance</a></li>
+        {% for breadcrumb in breadcrumbs %}
+          <li><strong><a href="{{ breadcrumb.href|as_absolute_url }}">{{ breadcrumb.name }}</a></strong></li>
+        {% endfor %}
+      </ol>
+    </div>
 
+
+    <section id="content" role="main" class="group"><!--<div class="pattern-status">{% raw %}{{ page.status }}{% endraw %}</div>-->
       {% block body %}{% endblock %}
     </section>
   </div>
