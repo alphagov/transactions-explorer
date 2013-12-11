@@ -1939,7 +1939,7 @@ p.explanatory, #content header p.explanatory {
 
 .about-nav {
   float: left;
-  margin-top: 14.25px;
+  margin-top: 34.25px;
 }
 
 .about-nav h1 {
@@ -1989,6 +1989,7 @@ p.explanatory, #content header p.explanatory {
 .about-group {
   float: right;
   width: 66%;
+  margin-top: 20px;
 }
 
 @media (max-width: 600px) {
