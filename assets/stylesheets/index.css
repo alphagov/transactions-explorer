@@ -1939,6 +1939,7 @@ p.explanatory, #content header p.explanatory {
 
 .about-nav {
   float: left;
+  margin-top: 14.25px;
 }
 
 .about-nav h1 {
@@ -1951,16 +1952,9 @@ p.explanatory, #content header p.explanatory {
   list-style-image: none;
   list-style-position: outside;
   list-style-type: decimal;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  margin-right: 0px;
-  margin-top: 0px;
-  padding-bottom: 0px;
-  padding-left: 0px;
-  padding-right: 0px;
-  padding-top: 0px;
+  margin: 0px;
+  padding: 0px;
 }
-
 
 .about-nav li {
   display: list-item;
