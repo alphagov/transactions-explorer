@@ -1097,6 +1097,7 @@ nav span.beta-tag {
 
 /* line 107, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 section.content-group > h1 {
+  font-weight: bold;
   border-bottom: 5px solid #108095;
   padding: 16px 0 8px 0;
   margin: 0px 0 16px 0; }
@@ -1938,26 +1939,69 @@ p.explanatory, #content header p.explanatory {
 
 .about-nav {
   float: left;
+  margin-top: 34.25px;
+}
+
+.about-nav h1 {
+  font-weight: normal;
 }
 
 .about-nav ol {
-  padding-left: 0px;
+  display: block;
+  font-size: 16px;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: decimal;
+  margin: 0px;
+  padding: 0px;
+}
+
+.about-nav li {
+  display: list-item;
+  float: none;
+  font-size: 16px;
+  font-weight: normal;
+  list-style-image: none;
+  list-style-position: outside;
   list-style-type: none;
+  margin-bottom: 0px;
+  margin-left: 15px;
+  margin-right: 0px;
+  margin-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 5px;
+}
+
+.about-nav li:before {
+  content: "-";
+  position: relative;
+  float: left;
+  margin-left: -15px;
+  width: 15px;
+}
+
+.about-nav a {
+  text-decoration: none;
 }
 
 .about-group {
   float: right;
-  width: 760px;
-
+  width: 66%;
+  margin-top: 20px;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 600px) {
   .about-nav {
-    float: none;
-    font-size: 14px;
+    display: none;
   }
   .about-group {
     float: none;
     width: 100%;
   }
+}
+
+h1 {
+  font-weight: bold;
 }
