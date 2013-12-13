@@ -1937,6 +1937,10 @@ p.explanatory, #content header p.explanatory {
   margin-bottom: 0;
 }
 
+.page-title p.explanatory {
+  width:100%;
+}
+
 .about-nav {
   float: left;
   margin-top: 34.25px;
