@@ -1154,6 +1154,9 @@ section.content-group > h1 {
   line-height: 50px;
   display: inline-block;
   margin-right: 0.5em;
+}
+
+.service-details-header {
   margin-bottom: 30px;
 }
 /* line 159, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
