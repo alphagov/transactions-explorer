@@ -15,7 +15,7 @@ def teardown_package():
 @attr('feature')
 class BrowserTest(TestCase):
     def setUp(self):
-        self.browser = Browser('phantomjs', wait_time=3)
+        self.browser = Browser('phantomjs', wait_time=10)
         self.browser.driver.set_window_size(1024, 768)
 
     def tearDown(self):

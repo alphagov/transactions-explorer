@@ -115,7 +115,7 @@ if __name__ == "__main__":
     json_map = map_services_to_dicts(services)
     render_search_json(json_map, 'data/search.json')
 
-    render('search.html', 'search.html', {})
+    render('search.html', 'search.html', {'latest_quarter': latest_quarter})
 
     # Copy the assets folder entirely, as well
     dir_util.copy_tree('assets', '%s/transactions-explorer' % OUTPUT_DIR)
