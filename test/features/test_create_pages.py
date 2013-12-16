@@ -30,4 +30,4 @@ class test_create_pages(BrowserTest):
     def test_all_services(self):
         self.browser.visit("http://0.0.0.0:8000/all-services/by-transactions-per-year/descending")
         assert_that(self.browser.find_by_css('#wrapper h1').text, is_("Transactions Explorer"))
-        assert_that(self.browser.find_by_css('.explanatory').text, is_("Compare all government transactions grouped by the department providing them. You can also see just the high volume services, or read more about how the data was collected."))
+        assert_that(self.browser.find_by_css('.explanatory').text, is_("Compare all government transactional services grouped by the department providing them. You can also see just the high-volume services, or read more about the data and how it is collected."))
