@@ -28,7 +28,7 @@
     <div class="previous clear-div">
       <details>
         <summary role="button" aria-expanded="false">Historical data</summary>
-        <table>
+        <table class="historical">
           {% for previous in service.historical_data_before(quarter, key) %}
             <tr>
               <th>{{previous.quarter}}</th>

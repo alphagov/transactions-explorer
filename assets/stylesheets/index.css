@@ -1874,6 +1874,12 @@ article .transactions-explorer-download a {
   table td:nth-child(4){
     display: none;
   }
+  table.historical th:nth-child(2),
+  table.historical td:nth-child(2),
+  table.historical th:nth-child(4),
+  table.historical td:nth-child(4){
+    display: table-cell;
+  }
 }
 
 .page-title {
