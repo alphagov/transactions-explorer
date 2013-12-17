@@ -129,8 +129,7 @@
   </div>
   <script>
     var wireDetails = function () {
-        $('details').on('click', function () { $(this).find('table').toggle(); });
-        $('details').click();
+        $('details summary').on('click', function () { $(this).find('table').toggle(); });
     };
     $(wireDetails);
   </script>
