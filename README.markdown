@@ -36,7 +36,12 @@ After setting this up for the first time, you just need to run
 
 ### Fetching data
 
-* Create a new installed application in the [Google APIs console][console],
+First, ensure your Cabinet Office email account is authorised to access the 
+Transactions Explorer spreadsheet. 
+
+Then:
+
+* Create a new installed application (of type "Native") in the [Google APIs console][console],
 with "Drive API" service enabled, download the `client_secrets.json` file
 and store it in `data/`
 * Fetch the data through either of the methods below:
@@ -59,7 +64,7 @@ the following argument:
 * [optional] symlink the contents of assets/javascripts to output/assets/javascripts 
 for faster feedback than running create_pages each time.
 * run `./serve.sh` 
-* visit `http://localhost:8080/all-services`.
+* visit `http://localhost:8080`.
 * dance.
 
 
@@ -69,7 +74,7 @@ Unit tests can be run with `./run_tests.sh`.
 
 After generating the site as described above you can test
 it generated correctly by running `nosetests` (or `nosetests -a feature`
-to skip unit tests.
+to skip unit tests).
 
 ## Building and Deployment
 
