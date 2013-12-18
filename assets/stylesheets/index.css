@@ -1308,7 +1308,13 @@ table.full_width_table {
 #transactions-table tbody th {
   background: #eaedef;
   border: dotted 1px #b8c6cc;
-  font-weight: normal; }
+  font-weight: normal; 
+  white-space: nowrap; }
+  
+@media (max-width: 860px) {
+  #transactions-table tbody th {
+    white-space: normal;
+} }
 
 /* line 253, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 #transactions-table tbody tr:nth-child(even) th {
