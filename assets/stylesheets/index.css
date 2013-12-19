@@ -1308,12 +1308,11 @@ table.full_width_table {
 #transactions-table tbody th {
   background: #eaedef;
   border: dotted 1px #b8c6cc;
-  font-weight: normal; 
-  white-space: nowrap; }
-  
-@media (max-width: 860px) {
-  #transactions-table tbody th {
-    white-space: normal;
+  font-weight: normal; }
+
+@media (min-width: 860px) {
+  #all-services #transactions-table tbody th {
+    white-space: nowrap;
 } }
 
 /* line 253, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
