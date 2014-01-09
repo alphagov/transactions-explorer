@@ -25,6 +25,7 @@ input = arguments.services_data
 
 filters.path_prefix = arguments.path_prefix
 filters.asset_prefix = arguments.asset_prefix
+filters.static_prefix = arguments.static_prefix
 
 if arguments.static_digests:
     digest.load_digests(arguments.static_digests)

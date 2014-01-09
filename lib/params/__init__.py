@@ -30,6 +30,9 @@ def parse_args_for_create(args):
     parser.add_argument('--asset-prefix',
                         help='Prefix for generated asset URLs',
                         default=filters.asset_prefix)
+    parser.add_argument('--static-prefix',
+                        help='Prefix for generated GOV.UK static URLs',
+                        default=filters.static_prefix)
     parser.add_argument('--static-digests',
                         help='Path to manifest file containing assets digests',
                         type=argparse.FileType())

@@ -89,7 +89,7 @@ def number_as_percentage(num):
 
     num *= 100
     num_as_int = int(num)
-    
+
     if num_as_int == num:
         return '%s%%' % num_as_int
     else:
@@ -115,7 +115,7 @@ def number_as_percentage_change(num):
 def number_as_grouped_number(num):
     if isinstance(num, basestring):
         num = as_number(num)
-        
+
     if num is None:
         return ''
 
