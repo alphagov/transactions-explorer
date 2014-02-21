@@ -32,7 +32,13 @@ CSV_FORMAT = [("Department", lambda s: s.department),
                lambda s: as_number(getattr(s, "2013_q3_digital_vol"))),
               ("July 2012 to June 2013: cost per transaction (£)",
                lambda s: as_number(getattr(s, "2013_q3_cpt"))),
-              ("Latest volume", 
+              ("October 2012 to September 2013: volume",
+               lambda s: as_number(getattr(s, "2013_q4_vol"))),
+              ("October 2012 to September 2013: digital volume",
+               lambda s: as_number(getattr(s, "2013_q4_digital_vol"))),
+              ("October 2012 to September 2013: cost per transaction (£)",
+               lambda s: as_number(getattr(s, "2013_q4_cpt"))),
+              ("Latest volume",
                 lambda s: as_number(s.latest_kpi_for('volume'))),
               ("Latest digital volume",
                 lambda s: as_number(s.latest_kpi_for('digital_volume'))),
@@ -85,7 +91,7 @@ def dict_map(mappings, services):
     dicts = []
 
     latest = latest_quarter(services)
-   
+
     for service in services:
       key_vals = []
       for mapping in mappings:
