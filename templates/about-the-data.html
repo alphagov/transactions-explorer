@@ -3,7 +3,7 @@
 {% set breadcrumbs=[
   {'name':'Transactions Explorer', 'href':'all-services/by-transactions-per-year/descending'}
 ] %}
-{% set page_title = 'About the transactions explorer data' %}
+{% set page_title = 'About the Transactions Explorer data' %}
 
 
 {% block body %}
@@ -43,7 +43,7 @@
       <section class="content-group" name="2">
         <a name="collection"></a>
         <h1>Data collection</h1>
-        <p>We collect data from departments every three months. Data sets cover a 12 month period so that seasonal variation is balanced out. The latest data published covers July 2012 to June 2013.</p>
+        <p>We collect data from departments every three months. Data sets cover a 12 month period so that seasonal variation is balanced out. The latest data published covers October 2012 to September 2013.</p>
         <p>You can <a href="{{ 'data/transaction-volumes.csv' | as_absolute_url }}" title="Download the full data set (CSV)" download="transaction-volumes.csv">download the full raw data set</a> into spreadsheet-compatible CSV files.</p>
       </section>
 
@@ -61,7 +61,10 @@
         <ul>
           <li>digital take-up - percentage of transactions completed or partially completed through digital channels</li>
           <li>cost per transaction - average cost of providing each successfully completed transaction across all channels, including web, phone, post and in person</li>
-          <li>total cost - overall cost per year of providing a service, including staff, IT and accommodation costs</li>
+          <li>
+            total cost - overall cost per year of providing a service, including staff, IT and accommodation costs;
+            these figures are calculated from volume and cost per transaction figures, and some rounding errors may occur
+          </li>
           <li>data coverage - proportion of requested data provided by each department</li>
         </ul>
         <p>Find out how to <a href="https://www.gov.uk/service-manual/measurement/cost-per-transaction.html">measure cost per transaction</a> and about other <a href="https://www.gov.uk/service-manual/measurement/other-kpis.html">key performance indicators</a>, including digital take-up and how to increase it.</p>
@@ -83,7 +86,7 @@
         <a name="feedback"></a>
         <h1>Feedback</h1>
         <p>Analysing this data helps us measure performance effectively, improve customer experience and identify where cost savings can be made.</p>
-        <p><a href="mailto:pdu-feedback@digital.cabinet-office.gov.uk">Tell us what you think</a>. Is the transactions explorer useful for you? How could we make it better?</p>
+        <p><a href="mailto:pdu-feedback@digital.cabinet-office.gov.uk">Tell us what you think</a>. Is the Transactions Explorer useful for you? How could we make it better?</p>
       </section>
 
     </article>
