@@ -13,7 +13,7 @@ from lib.filesystem import create_directory
 arguments = parse_args_for_fetch(sys.argv[1:])
 
 SPREADSHEET = '0AiLXeWvTKFmBdFpxdEdHUWJCYnVMS0lnUHJDelFVc0E'
-SERVICES_SHEET = '44'
+SERVICES_SHEET = '58'
 SERVICES_DATA_OUTPUT = 'data/services.csv'
 MISSING_CLIENT_SECRETS_MESSAGE = """
 WARNING: Please configure OAuth 2.0

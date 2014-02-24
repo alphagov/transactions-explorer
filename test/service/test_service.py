@@ -112,8 +112,8 @@ class TestService(unittest.TestCase):
 
         coverage = service.data_coverage
 
-        assert_that(float(coverage.percentage), close_to(0.41666, 0.001))
-        assert_that(coverage.requested, is_(12))
+        assert_that(float(coverage.percentage), close_to(0.3333, 0.001))
+        assert_that(coverage.requested, is_(15))
         assert_that(coverage.provided, is_(5))
 
     def test_coverage_with_non_requested_metrics(self):
@@ -130,8 +130,8 @@ class TestService(unittest.TestCase):
 
         coverage = service.data_coverage
 
-        assert_that(float(coverage.percentage), close_to(0.4545, 0.001))
-        assert_that(coverage.requested, is_(11))
+        assert_that(float(coverage.percentage), close_to(0.3571, 0.001))
+        assert_that(coverage.requested, is_(14))
         assert_that(coverage.provided, is_(5))
 
     def test_most_up_to_date_volume(self):

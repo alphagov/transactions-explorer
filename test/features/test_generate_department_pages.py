@@ -17,7 +17,7 @@ class GenerateDepartmentPages(BrowserTest):
         self.browser.visit("http://0.0.0.0:8000/department/abc/by-transactions-per-year/descending")
         coverage = self.browser.find_by_css('#data-coverage-notice').text
 
-        assert_that(coverage, is_(u'Department data coverage: 50%\n(taken from 1 high volume services)'))
+        assert_that(coverage, is_(u'Department data coverage: 40%\n(taken from 1 high volume services)'))
 
     @nottest
     def test_do_not_generate_data_coverage_if_no_high_volume_services(self):
