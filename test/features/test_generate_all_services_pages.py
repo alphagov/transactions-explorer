@@ -11,6 +11,7 @@ class GenerateAllServicesPages(BrowserTest):
         table = table_from(self.browser.find_by_css('tbody tr'))
 
         assert_that(table, is_([
+            [u'Ministry of Silly Walks', u'10%', u'\xa3482m', u'40%', u'4,820,000,000'],
             [u'Department of Electronic Freedom', u'84.7%', u'\xa3157m', u'28%', u'21,117,614'],
             [u'Agency for Beautiful Code', u'100%', u'\xa3482k', u'40%', u'4,839,291'],
             [u'Lower Order Workgroups', u'', u'', u'', u'29,127']
@@ -18,7 +19,7 @@ class GenerateAllServicesPages(BrowserTest):
 
     def test_first_element_sort_by_department_descending(self):
         self.browser.visit("http://0.0.0.0:8000/all-services/by-department/descending")
-        assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Lower Order Workgroups"))
+        assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Ministry of Silly Walks"))
 
     def test_first_element_sort_by_department_ascending(self):
         self.browser.visit("http://0.0.0.0:8000/all-services/by-department/ascending")
@@ -30,11 +31,11 @@ class GenerateAllServicesPages(BrowserTest):
 
     def test_first_element_sort_by_digit_take_up_ascending(self):
         self.browser.visit("http://0.0.0.0:8000/all-services/by-digital-takeup/ascending")
-        assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Department of Electronic Freedom"))
+        assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Ministry of Silly Walks"))
 
     def test_first_element_sort_by_total_cost_descending(self):
         self.browser.visit("http://0.0.0.0:8000/all-services/by-cost/descending")
-        assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Department of Electronic Freedom"))
+        assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Ministry of Silly Walks"))
 
     def test_first_element_sort_by_total_cost_ascending(self):
         self.browser.visit("http://0.0.0.0:8000/all-services/by-cost/ascending")
@@ -50,7 +51,7 @@ class GenerateAllServicesPages(BrowserTest):
 
     def test_first_element_sort_by_volume_descending(self):
         self.browser.visit("http://0.0.0.0:8000/all-services/by-transactions-per-year/descending")
-        assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Department of Electronic Freedom"))
+        assert_that(self.browser.find_by_css('tbody tr th a').text, is_(u"Ministry of Silly Walks"))
 
     def test_first_element_sort_by_volume_ascending(self):
         self.browser.visit("http://0.0.0.0:8000/all-services/by-transactions-per-year/ascending")

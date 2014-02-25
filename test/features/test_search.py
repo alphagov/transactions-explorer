@@ -15,7 +15,7 @@ class test_search(BrowserTest):
         assert_that(self.browser.find_by_css('#wrapper h1').text,
                     is_('Search results'))
 
-        assert_that(self.browser.find_by_css('tbody tr'), has_length(7))
+        assert_that(self.browser.find_by_css('tbody tr'), has_length(8))
 
     def test_default_sorting(self):
         self.browser.visit("http://0.0.0.0:8000/search?keyword=gds")

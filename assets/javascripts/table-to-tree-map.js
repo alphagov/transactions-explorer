@@ -10,6 +10,7 @@ var Tree = (function () {
     if (value === 0) return "0";
 
     var magnitudes = {
+      billion:  {value: 1e9, suffix:"bn"},
       million:  {value: 1e6, suffix:"m"},
       thousand: {value: 1e3, suffix:"k"},
       unit:     {value: 1, suffix:""}
@@ -21,7 +22,7 @@ var Tree = (function () {
         roundToSignificantFigures = function(num, n) {
           return Math.round(num * magnitude(num, n)) / magnitude(num, n);
         },
-        thresholds = [ magnitudes.million, magnitudes.thousand ],
+        thresholds = [ magnitudes.billion, magnitudes.million, magnitudes.thousand ],
         roundedValue = roundToSignificantFigures(value, 3),
         significantFigures = null;
 

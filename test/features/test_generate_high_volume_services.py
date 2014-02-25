@@ -11,6 +11,7 @@ class GenerateHighVolumeServicesPages(BrowserTest):
         table = table_from(self.browser.find_by_css('tbody tr'))
 
         assert_that(table, is_([
+            [u'Service Walking', u'MSW', u'\xa3482m', u'\xa30.10', u'10%', u'4,820,000,000'],
             [u'Service 4', u'DEF', u'\xa312.1m*', u'\xa31.30*', u'94.8%*', u'9,321,067*'],
             [u'Service 1', u'ABC', u'\xa3482k', u'\xa30.10', u'100%', u'4,820,000'],
             [u'Service 5', u'DEF', u'\xa313.1m*', u'\xa33.40*', u'100%*', u'3,847,098*'],
