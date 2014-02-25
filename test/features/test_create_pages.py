@@ -23,9 +23,9 @@ class test_create_pages(BrowserTest):
         services = headlines[1].text
         transactions = headlines[2].text
 
-        assert_that(departments, contains_string('3'))
-        assert_that(services, contains_string('10'))
-        assert_that(transactions, contains_string('26.0m'))
+        assert_that(departments, contains_string('4'))
+        assert_that(services, contains_string('11'))
+        assert_that(transactions, contains_string('4.85b'))
 
     def test_all_services(self):
         self.browser.visit("http://0.0.0.0:8000/all-services/by-transactions-per-year/descending")
