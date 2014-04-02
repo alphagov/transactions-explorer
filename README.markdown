@@ -5,7 +5,7 @@ Transactions Explorer
 
 Generates a static HTML version of the [Transactions Explorer][tx].
 
-[tx]: http://transactionsexplorer.cabinetoffice.gov.uk
+[tx]: https://www.gov.uk/performance/transactions-explorer/all-services/by-transactions-per-year/descending
 
 ## Prerequisites
 
@@ -36,8 +36,8 @@ After setting this up for the first time, you just need to run
 
 ### Fetching data
 
-First, ensure your Cabinet Office email account is authorised to access the 
-Transactions Explorer spreadsheet. 
+First, ensure your Cabinet Office email account is authorised to access the
+Transactions Explorer spreadsheet.
 
 Then:
 
@@ -61,9 +61,9 @@ the following argument:
   * `--path-prefix`: Prefix for generated URL paths (default: `/`)
   * `--static-digests` Path to manifest file containing assets digests (default: None) You can download the current digests from https://assets.digital.cabinet-office.gov.uk/static/manifest.yml
 * [alternative] Generate the site with `./build_artefact.sh` script. It will run the above command with all the defaults.
-* [optional] symlink the contents of assets/javascripts to output/assets/javascripts 
+* [optional] symlink the contents of assets/javascripts to output/assets/javascripts
 for faster feedback than running create_pages each time.
-* run `./serve.sh` 
+* run `./serve.sh`
 * visit `http://localhost:8080`.
 * dance.
 
@@ -75,30 +75,3 @@ Unit tests can be run with `./run_tests.sh`.
 After generating the site as described above you can test
 it generated correctly by running `nosetests` (or `nosetests -a feature`
 to skip unit tests).
-
-## Building and Deployment
-
-Build pipe line:
-
-`transactions-explorer -> transactions-explorer-build-artefacts -> transactions-explorer-deploy*`
-
-The `transactions-explorer` task runs the tests and triggers `transactions-explorer-build-artefacts`
-if the tests all pass.
-
-The `transactions-explorer-build-artefacts` task runs `build.sh`. This kicks off a number of steps
-which generate the site as a deployable tar ball for each environment (preview, staging and production)
-
-The `build.sh` steps:
-
-- Fetch data
-    - Pull down the latest version of the csv data, the locations of the credentials files are set as environment variables in `build.sh`
-- Generate the treemap fallbacks for browsers where d3.js doesn't work (`build_treemaps.sh`)
-    - Generates the site locally and hosts it on the python test server
-    - Runs phantomjs (managed by a subprocess in python because it tends to misbehave see: `create_treemap_fallbacks.py`)
-    - The phantomjs subprocess visits each page with a treemap (listed in `create_treemap_fallbacks.py`) and extracts the treemap HTML to files in `output/treemaps`
-- Generate the deployable version of the site for each environment (`build_artefact.sh`)
-    - Runs `build_artefact.sh` with the environment specific variables
-    - Copies in the treemap fallbacks created above
-    - Packages the site (this is the contents of the `output` directory) as a tar ball and puts it in the `artefacts` folder
-
-Once finished the build job will trigger a deployment to preview, other deployments must be triggered manually.
