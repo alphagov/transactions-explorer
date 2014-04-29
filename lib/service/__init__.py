@@ -173,9 +173,16 @@ class Service:
         return most_recent_yearly_volume
 
     def historical_data_before(self, quarter, key):
-        key_data = lambda k: {'quarter': k['quarter'], 'value': k.get(key)}
         previous_kpis = filter(lambda k: k['quarter'] < quarter, self.kpis)
 
+        if key == 'cost_per_number' or key == 'cost':
+            # Don't return cost_per_number or cost if cost_per_number is not provided
+            previous_kpis = [elem for elem in previous_kpis if elem['cost_per_number'] is not None]
+        elif key == 'takeup':
+            # Don't return takeup value if digital_volume_num is not provided
+            previous_kpis = [elem for elem in previous_kpis if elem['digital_volume_num'] is not None]
+
+        key_data = lambda k: {'quarter': k['quarter'], 'value': k.get(key)}
         return map(key_data, reversed(previous_kpis))
 
     def __getitem__(self, key):
