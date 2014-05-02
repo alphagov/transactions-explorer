@@ -350,8 +350,8 @@ class TestDepartmentDataCoverage(unittest.TestCase):
 
         coverage = dept.data_coverage
 
-        assert_that(float(coverage.percentage), close_to(0.3, 0.001))
-        assert_that(coverage.requested, is_(30))
+        assert_that(float(coverage.percentage), is_(.25))
+        assert_that(coverage.requested, is_(36))
         assert_that(coverage.provided, is_(9))
 
     def test_data_coverage_excludes_non_high_volume_services(self):
@@ -376,8 +376,8 @@ class TestDepartmentDataCoverage(unittest.TestCase):
 
         coverage = dept.data_coverage
 
-        assert_that(float(coverage.percentage), close_to(0.2, 0.001))
-        assert_that(coverage.requested, is_(15))
+        assert_that(float(coverage.percentage), close_to(0.1666, 0.001))
+        assert_that(coverage.requested, is_(18))
         assert_that(coverage.provided, is_(3))
 
     def test_data_coverage_is_none_when_no_high_volume_services(self):
@@ -424,6 +424,6 @@ class TestDepartmentDataCoverage(unittest.TestCase):
 
         coverage = dept.data_coverage
 
-        assert_that(float(coverage.percentage), close_to(0.2222, 0.001))
-        assert_that(coverage.requested, is_(27))
+        assert_that(float(coverage.percentage), close_to(0.1818, 0.001))
+        assert_that(coverage.requested, is_(33))
         assert_that(coverage.provided, is_(6))
