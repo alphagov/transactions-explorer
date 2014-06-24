@@ -26,6 +26,15 @@
 .performance-hidden {
   display: none; }
 
+#global-header-bar .header-bar {
+  background-color: #097F96;
+}
+
+#global-cookie-message p {
+  margin: 0 auto;
+  max-width: 960px;
+}
+
 /* line 20, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/layout.scss */
 #wrapper * {
   -webkit-box-sizing: border-box;
