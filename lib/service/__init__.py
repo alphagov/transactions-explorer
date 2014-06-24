@@ -29,6 +29,7 @@ class Service:
         '2013_q3',
         '2013_q4',
         '2014_q1',
+        '2014_q2',
     ]
     COVERAGE_ATTRIBUTES = ['vol', 'digital_vol', 'cpt']
 

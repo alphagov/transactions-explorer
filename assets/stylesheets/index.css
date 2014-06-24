@@ -26,6 +26,15 @@
 .performance-hidden {
   display: none; }
 
+#global-header-bar .header-bar {
+  background-color: #097F96;
+}
+
+#global-cookie-message p {
+  margin: 0 auto;
+  max-width: 960px;
+}
+
 /* line 20, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/layout.scss */
 #wrapper * {
   -webkit-box-sizing: border-box;
@@ -1614,17 +1623,30 @@ header.page-header div {
 }
 
 span.alpha-tag {
-  text-transform: uppercase;
-  font-weight:normal;
-  letter-spacing: 1px;
-  color: white;
-  -webkit-font-smoothing: subpixel-antialiased;
-  background-color: #d53880;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px 0 0;
   padding: 2px 5px 0;
-  font-size:67%;
-  display:inline-block;
-  vertical-align:top;
-  margin-top:2px;
+  font-family: "nta", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 300;
+  text-transform: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #d53880;
+  margin-left: 2px;
+  position: relative;
+  top: -2px;
+}
+
+@media (min-width: 641px) {
+  span.alpha-tag {
+    vertical-align: baseline;
+  }
 }
 
 a:hover span.alpha-tag {
