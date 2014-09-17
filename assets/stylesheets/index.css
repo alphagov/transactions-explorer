@@ -14,10 +14,6 @@
 @-o-viewport {
   width: device-width; }
 
-@media (max-width: 379px) {
-  /* line 167, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/nav.scss */
-  nav.performance-nav a.top-level .alpha-tag {
-    display: none; } }
 /* line 7, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/layout.scss */
 ::-ms-clear {
   display: none; }
@@ -26,9 +22,6 @@
 .performance-hidden {
   display: none; }
 
-#global-header-bar .header-bar {
-  background-color: #097F96;
-}
 
 #global-cookie-message p {
   margin: 0 auto;
@@ -1097,13 +1090,6 @@ h2#narrative {
     font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
     color: #912b88; }
 
-/* line 100, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
-nav span.beta-tag {
-  padding: 2px 5px 2px 5px;
-  margin-left: 5px;
-  background-color: #FF5A27;
-  color: white; }
-
 /* line 107, /mnt/jenkins/workspace/innovations-transactions-visualisation/web/app/assets/stylesheets/index.scss */
 section.content-group > h1 {
   font-weight: bold;
@@ -1622,7 +1608,8 @@ header.page-header div {
   padding: 0;
 }
 
-span.alpha-tag {
+span.beta-tag {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: top;
   margin: 0 8px 0 0;
@@ -1637,19 +1624,19 @@ span.alpha-tag {
   letter-spacing: 1px;
   text-decoration: none;
   color: #fff;
-  background-color: #d53880;
+  background-color: #f47738;
   margin-left: 2px;
   position: relative;
-  top: -2px;
+  top: 2px;
 }
 
 @media (min-width: 641px) {
-  span.alpha-tag {
+  span.beta-tag {
     vertical-align: baseline;
   }
 }
 
-a:hover span.alpha-tag {
+a:hover span.beta-tag {
     text-decoration: none;
 }
 
@@ -1729,12 +1716,6 @@ nav.performance-nav a:hover {
 
   nav.performance-nav ul li a {
     padding:0;
-  }
-}
-
-@media (max-width: 379px) {
-  #global-header span.alpha-tag {
-    display:none;
   }
 }
 
