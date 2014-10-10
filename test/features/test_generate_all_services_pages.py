@@ -11,9 +11,9 @@ class GenerateAllServicesPages(BrowserTest):
         table = table_from(self.browser.find_by_css('tbody tr'))
 
         assert_that(table, is_([
-            [u'Ministry of Silly Walks', u'10%', u'\xa3482m', u'28.6%', u'4,820,000,000'],
-            [u'Department of Electronic Freedom', u'84.7%', u'\xa3157m', u'20%', u'21,117,614'],
-            [u'Agency for Beautiful Code', u'100%', u'\xa3482k', u'28.6%', u'4,839,291'],
+            [u'Ministry of Silly Walks', u'10%', u'\xa3482m', u'25%', u'4,820,000,000'],
+            [u'Department of Electronic Freedom', u'84.7%', u'\xa3157m', u'17.5%', u'21,117,614'],
+            [u'Agency for Beautiful Code', u'100%', u'\xa3482k', u'25%', u'4,839,291'],
             [u'Lower Order Workgroups', u'', u'', u'', u'29,127']
         ]))
 
