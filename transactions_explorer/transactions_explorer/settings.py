@@ -8,6 +8,8 @@
 
 BOT_NAME = 'transactions_explorer'
 
+DOWNLOAD_DELAY = 0.25
+
 SPIDER_MODULES = ['transactions_explorer.spiders']
 NEWSPIDER_MODULE = 'transactions_explorer.spiders'
 

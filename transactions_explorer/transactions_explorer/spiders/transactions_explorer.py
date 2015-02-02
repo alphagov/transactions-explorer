@@ -6,13 +6,13 @@ from scrapy.spider import BaseSpider
 
 class TxExplorerSpider(CrawlSpider):
         name = "transactions-explorer"
-        allowed_domains = ["transactionsexplorer.cabinetoffice.gov.uk"]
-        start_urls = ["http://transactionsexplorer.cabinetoffice.gov.uk/"]
+        allowed_domains = ["www.gov.uk"]
+        start_urls = ["https://www.gov.uk/performance/transactions-explorer"]
 
         # allow=() is used to match all links
         rules = [
-        Rule(SgmlLinkExtractor(allow=()), follow=True),
-        Rule(SgmlLinkExtractor(allow=()), callback='parse_item')
+        Rule(SgmlLinkExtractor(allow=('^https://www.gov.uk/performance/transactions-explorer.*$')), follow=True),
+        Rule(SgmlLinkExtractor(allow=('^https://www.gov.uk/performance/transactions-explorer.*$')), callback='parse_item')
         ]
 
         def parse_item(self, response):
